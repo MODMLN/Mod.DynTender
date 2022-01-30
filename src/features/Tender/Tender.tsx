@@ -27,7 +27,7 @@ useEffect(() => {
 }, [dispatch]);
 
     return (
-      <Box>
+      <Box> 
    
         {getTender.data.filter((x: { Id: number; })=>x.Id===15).map((item: TenderDto, index: number) => {
             return (
