@@ -1,0 +1,197 @@
+[{
+    "Id": 15,
+    "EndDate": null,
+    "StartDate": "05:00",
+    "Name": "אמצעים לאחסון ושינוע מזון במרקט",
+    "IsQualityTender": false,
+    "CurrencyId": "₪",
+    "Time": 22946,
+    "TotalToLead": 77500,
+    "RankInfo": "Active",
+    "UserLastPropositionTotal": 80000
+    ,"Statuses":"Active"
+    ,"TenderNumber":"6589547859"
+  },
+  {
+    "Id": 16,
+    "EndDate": null,
+    "StartDate": "05:00",
+    "Name": "קוד 1 - מכרז רגיל",
+    "IsQualityTender": false,
+    "CurrencyId": "₪",
+    "Time": 22946,
+    "TotalToLead": 77500,
+    "RankInfo": null,
+    "UserLastPropositionTotal": 80000
+    ,"Statuses":"Frozen"
+    ,"TenderNumber":"6589547459"
+  },{
+    "Id": 17,
+    "EndDate": null,
+    "StartDate": "05:00",
+    "Name": "קוד 1 - מכרז רגיל",
+    "IsQualityTender": false,
+    "CurrencyId": "₪",
+    "Time": 22946,
+    "TotalToLead": 77500,
+    "RankInfo": "Ended",
+    "UserLastPropositionTotal": 80000
+    ,"Statuses":"Ended"
+    ,"TenderNumber":"6580047859"
+  },{
+    "Id": 18,
+    "EndDate": null,
+    "StartDate": "05:00",
+    "Name": "קוד 1 - מכרז רגיל",
+    "IsQualityTender": false,
+    "CurrencyId": "₪",
+    "Time": 22946,
+    "TotalToLead": 77500,
+    "RankInfo":  "Active",
+    "UserLastPropositionTotal": 80000
+    ,"Statuses":"Active"
+    ,"TenderNumber":"6589347859"
+  },{
+    "Id": 19,
+    "EndDate": null,
+    "StartDate": "05:00",
+    "Name": "קוד 1 - מכרז רגיל",
+    "IsQualityTender": false,
+    "CurrencyId": "₪",
+    "Time": 22946,
+    "TotalToLead": 77500,
+    "RankInfo": "Frozen",
+    "UserLastPropositionTotal": 80000
+    ,"Statuses":"Active"
+    ,"TenderNumber":"6589545859"
+  },{
+    "Id": 25,
+    "EndDate": null,
+    "StartDate": "05:00",
+    "Name": "קוד 1 - מכרז רגיל",
+    "IsQualityTender": false,
+    "CurrencyId": "₪",
+    "Time": 22946,
+    "TotalToLead": 77500,
+    "RankInfo": null,
+    "UserLastPropositionTotal": 80000
+    ,"Statuses":"Active"
+    ,"TenderNumber":"6589543259"
+  },{
+    "Id": 26,
+    "EndDate": null,
+    "StartDate": "05:00",
+    "Name": "קוד 1 - מכרז רגיל",
+    "IsQualityTender": false,
+    "CurrencyId": "₪",
+    "Time": 22946,
+    "TotalToLead": 77500,
+    "RankInfo": null,
+    "UserLastPropositionTotal": 80000
+    ,"Statuses":"Active"
+    ,"TenderNumber":"6589553859"
+  },{
+    "Id": 27,
+    "EndDate": null,
+    "StartDate": "05:00",
+    "Name": "קוד 1 - מכרז רגיל",
+    "IsQualityTender": false,
+    "CurrencyId": "₪",
+    "Time": 22946,
+    "TotalToLead": 77500,
+    "RankInfo": null,
+    "UserLastPropositionTotal": 80000
+    ,"Statuses":"Active"
+    ,"TenderNumber":"6569547859"
+  },{
+    "Id": 28,
+    "EndDate": null,
+    "StartDate": "05:00",
+    "Name": "קוד 1 - מכרז רגיל",
+    "IsQualityTender": false,
+    "CurrencyId": "₪",
+    "Time": 22946,
+    "TotalToLead": 77500,
+    "RankInfo": null,
+    "UserLastPropositionTotal": 80000
+    ,"Statuses":"Active"
+    ,"TenderNumber":"6527547859"
+  },{
+    "Id": 29,
+    "EndDate": null,
+    "StartDate": "05:00",
+    "Name": "קוד 1 - מכרז רגיל",
+    "IsQualityTender": false,
+    "CurrencyId": "₪",
+    "Time": 22946,
+    "TotalToLead": 77500,
+    "RankInfo": null,
+    "UserLastPropositionTotal": 80000
+    ,"Statuses":"Active"
+    ,"TenderNumber":"6589307859"
+  },{
+    "Id": 35,
+    "EndDate": null,
+    "StartDate": "05:00",
+    "Name": "קוד 1 - מכרז רגיל",
+    "IsQualityTender": false,
+    "CurrencyId": "₪",
+    "Time": 22946,
+    "TotalToLead": 77500,
+    "RankInfo": null,
+    "UserLastPropositionTotal": 80000
+    ,"Statuses":"Active"
+    ,"TenderNumber":"6583147859"
+  },{
+    "Id": 55,
+    "EndDate": null,
+    "StartDate": "05:00",
+    "Name": "קוד 1 - מכרז רגיל",
+    "IsQualityTender": false,
+    "CurrencyId": "₪",
+    "Time": 22946,
+    "TotalToLead": 77500,
+    "RankInfo": null,
+    "UserLastPropositionTotal": 80000
+    ,"Statuses":"NotStarted"
+    ,"TenderNumber":"658347859"
+  },{
+    "Id": 36,
+    "EndDate": null,
+    "StartDate": "05:00",
+    "Name": "קוד 1 - מכרז רגיל",
+    "IsQualityTender": false,
+    "CurrencyId": "₪",
+    "Time": 22946,
+    "TotalToLead": 77500,
+    "RankInfo": null,
+    "UserLastPropositionTotal": 80000
+    ,"Statuses":"Active"
+    ,"TenderNumber":"6583547859"
+  },{
+    "Id":37,
+    "EndDate": null,
+    "StartDate": "05:00",
+    "Name": "קוד 1 - מכרז רגיל",
+    "IsQualityTender": false,
+    "CurrencyId": "₪",
+    "Time": 22946,
+    "TotalToLead": 77500,
+    "RankInfo": null,
+    "UserLastPropositionTotal": 80000
+    ,"Statuses":"Active"
+    ,"TenderNumber":"6583647859"
+  },{
+    "Id": 38,
+    "EndDate": null,
+    "StartDate": "05:00",
+    "Name": "קוד 1 - מכרז רגיל",
+    "IsQualityTender": false,
+    "CurrencyId": "₪",
+    "Time": 22946,
+    "TotalToLead": 77500,
+    "RankInfo": null,
+    "UserLastPropositionTotal": 80000
+    ,"Statuses":"Active"
+    ,"TenderNumber":"6537847859"
+  }]
