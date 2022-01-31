@@ -6,7 +6,6 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
 import TenderListsItem from './TenderListsItem';
 
-
 export default function TenderLists() {
   
   const dispatch = useDispatch();
@@ -23,6 +22,8 @@ export default function TenderLists() {
   }, [dispatch]);
 
 
+
+
   return (
     <div>
       <React.Fragment>
@@ -30,7 +31,10 @@ export default function TenderLists() {
         <Container >
           {getAllTenders.data.map((item: TenderDto, index: number) => {
             return (
-               <TenderListsItem key={index} item={item} index={index}   />
+                  
+                      <TenderListsItem key={index} item={item} index={index} redirectOnClick={true}   />
+                
+            
               )
           })}
         </Container>

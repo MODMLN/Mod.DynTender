@@ -1,21 +1,17 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter , Routes, Route } from "react-router-dom";
 import Tenders from "./features/Tenders/Tenders";
 import Tender from "./features/Tender/Tender";
 
-const Routes = () => {
+const TenderRoutes = () => {
   return (
-    <Router>
-      <Switch>
-        <Route exact path="/Tenders">
-          <Tenders />
-        </Route>
-        <Route exact path="/Tender/:id">
-          <Tender />
-        </Route>
-      </Switch>
-    </Router>
+    <BrowserRouter>
+      <Routes>
+        <Route exact path="/Tenders" element={<Tenders/>}/>
+        <Route exact path="/Tender/:id" element={<Tender/>}/>
+      </Routes>
+    </BrowserRouter>
   );
 };
 
-export default Routes;
+export default TenderRoutes;
