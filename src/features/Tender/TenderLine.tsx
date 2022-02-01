@@ -6,12 +6,13 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-
-
-
-
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
+import IconButton from '@mui/material/IconButton';
+import TextField from '@mui/material/TextField';
 
 export default function TenderLine(): JSX.Element {
+
 
     return (
         <Box className={Styles.TenderLine}>
@@ -25,20 +26,31 @@ export default function TenderLine(): JSX.Element {
                 <Typography>
                     <Box className={Styles.TenderLineHead}>
                         <Box className={Styles.title}>ארונית ניידת לשינוע מזון</Box>
-                        <Box>מספר יחידות <b>1,000</b></Box>
-                        <Box>מחיר ליחידה <b>10,000</b></Box>
-                        <Box>סה"כ <b>100,000</b></Box>
+                        <Box>מספר יחידות  <b>1,000</b></Box>
+                        <Box>מחיר ליחידה  <b>10,000</b></Box>
+                        <Box>סה"כ  <b>100,000</b></Box>
                         <Box>עודכן</Box>
-                        <Box></Box>
                     </Box>
                 </Typography>
             </AccordionSummary>
                 <AccordionDetails>
                     <Typography>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                        malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum dolor
-                        sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-                        sit amet blandit leo lobortis eget.
+                        <Box className={Styles.line}></Box>
+                        <Box className={Styles.tenderSummery}>
+                            <Box className={Styles.stepDiv}> 
+                                <Box className={Styles.stepTitle}>מדרגת הצעה</Box>
+                                <Box className={Styles.stepNumber}><b>50 ₪</b></Box>
+                            </Box>
+                            <Box className={Styles.unitPrice}>
+                                <Box className={Styles.stepTitle}>מחיר ליחידה</Box>
+                                <Box className={Styles.stepField}>
+                                   <Box><IconButton><AddCircleIcon  /></IconButton></Box> 
+                                   <Box><TextField id="standard-basic" label="₪" variant="standard" /></Box>
+                                   <Box><IconButton><RemoveCircleIcon  /></IconButton></Box>
+                                </Box>
+                            </Box>
+                            <Box></Box>
+                        </Box>
                     </Typography>
                 </AccordionDetails>
             </Accordion>

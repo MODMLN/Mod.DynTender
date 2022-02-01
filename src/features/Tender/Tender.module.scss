@@ -10,6 +10,7 @@ body {
 
 .BoxContainer {
   width: 100%;
+
   .BoxMain {
     border: none !important;
   }
@@ -29,11 +30,12 @@ body {
       margin-left: auto;
       margin-right: auto;
       width: 50%;
-      >div{
+
+      >div {
         width: 100%;
         margin-left: auto;
         margin-right: auto;
-        border: none!important;
+        border: none !important;
       }
     }
   }
@@ -53,7 +55,7 @@ body {
 }
 
 .TenderLine {
-  
+
   padding: 32px;
   margin-left: auto;
   margin-right: auto;
@@ -64,14 +66,15 @@ body {
   box-shadow: 0px 4px 24px rgba(58, 59, 69, 0.1);
   border-radius: 7px;
 
-  .css-1elwnq4-MuiPaper-root-MuiAccordion-root{
-    border :none!important;
+  .css-1elwnq4-MuiPaper-root-MuiAccordion-root {
+    border: none !important;
   }
+
   .TenderLineHead {
     direction: rtl;
     align-items: center;
     display: grid;
-    grid-template-columns: 4fr 3fr 3fr 3fr 1fr 1fr 1fr;
+    grid-template-columns: 5fr 4fr 4fr 4fr 4fr;
     gap: 5x;
 
     .title {
@@ -87,6 +90,63 @@ body {
       letter-spacing: -0.4125px;
 
       color: #44454B;
+    }
+  }
+
+  .line {
+    margin: 1% 0;
+    left: 0%;
+    right: 0%;
+    bottom: 0%;
+    border: 1px solid #E3E6F0;
+    background: #E3E6F0;
+  }
+
+  .tenderSummery {
+    text-align: right;
+    direction: rtl;
+    display: grid;
+    grid-template-columns: 1fr 1fr 3fr;
+    gap: 5x;
+
+    .stepDiv {
+      .stepTitle{
+        font-family: 'OpenSans', sans-serif;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 18px;
+        line-height: 14px;
+        /* identical to box height, or 78% */
+        margin-bottom: 20px;
+        text-align: right;
+        letter-spacing: -0.2625px;
+      }
+      .stepNumber {
+        font-family: 'OpenSans', sans-serif;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 26px;
+        line-height: 14px;
+        /* identical to box height, or 54% */
+        text-align: right;
+        letter-spacing: -0.2625px;
+        color: #44454B;
+      }
+    }
+
+    .unitPrice{
+      padding: 5px;
+      text-align: center;
+      background: #F4F8FF;
+      border-radius: 7px;
+      .stepField{
+        padding: 2px;
+        display: grid;
+        grid-template-columns: 1fr 2fr 1fr;
+        gap: 5x;
+        
+      }
+
     }
   }
 }
