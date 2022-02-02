@@ -8,6 +8,11 @@ body {
   background-color: #F0F6FE;
 }
 
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+
 .BoxContainer {
   width: 100%;
 
@@ -74,8 +79,13 @@ body {
     direction: rtl;
     align-items: center;
     display: grid;
-    grid-template-columns: 5fr 4fr 4fr 4fr 4fr;
+    grid-template-columns: 5fr 4fr 4fr 4fr 1fr;
     gap: 5x;
+
+    .Updated {
+      background: #E3EBF8;
+      border-radius: 7px;
+    }
 
     .title {
       align-items: center;
@@ -84,11 +94,8 @@ body {
       font-weight: bold;
       font-size: 24px;
       line-height: 26px;
-      /* identical to box height, or 108% */
-
       text-align: right;
       letter-spacing: -0.4125px;
-
       color: #44454B;
     }
   }
@@ -103,14 +110,60 @@ body {
   }
 
   .tenderSummery {
+    align-items: right;
     text-align: right;
     direction: rtl;
-    display: grid;
-    grid-template-columns: 1fr 1fr 3fr;
-    gap: 5x;
+    display: inline-flex;
+    gap: 12px;
 
     .stepDiv {
-      .stepTitle{
+      padding: 15px;
+      .stepTitle {
+        font-family: 'OpenSans', sans-serif;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 18px;
+        line-height: 14px;
+        margin-bottom: 20px;
+        text-align: right;
+        letter-spacing: -0.2625px;
+      }
+
+      .stepNumber {
+        text-align: center;
+        font-family: 'OpenSans', sans-serif;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 26px;
+        line-height: 14px;
+        text-align: right;
+        letter-spacing: -0.2625px;
+        color: #44454B;
+      }
+    }
+
+    .unitPrice {
+      padding: 5px 5px 13px 5px;
+      text-align: center;
+      background: #F4F8FF;
+      border-radius: 7px;
+
+      .stepField {
+        padding: 2px;
+        align-items: right;
+        text-align: right;
+        direction: rtl;
+        display: inline-flex;
+        gap: 12px;
+
+      }
+
+    }
+
+    .sum {
+      text-align: center;
+      padding: 15px;
+      .sumTitle {
         font-family: 'OpenSans', sans-serif;
         font-style: normal;
         font-weight: normal;
@@ -121,7 +174,8 @@ body {
         text-align: right;
         letter-spacing: -0.2625px;
       }
-      .stepNumber {
+
+      .sumNumber {
         font-family: 'OpenSans', sans-serif;
         font-style: normal;
         font-weight: bold;
@@ -130,23 +184,8 @@ body {
         /* identical to box height, or 54% */
         text-align: right;
         letter-spacing: -0.2625px;
-        color: #44454B;
+        color: #00798C;
       }
-    }
-
-    .unitPrice{
-      padding: 5px;
-      text-align: center;
-      background: #F4F8FF;
-      border-radius: 7px;
-      .stepField{
-        padding: 2px;
-        display: grid;
-        grid-template-columns: 1fr 2fr 1fr;
-        gap: 5x;
-        
-      }
-
     }
   }
 }
