@@ -19,10 +19,9 @@ export default function TenderLine(): JSX.Element {
     const onClickHandler = (flag:boolean) => {
         const form = fieldVal.current;
         if(form!=null && form['tenderSum']!=null){
-            // @ts-ignore: Object is possibly 'null'.
-            console.log(isNaN(form['tenderSum'].value))
+
              // @ts-ignore: Object is possibly 'null'.
-           if(form['tenderSum'].value==="" && form['tenderSum'].value===undefined  || form['tenderSum'].value!==0){
+           if(form['tenderSum'].value===""  && (form['tenderSum'].value===undefined  || form['tenderSum'].value!==0)){
             flag?
              // @ts-ignore: Object is possibly 'null'.
             (form['tenderSum'].value =Number(form['tenderSum'].value)+1)

@@ -1,17 +1,17 @@
 import React from "react";
-import TendersDto from './Dtos/TendersDto';
+import TenderDto from './Dtos/TenderDto';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Styles from './Tenders.module.scss'
+import Styles from './../Tenders/Tenders.module.scss'
 import Moment from 'react-moment';
 import {  useNavigate } from "react-router-dom";
 
 
 interface IProps {
-    item: TendersDto, index: number, redirectOnClick: boolean
+    item: TenderDto, index: number, redirectOnClick: boolean
 }
 
-export default function TenderListsItem({ item, index, redirectOnClick = true }: IProps) {
+export default function TenderLists({ item, index, redirectOnClick = true }: IProps) {
     function currencyFormat(num: number) {
         return num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
     }

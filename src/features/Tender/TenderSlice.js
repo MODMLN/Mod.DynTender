@@ -3,7 +3,7 @@ import axios from "axios";
 
 
  
-const API_URL_Tender = "/Tenders.json";
+const API_URL_Tender = "/Tender.json";
 
 
 // initial state
@@ -52,14 +52,15 @@ export const tenderItemSlice = createSlice({
   },
 });
 
-export const getTenderAsync = (tenderID) => async (dispatch) => {
-  try {
-   
-    const response = await axios.get(`${API_URL_Tender}`);
-    dispatch(getTender(response.data));
-  } catch (err) {
-    throw new Error(err);
-  }
+export const getTenderAsync = () => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.get(`${API_URL_Tender}`);
+      dispatch(getTender(response.data));
+    } catch (err) {
+      throw new Error(err);
+    }
+  };
 };
 
 export const {

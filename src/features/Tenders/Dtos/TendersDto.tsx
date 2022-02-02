@@ -1,7 +1,10 @@
 
 export type Ranks= ("Active"|"Ended"|"Frozen")
 export type Status= ("Active"|"Ended"|"Frozen"|"NotStarted")
-export default class TenderDto {
+export type Messages= string 
+export type Lines = Lines[]
+
+export default class TendersDto {
 
     public Id!: number;
     public EndDate?: string;
@@ -15,4 +18,9 @@ export default class TenderDto {
     public RankInfo!: Ranks;// האם מכרז מוביל או לא
     public UserLastPropositionTotal?: number
     public Statuses!: Status;
+    public Messages?:Messages[]
+ 
 }
+
+
+

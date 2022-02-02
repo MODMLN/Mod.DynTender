@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import TenderDto from './TenderDto';
+import TendersDto from './Dtos/TendersDto';
 import { useSelector, useDispatch } from "react-redux";
 import { selectTenders, getAllTendersAsync } from "./TendersSlice";
 import CssBaseline from '@mui/material/CssBaseline';
@@ -29,7 +29,7 @@ export default function TenderLists() {
       <React.Fragment>
         <CssBaseline />
         <Container >
-          {getAllTenders.data.map((item: TenderDto, index: number) => {
+          {getAllTenders.data.map((item: TendersDto, index: number) => {
             return (
                   
                       <TenderListsItem key={index} item={item} index={index} redirectOnClick={true}   />
