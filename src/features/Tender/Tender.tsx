@@ -13,13 +13,19 @@ import Button from '@mui/material/Button';
 
 export default function Tender() {
   const [open, setOpen] = React.useState(false);
+ 
   const params = useParams() as any;
 
   const dispatch = useDispatch();
   const getTender = useSelector(selectTender);
 
+  const [inProps, setInProps] = React.useState(Number);
 
   useEffect(() => {
+    const lengthit = getTender.data.flatMap((item: TenderDto) => {
+      setInProps(item.Lines.length)
+    } )
+   
     setOpen(true);
     dispatch(getTenderAsync());
     const interval = setInterval(() => {
@@ -29,6 +35,7 @@ export default function Tender() {
 
 
   }, [dispatch]);
+
 
 
   return (
@@ -41,28 +48,28 @@ export default function Tender() {
         {getTender.data.map((item: TenderDto, index: number) => {
 
           return (
-            <Box key={index} className={Styles.tenderDetails}>
+            <Box key="1" className={Styles.tenderDetails}>
               {item.Messages.length > 0 &&
-                <Dialog key={index} flag={open} Messages={item.Messages} ></Dialog>
+                <Dialog key="2" flag={open} Messages={item.Messages} ></Dialog>
               }
-              <TenderItem key={index} item={item} index={index} redirectOnClick={false} />
+              <TenderItem key="3" item={item} index={index} redirectOnClick={false} />
             </Box>
           )
 
         })}
       </Box>
-      <Box className={Styles.BoxSumItems}>18 פריטים במכרז</Box>
+      <Box className={Styles.BoxSumItems}>{inProps} פריטים במכרז</Box>
       <Box className={Styles.TenderLines}>
 
 
         {getTender.data.flatMap((item: TenderDto, index: number) => {
-          return item.Lines.map((itemx: TenderLineDto, indexx: number) => {
-            return (
+
+          return item.Lines.map((itemx: TenderLineDto, indexx: number) =>{
+          
+            return (            
               <>
-
-                <TenderLine key={indexx} item={itemx}></TenderLine>
+                <TenderLine key={`indxx_${indexx}`} item={itemx}></TenderLine>
               </>
-
             )
           })
         })}

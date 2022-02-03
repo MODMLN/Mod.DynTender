@@ -249,6 +249,18 @@ input[type=number]::-webkit-outer-spin-button {
         direction: rtl;
         display: inline-flex;
         gap: 12px;
+        input{
+          font-family: 'OpenSans', sans-serif;
+          font-style: normal;
+          font-weight: normal;
+          font-size: 26px;
+          line-height: 30px;
+          /* identical to box height, or 115% */
+
+          text-align: right;
+
+          color: #4D4E55;
+        }
 
       }
 

@@ -94,7 +94,7 @@ export default function TenderLine({ item }: IProps): JSX.Element {
                                 <Box className={Styles.stepTitle}>מחיר ליחידה</Box>
                                 <Box className={Styles.stepField}>
                                     <Box><IconButton  onClick={()=>onClickHandler(true)}><AddCircleIcon /></IconButton></Box>
-                                    <Box><TextField type="number" id="standard-basic" label="₪"  variant="standard"  name={'tenderSum'} value={item.Price}  /></Box>
+                                    <Box><TextField className={Styles.fildSum} type="number" id="standard-basic" label="₪"  variant="standard"  name={'tenderSum'} value={item.Price}  /></Box>
                                     <Box><IconButton onClick={()=>onClickHandler(false)}><RemoveCircleIcon /></IconButton></Box>
                                 </Box>
                             </Box>
