@@ -8,7 +8,7 @@
         "Name": "1000695057 - שמירת הכשירות הגופנית והקרבית בצה\"ל",
         "HasUsersWithFemaleOwner": false,
         "MultipaleFactor": 0.00,
-        "CurrencyId": "₪", 
+        " ": "₪", 
         "AmountSign": "",
         "IsPercentageCalculation": false,
         "Time": 75461.7773754,
@@ -21,8 +21,8 @@
         "TotalToLead": 77500,
         "Lines": [
             {
-                "RequiredAmount": 720.00,
-                "Price": 238.00,
+                "RequiredAmount": 99999999.00,
+                "Price": 99999999.00,
                 "InitialPrice": 238.00,
                 "DiscountPercent": null,
                 "TenderLineId": 4233,
@@ -31,7 +31,7 @@
                 "MinPrice": 0.00,
                 "PriceStep": 1.20,
                 "TotalPrice": 171360.0000,
-                "TotalPriceForDisplay": 171360,
+                "TotalPriceForDisplay": 99999999,
                 "PreviousPrice": null,
                 "IsCotsOrUsg": false,
                 "IsraeliContent": 0,

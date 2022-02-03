@@ -15,13 +15,8 @@ import ImageIcon from '@mui/icons-material/Image';
 
 interface IProps {
     flag: boolean,
-    Messages:Messages[]
+    Messages:string[]
 }
-
-interface Messages {
-    Message: string,
-}
-
 
 export default function DialogModel({ flag,Messages }: IProps) {
     const [open, setOpen] = React.useState(true);
@@ -58,7 +53,7 @@ export default function DialogModel({ flag,Messages }: IProps) {
                                     <ImageIcon />
                                 </Avatar>
                                 </ListItemAvatar>
-                                <ListItemText primary={item.Message} />
+                                <ListItemText primary={item} sx={{'text-align':'right'}} />
                             </ListItem>
                             ))}
                             </List>

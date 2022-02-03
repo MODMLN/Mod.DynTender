@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "plugins": [{ "name": "typescript-plugin-css-modules" }],
     "target": "es5",
     "lib": [
       "dom",
@@ -20,6 +21,7 @@
     "jsx": "react"
   },
   "include": [
-    "./declaration.d.ts"
+    "src/**/*.ts", 
+    "declarations.d.ts"
   ]
 }

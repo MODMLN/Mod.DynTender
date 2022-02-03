@@ -12,9 +12,12 @@ import IconButton from '@mui/material/IconButton';
 import TextField from '@mui/material/TextField';
 import TenderLineDto  from './Dtos/TenderLineDto';
 
+interface IProps {
+    item: TenderLineDto
+}
 
-export default function TenderLine(): JSX.Element {
-
+export default function TenderLine({ item }: IProps): JSX.Element {
+    const [expand, setExpand] = React.useState(false);
     const fieldVal = useRef(null);
     const onClickHandler = (flag:boolean) => {
         const form = fieldVal.current;
@@ -32,10 +35,17 @@ export default function TenderLine(): JSX.Element {
     }
       };
 
+      
+      const toggleAcordion = () => {
+       setExpand((expand) => !expand);
+      };
+
     return (
         <Box className={Styles.TenderLine}>
 
-            <Accordion sx={{ 'box-shadow': 'none' }}><AccordionSummary
+            <Accordion sx={{ 'box-shadow': 'none' }}>
+                <AccordionSummary
+                onClick={()=>toggleAcordion()}
                 sx={{ direction: 'rtl', border: 'none' }}
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel1a-content"
@@ -44,11 +54,28 @@ export default function TenderLine(): JSX.Element {
                 <Typography component={'span'} >
                 
                     <Box className={Styles.TenderLineHead}>
-                        <Box className={Styles.title}>ארונית ניידת לשינוע מזון</Box>
-                        <Box>מספר יחידות  <b>1,000</b></Box>
-                        <Box>מחיר ליחידה  <b>10,000</b></Box>
-                        <Box>סה"כ  <b>100,000</b></Box>
-                        <Box className={Styles.Updated}>עודכן</Box>
+                        <Box className={Styles.title}>{item.TenderLineName}</Box>
+                        <Box className={Styles.headItem}>{!expand && 
+                          <Box> <Box className={Styles.titleText}>
+                                מספר יחידות </Box>    <Box><b>{item.RequiredAmount}</b>
+                                </Box>   </Box>
+                        }</Box>
+                        <Box className={Styles.headItem}>{!expand && 
+                             <Box ><Box className={Styles.titleText}>
+                            מחיר ליחידה    </Box><Box ><b>{item.Price}</b>
+                            </Box> </Box>
+                            }</Box>
+                        <Box className={Styles.headItem}>{!expand && 
+                             <Box ><Box className={Styles.titleText}>
+                                סה"כ   </Box> <Box ><b>{item.TotalPriceForDisplay}</b>
+                                </Box> </Box>
+                        }</Box>
+                        <Box >
+                        {!expand && 
+                         <Box className={`${Styles.Updated}`}>
+                            עודכן
+                            </Box>
+                        }</Box>
                     </Box>
                   
                 </Typography>
@@ -60,20 +87,20 @@ export default function TenderLine(): JSX.Element {
                         <Box className={Styles.tenderSummery}>
                             <Box className={Styles.stepDiv}>
                                 <Box className={Styles.stepTitle}>מדרגת הצעה</Box>
-                                <Box className={Styles.stepNumber}><b>50 ₪</b></Box>
+                                <Box className={Styles.stepNumber}><b>{item.PriceStep} ₪</b></Box>
                             </Box>
                             <Box className={Styles.unitPrice}>
                                
                                 <Box className={Styles.stepTitle}>מחיר ליחידה</Box>
                                 <Box className={Styles.stepField}>
                                     <Box><IconButton  onClick={()=>onClickHandler(true)}><AddCircleIcon /></IconButton></Box>
-                                    <Box><TextField type="number" id="standard-basic" label="₪"  variant="standard"  name={'tenderSum'}  /></Box>
+                                    <Box><TextField type="number" id="standard-basic" label="₪"  variant="standard"  name={'tenderSum'} value={item.Price}  /></Box>
                                     <Box><IconButton onClick={()=>onClickHandler(false)}><RemoveCircleIcon /></IconButton></Box>
                                 </Box>
                             </Box>
                             <Box className={Styles.sum}>
                                 <Box className={Styles.sumTitle}>סה"כ</Box>
-                                <Box className={Styles.sumNumber}> ₪</Box>
+                                <Box className={Styles.sumNumber}>{item.TotalPriceForDisplay} ₪</Box>
                             </Box>
                         </Box>
                         </form>

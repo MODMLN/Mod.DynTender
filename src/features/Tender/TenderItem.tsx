@@ -2,7 +2,7 @@ import React from "react";
 import TenderDto from './Dtos/TenderDto';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import * as Styles from './../Tenders/Tenders.module.scss'
+import  Styles from './Tender.module.scss'
 import Moment from 'react-moment';
 import {  useNavigate } from "react-router-dom";
 
@@ -11,7 +11,7 @@ interface IProps {
     item: TenderDto, index: number, redirectOnClick: boolean
 }
 
-export default function TenderLists({ item, index, redirectOnClick = true }: IProps) {
+export default function TenderItem({ item, index, redirectOnClick = true }: IProps) {
     function currencyFormat(num: number) {
         return num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
     }
@@ -71,7 +71,7 @@ export default function TenderLists({ item, index, redirectOnClick = true }: IPr
                             </Box>
                             <Box className={Styles.line}></Box>
                         </>
-                    ) : (<><Box style={{ height: "40%", clear: "both" }}><span></span></Box></>)
+                    ) : (<><Box style={{ height: "auto", clear: "both" }}><span></span></Box></>)
                 }
                 <Box className={Styles.Proposal} >
                     <Box className={Styles.leadPrice}>

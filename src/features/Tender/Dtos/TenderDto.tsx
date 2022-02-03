@@ -2,6 +2,7 @@ import TenderLineDto from './TenderLineDto'
 
 export type Ranks= ("Active"|"Ended"|"Frozen")
 export type Status= ("Active"|"Ended"|"Frozen"|"NotStarted")
+export type Messages= string 
 
 export default class TenderDto {
     public Id!: number;
@@ -24,4 +25,5 @@ export default class TenderDto {
     public TenderNumber!: number;
     public TotalToLead!: number;
     public Lines?:TenderLineDto[];
+    public Messages?:string[]
 }
