@@ -30,6 +30,7 @@ useEffect(() => {
 
 }, [dispatch]);
 
+const tenderObjects = {...getTender.data, ...getTender.data.Lines};
 
     return (
 
@@ -52,10 +53,9 @@ useEffect(() => {
         <Box  className={Styles.TenderLines}>
      
 
-        {getTender.data.map((item: TenderDto, index: number) => {
-          item.Lines.map((item: TenderLineDto, index: number) => {
+        {getTender.data.flatMap((item: TenderDto, index: number) => {
+          return  item.Lines.map((itemx: TenderLineDto, indexx: number) => {
            return (
-
               <TenderLine></TenderLine>
             )
           })

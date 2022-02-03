@@ -2,7 +2,7 @@ import React from "react";
 import TenderDto from './Dtos/TenderDto';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Styles from './../Tenders/Tenders.module.scss'
+import * as Styles from './../Tenders/Tenders.module.scss'
 import Moment from 'react-moment';
 import {  useNavigate } from "react-router-dom";
 

@@ -1,17 +1,17 @@
 
 export default class TenderLineDto {
    
-    public RequiredAmount!: number;
-    public Price!: number;
+    public RequiredAmount!: number;// מספר יחידות
+    public Price!: number;//מחיר ליחידה
     public InitialPrice!: number;
     public DiscountPercent!: number;
     public TenderLineId!: number;
-    public TenderLineName?:string;
+    public TenderLineName?:string;//כותרת
     public MaxPrice!: number;
     public MinPrice!: number;
-    public PriceStep!: number;
+    public PriceStep!: number;//מדרגת הצעה
     public TotalPrice!: number;
-    public TotalPriceForDisplay!: number;
+    public TotalPriceForDisplay!: number;//סה"כ
     public PreviousPrice!: number;
     public IsCotsOrUsg?: boolean;
     public IsraeliContent!: number;
