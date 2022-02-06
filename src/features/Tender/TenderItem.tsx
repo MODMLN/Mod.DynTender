@@ -80,7 +80,7 @@ export default function TenderItem({ item, index, redirectOnClick = true }: IPro
                     </Box>
                     <Box className={Styles.greenProposal}>
                         <Box>הצעתך מובילה</Box>
-                        <Box className={Styles.bold}>₪ 18,234</Box></Box>
+                        <Box className={Styles.bold}>₪ {item.TotalToLead}</Box></Box>
                 </Box>
             </Box>
 

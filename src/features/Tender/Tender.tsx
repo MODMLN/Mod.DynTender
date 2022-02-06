@@ -22,10 +22,7 @@ export default function Tender() {
   const [inProps, setInProps] = React.useState(Number);
 
   useEffect(() => {
-    const lengthit = getTender.data.flatMap((item: TenderDto) => {
-      setInProps(item.Lines.length)
-    } )
-   
+  
     setOpen(true);
     dispatch(getTenderAsync());
     const interval = setInterval(() => {
