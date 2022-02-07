@@ -12,7 +12,7 @@ import IconButton from '@mui/material/IconButton';
 import TextField from '@mui/material/TextField';
 import TenderLineDto from './Dtos/TenderLineDto';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
-import { style } from "@mui/system";
+import Tooltip from '@mui/material/Tooltip';
 
 interface IProps {
     item: TenderLineDto
@@ -112,7 +112,7 @@ export default function TenderLine({ item }: IProps): JSX.Element {
                                 <Box sx={{ marginTop: '50px' }}>
                                     <Box className={Styles.inlineFlex}>
                                         <Box><label className={Styles.titleLbl} >עלות מרכיב תוצרת הארץ</label></Box> 
-                                        <Box><InfoOutlinedIcon sx={{ height: '14px' }} /></Box>
+                                        <Box><Tooltip  placement="top-start" title="אינפורמציה מטורפת"><InfoOutlinedIcon sx={{ height: '14px' }} /></Tooltip></Box>
                                         <Box><TextField
                                             sx={{ width: '110px', border: '1px solid #44454B' }}
                                             disabled
@@ -127,7 +127,7 @@ export default function TenderLine({ item }: IProps): JSX.Element {
                                 <Box sx={{ marginTop: '50px' }}>
                                         <Box className={Styles.inlineFlex}>
                                                 <Box><label className={Styles.titleLbl}>מרכיב כח עבודה</label></Box>
-                                                <Box><InfoOutlinedIcon sx={{ height: '14px' }} /></Box>
+                                                <Box><Tooltip  placement="top-start" title="אינפורמציה מטורפת"><InfoOutlinedIcon sx={{ height: '14px' }} /></Tooltip></Box>
                                                 <Box><TextField
                                                     sx={{ width: '110px', border: '1px solid #44454B' }}
                                                     disabled

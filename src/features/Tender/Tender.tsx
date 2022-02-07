@@ -32,7 +32,7 @@ export default function Tender() {
   const linesLength = tenderDto == null || tenderDto.Lines == null ? 0 : tenderDto.Lines.length;
   return (
 
-    <Box className={Styles.BoxContainer}>dddd
+    <Box className={Styles.BoxContainer}>
       <Box className={Styles.BoxHeadTop} >
 
         <Box key="1" className={Styles.tenderDetails}>
@@ -59,7 +59,7 @@ export default function Tender() {
               )
             })
             : ''}
-      </Box>0
+      </Box>
       <Box className={Styles.BoxContainer}>
         <Box className={Styles.BoxSummery}>
           <Box className={Styles.title}>סכום הצעתך</Box>
