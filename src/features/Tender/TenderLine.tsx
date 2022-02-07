@@ -111,10 +111,10 @@ export default function TenderLine({ item }: IProps): JSX.Element {
                                 <Box><label className={Styles.titleLbl}>למימוש ההעדפות, יש להזין את מרכיבי המחיר ליחידה:</label></Box>
                                 <Box sx={{ marginTop: '50px' }}>
                                     <Box className={Styles.inlineFlex}>
-                                        <Box><label className={Styles.titleLbl} >עלות מרכיב תוצרת הארץ</label></Box> 
-                                        <Box><Tooltip  placement="top-start" title="אינפורמציה מטורפת"><InfoOutlinedIcon sx={{ height: '14px' }} /></Tooltip></Box>
+                                        <Box><label className={Styles.titleLbl} >עלות מרכיב תוצרת הארץ</label><Tooltip  placement="top-start" title="אינפורמציה מטורפת"><InfoOutlinedIcon sx={{ height: '14px' }} /></Tooltip></Box> 
+                                        <Box></Box>
                                         <Box><TextField
-                                            sx={{ width: '110px', border: '1px solid #44454B' }}
+                                            sx={{ width: '110px', border: '1px solid #44454B', backgroundColor:'#F4F8FF' }}
                                             disabled
                                             type="number"
                                             id="outlined-disabled"
@@ -124,12 +124,14 @@ export default function TenderLine({ item }: IProps): JSX.Element {
                                         />
                                         </Box>
                                 </Box>
+                                </Box>
+                                <Box className={Styles.privilege}>
                                 <Box sx={{ marginTop: '50px' }}>
                                         <Box className={Styles.inlineFlex}>
-                                                <Box><label className={Styles.titleLbl}>מרכיב כח עבודה</label></Box>
-                                                <Box><Tooltip  placement="top-start" title="אינפורמציה מטורפת"><InfoOutlinedIcon sx={{ height: '14px' }} /></Tooltip></Box>
+                                                <Box><label className={Styles.titleLbl}>מרכיב כח עבודה</label><Tooltip  placement="top-start" title="אינפורמציה מטורפת"><InfoOutlinedIcon sx={{ height: '14px' }} /></Tooltip></Box>
+                                                <Box></Box>
                                                 <Box><TextField
-                                                    sx={{ width: '110px', border: '1px solid #44454B' }}
+                                                    sx={{ width: '110px', border: '1px solid #44454B', backgroundColor:'#F4F8FF' }}
                                                     disabled
                                                     type="number"
                                                     id="outlined-disabled"
@@ -141,7 +143,7 @@ export default function TenderLine({ item }: IProps): JSX.Element {
                                         </Box>
                                     </Box>
                                 </Box>
-                            </Box>
+                                </Box>
                         </form>
                     </Typography>
                 </AccordionDetails>

@@ -18,7 +18,7 @@ input[type=number]::-webkit-outer-spin-button {
   align-items: center;
 
   display: grid;
-  grid-template-columns: 20% 6% 14%;
+  grid-template-columns: 25% 0% 14%;
   gap:5px
 }
 
@@ -308,13 +308,15 @@ input[type=number]::-webkit-outer-spin-button {
     }
   }
   .privilege{
-    border-top:  1px solid rgba(227, 230, 240, 0.4);;
+    border-top:  1px solid rgba(227, 230, 240, 0.4);
     margin-top: 24px;
     direction: rtl;
-    padding: 24px;
+    padding: 24px 0 24px 48px ;
     background: linear-gradient(180deg, rgba(244, 248, 255, 0.45) 0%, rgba(255, 255, 255, 0) 206.7%);
-
+    width: calc(51.4vw - 20px);
+    margin-left: calc(-27vw + 50% + 10px);
     .titleLbl{
+      margin-right: 24px;
       font-family: 'OpenSans', sans-serif;
       font-style: normal;
       font-weight: normal;
