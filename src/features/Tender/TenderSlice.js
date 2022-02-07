@@ -1,6 +1,6 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice ,createAsyncThunk} from "@reduxjs/toolkit";
 import axios from "axios";
-
+import TenderDto from './Dtos/TenderDto';
 
  
 const API_URL_Tender = "/Tender.json";
@@ -10,15 +10,15 @@ const API_URL_Tender = "/Tender.json";
 export const initialState = {
   loading: false,
   error: false,
-  data: [],
+  tenderdata:new TenderDto()//TenderDto
 };
 
-export const tenderItemSlice = createSlice({
-  name: "tender",
+export const tenderSlice = createSlice({
+  name: "tenderdata",
   initialState,
   reducers: {
-    getTender :(state,action)=>{
-      state.data = action.payload
+    startLoading: (state) => {
+      state.loading = true;
     },
     addTender: (state, action) => {
       state = state.push({
@@ -49,27 +49,47 @@ export const tenderItemSlice = createSlice({
       state = state.filter((tender) => tender.id !== action.payload.id);
       return state;
     },
+    
+  }, 
+  extraReducers: (builder) => {
+    builder   
+    .addCase(fetchTenderAsync.pending, (state, action) => {
+       
+      
+    })
+    .addCase(fetchTenderAsync.fulfilled, (state, action) => {
+      state.loading = false;
+        state.tenderdata = action.payload;
+    })
+    .addCase(fetchTenderAsync.rejected, (state, { payload }) => {
+        state.loading = false;
+        //state.byId[userId] = null; // <-- I need the userId from createAsyncThunk here.
+    });
+   
   },
 });
 
-export const getTenderAsync = () => {
-  return async (dispatch) => {
+export const fetchTenderAsync = createAsyncThunk('tenderdata/get', async(thunkAPI) => {
     try {
-      const response = await axios.get(`${API_URL_Tender}`);
-      dispatch(getTender(response.data));
-    } catch (err) {
-      throw new Error(err);
-    }
-  };
-};
+      const response = await axios.get(`${API_URL_Tender}`);  
+        return response.data;
+      
+      } catch (err) {
+          return thunkAPI.rejectWithValue(err?.response?.data);
+      }
+  }
+);
+
+
 
 export const {
-  getTender,
+  startLoading,
   addTender,
   editTender,
   removeTender,
-} = tenderItemSlice.actions;
+} = tenderSlice.actions;
 
-export const selectTender = (state) => state.tenderdata;
 
-export default tenderItemSlice.reducer;
+export const selectTender = (state) => state.tenderdata.tenderdata;
+
+export default tenderSlice.reducer;

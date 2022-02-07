@@ -46,8 +46,8 @@ export default function DialogModel({ flag,Messages }: IProps) {
                     <DialogContentText id="alert-dialog-description" component={'span'} >
                         <Box>
                             <List>
-                            {Messages.map((item) => (
-                            <ListItem>
+                            {Messages.map((item,index) => (
+                            <ListItem key={index}>
                                 <ListItemAvatar>
                                 <Avatar>
                                     <ImageIcon />

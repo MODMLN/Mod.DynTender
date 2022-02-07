@@ -12,8 +12,11 @@ interface IProps {
 }
 
 export default function TenderItem({ item, index, redirectOnClick = true }: IProps) {
+
     function currencyFormat(num: number) {
-        return num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+    
+            return '' ;/* num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');*/
+      
     }
     let navigate = useNavigate();
    
@@ -28,6 +31,7 @@ export default function TenderItem({ item, index, redirectOnClick = true }: IPro
 
             <Box className={Styles.BoxMain} key={index} sx={{ p: 2, border: '1px solid grey' }}>
                 {(() => {
+                   
                     switch (item.Statuses) {
                         case 'Active':
                             return (

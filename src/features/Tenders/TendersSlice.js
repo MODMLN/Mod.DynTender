@@ -10,7 +10,7 @@ const API_URL_Tender = "./Tenders.json";
 export const initialState = {
   loading: false,
   error: false,
-  data: [],
+  data: [],//TenderDto[]
 };
 
 export const tenderSlice = createSlice({

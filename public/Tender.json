@@ -1,6 +1,5 @@
-[
     {
-        "Id": 2244,
+        "Id": 15,
         "IsDisplayLeadingPropositions": true,
         "IsMinPreferred": true,
         "IsServiceTender": false,
@@ -227,4 +226,3 @@
         ],
         "IsFemaleOwner": false
     }
-]

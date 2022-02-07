@@ -1,89 +1,75 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import TenderItem from './TenderItem';
-import { selectTender, getTenderAsync } from "./TenderSlice";
+import { selectTender, fetchTenderAsync } from "./TenderSlice";
 import TenderLine from './TenderLine';
-import TenderDto from './Dtos/TenderDto';
+//import TenderDto from './Dtos/TenderDto';
 import TenderLineDto from './Dtos/TenderLineDto';
 import { Box } from "@mui/material";
-import { useParams } from "react-router-dom";
+//import { useParams } from "react-router-dom";
 import Styles from './Tender.module.scss'
 import Dialog from './dialog';
 import Button from '@mui/material/Button';
 
 export default function Tender() {
-  const [open, setOpen] = React.useState(false);
- 
-  const params = useParams() as any;
 
+  //const params = useParams() as any;
+  const tenderDto = useSelector(selectTender);
   const dispatch = useDispatch();
-  const getTender = useSelector(selectTender);
 
-  const [inProps, setInProps] = React.useState(Number);
-
+  const [open, setOpen] = React.useState(false);
   useEffect(() => {
-  
     setOpen(true);
-    dispatch(getTenderAsync());
+    dispatch(fetchTenderAsync());
+
     const interval = setInterval(() => {
-      dispatch(getTenderAsync());
+      dispatch(fetchTenderAsync());
     }, 15000);
     return () => clearInterval(interval);
 
-
   }, [dispatch]);
 
-
-
+  const linesLength = tenderDto == null || tenderDto.Lines == null ? 0 : tenderDto.Lines.length;
   return (
 
-    <Box className={Styles.BoxContainer}>
-
-
-
+    <Box className={Styles.BoxContainer}>dddd
       <Box className={Styles.BoxHeadTop} >
-        {getTender.data.map((item: TenderDto, index: number) => {
 
-          return (
-            <Box key="1" className={Styles.tenderDetails}>
-              {item.Messages.length > 0 &&
-                <Dialog key="2" flag={open} Messages={item.Messages} ></Dialog>
-              }
-              <TenderItem key="3" item={item} index={index} redirectOnClick={false} />
-            </Box>
-          )
+        <Box key="1" className={Styles.tenderDetails}>
+          {(tenderDto != null && tenderDto.Messages != null && tenderDto.Messages.length > 0) &&
+            <Dialog key="2" flag={open} Messages={tenderDto.Messages} ></Dialog>
+          }
+          {(tenderDto != null) &&
+            <TenderItem key="3" item={tenderDto} index={0} redirectOnClick={false} />
+          }
+        </Box>
 
-        })}
       </Box>
-      <Box className={Styles.BoxSumItems}>{inProps} פריטים במכרז</Box>
+      <Box className={Styles.BoxSumItems}>{"פריטים במכרז " + linesLength} </Box>
       <Box className={Styles.TenderLines}>
+        {
 
+          (tenderDto != null && tenderDto.Lines != null && tenderDto.Lines.length > 0) ?
+            tenderDto.Lines.map((itemx: TenderLineDto, indexx: number) => {
 
-        {getTender.data.flatMap((item: TenderDto, index: number) => {
-
-          return item.Lines.map((itemx: TenderLineDto, indexx: number) =>{
-          
-            return (            
-              <>
-                <TenderLine key={`indxx_${indexx}`} item={itemx}></TenderLine>
-              </>
-            )
-          })
-        })}
-      </Box>
+              return (
+                <>
+                  <TenderLine key={`indxx_${indexx}`} item={itemx}></TenderLine>
+                </>
+              )
+            })
+            : ''}
+      </Box>0
       <Box className={Styles.BoxContainer}>
-          <Box className={Styles.BoxSummery}>
-              <Box className={Styles.title}>סכום הצעתך</Box>
-              <Box className={Styles.summery}>25,000 ₪</Box>
-              <Box className={Styles.buttonDiv}>
-
-                <Box><Button sx={{'background-color': '#00798C','width': '50%' }} className={Styles.Button}  variant="contained">הגשת ההצעה</Button></Box>
-              </Box>
+        <Box className={Styles.BoxSummery}>
+          <Box className={Styles.title}>סכום הצעתך</Box>
+          <Box className={Styles.summery}>25,000 ₪</Box>
+          <Box className={Styles.buttonDiv}>
+            <Box><Button sx={{ 'background-color': '#00798C', 'width': '50%' }} className={Styles.Button} variant="contained">הגשת ההצעה</Button></Box>
           </Box>
-
+        </Box>
       </Box>
     </Box>
-
   );
 };
 

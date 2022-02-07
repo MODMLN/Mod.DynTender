@@ -11,6 +11,8 @@ import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import IconButton from '@mui/material/IconButton';
 import TextField from '@mui/material/TextField';
 import TenderLineDto from './Dtos/TenderLineDto';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import { style } from "@mui/system";
 
 interface IProps {
     item: TenderLineDto
@@ -40,8 +42,10 @@ export default function TenderLine({ item }: IProps): JSX.Element {
         setExpand((expand) => !expand);
     };
 
+
+
     return (
-        <Box className={Styles.TenderLine}>
+        <Box key={item.Index} className={Styles.TenderLine}>
 
             <Accordion sx={{ 'box-shadow': 'none' }}>
                 <AccordionSummary
@@ -71,7 +75,7 @@ export default function TenderLine({ item }: IProps): JSX.Element {
                                     </Box> </Box>
                             }</Box>
                             <Box >
-                                {!expand &&
+                                {(!expand && true) &&
                                     <Box className={`${Styles.Updated}`}>
                                         עודכן
                                     </Box>
@@ -93,14 +97,49 @@ export default function TenderLine({ item }: IProps): JSX.Element {
 
                                     <Box className={Styles.stepTitle}>מחיר ליחידה</Box>
                                     <Box className={Styles.stepField}>
-                                        <Box><IconButton onClick={() => onClickHandler(true)}><AddCircleIcon /></IconButton></Box>
+                                        <Box><IconButton sx={{ color: "#00798C" }} onClick={() => onClickHandler(true)}><AddCircleIcon /></IconButton></Box>
                                         <Box><TextField className={Styles.fildSum} type="number" id="standard-basic" label="₪" variant="standard" name={'tenderSum'} value={item.Price} /></Box>
-                                        <Box><IconButton onClick={() => onClickHandler(false)}><RemoveCircleIcon /></IconButton></Box>
+                                        <Box><IconButton sx={{ color: "#00798C" }} onClick={() => onClickHandler(false)}><RemoveCircleIcon /></IconButton></Box>
                                     </Box>
                                 </Box>
                                 <Box className={Styles.sum}>
                                     <Box className={Styles.sumTitle}>סה"כ</Box>
                                     <Box className={Styles.sumNumber}>{item.TotalPriceForDisplay} ₪</Box>
+                                </Box>
+                            </Box>
+                            <Box className={Styles.privilege}>
+                                <Box><label className={Styles.titleLbl}>למימוש ההעדפות, יש להזין את מרכיבי המחיר ליחידה:</label></Box>
+                                <Box sx={{ marginTop: '50px' }}>
+                                    <Box className={Styles.inlineFlex}>
+                                        <Box><label className={Styles.titleLbl} >עלות מרכיב תוצרת הארץ</label></Box> 
+                                        <Box><InfoOutlinedIcon sx={{ height: '14px' }} /></Box>
+                                        <Box><TextField
+                                            sx={{ width: '110px', border: '1px solid #44454B' }}
+                                            disabled
+                                            type="number"
+                                            id="outlined-disabled"
+                                            label={null}
+                                            defaultValue=""
+                                            variant="filled"
+                                        />
+                                        </Box>
+                                </Box>
+                                <Box sx={{ marginTop: '50px' }}>
+                                        <Box className={Styles.inlineFlex}>
+                                                <Box><label className={Styles.titleLbl}>מרכיב כח עבודה</label></Box>
+                                                <Box><InfoOutlinedIcon sx={{ height: '14px' }} /></Box>
+                                                <Box><TextField
+                                                    sx={{ width: '110px', border: '1px solid #44454B' }}
+                                                    disabled
+                                                    type="number"
+                                                    id="outlined-disabled"
+                                                    label={null}
+                                                    defaultValue=""
+                                                    variant="filled"
+                                                />
+                                                </Box>
+                                        </Box>
+                                    </Box>
                                 </Box>
                             </Box>
                         </form>

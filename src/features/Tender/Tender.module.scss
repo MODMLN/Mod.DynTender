@@ -13,6 +13,19 @@ input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
 }
 
+.inlineFlex{
+
+  align-items: center;
+
+  display: grid;
+  grid-template-columns: 20% 6% 14%;
+  gap:5px
+}
+
+.noBorder{
+  border:none;
+}
+
 .BoxContainer {
   width: 100%;
 
@@ -294,22 +307,37 @@ input[type=number]::-webkit-outer-spin-button {
       }
     }
   }
+  .privilege{
+    border-top:  1px solid rgba(227, 230, 240, 0.4);;
+    margin-top: 24px;
+    direction: rtl;
+    padding: 24px;
+    background: linear-gradient(180deg, rgba(244, 248, 255, 0.45) 0%, rgba(255, 255, 255, 0) 206.7%);
+
+    .titleLbl{
+      font-family: 'OpenSans', sans-serif;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 18px;
+      line-height: 14px;
+      /* identical to box height, or 78% */
+
+      text-align: right;
+      letter-spacing: -0.28125px;
+
+      color: #44454B;
+    }
+  }
 }
 
 
 .BoxMain {
-
   height: 241px;
-
-
   margin-top: 20px;
   background: #FFFFFF;
   border: 1px solid #E3E6F0;
   box-shadow: 0px 4px 24px rgba(58, 59, 69, 0.1);
   border-radius: 7px;
-
-
-
 
   .BoxHead {
     display: grid;
