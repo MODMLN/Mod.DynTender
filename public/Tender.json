@@ -7,7 +7,7 @@
         "Name": "1000695057 - שמירת הכשירות הגופנית והקרבית בצה\"ל",
         "HasUsersWithFemaleOwner": false,
         "MultipaleFactor": 0.00,
-        " ": "₪", 
+        "CurrencyId": "₪", 
         "AmountSign": "",
         "IsPercentageCalculation": false,
         "Time": 75461.7773754,
@@ -15,8 +15,8 @@
         "TenderQualityGradePercent": null,
         "SupplierQualityGradePercent": null,
         "Statuses":"Active",
-        "RankInfo": "Active"
-        ,"TenderNumber":"6589547859",
+        "RankInfo": "Active",
+        "TenderNumber":"6589547859",
         "TotalToLead": 77500,
         "Lines": [
             {

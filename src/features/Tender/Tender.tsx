@@ -29,7 +29,6 @@ export default function Tender() {
 
   }, [dispatch]);
 
-  const linesLength = tenderDto == null || tenderDto.Lines == null ? 0 : tenderDto.Lines.length;
   return (
 
     <Box className={Styles.BoxContainer}>
@@ -45,7 +44,7 @@ export default function Tender() {
         </Box>
 
       </Box>
-      <Box className={Styles.BoxSumItems}>{"פריטים במכרז " + linesLength} </Box>
+      <Box className={Styles.BoxSumItems}>{"פריטים במכרז " + tenderDto.itemsNumber} </Box>
       <Box className={Styles.TenderLines}>
         {
 
@@ -63,7 +62,7 @@ export default function Tender() {
       <Box className={Styles.BoxContainer}>
         <Box className={Styles.BoxSummery}>
           <Box className={Styles.title}>סכום הצעתך</Box>
-          <Box className={Styles.summery}>25,000 ₪</Box>
+          <Box className={Styles.summery}> {tenderDto.CurrencyId} 25,000</Box>
           <Box className={Styles.buttonDiv}>
             <Box><Button sx={{ 'background-color': '#00798C', 'width': '50%' }} className={Styles.Button} variant="contained">הגשת ההצעה</Button></Box>
           </Box>

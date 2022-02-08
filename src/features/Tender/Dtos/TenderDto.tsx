@@ -26,4 +26,5 @@ export default class TenderDto {
     public TotalToLead!: number;
     public Lines?:TenderLineDto[];
     public Messages?:string[]
+    public itemsNumber: number;
 }

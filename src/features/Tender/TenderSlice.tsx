@@ -20,36 +20,6 @@ export const tenderSlice = createSlice({
     startLoading: (state) => {
       state.loading = true;
     },
-    addTender: (state, action) => {
-      state = state.push({
-        id: action.payload.id,
-        title: action.payload.title,
-        body: action.payload.body,
-      });
-      // return state;
-    },
-    editTender: (state, action) => {
-      state = state.map((tender) => {
-        if (tender.id === action.payload.id) {
-          return {
-            id: action.payload.id,
-            title: action.payload.title,
-            body: action.payload.body,
-          };
-        } else {
-          return {
-            ...tender,
-          };
-        }
-      });
-
-      return state;
-    },
-    removeTender: (state, action) => {
-      state = state.filter((tender) => tender.id !== action.payload.id);
-      return state;
-    },
-    
   }, 
   extraReducers: (builder) => {
     builder   
@@ -59,7 +29,7 @@ export const tenderSlice = createSlice({
     })
     .addCase(fetchTenderAsync.fulfilled, (state, action) => {
       state.loading = false;
-        state.tenderdata = action.payload;
+        state.tenderdata = SetTenderData(action.payload);
     })
     .addCase(fetchTenderAsync.rejected, (state, { payload }) => {
         state.loading = false;
@@ -75,21 +45,22 @@ export const fetchTenderAsync = createAsyncThunk('tenderdata/get', async(thunkAP
         return response.data;
       
       } catch (err) {
-          return thunkAPI.rejectWithValue(err?.response?.data);
+          return err;
       }
   }
 );
 
-
+function SetTenderData(tender){
+  tender.itemsNumber = tender.Lines != null ? tender.Lines.length : 0;
+  
+  return tender;
+}
 
 export const {
   startLoading,
-  addTender,
-  editTender,
-  removeTender,
 } = tenderSlice.actions;
 
 
-export const selectTender = (state) => state.tenderdata.tenderdata;
+export const selectTender = (state: { tenderdata: { tenderdata: any; }; }) => state.tenderdata.tenderdata;
 
 export default tenderSlice.reducer;

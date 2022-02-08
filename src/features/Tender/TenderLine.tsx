@@ -11,8 +11,7 @@ import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import IconButton from '@mui/material/IconButton';
 import TextField from '@mui/material/TextField';
 import TenderLineDto from './Dtos/TenderLineDto';
-import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
-import Tooltip from '@mui/material/Tooltip';
+
 
 interface IProps {
     item: TenderLineDto
@@ -60,12 +59,12 @@ export default function TenderLine({ item }: IProps): JSX.Element {
                         <Box className={Styles.TenderLineHead}>
                             <Box className={Styles.title}>{item.TenderLineName}</Box>
                             <Box className={Styles.headItem}>{!expand &&
-                                <Box> <Box className={Styles.titleText}>
+                                <Box> <Box className={Styles.titleText} aria-label="מספר יחידות">
                                     מספר יחידות </Box>    <Box><b>{item.RequiredAmount}</b>
                                     </Box>   </Box>
                             }</Box>
                             <Box className={Styles.headItem}>{!expand &&
-                                <Box ><Box className={Styles.titleText}>
+                                <Box ><Box className={Styles.titleText} aria-label="מחיר ליחידה">
                                     מחיר ליחידה    </Box><Box ><b>{item.Price}</b>
                                     </Box> </Box>
                             }</Box>
@@ -90,60 +89,24 @@ export default function TenderLine({ item }: IProps): JSX.Element {
                             <Box className={Styles.line}></Box>
                             <Box className={Styles.tenderSummery}>
                                 <Box className={Styles.stepDiv}>
-                                    <Box className={Styles.stepTitle}>מדרגת הצעה</Box>
+                                    <Box className={Styles.stepTitle} aria-label="מדרגת הצעה">מדרגת הצעה</Box>
                                     <Box className={Styles.stepNumber}><b>{item.PriceStep} ₪</b></Box>
                                 </Box>
                                 <Box className={Styles.unitPrice}>
 
-                                    <Box className={Styles.stepTitle}>מחיר ליחידה</Box>
+                                    <Box className={Styles.stepTitle} aria-label="מחיר ליחידה">מחיר ליחידה</Box>
                                     <Box className={Styles.stepField}>
                                         <Box><IconButton sx={{ color: "#00798C" }} onClick={() => onClickHandler(true)}><AddCircleIcon /></IconButton></Box>
-                                        <Box><TextField className={Styles.fildSum} type="number" id="standard-basic" label="₪" variant="standard" name={'tenderSum'} value={item.Price} /></Box>
+                                        <Box><TextField className={Styles.fildSum} type="number" id="standard-basic" label={item.CurrencyId} variant="standard" name={'tenderSum'} value={item.Price} /></Box>
                                         <Box><IconButton sx={{ color: "#00798C" }} onClick={() => onClickHandler(false)}><RemoveCircleIcon /></IconButton></Box>
                                     </Box>
                                 </Box>
                                 <Box className={Styles.sum}>
                                     <Box className={Styles.sumTitle}>סה"כ</Box>
-                                    <Box className={Styles.sumNumber}>{item.TotalPriceForDisplay} ₪</Box>
+                                    <Box className={Styles.sumNumber}>{item.TotalPriceForDisplay} {item.CurrencyId}</Box>
                                 </Box>
                             </Box>
-                            <Box className={Styles.privilege}>
-                                <Box><label className={Styles.titleLbl}>למימוש ההעדפות, יש להזין את מרכיבי המחיר ליחידה:</label></Box>
-                                <Box sx={{ marginTop: '50px' }}>
-                                    <Box className={Styles.inlineFlex}>
-                                        <Box><label className={Styles.titleLbl} >עלות מרכיב תוצרת הארץ</label><Tooltip  placement="top-start" title="אינפורמציה מטורפת"><InfoOutlinedIcon sx={{ height: '14px' }} /></Tooltip></Box> 
-                                        <Box></Box>
-                                        <Box><TextField
-                                            sx={{ width: '110px', border: '1px solid #44454B', backgroundColor:'#F4F8FF' }}
-                                            disabled
-                                            type="number"
-                                            id="outlined-disabled"
-                                            label={null}
-                                            defaultValue=""
-                                            variant="filled"
-                                        />
-                                        </Box>
-                                </Box>
-                                </Box>
-                                <Box className={Styles.privilege}>
-                                <Box sx={{ marginTop: '50px' }}>
-                                        <Box className={Styles.inlineFlex}>
-                                                <Box><label className={Styles.titleLbl}>מרכיב כח עבודה</label><Tooltip  placement="top-start" title="אינפורמציה מטורפת"><InfoOutlinedIcon sx={{ height: '14px' }} /></Tooltip></Box>
-                                                <Box></Box>
-                                                <Box><TextField
-                                                    sx={{ width: '110px', border: '1px solid #44454B', backgroundColor:'#F4F8FF' }}
-                                                    disabled
-                                                    type="number"
-                                                    id="outlined-disabled"
-                                                    label={null}
-                                                    defaultValue=""
-                                                    variant="filled"
-                                                />
-                                                </Box>
-                                        </Box>
-                                    </Box>
-                                </Box>
-                                </Box>
+                           
                         </form>
                     </Typography>
                 </AccordionDetails>
