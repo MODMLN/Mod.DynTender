@@ -53,7 +53,7 @@ export default function DialogModel({ flag,Messages }: IProps) {
                                     <ImageIcon />
                                 </Avatar>
                                 </ListItemAvatar>
-                                <ListItemText primary={item} sx={{'text-align':'right'}} />
+                                <ListItemText primary={item} sx={{'text-align':'right',color:'#4D4E55',fontWeight: '600'}} />
                             </ListItem>
                             ))}
                             </List>

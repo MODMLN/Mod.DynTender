@@ -20,8 +20,8 @@
         "TotalToLead": 77500,
         "Lines": [
             {
-                "RequiredAmount": 99999999.00,
-                "Price": 99999999.00,
+                "RequiredAmount": 99999999.01,
+                "Price": 99999999.01,
                 "InitialPrice": 238.00,
                 "DiscountPercent": null,
                 "TenderLineId": 4233,
@@ -30,7 +30,7 @@
                 "MinPrice": 0.00,
                 "PriceStep": 1.20,
                 "TotalPrice": 171360.0000,
-                "TotalPriceForDisplay": 99999999,
+                "TotalPriceForDisplay": 99999999.033,
                 "PreviousPrice": null,
                 "IsCotsOrUsg": false,
                 "IsraeliContent": 0,
@@ -224,5 +224,5 @@
             "הכל או כלום כבר אין לי כוח",
             "מי יודע מדוע ולמה לובדת הזברה פיג'מה"
         ],
-        "IsFemaleOwner": false
+        "IsFemaleOwner": true
     }

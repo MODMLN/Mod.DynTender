@@ -25,6 +25,7 @@ export default class TenderDto {
     public TenderNumber!: number;
     public TotalToLead!: number;
     public Lines?:TenderLineDto[];
-    public Messages?:string[]
+    public Messages?:string[];
+    public IsFemaleOwner?: boolean;
     public itemsNumber: number;
 }

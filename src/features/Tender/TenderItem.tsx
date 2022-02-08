@@ -5,7 +5,7 @@ import Button from '@mui/material/Button';
 import  Styles from './Tender.module.scss'
 import Moment from 'react-moment';
 import {  useNavigate } from "react-router-dom";
-
+import CurrencyFormat from 'react-currency-format';
 
 interface IProps {
     item: TenderDto, index: number, redirectOnClick: boolean
@@ -13,14 +13,8 @@ interface IProps {
 
 export default function TenderItem({ item, index, redirectOnClick = true }: IProps) {
 
-    function currencyFormat(num: number) {
-    
-            return '' ;/* num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');*/
-      
-    }
     let navigate = useNavigate();
-   
-
+    
     return (
         <div onClick={
             (e) => {
@@ -80,11 +74,11 @@ export default function TenderItem({ item, index, redirectOnClick = true }: IPro
                 <Box className={Styles.Proposal} >
                     <Box className={Styles.leadPrice}>
                         <Box>מחיר מוביל</Box>
-                        <Box className={Styles.bold}>{item.CurrencyId} {currencyFormat(item.TotalToLead as number)}</Box>
+                        <Box className={Styles.bold}><CurrencyFormat decimalScale={2} value={item.TotalToLead} displayType={'text'} thousandSeparator={true} prefix={item.CurrencyId}></CurrencyFormat></Box>
                     </Box>
                     <Box className={Styles.greenProposal}>
                         <Box>הצעתך מובילה</Box>
-                        <Box className={Styles.bold}>{item.CurrencyId} {item.TotalToLead}</Box></Box>
+                        <Box className={Styles.bold}><CurrencyFormat decimalScale={2} value={item.TotalToLead} displayType={'text'} thousandSeparator={true} prefix={item.CurrencyId}></CurrencyFormat></Box></Box>
                 </Box>
             </Box>
 
