@@ -22,14 +22,18 @@
     "classnames": "^2.3.1",
     "feather-icons": "^4.28.0",
     "feather-icons-react": "^0.5.0",
+    "gatsby-plugin-sass": "^5.7.0",
     "moment": "^2.29.1",
     "react": "^16.13.1",
+    "react-burger-menu": "^3.0.6",
     "react-currency-format": "^1.1.0",
     "react-dom": "^16.13.1",
     "react-moment": "^1.1.1",
+    "react-pro-sidebar": "^0.7.1",
     "react-redux": "^7.2.0",
     "react-router-dom": "^6.2.1",
     "react-scripts": "3.4.1",
+    "react-sidebar": "^3.0.2",
     "react-slidedown": "^2.4.7",
     "react-transition-group": "^4.3.0",
     "styled-components": "^5.0.1",
@@ -61,7 +65,7 @@
     "@types/react-router": "^5.1.18",
     "@types/react-router-dom": "^5.3.3",
     "@types/styled-components": "^5.1.21",
-    "sass": "^1.49.0",
+    "sass": "^1.49.7",
     "typescript-plugin-css-modules": "^3.4.0"
   }
 }

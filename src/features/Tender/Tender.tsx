@@ -7,7 +7,7 @@ import TenderLine from './TenderLine';
 import TenderLineDto from './Dtos/TenderLineDto';
 import { Box } from "@mui/material";
 //import { useParams } from "react-router-dom";
-import Styles from './Tender.module.scss'
+import Styles from './Tender.module.scss';
 import Dialog from './dialog';
 import Button from '@mui/material/Button';
 
@@ -23,7 +23,7 @@ export default function Tender() {
     dispatch(fetchTenderAsync());
 
     const interval = setInterval(() => {
-      dispatch(fetchTenderAsync());
+     // dispatch(fetchTenderAsync());
     }, 15000);
     return () => clearInterval(interval);
 

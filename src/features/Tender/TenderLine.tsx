@@ -57,7 +57,7 @@ export default function TenderLine({ item }: IProps): JSX.Element {
                                 <Box> <Box className={Styles.titleText}>
                                 {item.AmountSign ?
                                    <label>מספר יחידות</label>
-                                : <label>משקל</label>}
+                                : <label>משקל ב %</label>}
                                     </Box>    <Box><b>{item.RequiredAmount}</b>
                                     </Box>   </Box>
                             </Box>
