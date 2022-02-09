@@ -6,18 +6,19 @@ export default function SidebarRight() {
 
     return (
         <Menu
+
         right 
         pageWrapId={"slide"}
         width={ '370px' } 
         height={'100%'}
           isOpen={false}
-          crossButtonClassName={ "my-class" }
+          menuClassName={ "burgerMenu" }
 
         >
           
         <Box sx={{display:'inline-flex'}}>
           <Box><Button variant="contained" style={{backgroundColor:'#00798C'}}  >שינוי סיסמא</Button></Box>
-          <Box><Button variant="outlined"   style={{backgroundColor:'#00798C'}}>התנתקות</Button></Box>
+          <Box><Button variant="outlined"   style={{borderColor:'#00798C', color:'#00798C'}}>התנתקות</Button></Box>
         </Box>
         </Menu>
       );

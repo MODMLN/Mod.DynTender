@@ -48,12 +48,13 @@ export const fetchTenderAsync = createAsyncThunk('tenderdata/get', async(thunkAP
 const SetTenderData = (tender:TenderDto)=>{
   tender.itemsNumber = tender.Lines != null ? tender.Lines.length : 0;
   // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-  tender.IsFemaleOwner?tender.Messages.push('הנך זכאי להעדפה של עידוד נשים בעסקים ולכן על מנת להוביל עליך להציע הצעה זהה להצעה המובילה'):null;
+  tender.IsFemaleOwner?tender.Messages?.push('הנך זכאי להעדפה של עידוד נשים בעסקים ולכן על מנת להוביל עליך להציע הצעה זהה להצעה המובילה'):null;
 
   // eslint-disable-next-line array-callback-return
-  tender.Lines.map((item)=>{
+  tender.Lines?.map((item)=>{
     item.CurrencyId = tender.CurrencyId;
     item.AmountSign = tender.AmountSign;
+    item.IsPercentageCalculation = tender.IsPercentageCalculation;
   });
 
 

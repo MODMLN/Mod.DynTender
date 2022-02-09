@@ -23,5 +23,5 @@ export default class TenderLineDto {
     public TotalForLocalWork!: number;
     public AmountSign?:string;
     public CurrencyId?:string; 
-    
+    public IsPercentageCalculation?: boolean;
 }

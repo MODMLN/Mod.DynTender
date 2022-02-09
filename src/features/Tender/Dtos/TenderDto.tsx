@@ -24,8 +24,8 @@ export default class TenderDto {
     public RankInfo!:Ranks;
     public TenderNumber!: number;
     public TotalToLead!: number;
-    public Lines?:TenderLineDto[];
-    public Messages?:string[];
+    public Lines?:TenderLineDto[] | undefined;
+    public Messages?:string[] | undefined;
     public IsFemaleOwner?: boolean;
-    public itemsNumber: number;
+    public itemsNumber!: number;
 }

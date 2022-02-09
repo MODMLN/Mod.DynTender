@@ -20,7 +20,7 @@ interface IProps {
 export default function TenderLine({ item }: IProps): JSX.Element {
     const [expand, setExpand] = React.useState(false);
     const fieldVal = useRef(null);
-    const onClickHandler = (flag: boolean,step:Number) => {
+    const onClickHandler = (flag: boolean, step: Number) => {
         const form = fieldVal.current;
         if (form != null && form['tenderSum'] != null) {
             // @ts-ignore: Object is possibly 'null'.
@@ -55,10 +55,10 @@ export default function TenderLine({ item }: IProps): JSX.Element {
                             <Box className={Styles.title}>{item.TenderLineName}</Box>
                             <Box className={Styles.headItem}>
                                 <Box> <Box className={Styles.titleText}>
-                                {item.AmountSign ?
-                                   <label>מספר יחידות</label>
-                                : <label>משקל ב %</label>}
-                                    </Box>    <Box><b>{item.RequiredAmount}</b>
+                                    {!item.IsPercentageCalculation ?
+                                        <label>מספר יחידות</label>
+                                        : <label>משקל</label>}
+                                </Box>    <Box><b>{item.RequiredAmount}</b>{item.AmountSign}
                                     </Box>   </Box>
                             </Box>
                             <Box className={Styles.headItem}>{!expand &&
@@ -92,16 +92,16 @@ export default function TenderLine({ item }: IProps): JSX.Element {
                                 <Box className={Styles.unitPrice}>
                                     <Box className={Styles.stepTitle} aria-label="מחיר ליחידה">מחיר ליחידה</Box>
                                     <Box className={Styles.stepField}>
-                                        <Box><IconButton sx={{ color: "#00798C" }} onClick={() => onClickHandler(true,item.PriceStep)}><AddCircleIcon /></IconButton></Box>
+                                        <Box><IconButton sx={{ color: "#00798C" }} onClick={() => onClickHandler(true, item.PriceStep)}><AddCircleIcon /></IconButton></Box>
                                         <Box><TextField className={Styles.fildSum} type="number" id="standard-basic" label={item.CurrencyId} variant="standard" name={'tenderSum'} value={item.Price} /></Box>
-                                        <Box><IconButton sx={{ color: "#00798C" }} onClick={() => onClickHandler(false,item.PriceStep)}><RemoveCircleIcon /></IconButton></Box>
+                                        <Box><IconButton sx={{ color: "#00798C" }} onClick={() => onClickHandler(false, item.PriceStep)}><RemoveCircleIcon /></IconButton></Box>
                                     </Box>
                                 </Box>
                                 <Box className={Styles.sum}>
                                     <Box className={Styles.sumTitle}>סה"כ</Box>
                                     <Box className={Styles.sumNumber}>
                                         <CurrencyFormat decimalScale={2} value={item.TotalPriceForDisplay} displayType={'text'} thousandSeparator={true} prefix={item.CurrencyId}></CurrencyFormat>
-                                      </Box>
+                                    </Box>
                                 </Box>
                             </Box>
                         </form>
