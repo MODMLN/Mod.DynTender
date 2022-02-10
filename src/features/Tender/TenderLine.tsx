@@ -19,6 +19,7 @@ interface IProps {
 
 export default function TenderLine({ item }: IProps): JSX.Element {
     const [expand, setExpand] = React.useState(false);
+
     const fieldVal = useRef(null);
     const onClickHandler = (flag: boolean, step: Number) => {
         const form = fieldVal.current;

@@ -10,7 +10,7 @@ export default function SidebarRight() {
         right 
         pageWrapId={"slide"}
         width={ '370px' } 
-        height={'100%'}
+        
           isOpen={false}
           menuClassName={ "burgerMenu" }
 

@@ -62,6 +62,7 @@
     ]
   },
   "devDependencies": {
+    "@types/react-burger-menu": "^2.8.3",
     "@types/react-currency-format": "^1.0.0",
     "@types/react-router": "^5.1.18",
     "@types/react-router-dom": "^5.3.3",
