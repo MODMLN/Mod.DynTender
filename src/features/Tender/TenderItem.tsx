@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import  Styles from './Tender.module.scss'
 import Moment from 'react-moment';
-import {  useNavigate } from "react-router-dom";
+import {useNavigate } from "react-router-dom";
 import CurrencyFormat from 'react-currency-format';
 
 interface IProps {
@@ -27,13 +27,13 @@ export default function TenderItem({ item, index, redirectOnClick = true }: IPro
                 {(() => {
                    
                     switch (item.Statuses) {
-                        case 'Active':
+                        case 'Going':
                             return (
                                 <><Box className={Styles.BoxHead + ` Active`}><Box><Button variant="contained">00:14:32</Button></Box><Box><Button variant="contained">פעיל</Button></Box><Box>מס׳: {item.TenderNumber}</Box><Box className={Styles.headText}>{item.Name}</Box></Box></>
                             )
-                        case 'NotStarted':
+                        case 'NotYetStarted':
                             return (
-                                <><Box className={`${Styles.BoxHead} ${Styles.NotStarted}`}><Box></Box><Box><Button style={{
+                                <><Box className={`${Styles.BoxHead} ${Styles.NotYetStarted}`}><Box></Box><Box><Button style={{
                                     backgroundColor: "#FCC100", width: "116px", color: "#000000"
                                 }} variant="contained">טרם החל</Button></Box><Box>מס׳: {item.TenderNumber}</Box><Box className={Styles.headText}>{item.Name}</Box></Box></>
                             )
@@ -45,9 +45,9 @@ export default function TenderItem({ item, index, redirectOnClick = true }: IPro
                                     }}
                                         variant="contained">המכרז הסתיים</Button></Box><Box>מס׳: {item.TenderNumber}</Box><Box className={Styles.headText}>{item.Name}</Box></Box></>
                             )
-                        case 'Frozen':
+                        case 'Paused':
                             return (
-                                <><Box className={`${Styles.BoxHead} ${Styles.Frozen}`}><Box></Box><Box><Button variant="contained" style={{
+                                <><Box className={`${Styles.BoxHead} ${Styles.Paused}`}><Box></Box><Box><Button variant="contained" style={{
                                     backgroundColor: "#E3E6F0", width: "140px", color: "#44454B"
                                 }}>המכרז בהקפאה</Button></Box><Box>מס׳: {item.TenderNumber}</Box><Box className={Styles.headText}>{item.Name}</Box></Box></>
                             )
@@ -60,7 +60,7 @@ export default function TenderItem({ item, index, redirectOnClick = true }: IPro
 
                 <Box className={Styles.line}></Box>
                 {
-                    (item.Statuses === "NotStarted" || item.Statuses === "Frozen") ? (
+                    (item.Statuses === "NotYetStarted" || item.Statuses === "Paused") ? (
                         <>
                             <Box style={{ textAlign: "right" }}>
                                 <Box>זמן פתיחה</Box>

@@ -1,7 +1,7 @@
 import TenderLineDto from './TenderLineDto'
 
-export type Ranks= ("Active"|"Ended"|"Frozen")
-export type Status= ("Active"|"Ended"|"Frozen"|"NotStarted")
+export type Ranks= ("Going"|"Ended"|"Frozen")
+export type Status= ("Going"|"Ended"|"Paused"|"NotYetStarted"|"Decoded")
 export type Messages= string 
 
 export default class TenderDto {

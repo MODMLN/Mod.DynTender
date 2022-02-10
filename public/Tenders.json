@@ -7,9 +7,9 @@
     "CurrencyId": "₪",
     "Time": 22946,
     "TotalToLead": 77500,
-    "RankInfo": "Active",
+    "RankInfo": "Going",
     "UserLastPropositionTotal": 80000
-    ,"Statuses":"Active"
+    ,"Statuses":"Going"
     ,"TenderNumber":"6589547859"
   },
   {
@@ -23,7 +23,7 @@
     "TotalToLead": 77500,
     "RankInfo": null,
     "UserLastPropositionTotal": 80000
-    ,"Statuses":"Frozen"
+    ,"Statuses":"Paused"
     ,"TenderNumber":"6589547459"
   },{
     "Id": 17,
@@ -47,9 +47,9 @@
     "CurrencyId": "₪",
     "Time": 22946,
     "TotalToLead": 77500,
-    "RankInfo":  "Active",
+    "RankInfo":  "Going",
     "UserLastPropositionTotal": 80000
-    ,"Statuses":"Active"
+    ,"Statuses":"Going"
     ,"TenderNumber":"6589347859"
   },{
     "Id": 19,
@@ -60,9 +60,9 @@
     "CurrencyId": "₪",
     "Time": 22946,
     "TotalToLead": 77500,
-    "RankInfo": "Frozen",
+    "RankInfo": "Paused",
     "UserLastPropositionTotal": 80000
-    ,"Statuses":"Active"
+    ,"Statuses":"Going"
     ,"TenderNumber":"6589545859"
   },{
     "Id": 25,
@@ -75,7 +75,7 @@
     "TotalToLead": 77500,
     "RankInfo": null,
     "UserLastPropositionTotal": 80000
-    ,"Statuses":"Active"
+    ,"Statuses":"Going"
     ,"TenderNumber":"6589543259"
   },{
     "Id": 26,
@@ -88,7 +88,7 @@
     "TotalToLead": 77500,
     "RankInfo": null,
     "UserLastPropositionTotal": 80000
-    ,"Statuses":"Active"
+    ,"Statuses":"Going"
     ,"TenderNumber":"6589553859"
   },{
     "Id": 27,
@@ -101,7 +101,7 @@
     "TotalToLead": 77500,
     "RankInfo": null,
     "UserLastPropositionTotal": 80000
-    ,"Statuses":"Active"
+    ,"Statuses":"Going"
     ,"TenderNumber":"6569547859"
   },{
     "Id": 28,
@@ -114,7 +114,7 @@
     "TotalToLead": 77500,
     "RankInfo": null,
     "UserLastPropositionTotal": 80000
-    ,"Statuses":"Active"
+    ,"Statuses":"Going"
     ,"TenderNumber":"6527547859"
   },{
     "Id": 29,
@@ -127,7 +127,7 @@
     "TotalToLead": 77500,
     "RankInfo": null,
     "UserLastPropositionTotal": 80000
-    ,"Statuses":"Active"
+    ,"Statuses":"Going"
     ,"TenderNumber":"6589307859"
   },{
     "Id": 35,
@@ -140,7 +140,7 @@
     "TotalToLead": 77500,
     "RankInfo": null,
     "UserLastPropositionTotal": 80000
-    ,"Statuses":"Active"
+    ,"Statuses":"Going"
     ,"TenderNumber":"6583147859"
   },{
     "Id": 55,
@@ -153,7 +153,7 @@
     "TotalToLead": 77500,
     "RankInfo": null,
     "UserLastPropositionTotal": 80000
-    ,"Statuses":"NotStarted"
+    ,"Statuses":"NotYetStarted"
     ,"TenderNumber":"658347859"
   },{
     "Id": 36,
@@ -166,7 +166,7 @@
     "TotalToLead": 77500,
     "RankInfo": null,
     "UserLastPropositionTotal": 80000
-    ,"Statuses":"Active"
+    ,"Statuses":"Going"
     ,"TenderNumber":"6583547859"
   },{
     "Id":37,
@@ -179,7 +179,7 @@
     "TotalToLead": 77500,
     "RankInfo": null,
     "UserLastPropositionTotal": 80000
-    ,"Statuses":"Active"
+    ,"Statuses":"Going"
     ,"TenderNumber":"6583647859"
   },{
     "Id": 38,
@@ -192,6 +192,6 @@
     "TotalToLead": 77500,
     "RankInfo": null,
     "UserLastPropositionTotal": 80000
-    ,"Statuses":"Active"
+    ,"Statuses":"Going"
     ,"TenderNumber":"6537847859"
   }]

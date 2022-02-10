@@ -14,8 +14,8 @@
         "ExtendDuration": 3, 
         "TenderQualityGradePercent": null,
         "SupplierQualityGradePercent": null,
-        "Statuses":"Active",
-        "RankInfo": "Active",
+        "Statuses":"Going",
+        "RankInfo": "Going",
         "TenderNumber":"6589547859",
         "TotalToLead": 77500,
         "Lines": [

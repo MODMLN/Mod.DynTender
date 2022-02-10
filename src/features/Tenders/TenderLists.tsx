@@ -7,7 +7,7 @@ import Container from '@mui/material/Container';
 import TenderListsItem from './TenderListsItem';
 
 export default function TenderLists() {
-  
+
   const dispatch = useDispatch();
   const getAllTenders = useSelector(selectTenders);
 
@@ -15,14 +15,11 @@ export default function TenderLists() {
   useEffect(() => {
     dispatch(getAllTendersAsync("5"));
     const interval = setInterval(() => {
-        dispatch(getAllTendersAsync("5"));
+      dispatch(getAllTendersAsync("5"));
     }, 15000);
     return () => clearInterval(interval);
 
   }, [dispatch]);
-
-
-
 
   return (
     <div>
@@ -31,15 +28,11 @@ export default function TenderLists() {
         <Container >
           {getAllTenders.data.map((item: TendersDto, index: number) => {
             return (
-                  
-                      <TenderListsItem key={index} item={item} index={index} redirectOnClick={true}   />
-                
-            
-              )
+              <TenderListsItem key={index} item={item} index={index} redirectOnClick={true} />
+            )
           })}
         </Container>
       </React.Fragment>
     </div>
   );
-
 }

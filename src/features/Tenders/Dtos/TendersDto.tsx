@@ -1,6 +1,6 @@
 
-export type Ranks= ("Active"|"Ended"|"Frozen")
-export type Status= ("Active"|"Ended"|"Frozen"|"NotStarted")
+export type Ranks= ("Going"|"Ended"|"Paused")
+export type Status= ("Going"|"Ended"|"Paused"|"NotYetStarted"|"Decoded")
 export type Messages= string 
 export type Lines = Lines[]
 
