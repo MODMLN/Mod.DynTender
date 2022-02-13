@@ -10,8 +10,11 @@ export default function Header() {
 
         <Box className={Styles.Header} >
             <Box className={Styles.divHeader}>
-                <Box><SidebarRight /></Box>
-                <Box></Box>
+               <Box>
+                    <Box><SidebarRight /></Box>
+                    <Box></Box>
+               </Box>
+               <Box className={Styles.line}></Box>
             </Box>
         </Box>
     );
