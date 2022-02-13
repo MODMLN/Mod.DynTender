@@ -2,32 +2,43 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import TenderItem from './TenderItem';
 import { selectTender, fetchTenderAsync } from "./TenderSlice";
+import { selectLpau, fetchLeadingPropositionAndUserAsync } from "./LpauSlice";
 import TenderLine from './TenderLine';
-//import TenderDto from './Dtos/TenderDto';
 import TenderLineDto from './Dtos/TenderLineDto';
 import { Box } from "@mui/material";
 //import { useParams } from "react-router-dom";
 import Styles from './Tender.module.scss';
 import Dialog from './dialog';
 import Button from '@mui/material/Button';
+import switchStatus from './Commons/switchStatus';
+
+
 
 export default function Tender() {
-
+  
   //const params = useParams() as any;
   const tenderDto = useSelector(selectTender);
+  const lpauDto = useSelector(selectLpau);
   const dispatch = useDispatch();
 
   const [open, setOpen] = React.useState(false);
+
+
+ 
   useEffect(() => {
     setOpen(true);
     dispatch(fetchTenderAsync());
-
+   
     const interval = setInterval(() => {
-     // dispatch(fetchTenderAsync());
-    }, 15000);
+     dispatch(fetchLeadingPropositionAndUserAsync());
+    }, 10000);
     return () => clearInterval(interval);
 
   }, [dispatch]);
+
+
+
+  let Statuses = switchStatus(tenderDto.Statuses);
 
   return (
 
@@ -64,8 +75,10 @@ export default function Tender() {
           <Box className={Styles.title}>סכום הצעתך</Box>
           <Box className={Styles.summery}> {tenderDto.CurrencyId} 25,000</Box>
           <Box className={Styles.buttonDiv}>
-            <Box><Button sx={{ 'background-color': '#00798C', 'width': '50%' }} className={Styles.Button} variant="contained">הגשת ההצעה</Button></Box>
-          </Box>
+            {Statuses.isVisible() &&
+            <Box><Button sx={{ 'background-color': '#00798C', 'width': '50%' }} className={Styles.Button} disabled={!Statuses.isEnable()}  variant="contained">הגשת ההצעה</Button></Box>
+            }
+            </Box>
         </Box>
       </Box>
     </Box>

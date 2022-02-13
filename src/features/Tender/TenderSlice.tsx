@@ -9,7 +9,7 @@ const API_URL_Tender = "/Tender.json";
 export const initialState = {
   loading: false,
   error: false,
-  tenderdata:new TenderDto()//TenderDto
+  tenderdata:new TenderDto(),
 };
 
 export const tenderSlice = createSlice({
@@ -44,6 +44,8 @@ export const fetchTenderAsync = createAsyncThunk('tenderdata/get', async(thunkAP
       }
   }
 );
+
+
 
 const SetTenderData = (tender:TenderDto)=>{
   tender.itemsNumber = tender.Lines != null ? tender.Lines.length : 0;

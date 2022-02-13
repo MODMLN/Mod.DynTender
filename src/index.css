@@ -12,12 +12,13 @@ code {
     monospace;
 }
 
-.burgerMenu{
-  background-color:  #F0F6FE;
+.burgerMenu {
+  background-color: #F0F6FE;
 }
+
 /* Position and sizing of burger button */
 .bm-burger-button {
-  position: fixed;
+  position: relative;
   width: 36px;
   height: 30px;
   right: 36px;
@@ -27,19 +28,19 @@ code {
 
 /* Color/shape of burger icon bars */
 .bm-burger-bars {
-  background: #373a47;
+  background: #FFFFFF;
 }
 
 /* Color/shape of burger icon bars on hover*/
 .bm-burger-bars-hover {
-  background: #a90000;
+  background: #FFFFFF;
 }
 
 /* Position and sizing of clickable cross button */
 .bm-cross-button {
   height: 24px;
   width: 24px;
-display: none;
+  display: none;
 }
 
 /* Color/shape of close button cross */
@@ -47,7 +48,7 @@ display: none;
   background: #bdc3c7;
 }
 
-.react-burger-cross-btn{
+.react-burger-cross-btn {
   right: 24px;
 }
 
@@ -58,15 +59,16 @@ Note: Beware of modifying this element as it can break the animations - you shou
 .bm-menu-wrap {
   position: fixed;
   height: 100%;
+width: 22.5%!important;
 }
 
 /* General sidebar styles */
 .bm-menu {
-  background-color:  #F0F6FE;
+  background-color: #F0F6FE;
   padding: 2.5em 1.5em 0;
   font-size: 1.15em;
   box-shadow: 0px 4px 24px rgba(58, 59, 69, 0.1);
-  overflow: hidden!important;
+  overflow: hidden !important;
 }
 
 /* Morph shape necessary with bubble or elastic */
@@ -82,11 +84,13 @@ Note: Beware of modifying this element as it can break the animations - you shou
 
 /* Individual item */
 .bm-item {
-  display: inline-flex!important;
-  gap:15px;
+  display: inline-flex !important;
+  gap: 15px;
 }
 
 /* Styling of overlay */
 .bm-overlay {
+
   background: rgba(0, 0, 0, 0.3);
+   width: 100%!important;
 }
