@@ -19,7 +19,7 @@ interface IProps {
 
 export default function TenderLine({ item }: IProps): JSX.Element {
     const [expand, setExpand] = React.useState(false);
-
+    let totalPrices =[];
     const fieldVal = useRef(null);
     const onClickHandler = (flag: boolean, step: Number) => {
         const form = fieldVal.current;
@@ -94,7 +94,9 @@ export default function TenderLine({ item }: IProps): JSX.Element {
                                     <Box className={Styles.stepTitle} aria-label="מחיר ליחידה">מחיר ליחידה</Box>
                                     <Box className={Styles.stepField}>
                                         <Box><IconButton sx={{ color: "#00798C" }} onClick={() => onClickHandler(true, item.PriceStep)}><AddCircleIcon /></IconButton></Box>
-                                        <Box><TextField className={Styles.fildSum} type="number" id="standard-basic" label={item.CurrencyId} variant="standard" name={'tenderSum'} value={item.Price} /></Box>
+                                        <Box>
+                                        <CurrencyFormat className={Styles.fildSum} customInput={TextField} decimalScale={2} value={item.Price}  id="standard-basic"  name={'tenderSum'}  thousandSeparator={true} prefix={item.CurrencyId}></CurrencyFormat>
+                                            </Box>
                                         <Box><IconButton sx={{ color: "#00798C" }} onClick={() => onClickHandler(false, item.PriceStep)}><RemoveCircleIcon /></IconButton></Box>
                                     </Box>
                                 </Box>

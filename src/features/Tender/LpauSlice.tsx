@@ -41,6 +41,6 @@ export const {
     startLoading,
 } = LpauSlice.actions;
 
-export const selectLpau = (state: { lpaudata: { lpaudata: any; }; }) => state.lpaudata.lpaudata;
+export const selectLpau = (state: { lpaudata: { lpaudata: any; }; }) => state.lpaudata;
 
 export default LpauSlice.reducer;

@@ -76,7 +76,7 @@ export default function Tender() {
           <Box className={Styles.summery}> {tenderDto.CurrencyId} 25,000</Box>
           <Box className={Styles.buttonDiv}>
             {Statuses.isVisible() &&
-            <Box><Button sx={{ 'background-color': '#00798C', 'width': '50%' }} className={Styles.Button} disabled={!Statuses.isEnable()}  variant="contained">הגשת ההצעה</Button></Box>
+                <Box><Button sx={{ 'background-color': '#00798C', 'width': '50%' }} className={Styles.Button} disabled={!Statuses.isEnable()}  variant="contained">הגשת ההצעה</Button></Box>
             }
             </Box>
         </Box>
