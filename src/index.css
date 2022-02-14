@@ -21,8 +21,9 @@ code {
   position: relative;
   width: 36px;
   height: 30px;
-  right: 36px;
-  top: 36px;
+float: right;;
+margin-right: 24%;
+margin-top: 2%;
   color: #00798C;
 }
 

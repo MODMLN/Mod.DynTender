@@ -6,6 +6,7 @@ import  Styles from './Tender.module.scss'
 import Moment from 'react-moment';
 import {useNavigate } from "react-router-dom";
 import CurrencyFormat from 'react-currency-format';
+import { useTranslation } from "react-multi-lang";
 
 interface IProps {
     item: TenderDto, index: number, redirectOnClick: boolean
@@ -14,7 +15,7 @@ interface IProps {
 export default function TenderItem({ item, index, redirectOnClick = true }: IProps) {
 
     let navigate = useNavigate();
-    
+    const Translation = useTranslation();
     return (
         <div onClick={
             (e) => {
@@ -29,7 +30,7 @@ export default function TenderItem({ item, index, redirectOnClick = true }: IPro
                     switch (item.Statuses) {
                         case 'Going':
                             return (
-                                <><Box className={Styles.BoxHead + ` Active`}><Box><Button variant="contained">00:14:32</Button></Box><Box><Button variant="contained">פעיל</Button></Box><Box>מס׳: {item.TenderNumber}</Box><Box className={Styles.headText}>{item.Name}</Box></Box></>
+                                <><Box className={Styles.BoxHead + ` Active`}><Box><Button variant="contained">00:14:32</Button></Box><Box><Button variant="contained">{Translation('Tender.ACTIVE')}</Button></Box><Box>מס׳: {item.TenderNumber}</Box><Box className={Styles.headText}>{item.Name}</Box></Box></>
                             )
                         case 'NotYetStarted':
                             return (

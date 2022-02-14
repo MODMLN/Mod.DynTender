@@ -1,5 +1,7 @@
-
 {
-  "TENDER": "מכרז",
-  "TENDER_ITEMS": "פריטים במכרז"
+  "Tender": {
+    "TENDER": "מכרז",
+    "ITEMS_IN_TENDER":"פריטים במכרז",
+    "ACTIVE":"פעיל"
+  }
 }

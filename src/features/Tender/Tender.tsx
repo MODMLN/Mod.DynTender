@@ -11,6 +11,7 @@ import Styles from './Tender.module.scss';
 import Dialog from './dialog';
 import Button from '@mui/material/Button';
 import switchStatus from './Commons/switchStatus';
+import { useTranslation } from "react-multi-lang";
 
 
 
@@ -22,7 +23,7 @@ export default function Tender() {
   const dispatch = useDispatch();
 
   const [open, setOpen] = React.useState(false);
-
+  const Translation = useTranslation();
 
  
   useEffect(() => {
@@ -42,7 +43,7 @@ export default function Tender() {
 
   return (
 
-    <Box className={Styles.BoxContainer}>
+    <Box className={Styles.BoxContainer}> 
       <Box className={Styles.BoxHeadTop} >
 
         <Box key="1" className={Styles.tenderDetails}>
@@ -55,7 +56,7 @@ export default function Tender() {
         </Box>
 
       </Box>
-      <Box className={Styles.BoxSumItems}>{"פריטים במכרז " + tenderDto.itemsNumber} </Box>
+      <Box className={Styles.BoxSumItems}>{Translation('Tender.ITEMS_IN_TENDER')+" " + tenderDto.itemsNumber} </Box>
       <Box className={Styles.TenderLines}>
         {
 
