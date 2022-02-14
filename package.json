@@ -27,6 +27,7 @@
     "react": "^16.13.1",
     "react-burger-menu": "^3.0.6",
     "react-currency-format": "^1.1.0",
+    "react-currency-input-field": "^3.6.4",
     "react-dom": "^16.13.1",
     "react-moment": "^1.1.1",
     "react-multi-lang": "^2.1.1",

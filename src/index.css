@@ -21,9 +21,9 @@ code {
   position: relative;
   width: 36px;
   height: 30px;
-float: right;;
-margin-right: 24%;
-margin-top: 2%;
+  float: right;
+  margin-right: 24%;
+  margin-top: 2%;
   color: #00798C;
 }
 
@@ -60,7 +60,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
 .bm-menu-wrap {
   position: fixed;
   height: 100%;
-width: 22.5%!important;
+  width: 22.5% !important;
 }
 
 /* General sidebar styles */
@@ -93,5 +93,5 @@ width: 22.5%!important;
 .bm-overlay {
 
   background: rgba(0, 0, 0, 0.3);
-   width: 100%!important;
+  width: 100% !important;
 }

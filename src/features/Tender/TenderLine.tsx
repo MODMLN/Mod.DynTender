@@ -12,6 +12,7 @@ import IconButton from '@mui/material/IconButton';
 import TextField from '@mui/material/TextField';
 import TenderLineDto from './Dtos/TenderLineDto';
 import CurrencyFormat from 'react-currency-format';
+import CurrencyInput from 'react-currency-input-field';
 
 interface IProps {
     item: TenderLineDto
@@ -23,7 +24,10 @@ export default function TenderLine({ item }: IProps): JSX.Element {
     const fieldVal = useRef(null);
     const onClickHandler = (flag: boolean, step: Number) => {
         const form = fieldVal.current;
+
         if (form != null && form['tenderSum'] != null) {
+            // @ts-ignore: Object is possibly 'null'.
+            console.log(form['tenderSum'])
             // @ts-ignore: Object is possibly 'null'.
             if (form['tenderSum'].value !== "" && (form['tenderSum'].value !== undefined || form['tenderSum'].value !== 0)) {
                 flag ?
@@ -95,7 +99,7 @@ export default function TenderLine({ item }: IProps): JSX.Element {
                                     <Box className={Styles.stepField}>
                                         <Box><IconButton sx={{ color: "#00798C" }} onClick={() => onClickHandler(true, item.PriceStep)}><AddCircleIcon /></IconButton></Box>
                                         <Box>
-                                        <CurrencyFormat className={Styles.fildSum} customInput={TextField} decimalScale={2} value={item.Price}  id="standard-basic"  name={'tenderSum'}  thousandSeparator={true} prefix={item.CurrencyId}></CurrencyFormat>
+                                        <CurrencyInput className={Styles.fildSum} customInput={TextField} decimalScale={2} value={item.Price} defaultValue={item.Price}  id="tenderSum"  name={'tenderSum'}  prefix={item.CurrencyId}></CurrencyInput>
                                             </Box>
                                         <Box><IconButton sx={{ color: "#00798C" }} onClick={() => onClickHandler(false, item.PriceStep)}><RemoveCircleIcon /></IconButton></Box>
                                     </Box>
