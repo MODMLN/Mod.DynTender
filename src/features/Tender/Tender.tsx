@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import TenderItem from './TenderItem';
-import { selectTender, fetchTenderAsync } from "./TenderSlice";
+import { selectTender, fetchTenderAsync ,selectTotalSummery} from "./TenderSlice";
 import { selectLpau, fetchLeadingPropositionAndUserAsync } from "./LpauSlice";
 import TenderLine from './TenderLine';
 import TenderLineDto from './Dtos/TenderLineDto';
@@ -19,7 +19,10 @@ export default function Tender() {
   
   //const params = useParams() as any;
   const tenderDto = useSelector(selectTender);
+  const TotalSummery = useSelector(selectTotalSummery);
+  
   const lpauDto = useSelector(selectLpau);
+
   const dispatch = useDispatch();
 
   const [open, setOpen] = React.useState(false);
@@ -31,7 +34,7 @@ export default function Tender() {
     dispatch(fetchTenderAsync());
    
     const interval = setInterval(() => {
-     dispatch(fetchLeadingPropositionAndUserAsync());
+     //dispatch(fetchLeadingPropositionAndUserAsync());
     }, 10000);
     return () => clearInterval(interval);
 
@@ -40,7 +43,7 @@ export default function Tender() {
 
 
   let Statuses = switchStatus(tenderDto.Statuses);
-
+  console.log(TotalSummery)
   return (
 
     <Box className={Styles.BoxContainer}> 
@@ -74,7 +77,7 @@ export default function Tender() {
       <Box className={Styles.BoxContainer}>
         <Box className={Styles.BoxSummery}>
           <Box className={Styles.title}>סכום הצעתך</Box>
-          <Box className={Styles.summery}> {tenderDto.CurrencyId} 25,000</Box>
+          <Box className={Styles.summery}> {tenderDto.CurrencyId} 25,000 {tenderDto.totalSummery}</Box>
           <Box className={Styles.buttonDiv}>
             {Statuses.isVisible() &&
                 <Box><Button sx={{ 'background-color': '#00798C', 'width': '50%' }} className={Styles.Button} disabled={!Statuses.isEnable()}  variant="contained">הגשת ההצעה</Button></Box>

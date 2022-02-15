@@ -1,5 +1,7 @@
 import { createSlice ,createAsyncThunk} from "@reduxjs/toolkit";
 import axios from "axios";
+import { push } from "react-burger-menu";
+import { RootState } from "../../app/store";
 import TenderDto from './Dtos/TenderDto';
 
 const API_URL_Tender = "/Tender.json";
@@ -10,6 +12,7 @@ export const initialState = {
   loading: false,
   error: false,
   tenderdata:new TenderDto(),
+  totalSummery:0
 };
 
 export const tenderSlice = createSlice({
@@ -19,6 +22,9 @@ export const tenderSlice = createSlice({
     startLoading: (state) => {
       state.loading = true;
     },
+    setTotalSummery:(state, action)=>{
+      state.totalSummery = action.payload
+    }
   }, 
   extraReducers: (builder) => {
     builder   
@@ -64,10 +70,11 @@ const SetTenderData = (tender:TenderDto)=>{
 }
 
 export const {
+  setTotalSummery,
   startLoading,
 } = tenderSlice.actions;
 
 
 export const selectTender = (state: { tenderdata: { tenderdata: any; }; }) => state.tenderdata.tenderdata;
-
+export const selectTotalSummery = (state: RootState) => state.tenderdata.totalSummery;
 export default tenderSlice.reducer;

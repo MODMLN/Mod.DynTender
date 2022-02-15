@@ -248,6 +248,18 @@ input[type=number]::-webkit-outer-spin-button {
         text-align: right;
         letter-spacing: -0.2625px;
         color: #44454B;
+        #TotalPriceForDisplay{
+          text-align: center;
+          font-family: 'OpenSans', sans-serif;
+          font-style: normal;
+          font-weight: bold;
+          font-size: 26px!important;
+          line-height: 14px;
+          text-align: right;
+          letter-spacing: -0.2625px;
+          color: #44454B;
+
+        }
       }
     }
 
@@ -264,6 +276,7 @@ input[type=number]::-webkit-outer-spin-button {
         direction: rtl;
         display: inline-flex;
         gap: 12px;
+        fieldset{border: none;}
         input{
           font-family: 'OpenSans', sans-serif;
           font-style: normal;
@@ -306,6 +319,18 @@ input[type=number]::-webkit-outer-spin-button {
         text-align: right;
         letter-spacing: -0.2625px;
         color: #00798C;
+        input{
+          font-family: 'OpenSans', sans-serif;
+          font-style: normal;
+          font-weight: normal;
+          font-size: 26px;
+          line-height: 30px;
+          /* identical to box height, or 115% */
+          width: 20%;
+          text-align: center;
+
+          color: #4D4E55;
+        }
       }
     }
   }

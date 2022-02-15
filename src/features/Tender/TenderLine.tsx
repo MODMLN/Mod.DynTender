@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { Box } from "@mui/material";
+import { Box, InputAdornment } from "@mui/material";
 import Styles from './Tender.module.scss';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
@@ -12,7 +12,14 @@ import IconButton from '@mui/material/IconButton';
 import TextField from '@mui/material/TextField';
 import TenderLineDto from './Dtos/TenderLineDto';
 import CurrencyFormat from 'react-currency-format';
-import CurrencyInput from 'react-currency-input-field';
+import FormHelperText from '@mui/material/FormHelperText';
+import FormControl from '@mui/material/FormControl';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import Input from '@mui/material/Input';
+import FilledInput from '@mui/material/FilledInput';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import InputLabel from '@mui/material/InputLabel';
 
 interface IProps {
     item: TenderLineDto
@@ -20,25 +27,36 @@ interface IProps {
 
 export default function TenderLine({ item }: IProps): JSX.Element {
     const [expand, setExpand] = React.useState(false);
-    let totalPrices =[];
+
+
     const fieldVal = useRef(null);
     const onClickHandler = (flag: boolean, step: Number) => {
         const form = fieldVal.current;
 
         if (form != null && form['tenderSum'] != null) {
             // @ts-ignore: Object is possibly 'null'.
-            console.log(form['tenderSum'])
-            // @ts-ignore: Object is possibly 'null'.
             if (form['tenderSum'].value !== "" && (form['tenderSum'].value !== undefined || form['tenderSum'].value !== 0)) {
-                flag ?
+                if(flag) {
                     // @ts-ignore: Object is possibly 'null'.
-                    (form['tenderSum'].value = Number(form['tenderSum'].value) + step)
-                    :
+                   form['tenderSum'].value = parseFloat(Number(form['tenderSum'].value) + step).toFixed(2)
+                     // @ts-ignore: Object is possibly 'null'.
+                    form['TotalPriceForDisplay'].value = parseFloat(Number(form['tenderSum'].value) + step).toFixed(2)*item.RequiredAmount
+                 }
+                 else{
                     // @ts-ignore: Object is possibly 'null'.
-                    (form['tenderSum'].value = Number(form['tenderSum'].value) - step);
+                    form['tenderSum'].value = parseFloat(Number(form['tenderSum'].value) - step).toFixed(2)
+                     // @ts-ignore: Object is possibly 'null'.
+                     form['TotalPriceForDisplay'].value = parseFloat(Number(form['tenderSum'].value) - step).toFixed(2)*item.RequiredAmount
+                 }
+
             }
         }
     };
+
+    const handleTotalPriceForDisplayChange=()=>{
+
+        console.log('sdfsdfsdf')
+    }
 
     const toggleAcordion = () => {
         setExpand((expand) => !expand);
@@ -95,11 +113,11 @@ export default function TenderLine({ item }: IProps): JSX.Element {
                                     <Box className={Styles.stepNumber}><b>{item.PriceStep} {item.CurrencyId}</b></Box>
                                 </Box>
                                 <Box className={Styles.unitPrice}>
-                                    <Box className={Styles.stepTitle} aria-label="מחיר ליחידה">מחיר ליחידה</Box>
+                                    <Box className={Styles.stepTitle} aria-label="מחיר ליחידה">מחיר ליחידה {item.CurrencyId}</Box>
                                     <Box className={Styles.stepField}>
                                         <Box><IconButton sx={{ color: "#00798C" }} onClick={() => onClickHandler(true, item.PriceStep)}><AddCircleIcon /></IconButton></Box>
                                         <Box>
-                                        <CurrencyInput className={Styles.fildSum} customInput={TextField} decimalScale={2} value={item.Price} defaultValue={item.Price}  id="tenderSum"  name={'tenderSum'}  prefix={item.CurrencyId}></CurrencyInput>
+                                        <CurrencyFormat className={Styles.fildSum} customInput={TextField} decimalScale={2} value={item.Price} defaultValue={item.Price}  id="tenderSum"  name={'tenderSum'} ></CurrencyFormat>
                                             </Box>
                                         <Box><IconButton sx={{ color: "#00798C" }} onClick={() => onClickHandler(false, item.PriceStep)}><RemoveCircleIcon /></IconButton></Box>
                                     </Box>
@@ -107,7 +125,21 @@ export default function TenderLine({ item }: IProps): JSX.Element {
                                 <Box className={Styles.sum}>
                                     <Box className={Styles.sumTitle}>סה"כ</Box>
                                     <Box className={Styles.sumNumber}>
-                                        <CurrencyFormat decimalScale={2} value={item.TotalPriceForDisplay} displayType={'text'} thousandSeparator={true} prefix={item.CurrencyId}></CurrencyFormat>
+                               
+
+                                        <FormControl fullWidth className={Styles.stepNumber}  variant="standard">
+                                                <Input
+                                                 disableUnderline={true}     //here
+                                                disabled
+                                                defaultValue={item.TotalPriceForDisplay}
+                                                className={Styles.stepNumber}
+                                                    id="TotalPriceForDisplay"
+                                                    value={item.TotalPriceForDisplay}
+                                                    
+                                                    onChange={handleTotalPriceForDisplayChange}
+                                                    startAdornment={<InputAdornment position="start">{item.CurrencyId}</InputAdornment>}
+                                                />
+                                        </FormControl>
                                     </Box>
                                 </Box>
                             </Box>
