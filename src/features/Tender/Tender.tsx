@@ -13,7 +13,7 @@ import Button from '@mui/material/Button';
 import switchStatus from './Commons/switchStatus';
 import { useTranslation } from "react-multi-lang";
 import { RootState } from "../../app/store";
-import CurrencyFormat from 'react-currency-format';
+import CurrencyFormat from 'react-number-format';
 
 export default function Tender() {
 

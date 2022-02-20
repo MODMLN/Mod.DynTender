@@ -5,7 +5,7 @@ import Button from '@mui/material/Button';
 import Styles from './Tender.module.scss'
 import Moment from 'react-moment';
 import { useNavigate } from "react-router-dom";
-import CurrencyFormat from 'react-currency-format';
+import CurrencyFormat from 'react-number-format';
 import { useTranslation } from "react-multi-lang";
 
 interface IProps {

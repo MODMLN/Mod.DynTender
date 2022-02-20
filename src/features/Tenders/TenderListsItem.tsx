@@ -5,7 +5,7 @@ import Button from '@mui/material/Button';
 import Styles from './Tenders.module.scss'
 import Moment from 'react-moment';
 import {  useNavigate } from "react-router-dom";
-import CurrencyFormat from 'react-currency-format';
+import CurrencyFormat from 'react-number-format';
 
 interface IProps {
     item: TendersDto, index: number, redirectOnClick: boolean

@@ -96,7 +96,7 @@ export default function TenderLine({ item,AmountSign }: IProps): JSX.Element {
                                     <Box className={Styles.stepField}>
                                         <Box><IconButton sx={{ color: "#00798C" }} onClick={() => dispatch(linePriceChanged({TenderLineId: item.TenderLineId, actionType:"stepUp"}))}><AddCircleIcon /></IconButton></Box>
                                         <Box>
-                                            <CurrencyFormat className={Styles.fildSum} onValueChange={(values) => dispatch(linePriceChanged({TenderLineId: item.TenderLineId, val:values,  actionType:"priceChanged"}))} displayType={"input"} decimalScale={2} value={item.Price} id="tenderSum" name={'tenderSum'}  ></CurrencyFormat>
+                                            <CurrencyFormat className={Styles.fildSum}   onValueChange={(values,sourceInfo) =>  {dispatch(linePriceChanged({TenderLineId: item.TenderLineId, val:values,  actionType:"priceChanged" }))}} displayType={"input"} decimalScale={2} value={item.Price} id="tenderSum" name={'tenderSum'}  ></CurrencyFormat>
                                         </Box>
                                         <Box><IconButton sx={{ color: "#00798C" }} onClick={() => dispatch(linePriceChanged({TenderLineId: item.TenderLineId, actionType:"stepDown"}))}><RemoveCircleIcon /></IconButton></Box>
                                     </Box>
@@ -108,13 +108,11 @@ export default function TenderLine({ item,AmountSign }: IProps): JSX.Element {
 
                                         <FormControl fullWidth className={Styles.stepNumber} variant="standard">
                                             <Input
-                                                disableUnderline={true}     //here
+                                                disableUnderline={true}
                                                 disabled
-                                               
                                                 className={Styles.stepNumber}
                                                 id="TotalPriceForDisplay"
                                                 value={item.TotalPriceForDisplay}
-
                                                 onChange={handleTotalPriceForDisplayChange}
                                                 startAdornment={<InputAdornment position="start">{item.CurrencyId}</InputAdornment>}
                                             />

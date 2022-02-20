@@ -36,7 +36,7 @@ export const tenderSlice = createSlice({
       let lines = state.tenderdata.Lines?.filter((x) => x.TenderLineId === action.payload.TenderLineId);
      
       let line = lines == null ? null : lines[0];
-      console.log(action.payload.val.value);
+ 
       if (line != null) {
         switch (action.payload.actionType) {
           case "stepDown":
@@ -46,6 +46,7 @@ export const tenderSlice = createSlice({
             line.Price = line.Price + line.PriceStep;
             break;
           case "priceChanged":
+            console.log(action.payload);
            // line.Price = parseInt(action.payload.val.value) + line.PriceStep;
            // line.Price = 1200;//action.payload.price as number;
             break;
