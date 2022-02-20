@@ -7,8 +7,8 @@ const TenderRoutes = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route exact path="/Tenders" element={<Tenders/>}/>
-        <Route exact path="/Tender/:id" element={<Tender/>}/>
+        <Route  path="/Tenders"  element={<Tenders/>}/>
+        <Route  path="/Tender/:id"  element={<Tender/>}/>
       </Routes>
     </BrowserRouter>
   );

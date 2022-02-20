@@ -21,7 +21,6 @@ export default class TenderLineDto {
     public BenefitType?:string;
     public TotalWithLocationBenefit!: number;
     public TotalForLocalWork!: number;
-    public AmountSign?:string;
     public CurrencyId?:string; 
     public IsPercentageCalculation?: boolean;
 }

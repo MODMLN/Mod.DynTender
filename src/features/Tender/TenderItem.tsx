@@ -2,9 +2,9 @@ import React from "react";
 import TenderDto from './Dtos/TenderDto';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import  Styles from './Tender.module.scss'
+import Styles from './Tender.module.scss'
 import Moment from 'react-moment';
-import {useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import CurrencyFormat from 'react-currency-format';
 import { useTranslation } from "react-multi-lang";
 
@@ -23,10 +23,9 @@ export default function TenderItem({ item, index, redirectOnClick = true }: IPro
                     navigate(`/Tender/${item.Id}`);
             }
         }>
-
             <Box className={Styles.BoxMain} key={index} sx={{ p: 2, border: '1px solid grey' }}>
                 {(() => {
-                   
+
                     switch (item.Statuses) {
                         case 'Going':
                             return (
@@ -74,17 +73,14 @@ export default function TenderItem({ item, index, redirectOnClick = true }: IPro
                 }
                 <Box className={Styles.Proposal} >
                     <Box className={Styles.leadPrice}>
-                        <Box>מחיר מוביל</Box>
+                        <Box >מחיר מוביל</Box>
                         <Box className={Styles.bold}><CurrencyFormat decimalScale={2} value={item.TotalToLead} displayType={'text'} thousandSeparator={true} prefix={item.CurrencyId}></CurrencyFormat></Box>
                     </Box>
                     <Box className={Styles.greenProposal}>
-                        <Box>הצעתך מובילה</Box>
+                        <Box >הצעתך מובילה</Box>
                         <Box className={Styles.bold}><CurrencyFormat decimalScale={2} value={item.TotalToLead} displayType={'text'} thousandSeparator={true} prefix={item.CurrencyId}></CurrencyFormat></Box></Box>
                 </Box>
             </Box>
-
         </div>
     )
 }
-
-

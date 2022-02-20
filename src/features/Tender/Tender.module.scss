@@ -8,22 +8,26 @@ body {
   background-color: #F0F6FE;
 }
 
+.bold{
+  font-weight: bold;
+}
+
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
 }
 
-.inlineFlex{
+.inlineFlex {
 
   align-items: center;
 
   display: grid;
   grid-template-columns: 40% 0% 14%;
-  gap:5px
+  gap: 5px
 }
 
-.noBorder{
-  border:none;
+.noBorder {
+  border: none;
 }
 
 .BoxContainer {
@@ -31,11 +35,12 @@ input[type=number]::-webkit-outer-spin-button {
 
   .BoxMain {
     border: none !important;
+
     @media screen and (max-width:1024px) {
-       
+
       height: auto;
-   
-  }
+
+    }
   }
 
   .BoxHeadTop {
@@ -55,7 +60,7 @@ input[type=number]::-webkit-outer-spin-button {
       width: 53%;
 
       >div {
-       
+
         margin-left: auto;
         margin-right: auto;
         border: none !important;
@@ -76,7 +81,7 @@ input[type=number]::-webkit-outer-spin-button {
     color: #44454B;
   }
 
-  .BoxSummery{
+  .BoxSummery {
 
     margin-left: auto;
     margin-right: auto;
@@ -88,7 +93,8 @@ input[type=number]::-webkit-outer-spin-button {
     border-bottom-left-radius: 0 !important;
     border-bottom-right-radius: 0 !important;
 
-    .title{margin-left: auto;
+    .title {
+      margin-left: auto;
       margin-right: auto;
       font-family: 'OpenSans', sans-serif;
       font-style: normal;
@@ -99,10 +105,12 @@ input[type=number]::-webkit-outer-spin-button {
       margin-bottom: 2%;
       text-align: center;
       letter-spacing: -0.2625px;
-      
+
       color: #44454B;
     }
-    .summery{margin-left: auto;
+
+    .summery {
+      margin-left: auto;
       margin-right: auto;
       font-family: 'OpenSans', sans-serif;
       font-style: normal;
@@ -110,31 +118,35 @@ input[type=number]::-webkit-outer-spin-button {
       font-size: 20px;
       line-height: 14px;
       /* identical to box height, or 70% */
-      
+
       text-align: center;
       letter-spacing: -0.2625px;
-      
+
       color: #44454B;
     }
-    .buttonDiv{
+
+    .buttonDiv {
 
       direction: rtl;
-   
-     margin:2% auto;
+
+      margin: 2% auto;
       text-align: center;
       direction: rtl;
-      .button{ min-width: 150px; 
+
+      .button {
+        min-width: 150px;
         font-family: 'OpenSans', sans-serif;
         font-style: normal;
         font-weight: bold;
         font-size: 18px;
         line-height: 25px;
         /* identical to box height */
-        
+
         text-align: right;
         letter-spacing: -0.3px;
-        
-        color: #FFFFFF;}
+
+        color: #FFFFFF;
+      }
     }
   }
 }
@@ -150,12 +162,14 @@ input[type=number]::-webkit-outer-spin-button {
   border: 1px solid #E3E6F0;
   box-shadow: 0px 4px 24px rgba(58, 59, 69, 0.1);
   border-radius: 7px;
+
   @media screen and (max-width:500px) {
-   
-      padding: 0;
-      width: 95%;
+
+    padding: 0;
+    width: 95%;
 
   }
+
   .css-1elwnq4-MuiPaper-root-MuiAccordion-root {
     border: none !important;
   }
@@ -174,12 +188,12 @@ input[type=number]::-webkit-outer-spin-button {
       background: #E3EBF8;
       border-radius: 7px;
       padding: 5px;
-    height: fit-content;
+      height: fit-content;
     }
 
     .title {
       min-width: 320px;
-      width:50%;
+      width: 50%;
       align-items: center;
       font-family: 'OpenSans', sans-serif;
       font-style: normal;
@@ -189,21 +203,23 @@ input[type=number]::-webkit-outer-spin-button {
       text-align: right;
       letter-spacing: -0.4125px;
       color: #44454B;
+
       @media screen and (max-width:1024px) {
-       
-          min-width: 150px;
-          font-size: 16px;
-       
+
+        min-width: 150px;
+        font-size: 16px;
+
       }
-   
+
     }
-    .titleText{
+
+    .titleText {
       width: max-content;
       min-width: 100px;
     }
 
-    .headItem{
-      width:18%;
+    .headItem {
+      width: 18%;
       min-width: 18%;
       max-width: 20%;
     }
@@ -227,6 +243,7 @@ input[type=number]::-webkit-outer-spin-button {
 
     .stepDiv {
       padding: 15px;
+
       .stepTitle {
         font-family: 'OpenSans', sans-serif;
         font-style: normal;
@@ -248,12 +265,13 @@ input[type=number]::-webkit-outer-spin-button {
         text-align: right;
         letter-spacing: -0.2625px;
         color: #44454B;
-        #TotalPriceForDisplay{
+
+        #TotalPriceForDisplay {
           text-align: center;
           font-family: 'OpenSans', sans-serif;
           font-style: normal;
           font-weight: bold;
-          font-size: 26px!important;
+          font-size: 26px !important;
           line-height: 14px;
           text-align: right;
           letter-spacing: -0.2625px;
@@ -270,14 +288,21 @@ input[type=number]::-webkit-outer-spin-button {
       border-radius: 7px;
 
       .stepField {
-        padding: 2px;
+        padding: 5% 2px 2px 2px;
         align-items: right;
         text-align: right;
         direction: rtl;
         display: inline-flex;
         gap: 12px;
-        fieldset{border: none;}
-        input{
+
+        fieldset {
+          border: none;
+        }
+
+        input, input:focus{
+          background-color: #F4F8FF;
+          border: none;
+          width: 100%;
           font-family: 'OpenSans', sans-serif;
           font-style: normal;
           font-weight: normal;
@@ -297,6 +322,7 @@ input[type=number]::-webkit-outer-spin-button {
     .sum {
       text-align: center;
       padding: 15px;
+
       .sumTitle {
         font-family: 'OpenSans', sans-serif;
         font-style: normal;
@@ -319,30 +345,33 @@ input[type=number]::-webkit-outer-spin-button {
         text-align: right;
         letter-spacing: -0.2625px;
         color: #00798C;
-        input{
+
+        input {
           font-family: 'OpenSans', sans-serif;
           font-style: normal;
           font-weight: normal;
           font-size: 26px;
           line-height: 30px;
           /* identical to box height, or 115% */
-          width: 20%;
-          text-align: center;
-
+          width: auto;
+          text-align: right;
+          padding-right: 2%;
           color: #4D4E55;
         }
       }
     }
   }
-  .privilege{
-    border-top:  1px solid rgba(227, 230, 240, 0.4);
+
+  .privilege {
+    border-top: 1px solid rgba(227, 230, 240, 0.4);
     margin-top: 24px;
     direction: rtl;
-    padding: 24px 0 24px 48px ;
+    padding: 24px 0 24px 48px;
     background: linear-gradient(180deg, rgba(244, 248, 255, 0.45) 0%, rgba(255, 255, 255, 0) 206.7%);
     width: calc(51.4vw - 20px);
     margin-left: calc(-27vw + 50% + 10px);
-    .titleLbl{
+
+    .titleLbl {
       margin-right: 24px;
       font-family: 'OpenSans', sans-serif;
       font-style: normal;
@@ -365,7 +394,7 @@ input[type=number]::-webkit-outer-spin-button {
   margin-top: 20px;
   background: #FFFFFF;
   border: 1px solid #E3E6F0;
-  
+
   border-radius: 7px;
 
   .BoxHead {
