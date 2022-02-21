@@ -1,24 +1,27 @@
-import { createSlice, createAsyncThunk, PayloadAction,current  } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 import { RootState } from "../../app/store";
 import TenderDto from './Dtos/TenderDto';
 import TenderLineDto from './Dtos/TenderLineDto';
-
+import LpauDto from './Dtos/LpauDto';
 
 const API_URL_Tender = "/Tender.json";
+const API_URL_Lpau = "/LeadingPropositionAndUser.json";
 
 export interface CounterState {
   loading: Boolean
   error: Boolean
   tenderdata: TenderDto
+  lpaudata:LpauDto
   totalSummery: number | undefined
-  //tenderGeneralDat: TenderGeneralData
 }
+
 // initial state
 export const initialState: CounterState = {
   loading: false,
   error: false,
   tenderdata: new TenderDto(),
+  lpaudata:new LpauDto(),
   totalSummery: 0
 };
 
@@ -34,21 +37,21 @@ export const tenderSlice = createSlice({
       //called on change of + - and field blur
       //call line sum change
       let lines = state.tenderdata.Lines?.filter((x) => x.TenderLineId === action.payload.TenderLineId);
-     
+
       let line = lines == null ? null : lines[0];
- 
+
       if (line != null) {
         switch (action.payload.actionType) {
           case "stepDown":
-            line.Price = line.Price - line.PriceStep;
+            line.Price = Number(line.Price) - Number(line.PriceStep);
             break;
           case "stepUp":
-            line.Price = line.Price + line.PriceStep;
+            line.Price = Number(line.Price) + Number(line.PriceStep);
             break;
           case "priceChanged":
-           if(action.payload.val.value){
-            line.Price = action.payload.val.value;
-           }
+            if (action.payload.val.value) {
+              line.Price = Number(action.payload.val.value);
+            }
             break;
         }
         line.TotalPrice = CalculateLineTotal(state.tenderdata, line);
@@ -70,6 +73,9 @@ export const tenderSlice = createSlice({
         state.loading = false;
         state.tenderdata = SetTenderData(state, action.payload);
       })
+      .addCase(fetchLpauAsync.fulfilled, (state, action) => {
+        state.lpaudata = SetLpauDtoData(state, action.payload);
+      })
       .addCase(fetchTenderAsync.rejected, (state, { payload }) => {
         state.loading = false;
         //state.byId[userId] = null; // <-- I need the userId from createAsyncThunk here.
@@ -78,13 +84,23 @@ export const tenderSlice = createSlice({
 });
 
 export const fetchTenderAsync = createAsyncThunk('tenderdata/get', async (thunkAPI) => {
-  try {
-    const response = await axios.get(`${API_URL_Tender}`);
-    return response.data;
-  } catch (err) {
-    return err;
+    try {
+      const response = await axios.get(`${API_URL_Tender}`);
+      return response.data;
+    } catch (err) {
+      return err;
+    }
   }
-}
+);
+
+export const fetchLpauAsync = createAsyncThunk('tenderdata/post', async (thunkAPI) => {
+    try {
+      const response = await axios.get(`${API_URL_Lpau}`);
+      return response.data;
+    } catch (err) {
+      return err;
+    }
+  }
 );
 
 const SetTenderData = (state: CounterState, tender: TenderDto) => {
@@ -99,8 +115,15 @@ const SetTenderData = (state: CounterState, tender: TenderDto) => {
   state.totalSummery = CalculateTenderTotal(tender);
   return tender;
 }
-const CalculateLineTotal = (tender : TenderDto, tenderLine: TenderLineDto) => {
-  return tender.IsPercentageCalculation ? 
+
+const SetLpauDtoData = (state: CounterState, lpau: LpauDto) => {
+
+  return lpau;
+}
+
+
+const CalculateLineTotal = (tender: TenderDto, tenderLine: TenderLineDto) => {
+  return tender.IsPercentageCalculation ?
     tenderLine.Price * tenderLine.RequiredAmount / 100 :
     tenderLine.Price * tenderLine.RequiredAmount;
 }
@@ -117,4 +140,5 @@ export const {
 
 export const selectTender = (state: { tenderdata: { tenderdata: any; }; }) => state.tenderdata.tenderdata;
 export const selectTotalSummery = (state: RootState) => state.tenderdata.totalSummery;
+export const selectLpau = (state: RootState) => state.tenderdata.lpaudata;
 export default tenderSlice.reducer;

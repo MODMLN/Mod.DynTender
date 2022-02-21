@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import TenderItem from './TenderItem';
-import { selectTender, fetchTenderAsync, selectTotalSummery } from "./TenderSlice";
+import { selectTender, fetchTenderAsync, selectTotalSummery ,selectLpau,fetchLpauAsync} from "./TenderSlice";
 
 import TenderLine from './TenderLine';
 import TenderLineDto from './Dtos/TenderLineDto';
@@ -20,7 +20,7 @@ export default function Tender() {
   //const params = useParams() as any;
   const tenderDto = useSelector(selectTender);
   const TotalSummery = useSelector(selectTotalSummery);
-
+  const LpauDto = useSelector(selectLpau);
 
   const dispatch = useDispatch();
   const [open, setOpen] = React.useState(false);
@@ -30,16 +30,16 @@ export default function Tender() {
   useEffect(() => {
     setOpen(true);
     dispatch(fetchTenderAsync());
-
+    dispatch(fetchLpauAsync());
     const interval = setInterval(() => {
-      // dispatch(setTotalSummery(11));
+      //dispatch(fetchLpauAsync());
     }, 10000);
     return () => clearInterval(interval);
 
   }, [dispatch]);
 
   let Statuses = switchStatus(tenderDto.Statuses);
-
+console.log(LpauDto)
   return (
 
     <Box className={Styles.BoxContainer}>
