@@ -99,7 +99,7 @@ export default function TenderLine({ item,AmountSign }: IProps): JSX.Element {
                                         <Box>
                                             <CurrencyFormat className={Styles.fildSum}   onValueChange={(values,sourceInfo) =>  {
                                               
-                                              console.log(sourceInfo.event?.type);
+                                              
                                                 dispatch(linePriceChanged({TenderLineId: item.TenderLineId, val:values,  actionType:"priceChanged" }))}} 
                                                 displayType={"input"} decimalScale={2} value={item.Price} id="tenderSum" name={'tenderSum'}  ></CurrencyFormat>
                                         </Box>
@@ -112,15 +112,7 @@ export default function TenderLine({ item,AmountSign }: IProps): JSX.Element {
 
 
                                         <FormControl fullWidth className={Styles.stepNumber} variant="standard">
-                                            <Input
-                                                disableUnderline={true}
-                                                disabled
-                                                className={Styles.stepNumber}
-                                                id="TotalPriceForDisplay"
-                                                value={item.TotalPriceForDisplay}
-                                                onChange={handleTotalPriceForDisplayChange}
-                                                startAdornment={<InputAdornment position="start">{item.CurrencyId}</InputAdornment>}
-                                            />
+                                        <CurrencyFormat disabled className={Styles.stepNumber}  displayType={"input"} decimalScale={2} value={item.TotalPriceForDisplay} id="TotalPriceForDisplay" name={'TotalPriceForDisplay'}  ></CurrencyFormat>
                                         </FormControl>
                                     </Box>
                                 </Box>

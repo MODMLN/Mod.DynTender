@@ -46,9 +46,9 @@ export const tenderSlice = createSlice({
             line.Price = line.Price + line.PriceStep;
             break;
           case "priceChanged":
-            console.log(action.payload);
-           // line.Price = parseInt(action.payload.val.value) + line.PriceStep;
-           // line.Price = 1200;//action.payload.price as number;
+           if(action.payload.val.value){
+            line.Price = action.payload.val.value;
+           }
             break;
         }
         line.TotalPrice = CalculateLineTotal(state.tenderdata, line);
