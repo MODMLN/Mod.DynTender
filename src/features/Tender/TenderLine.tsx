@@ -9,13 +9,12 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import IconButton from '@mui/material/IconButton';
-import TextField from '@mui/material/TextField';
 import TenderLineDto from './Dtos/TenderLineDto';
 import CurrencyFormat from 'react-number-format';
 import FormControl from '@mui/material/FormControl';
 import Input from '@mui/material/Input';
-import { setTotalSummery ,linePriceChanged} from "./TenderSlice";
-import { RootState } from "../../app/store";
+import {linePriceChanged} from "./TenderSlice";
+//;import { RootState } from "../../app/store";
 
 import { useAppSelector, useAppDispatch } from '../../app/hooks'
 import { useDispatch } from "react-redux";
@@ -34,12 +33,14 @@ export default function TenderLine({ item,AmountSign }: IProps): JSX.Element {
 
     const handleTotalPriceForDisplayChange = () => {
 
-       // console.log('sdfsdfsdf')
     }
+  
 
     const toggleAcordion = () => {
         setExpand((expand) => !expand);
     };
+
+    
 
     return (
         <Box key={item.Index} className={Styles.TenderLine}>
@@ -96,7 +97,11 @@ export default function TenderLine({ item,AmountSign }: IProps): JSX.Element {
                                     <Box className={Styles.stepField}>
                                         <Box><IconButton sx={{ color: "#00798C" }} onClick={() => dispatch(linePriceChanged({TenderLineId: item.TenderLineId, actionType:"stepUp"}))}><AddCircleIcon /></IconButton></Box>
                                         <Box>
-                                            <CurrencyFormat className={Styles.fildSum}   onValueChange={(values,sourceInfo) =>  {dispatch(linePriceChanged({TenderLineId: item.TenderLineId, val:values,  actionType:"priceChanged" }))}} displayType={"input"} decimalScale={2} value={item.Price} id="tenderSum" name={'tenderSum'}  ></CurrencyFormat>
+                                            <CurrencyFormat className={Styles.fildSum}   onValueChange={(values,sourceInfo) =>  {
+                                              
+                                              console.log(sourceInfo.event?.type);
+                                                dispatch(linePriceChanged({TenderLineId: item.TenderLineId, val:values,  actionType:"priceChanged" }))}} 
+                                                displayType={"input"} decimalScale={2} value={item.Price} id="tenderSum" name={'tenderSum'}  ></CurrencyFormat>
                                         </Box>
                                         <Box><IconButton sx={{ color: "#00798C" }} onClick={() => dispatch(linePriceChanged({TenderLineId: item.TenderLineId, actionType:"stepDown"}))}><RemoveCircleIcon /></IconButton></Box>
                                     </Box>
