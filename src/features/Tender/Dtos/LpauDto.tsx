@@ -1,4 +1,9 @@
 
+interface ApprovalMessages
+{
+    Id: number, 
+    Text: string,
+}
 
 export type Ranks= ("Going"|"Ended"|"Frozen")
 export type Status= ("Going"|"Ended"|"Paused"|"NotYetStarted"|"Decoded")
@@ -30,5 +35,5 @@ export default class LpauDto {
     public TotalLocationBenefitPerUnit?: number;
     public TotalMadeInIsraelPerUnit?: number;
     public ServerTime?: string;
-    public NeedApprovalMessages?:string[] | undefined;
+    public NeedApprovalMessages?:ApprovalMessages[];
 }

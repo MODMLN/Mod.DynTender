@@ -9,6 +9,7 @@ import { Box } from "@mui/material";
 //import { useParams } from "react-router-dom";
 import Styles from './Tender.module.scss';
 import Dialog from './dialog';
+import NeedApprovalMessages from './NeedApprovalMessages';
 import Button from '@mui/material/Button';
 import switchStatus from './Commons/switchStatus';
 import { useTranslation } from "react-multi-lang";
@@ -39,7 +40,7 @@ export default function Tender() {
   }, [dispatch]);
 
   let Statuses = switchStatus(tenderDto.Statuses);
-console.log(LpauDto)
+
   return (
 
     <Box className={Styles.BoxContainer}>
@@ -49,8 +50,13 @@ console.log(LpauDto)
           {(tenderDto != null && tenderDto.Messages != null && tenderDto.Messages.length > 0) &&
             <Dialog key="2" flag={open} Messages={tenderDto.Messages} ></Dialog>
           }
+          {(LpauDto != null && LpauDto.NeedApprovalMessages != null && LpauDto.NeedApprovalMessages.length > 0) &&
+            <NeedApprovalMessages key="3" flag={open} Messages={LpauDto.NeedApprovalMessages}  ></NeedApprovalMessages>
+          }
+
+
           {(tenderDto != null) &&
-            <TenderItem key="3" item={tenderDto} index={0} redirectOnClick={false} />
+            <TenderItem key="4" item={tenderDto} index={0} redirectOnClick={false} />
           }
         </Box>
 

@@ -13,9 +13,14 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import ImageIcon from '@mui/icons-material/Image';
 
+interface ApprovalMessages{
+    Id: number, 
+    Text: string,
+}
+
 interface IProps {
     flag: boolean,
-    Messages:string[]
+    Messages:ApprovalMessages[]
 }
 
 export default function NeedApprovalMessages({ flag,Messages }: IProps) {
@@ -28,7 +33,7 @@ export default function NeedApprovalMessages({ flag,Messages }: IProps) {
     const handleClose = () => {
         setOpen(false);
     };
-
+console.log(Messages)
 
     return (
         <Box>
@@ -36,11 +41,11 @@ export default function NeedApprovalMessages({ flag,Messages }: IProps) {
                 sx={{ 'direction': 'rtl' }}
                 open={open}
                 onClose={handleClose}
-                aria-labelledby="הודעות למכרז זה"
-                aria-describedby="הודעות למכרז זה"
+                aria-labelledby="הודעות שצריכות אישור מיידי"
+                aria-describedby="הודעות שצריכות אישור מיידי"
             >
                 <DialogTitle id="alert-dialog-title">
-                    הודעות למכרז זה
+                הודעות שצריכות אישור מיידי
                 </DialogTitle>
                 <DialogContent>
                     <DialogContentText id="alert-dialog-description" component={'span'} >
@@ -53,7 +58,7 @@ export default function NeedApprovalMessages({ flag,Messages }: IProps) {
                                     <ImageIcon />
                                 </Avatar>
                                 </ListItemAvatar>
-                                <ListItemText primary={item} sx={{'text-align':'right',color:'#4D4E55',fontWeight: '600'}} />
+                                <ListItemText primary={item.Text} sx={{'text-align':'right',color:'#4D4E55',fontWeight: '600'}} />
                             </ListItem>
                             ))}
                             </List>
@@ -61,7 +66,7 @@ export default function NeedApprovalMessages({ flag,Messages }: IProps) {
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleClose}>סגור</Button>
+                    <Button onClick={handleClose}>אישור</Button>
                 </DialogActions>
             </Dialog>
         </Box>
