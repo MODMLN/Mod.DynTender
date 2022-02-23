@@ -10,7 +10,6 @@ export type Status= ("Going"|"Ended"|"Paused"|"NotYetStarted"|"Decoded")
 
 
 export default class LpauDto {
- 
     public UserIsDisabled?: boolean;
     public UserNominalToLead?: boolean;
     public UserTotalToLead?: number;

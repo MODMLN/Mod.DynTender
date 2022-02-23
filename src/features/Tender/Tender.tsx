@@ -33,7 +33,7 @@ export default function Tender() {
     dispatch(fetchTenderAsync());
     dispatch(fetchLpauAsync());
     const interval = setInterval(() => {
-      //dispatch(fetchLpauAsync());
+      dispatch(fetchLpauAsync());
     }, 10000);
     return () => clearInterval(interval);
 
@@ -50,6 +50,7 @@ export default function Tender() {
           {(tenderDto != null && tenderDto.Messages != null && tenderDto.Messages.length > 0) &&
             <Dialog key="2" flag={open} Messages={tenderDto.Messages} ></Dialog>
           }
+          
           {(LpauDto != null && LpauDto.NeedApprovalMessages != null && LpauDto.NeedApprovalMessages.length > 0) &&
             <NeedApprovalMessages key="3" flag={open} Messages={LpauDto.NeedApprovalMessages}  ></NeedApprovalMessages>
           }

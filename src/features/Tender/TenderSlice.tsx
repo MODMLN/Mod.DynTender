@@ -122,6 +122,8 @@ const SetLpauDtoData = (state: CounterState, lpau: LpauDto) => {
 }
 
 
+
+
 const CalculateLineTotal = (tender: TenderDto, tenderLine: TenderLineDto) => {
   return tender.IsPercentageCalculation ?
     tenderLine.Price * tenderLine.RequiredAmount / 100 :
