@@ -21,7 +21,7 @@ export default class LpauDto {
     public LeadingPropositions?: number;
     public Total?: number;
     public DisplayRank?: boolean;
-    public Time?: number;
+    public Time?: string;
     public EndTime?: string;
     public ManualProposition?: boolean;
     public IsWinning?: boolean;

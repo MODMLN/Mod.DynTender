@@ -6,6 +6,7 @@ import Styles from './Tenders.module.scss'
 import Moment from 'react-moment';
 import {  useNavigate } from "react-router-dom";
 import CurrencyFormat from 'react-number-format';
+import date from 'date-and-time';
 
 interface IProps {
     item: TendersDto, index: number, redirectOnClick: boolean
@@ -13,6 +14,7 @@ interface IProps {
 
 export default function TenderListsItem({ item, index, redirectOnClick = true }: IProps) {
     let navigate = useNavigate();
+    let time = item.Time?date.format(new Date(item.Time), 'HH:mm:ss'):null;
    
     return (
         <div onClick={
@@ -27,7 +29,7 @@ export default function TenderListsItem({ item, index, redirectOnClick = true }:
                     switch (item.Statuses) {
                         case 'Going':
                             return (
-                                <><Box className={Styles.BoxHead + ` Active`}><Box><Button variant="contained">00:14:32</Button></Box><Box><Button variant="contained">פעיל</Button></Box><Box>מס׳: {item.TenderNumber}</Box><Box className={Styles.headText}>{item.Name}</Box></Box></>
+                                <><Box className={Styles.BoxHead + ` Active`}><Box><Button variant="contained">{time}</Button></Box><Box><Button variant="contained">פעיל</Button></Box><Box>מס׳: {item.TenderNumber}</Box><Box className={Styles.headText}>{item.Name}</Box></Box></>
                             )
                         case 'NotYetStarted':
                             return (

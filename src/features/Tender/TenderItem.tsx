@@ -2,6 +2,7 @@ import React from "react";
 import TenderDto from './Dtos/TenderDto';
 import LpauDto from './Dtos/LpauDto';
 import Box from '@mui/material/Box';
+import date from 'date-and-time';
 import Button from '@mui/material/Button';
 import Styles from './Tender.module.scss'
 import Moment from 'react-moment';
@@ -10,13 +11,14 @@ import CurrencyFormat from 'react-number-format';
 import { useTranslation } from "react-multi-lang";
 
 interface IProps {
-    item: TenderDto, index: number, redirectOnClick: boolean,leadItem:LpauDto,
+    item: TenderDto, index: number, redirectOnClick: boolean, leadItem: LpauDto,
 }
 
-export default function TenderItem({ item, index, redirectOnClick = true ,leadItem}: IProps) {
+export default function TenderItem({ item, index, redirectOnClick = true, leadItem }: IProps) {
 
     let navigate = useNavigate();
     const Translation = useTranslation();
+    let time = leadItem.Time?date.format(new Date(leadItem.Time), 'HH:mm:ss'):null;
     return (
         <div onClick={
             (e) => {
@@ -30,7 +32,8 @@ export default function TenderItem({ item, index, redirectOnClick = true ,leadIt
                     switch (item.Statuses) {
                         case 'Going':
                             return (
-                                <><Box className={Styles.BoxHead + ` Active`}><Box><Button variant="contained">00:14:32</Button>  <Button variant="contained">{Translation('Tender.ACTIVE')}</Button></Box><Box style={{ width:"10%"}}>מס׳: {item.TenderNumber}</Box><Box className={Styles.headText}>{item.Name}</Box></Box></>
+                                <><Box className={Styles.BoxHead + ` Active`}><Box>
+                                    <Button variant="contained">{time}</Button>&nbsp;&nbsp;<Button variant="contained">{Translation('Tender.ACTIVE')}</Button></Box><Box style={{ width: "14%" }}>מס׳: {item.TenderNumber}</Box><Box className={Styles.headText}>{item.Name}</Box></Box></>
                             )
                         case 'NotYetStarted':
                             return (

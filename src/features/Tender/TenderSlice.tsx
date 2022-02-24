@@ -103,6 +103,17 @@ export const fetchLpauAsync = createAsyncThunk('tenderdata/post', async (thunkAP
   }
 );
 
+
+export const fetchApproveMessagesAsync = createAsyncThunk('tenderdata/ApproveMessages', async (req:LpauDto,thunkAPI) => {
+  try {
+    const response = await axios.post(`${API_URL_Lpau}`,req);
+    return response.data;
+  } catch (err) {
+    return err;
+  }
+}
+);
+
 const SetTenderData = (state: CounterState, tender: TenderDto) => {
   tender.itemsNumber = tender.Lines != null ? tender.Lines.length : 0;
   // eslint-disable-next-line @typescript-eslint/no-unused-expressions
@@ -117,12 +128,8 @@ const SetTenderData = (state: CounterState, tender: TenderDto) => {
 }
 
 const SetLpauDtoData = (state: CounterState, lpau: LpauDto) => {
-
   return lpau;
 }
-
-
-
 
 const CalculateLineTotal = (tender: TenderDto, tenderLine: TenderLineDto) => {
   return tender.IsPercentageCalculation ?
