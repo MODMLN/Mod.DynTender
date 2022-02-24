@@ -34,7 +34,7 @@ export default function NeedApprovalMessages({ flag,Messages }: IProps) {
         
         setOpen(false);
     };
-console.log(Messages)
+
 
     return (
         <Box>

@@ -57,7 +57,7 @@ export default function Tender() {
 
 
           {(tenderDto != null) &&
-            <TenderItem key="4" item={tenderDto} index={0} redirectOnClick={false} />
+            <TenderItem key="4" item={tenderDto} index={0} redirectOnClick={false} leadItem={LpauDto} />
           }
         </Box>
 
