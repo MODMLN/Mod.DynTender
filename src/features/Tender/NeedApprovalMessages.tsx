@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
@@ -12,6 +13,7 @@ import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import ImageIcon from '@mui/icons-material/Image';
+import {fetchApproveMessagesAsync} from "./TenderSlice";
 
 interface ApprovalMessages{
     Id: number, 
@@ -25,14 +27,16 @@ interface IProps {
 
 export default function NeedApprovalMessages({ flag,Messages }: IProps) {
     const [open, setOpen] = React.useState(true);
+    const dispatch = useDispatch();
     useEffect(() => {
             if(flag){
                 setOpen(true);
             }
     }, [flag]);
+
     const handleClose = () => {
-        
         setOpen(false);
+        dispatch(fetchApproveMessagesAsync([]));
     };
 
 
@@ -73,3 +77,5 @@ export default function NeedApprovalMessages({ flag,Messages }: IProps) {
         </Box>
     )
 }
+
+

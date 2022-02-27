@@ -76,6 +76,9 @@ export const tenderSlice = createSlice({
       .addCase(fetchLpauAsync.fulfilled, (state, action) => {
         state.lpaudata = SetLpauDtoData(state, action.payload);
       })
+      .addCase(fetchApproveMessagesAsync.fulfilled, (state, action) => {
+        
+      })
       .addCase(fetchTenderAsync.rejected, (state, { payload }) => {
         state.loading = false;
         //state.byId[userId] = null; // <-- I need the userId from createAsyncThunk here.
@@ -104,9 +107,9 @@ export const fetchLpauAsync = createAsyncThunk('tenderdata/post', async (thunkAP
 );
 
 
-export const fetchApproveMessagesAsync = createAsyncThunk('tenderdata/ApproveMessages', async (req:LpauDto,thunkAPI) => {
+export const fetchApproveMessagesAsync = createAsyncThunk('tenderdata/ApproveMessages', async (req:string[],thunkAPI) => {
   try {
-    const response = await axios.post(`${API_URL_Lpau}`,req);
+    const response = await axios.get(`${API_URL_Lpau}`);
     return response.data;
   } catch (err) {
     return err;
