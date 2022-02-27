@@ -11,7 +11,10 @@ import CurrencyFormat from 'react-number-format';
 import { useTranslation } from "react-multi-lang";
 
 interface IProps {
-    item: TenderDto, index: number, redirectOnClick: boolean, leadItem: LpauDto,
+    item: TenderDto, 
+    index: number, 
+    redirectOnClick: boolean, 
+    leadItem: LpauDto,
 }
 
 export default function TenderItem({ item, index, redirectOnClick = true, leadItem }: IProps) {
@@ -19,6 +22,7 @@ export default function TenderItem({ item, index, redirectOnClick = true, leadIt
     let navigate = useNavigate();
     const Translation = useTranslation();
     let time = leadItem.Time?date.format(new Date(leadItem.Time), 'HH:mm:ss'):null;
+    let status = leadItem.StatusId?leadItem.StatusId:item.Statuses;
     return (
         <div onClick={
             (e) => {
@@ -29,7 +33,7 @@ export default function TenderItem({ item, index, redirectOnClick = true, leadIt
             <Box className={Styles.BoxMain} key={index} sx={{ p: 2, border: '1px solid grey' }}>
                 {(() => {
 
-                    switch (item.Statuses) {
+                    switch (status) {
                         case 'Going':
                             return (
                                 <><Box className={Styles.BoxHead + ` Active`}><Box>
@@ -37,9 +41,9 @@ export default function TenderItem({ item, index, redirectOnClick = true, leadIt
                             )
                         case 'NotYetStarted':
                             return (
-                                <><Box className={`${Styles.BoxHead} ${Styles.NotYetStarted}`}><Box></Box><Box><Button style={{
+                                <><Box className={`${Styles.BoxHead}`}><Box></Box><Box><Button style={{
                                     backgroundColor: "#FCC100", width: "116px", color: "#000000"
-                                }} variant="contained">טרם החל</Button></Box><Box>מס׳: {item.TenderNumber}</Box><Box className={Styles.headText}>{item.Name}</Box></Box></>
+                                }} variant="contained">{Translation('Tender.NOT_YET_STARTED')}</Button></Box><Box>מס׳: {item.TenderNumber}</Box><Box className={Styles.headText}>{item.Name}</Box></Box></>
                             )
                         case 'Ended':
                             return (
@@ -47,7 +51,7 @@ export default function TenderItem({ item, index, redirectOnClick = true, leadIt
                                     <Box></Box><Box><Button color="error" style={{
                                         backgroundColor: "#000000", width: "140px"
                                     }}
-                                        variant="contained">המכרז הסתיים</Button></Box><Box>מס׳: {item.TenderNumber}</Box><Box className={Styles.headText}>{item.Name}</Box></Box></>
+                                        variant="contained">{Translation('Tender.TENDER_ENDED')}</Button></Box><Box>מס׳: {item.TenderNumber}</Box><Box className={Styles.headText}>{item.Name}</Box></Box></>
                             )
                         case 'Paused':
                             return (
@@ -75,14 +79,11 @@ export default function TenderItem({ item, index, redirectOnClick = true, leadIt
                         </>
                     ) : (<><Box style={{ height: "auto", clear: "both" }}><span></span></Box></>)
                 }
-                <Box className={Styles.Proposal} >
+                <Box className={`${leadItem.IsWinning && Styles.green} ${!leadItem.IsWinning && Styles.red} ${Styles.Proposal}`} >
                     <Box className={Styles.leadPrice}>
-                        <Box >{leadItem.WinningInfo}</Box>
-                        <Box className={Styles.bold}><CurrencyFormat decimalScale={2} value={item.TotalToLead} displayType={'text'} thousandSeparator={true} prefix={item.CurrencyId}></CurrencyFormat></Box>
+                        <Box>{leadItem.WinningInfo}</Box>
+                        <Box className={Styles.bold}><CurrencyFormat decimalScale={2} value={leadItem.UserLastPropositionTotal} displayType={'text'} thousandSeparator={true} prefix={item.CurrencyId}></CurrencyFormat></Box>
                     </Box>
-                    <Box className={Styles.greenProposal}>
-                        <Box >הצעתך מובילה</Box>
-                        <Box className={Styles.bold}><CurrencyFormat decimalScale={2} value={item.TotalToLead} displayType={'text'} thousandSeparator={true} prefix={item.CurrencyId}></CurrencyFormat></Box></Box>
                 </Box>
             </Box>
         </div>

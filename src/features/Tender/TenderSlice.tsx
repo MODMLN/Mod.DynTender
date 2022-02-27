@@ -4,13 +4,14 @@ import { RootState } from "../../app/store";
 import TenderDto from './Dtos/TenderDto';
 import TenderLineDto from './Dtos/TenderLineDto';
 import LpauDto from './Dtos/LpauDto';
-
+import usersDto from './../../Global/UsersDto';
 const API_URL_Tender = "/Tender.json";
 const API_URL_Lpau = "/LeadingPropositionAndUser.json";
 
 export interface CounterState {
   loading: Boolean
   error: Boolean
+ // globaldata:
   tenderdata: TenderDto
   lpaudata:LpauDto
   totalSummery: number | undefined
@@ -108,13 +109,14 @@ export const fetchLpauAsync = createAsyncThunk('tenderdata/post', async (thunkAP
 
 
 export const fetchApproveMessagesAsync = createAsyncThunk('tenderdata/ApproveMessages', async (req:string[],thunkAPI) => {
-  try {
-    const response = await axios.get(`${API_URL_Lpau}`);
-    return response.data;
-  } catch (err) {
-    return err;
+    try {
+      
+      const response = await axios.get(`${API_URL_Lpau}`);
+      return response.data;
+    } catch (err) {
+      return err;
+    }
   }
-}
 );
 
 const SetTenderData = (state: CounterState, tender: TenderDto) => {
@@ -131,6 +133,7 @@ const SetTenderData = (state: CounterState, tender: TenderDto) => {
 }
 
 const SetLpauDtoData = (state: CounterState, lpau: LpauDto) => {
+  
   return lpau;
 }
 
