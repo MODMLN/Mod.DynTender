@@ -1,7 +1,7 @@
 @font-face {
     font-family: 'OpenSans';
     src: url('/src/Fonts/OpenSansHebrew-Regular.ttf');
-  }
+}
 
 .Header {
 
@@ -32,13 +32,49 @@
 
         color: #FFFFFF;
 
-        .flex{ 
+        .flex {
             display: inline-flex;
-            gap:10px;
+            gap: 10px;
             text-align: center;
-            justify-items: center;}
+            justify-items: center;
+        }
+
         .line {
             border: 1px solid #FFFFFF;
+        }
+
+        .systemWatch {
+            margin-top: 3%;
+            justify-items: center;
+            align-items: center;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+
+            .title {
+                font-family: 'OpenSans', sans-serif;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 1.3em;
+                line-height: 16px;
+                /* identical to box height, or 89% */
+
+
+                letter-spacing: -0.2625px;
+
+                color: #FFFFFF;
+            }
+
+            .clock {
+                margin-top: 10px;
+                font-family: 'OpenSans', sans-serif;
+                font-style: normal;
+                font-weight: bold;
+                font-size: 2em;
+                line-height: 16px;
+                letter-spacing: -0.4125px;
+                color: #FFFFFF;
+            }
         }
     }
 }

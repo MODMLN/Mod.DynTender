@@ -4,6 +4,8 @@
     "TENDER_ENDED":"המכרז הסתיים",
     "NOT_YET_STARTED":"טרם החל",
     "ITEMS_IN_TENDER":"פריטים במכרז",
-    "ACTIVE":"פעיל"
+    "ACTIVE":"פעיל",
+    "SYSTEM_CLOCK":"שעון מערכת",
+    "MENU":"תפריט"
   }
 }

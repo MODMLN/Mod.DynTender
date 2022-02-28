@@ -1,7 +1,12 @@
+@font-face {
+  font-family: 'OpenSans';
+  src: url('/src/Fonts/OpenSansHebrew-Regular.ttf');
+}
+
 body {
   overflow-x: hidden;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: -apple-system, BlinkMacSystemFont, 'OpenSans', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -9,7 +14,7 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: 'OpenSans', sans-serif,
     monospace;
 }
 
@@ -82,12 +87,25 @@ Note: Beware of modifying this element as it can break the animations - you shou
 .bm-item-list {
   color: #b8b7ad;
   padding: 0.8em;
+  margin-left: auto;
+  margin-right: auto;text-align: center;
 }
 
 /* Individual item */
-.bm-item {
-  display: inline-flex !important;
-  gap: 15px;
+.bm-item { margin-left: auto;
+  margin-right: auto; text-align: center;}
+
+.UserFullName {
+ clear: both;
+  font-family: 'OpenSans' Hebrew;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 16px;
+  align-items: center;
+  text-align: center;
+margin: 10px;
+  color: #0C3058;
 }
 
 /* Styling of overlay */
@@ -95,4 +113,9 @@ Note: Beware of modifying this element as it can break the animations - you shou
 
   background: rgba(0, 0, 0, 0.3);
   width: 100% !important;
+}
+
+.logoffBtn{
+
+  margin-top: 80%!important;
 }
