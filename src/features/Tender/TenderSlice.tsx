@@ -59,7 +59,8 @@ export const tenderSlice = createSlice({
         line.TotalPriceForDisplay = line.TotalPrice;
 
       }
-      state.totalSummery = CalculateTenderTotal(state.tenderdata)
+      state.totalSummery = CalculateTenderTotal(state.tenderdata);
+  
     },
     setTotalSummery: (state, action: PayloadAction<number>) => {
       if (state.totalSummery)

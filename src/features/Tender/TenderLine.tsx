@@ -12,23 +12,27 @@ import IconButton from '@mui/material/IconButton';
 import TenderLineDto from './Dtos/TenderLineDto';
 import CurrencyFormat from 'react-number-format';
 import FormControl from '@mui/material/FormControl';
-import Input from '@mui/material/Input';
 import {linePriceChanged} from "./TenderSlice";
-//;import { RootState } from "../../app/store";
-
-import { useAppSelector, useAppDispatch } from '../../app/hooks'
 import { useDispatch } from "react-redux";
-
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
 
 interface IProps {
     item: TenderLineDto,
     AmountSign:string
 }
 
+interface IMessege {
+    isOpen: boolean,
+    messege: string ,
+
+}
+
 export default function TenderLine({ item,AmountSign }: IProps): JSX.Element {
     //const TotalSummery = useAppSelector((state: RootState) => state.tenderdata.totalSummery);
     const dispatch = useDispatch();
     const [expand, setExpand] = React.useState(false);
+    const [snackbar, setSnackbar] = React.useState<IMessege>({isOpen:false,messege:''});
     const fieldVal = useRef(null);
 
     const handleTotalPriceForDisplayChange = () => {
@@ -44,6 +48,7 @@ export default function TenderLine({ item,AmountSign }: IProps): JSX.Element {
 
     return (
         <Box key={item.Index} className={Styles.TenderLine}>
+
             <Accordion sx={{ 'box-shadow': 'none' }}>
                 <AccordionSummary
                     onClick={() => toggleAcordion()}
@@ -98,7 +103,9 @@ export default function TenderLine({ item,AmountSign }: IProps): JSX.Element {
                                         <Box><IconButton sx={{ color: "#00798C" }} onClick={() => dispatch(linePriceChanged({TenderLineId: item.TenderLineId, actionType:"stepUp"}))}><AddCircleIcon /></IconButton></Box>
                                         <Box>
                                             <CurrencyFormat className={Styles.fildSum}   onValueChange={(values,sourceInfo) =>  {
-                                              
+                                              if(true){
+                                                setSnackbar({isOpen:true,messege:"המחיר שהוקלד אינו גדול מ MaxPrice"})
+                                              }
                                               
                                                 dispatch(linePriceChanged({TenderLineId: item.TenderLineId, val:values,  actionType:"priceChanged" }))}} 
                                                 displayType={"input"} decimalScale={2} value={item.Price} id="tenderSum" name={'tenderSum'}  ></CurrencyFormat>
@@ -118,6 +125,11 @@ export default function TenderLine({ item,AmountSign }: IProps): JSX.Element {
                                 </Box>
                             </Box>
                         </form>
+                        <Snackbar   sx={{ height: "100%" }} anchorOrigin={{vertical: 'top', horizontal:'center' }} open={snackbar.isOpen} autoHideDuration={6000}  onClose={(x)=> setSnackbar({isOpen:false,messege:""})}>
+                                <MuiAlert  severity="warning" sx={{direction:"rtl",width: '100%'}} >
+                                        {snackbar.messege}
+                                </MuiAlert>
+                            </Snackbar>
                     </Typography>
                 </AccordionDetails>
             </Accordion>
