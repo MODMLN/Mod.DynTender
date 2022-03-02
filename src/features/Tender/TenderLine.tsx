@@ -105,7 +105,7 @@ export default function TenderLine({ item,AmountSign }: IProps): JSX.Element {
                                             console.log(valCahnge)
                                             dispatch(linePriceChanged({TenderLineId: item.TenderLineId, actionType:"stepUp"}))
                                         }}><AddCircleIcon /></IconButton></Box>
-                                        <Box>
+                                        <Box> 
                                             <CurrencyFormat className={Styles.fildSum}   onValueChange={(values,sourceInfo) =>  {
                                                setValCahnge(parseFloat(values.value));
                                               if(item.MinPrice<=parseFloat(values.value) && parseFloat(values.value)>=item.MaxPrice){
