@@ -1,16 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-
-
-
 import TenderLists from "./TenderLists";
+
 const TendersContainer = styled.div``;
 const TenderHeading = styled.h4``;
 
-
-
-const Tenders = () => {
-
+export default function Tenders  ()  {
   return (
     <div>
       <TendersContainer>
@@ -20,5 +15,3 @@ const Tenders = () => {
     </div>
   );
 };
-
-export default Tenders;

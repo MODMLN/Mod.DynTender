@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { Box, InputAdornment } from "@mui/material";
+import { Box } from "@mui/material";
 import Styles from './Tender.module.scss';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
@@ -32,6 +32,7 @@ export default function TenderLine({ item,AmountSign }: IProps): JSX.Element {
     //const TotalSummery = useAppSelector((state: RootState) => state.tenderdata.totalSummery);
     const dispatch = useDispatch();
     const [expand, setExpand] = React.useState(false);
+    const [valCahnge, setValCahnge] = React.useState(item.Price);
     const [snackbar, setSnackbar] = React.useState<IMessege>({isOpen:false,messege:''});
     const fieldVal = useRef(null);
 
@@ -100,14 +101,20 @@ export default function TenderLine({ item,AmountSign }: IProps): JSX.Element {
                                 <Box className={Styles.unitPrice}>
                                     <Box className={Styles.stepTitle} aria-label="מחיר ליחידה">מחיר ליחידה {item.CurrencyId}</Box>
                                     <Box className={Styles.stepField}>
-                                        <Box><IconButton sx={{ color: "#00798C" }} onClick={() => dispatch(linePriceChanged({TenderLineId: item.TenderLineId, actionType:"stepUp"}))}><AddCircleIcon /></IconButton></Box>
+                                        <Box><IconButton sx={{ color: "#00798C" }} onClick={() => {
+                                            console.log(valCahnge)
+                                            dispatch(linePriceChanged({TenderLineId: item.TenderLineId, actionType:"stepUp"}))
+                                        }}><AddCircleIcon /></IconButton></Box>
                                         <Box>
                                             <CurrencyFormat className={Styles.fildSum}   onValueChange={(values,sourceInfo) =>  {
-                                              if(true){
-                                                setSnackbar({isOpen:true,messege:"המחיר שהוקלד אינו גדול מ MaxPrice"})
+                                               setValCahnge(parseFloat(values.value));
+                                              if(item.MinPrice<=parseFloat(values.value) && parseFloat(values.value)>=item.MaxPrice){
+                                                setSnackbar({isOpen:true,messege:"המחיר שהוקלד אינו עומד בטווח שנקבע"});
                                               }
-                                              
-                                                dispatch(linePriceChanged({TenderLineId: item.TenderLineId, val:values,  actionType:"priceChanged" }))}} 
+                                              else{
+                                                dispatch(linePriceChanged({TenderLineId: item.TenderLineId, val:values,  actionType:"priceChanged" })) ;
+                                              }
+                                            }} 
                                                 displayType={"input"} decimalScale={2} value={item.Price} id="tenderSum" name={'tenderSum'}  ></CurrencyFormat>
                                         </Box>
                                         <Box><IconButton sx={{ color: "#00798C" }} onClick={() => dispatch(linePriceChanged({TenderLineId: item.TenderLineId, actionType:"stepDown"}))}><RemoveCircleIcon /></IconButton></Box>

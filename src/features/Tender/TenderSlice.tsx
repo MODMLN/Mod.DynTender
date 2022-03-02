@@ -4,7 +4,6 @@ import { RootState } from "../../app/store";
 import TenderDto from './Dtos/TenderDto';
 import TenderLineDto from './Dtos/TenderLineDto';
 import LpauDto from './Dtos/LpauDto';
-import usersDto from './../../Global/UsersDto';
 const API_URL_Tender = "/Tender.json";
 const API_URL_Lpau = "/LeadingPropositionAndUser.json";
 
