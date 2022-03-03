@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import TenderItem from './TenderItem';
 import { selectTender, fetchTenderAsync, selectTotalSummery ,selectLpau,fetchLpauAsync} from "./TenderSlice";
 import TenderLine from './TenderLine';
-import TenderLineDto from './Dtos/TenderLineDto';
+import {TenderLineDto} from './Dtos/TenderLineDto';
 import { Box } from "@mui/material";
 //import { useParams } from "react-router-dom";
 import Styles from './Tender.module.scss';

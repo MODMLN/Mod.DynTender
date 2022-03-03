@@ -1,11 +1,11 @@
-import TenderLineDto from './TenderLineDto'
+import {TenderLineDto} from './TenderLineDto'
 
-export type Ranks= ("Going"|"Ended"|"Frozen")
-export type Status= ("Going"|"Ended"|"Paused"|"NotYetStarted"|"Decoded")
-export type Messages= string 
+export type Ranks= ("Going"|"Ended"|"Frozen");
+export type Status= ("Going"|"Ended"|"Paused"|"NotYetStarted"|"Decoded");
+export type Messages= string ;
 
 export default class TenderDto {
-    public Id!: number;
+    public Id!: number | undefined;
     public IsDisplayLeadingPropositions?: boolean;
     public IsMinPreferred?: boolean;
     public IsServiceTender?: boolean;

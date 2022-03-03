@@ -1,6 +1,11 @@
+export interface IMessege {
+    isOpen?:boolean ; //()=>boolean
+    messege?:string;
+}
 
-export default class TenderLineDto {
-   
+export declare type nullable<T> = (T | null | undefined);
+
+export class TenderLineDto { 
     public RequiredAmount!: number;// מספר יחידות
     public Price!: number;//מחיר ליחידה
     public InitialPrice!: number;
@@ -23,4 +28,7 @@ export default class TenderLineDto {
     public TotalForLocalWork!: number;
     public CurrencyId?:string; 
     public IsPercentageCalculation?: boolean;
+    public ErrorMsgIsOpen?: boolean ;
+    public ErrorMsgMessege?: string ;
+    public ErrorMsg!: IMessege;
 }

@@ -2,10 +2,12 @@ import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 import { RootState } from "../../app/store";
 import TenderDto from './Dtos/TenderDto';
-import TenderLineDto from './Dtos/TenderLineDto';
+import {TenderLineDto} from './Dtos/TenderLineDto';
 import LpauDto from './Dtos/LpauDto';
 const API_URL_Tender = "/Tender.json";
 const API_URL_Lpau = "/LeadingPropositionAndUser.json";
+
+
 
 export interface CounterState {
   loading: Boolean
@@ -14,6 +16,7 @@ export interface CounterState {
   tenderdata: TenderDto
   lpaudata:LpauDto
   totalSummery: number | undefined
+  
 }
 
 // initial state
@@ -54,6 +57,16 @@ export const tenderSlice = createSlice({
             }
             break;
         }
+
+        if(line.MinPrice < line.Price && line.Price > line.MaxPrice){
+            line.ErrorMsgIsOpen = true;
+            line.ErrorMsgMessege = 'המחיר שהוקלד אינו עומד בטווח שנקבע';
+            
+           // line.ErrorMsg.isOpen = line.ErrorMsg?line.ErrorMsg.isOpen:false;
+            //line.ErrorMsg.messege = line.ErrorMsg?line.ErrorMsg.messege:"";
+        }
+        
+
         line.TotalPrice = CalculateLineTotal(state.tenderdata, line);
         line.TotalPriceForDisplay = line.TotalPrice;
 
@@ -138,7 +151,8 @@ const SetLpauDtoData = (state: CounterState, lpau: LpauDto) => {
 }
 
 const CalculateLineTotal = (tender: TenderDto, tenderLine: TenderLineDto) => {
-  return tender.IsPercentageCalculation ?
+
+   return tender.IsPercentageCalculation ?
     tenderLine.Price * tenderLine.RequiredAmount / 100 :
     tenderLine.Price * tenderLine.RequiredAmount;
 }
