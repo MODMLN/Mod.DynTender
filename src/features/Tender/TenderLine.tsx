@@ -109,17 +109,15 @@ export default function TenderLine({ item,AmountSign }: IProps): JSX.Element {
                                                 if(val > item.MaxPrice){
                                                     setSnackbar({isOpen:true,messege:'המחיר גבוה מהמחיר המקסימלי'});
                                                 }
-                                                else{
                                                     dispatch(linePriceChanged({TenderLineId: item.TenderLineId, actionType:"stepUp"}))
-                                                }}}><AddCircleIcon /></IconButton></Box>
+                                                }}><AddCircleIcon /></IconButton></Box>
                                         <Box> 
                                             <CurrencyFormat className={Styles.fildSum}   onValueChange={(values,sourceInfo) =>  {
                                                 setValCahnge(values.value);
                                                 if((parseFloat(values.value) < item.MinPrice || parseFloat(values.value) > item.MaxPrice )|| parseFloat(values.value)<=0){
                                                     setSnackbar({isOpen:true,messege:'המחיר אינו עומד בטווח שנקבע'});
-                                                }else{
-                                                    dispatch(linePriceChanged({TenderLineId: item.TenderLineId, val:values,  actionType:"priceChanged" })) ;
                                                 } 
+                                                dispatch(linePriceChanged({TenderLineId: item.TenderLineId, val:values,  actionType:"priceChanged" })) ;
                                             }} 
                                                 displayType={"input"} decimalScale={2} value={item.Price} id="tenderSum" name={'tenderSum'}  ></CurrencyFormat>
                                         </Box>
@@ -128,9 +126,9 @@ export default function TenderLine({ item,AmountSign }: IProps): JSX.Element {
                                                     if(val < item.MinPrice || val<=0){
                                                         setSnackbar({isOpen:true,messege:'המחיר נמוך מהמחיר המינימלי'});
                                                     }
-                                                    else{
+                                                   
                                                         dispatch(linePriceChanged({TenderLineId: item.TenderLineId, actionType:"stepDown"}))}
-                                                    }}>
+                                                    }>
                                                 <RemoveCircleIcon /></IconButton></Box>
                                     </Box>
                                 </Box>
