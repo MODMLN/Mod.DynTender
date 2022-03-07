@@ -25,13 +25,12 @@ import userDto from './UsersDto';
     extraReducers: (builder) => {
         builder
           .addCase(fetchUserAsync.fulfilled, (state, action) => {
-            state.userdata = SetUserDtoData(state, action.payload);
+            state.userdata = GetUserDtoData(state, action.payload);
           })
       }
   })
 
-  const SetUserDtoData = (state: UserState, userData: UsersDto) => {
-  
+  const GetUserDtoData = (state: UserState, userData: UsersDto) => {
     return userData;
   }
 

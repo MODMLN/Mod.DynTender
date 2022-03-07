@@ -9,7 +9,7 @@ import { useTranslation } from "react-multi-lang";
 
 interface IProps {
     Item: UsersDto, 
-  }
+}
 
 export default function Header({Item}:IProps) {
     const Translation = useTranslation();

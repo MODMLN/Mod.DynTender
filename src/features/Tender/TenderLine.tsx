@@ -17,16 +17,10 @@ import { useDispatch } from "react-redux";
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 
-
-
-
-
-
 interface IProps {
     item: TenderLineDto,
     AmountSign:string
 }
-
 
 export default function TenderLine({ item,AmountSign }: IProps): JSX.Element {
 
@@ -47,7 +41,7 @@ export default function TenderLine({ item,AmountSign }: IProps): JSX.Element {
         setExpand((expand) => !expand);
     };
 
-    
+
 
     return (
         <Box key={item.Index} className={Styles.TenderLine}>
@@ -112,9 +106,9 @@ export default function TenderLine({ item,AmountSign }: IProps): JSX.Element {
                                                     dispatch(linePriceChanged({TenderLineId: item.TenderLineId, actionType:"stepUp"}))
                                                 }}><AddCircleIcon /></IconButton></Box>
                                         <Box> 
-                                            <CurrencyFormat className={Styles.fildSum}   onValueChange={(values,sourceInfo) =>  {
+                                            <CurrencyFormat  className={Styles.fildSum} onValueChange={(values,sourceInfo) =>  {
                                                 setValCahnge(values.value);
-                                                if((parseFloat(values.value) < item.MinPrice || parseFloat(values.value) > item.MaxPrice )|| parseFloat(values.value)<=0){
+                                                if((parseFloat(values.value) < item.MinPrice || parseFloat(values.value) > item.MaxPrice )|| parseFloat(values.value) < 0){
                                                     setSnackbar({isOpen:true,messege:'המחיר אינו עומד בטווח שנקבע'});
                                                 } 
                                                 dispatch(linePriceChanged({TenderLineId: item.TenderLineId, val:values,  actionType:"priceChanged" })) ;
@@ -123,13 +117,13 @@ export default function TenderLine({ item,AmountSign }: IProps): JSX.Element {
                                         </Box>
                                         <Box><IconButton sx={{ color: "#00798C" }} onClick={() => {
                                              let val = valCahnge?parseFloat(valCahnge):item.Price;
-                                                    if(val < item.MinPrice || val<=0){
+                                                    if(val < item.MinPrice || val < 0){
                                                         setSnackbar({isOpen:true,messege:'המחיר נמוך מהמחיר המינימלי'});
                                                     }
                                                    
                                                         dispatch(linePriceChanged({TenderLineId: item.TenderLineId, actionType:"stepDown"}))}
                                                     }>
-                                                <RemoveCircleIcon /></IconButton></Box>
+                                                <RemoveCircleIcon/></IconButton></Box>
                                     </Box>
                                 </Box>
                                 <Box className={Styles.sum}>

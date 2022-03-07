@@ -1,11 +1,14 @@
 {
   "Tender": {
+    "CONFITMATION":"אישור",
     "TENDER": "מכרז",
     "TENDER_ENDED":"המכרז הסתיים",
     "NOT_YET_STARTED":"טרם החל",
     "ITEMS_IN_TENDER":"פריטים במכרז",
     "ACTIVE":"פעיל",
     "SYSTEM_CLOCK":"שעון מערכת",
-    "MENU":"תפריט"
+    "MENU":"תפריט",
+    "MESSAGES_THAT_REQUIRE_IMMEDIATE_APPROVAL":"הודעות שצריכות אישור מיידי"
+
   }
 }

@@ -4,10 +4,9 @@ import { RootState } from "../../app/store";
 import TenderDto from './Dtos/TenderDto';
 import {TenderLineDto} from './Dtos/TenderLineDto';
 import LpauDto from './Dtos/LpauDto';
+import UsersDto from './../../Global/UsersDto';
 const API_URL_Tender = "/Tender.json";
 const API_URL_Lpau = "/LeadingPropositionAndUser.json";
-
-
 
 export interface CounterState {
   loading: Boolean
@@ -16,7 +15,6 @@ export interface CounterState {
   tenderdata: TenderDto
   lpaudata:LpauDto
   totalSummery: number | undefined
-  
 }
 
 // initial state
@@ -40,7 +38,6 @@ export const tenderSlice = createSlice({
       //called on change of + - and field blur
       //call line sum change
       let lines = state.tenderdata.Lines?.filter((x) => x.TenderLineId === action.payload.TenderLineId);
-
       let line = lines == null ? null : lines[0];
 
       if (line != null) {
@@ -66,13 +63,10 @@ export const tenderSlice = createSlice({
             //line.ErrorMsg.messege = line.ErrorMsg?line.ErrorMsg.messege:"";
         }
         
-
         line.TotalPrice = CalculateLineTotal(state.tenderdata, line);
         line.TotalPriceForDisplay = line.TotalPrice;
-
       }
       state.totalSummery = CalculateTenderTotal(state.tenderdata);
-  
     },
     setTotalSummery: (state, action: PayloadAction<number>) => {
       if (state.totalSummery)
@@ -91,7 +85,8 @@ export const tenderSlice = createSlice({
         state.lpaudata = SetLpauDtoData(state, action.payload);
       })
       .addCase(fetchApproveMessagesAsync.fulfilled, (state, action) => {
-        
+       
+        //console.log(state.userdata)
       })
       .addCase(fetchTenderAsync.rejected, (state, { payload }) => {
         state.loading = false;
@@ -120,11 +115,9 @@ export const fetchLpauAsync = createAsyncThunk('tenderdata/post', async (thunkAP
   }
 );
 
-
-export const fetchApproveMessagesAsync = createAsyncThunk('tenderdata/ApproveMessages', async (req:string[],thunkAPI) => {
+export const fetchApproveMessagesAsync = createAsyncThunk('tenderdata/ApproveMessages', async (req:any,thunkAPI: any) => {
     try {
-      
-      const response = await axios.get(`${API_URL_Lpau}`);
+      const response = await axios.get(`${API_URL_Lpau}/${req}`);
       return response.data;
     } catch (err) {
       return err;
@@ -145,13 +138,11 @@ const SetTenderData = (state: CounterState, tender: TenderDto) => {
   return tender;
 }
 
-const SetLpauDtoData = (state: CounterState, lpau: LpauDto) => {
-  
+const SetLpauDtoData = (state: CounterState, lpau: LpauDto) => { 
   return lpau;
 }
 
 const CalculateLineTotal = (tender: TenderDto, tenderLine: TenderLineDto) => {
-
    return tender.IsPercentageCalculation ?
     tenderLine.Price * tenderLine.RequiredAmount / 100 :
     tenderLine.Price * tenderLine.RequiredAmount;

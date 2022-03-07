@@ -7,6 +7,7 @@ import Moment from 'react-moment';
 import {  useNavigate } from "react-router-dom";
 import CurrencyFormat from 'react-number-format';
 import date from 'date-and-time';
+import StatusesBtn from './../component/statusesBtn'
 
 interface IProps {
     item: TendersDto, index: number, redirectOnClick: boolean

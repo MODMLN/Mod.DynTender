@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
@@ -14,6 +14,9 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import ImageIcon from '@mui/icons-material/Image';
 import {fetchApproveMessagesAsync} from "./TenderSlice";
+import { useTranslation } from "react-multi-lang";
+import UsersDto from "./../../Global/UsersDto";
+import { fetchUserAsync, selectUser } from "../../Global/UsersSlice";
 
 interface ApprovalMessages{
     Id: number, 
@@ -26,18 +29,24 @@ interface IProps {
 }
 
 export default function NeedApprovalMessages({ flag,Messages }: IProps) {
+    const Translation = useTranslation();
     const [open, setOpen] = React.useState(true);
     const dispatch = useDispatch();
+    const userDto = useSelector(selectUser);
+
+
+
+
     useEffect(() => {
+        
             if(flag){
+                dispatch(fetchUserAsync());
                 setOpen(true);
             }
     }, [flag]);
 
-    const handleClose = () => {
-        setOpen(false);
-        dispatch(fetchApproveMessagesAsync([]));
-    };
+
+    let msgs = [{userid:userDto.userId,Messages:Messages.map((x)=>x.Id?.toString())}];
 
 
     return (
@@ -45,12 +54,16 @@ export default function NeedApprovalMessages({ flag,Messages }: IProps) {
             <Dialog
                 sx={{ 'direction': 'rtl' }}
                 open={open}
-                onClose={handleClose}
-                aria-labelledby="הודעות שצריכות אישור מיידי"
-                aria-describedby="הודעות שצריכות אישור מיידי"
+                onClose={() => {
+                    console.log(userDto)
+                    setOpen(false);
+                    dispatch(fetchApproveMessagesAsync(msgs));
+               }}
+                aria-labelledby={Translation('Tender.MESSAGES_THAT_REQUIRE_IMMEDIATE_APPROVAL')}
+                aria-describedby={Translation('Tender.MESSAGES_THAT_REQUIRE_IMMEDIATE_APPROVAL')}
             >
                 <DialogTitle id="alert-dialog-title">
-                הודעות שצריכות אישור מיידי
+                {Translation('Tender.MESSAGES_THAT_REQUIRE_IMMEDIATE_APPROVAL')}
                 </DialogTitle>
                 <DialogContent>
                     <DialogContentText id="alert-dialog-description" component={'span'} >
@@ -71,7 +84,11 @@ export default function NeedApprovalMessages({ flag,Messages }: IProps) {
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleClose}>אישור</Button>
+                    <Button onClick={() => {
+                        setOpen(false);
+                        dispatch(fetchApproveMessagesAsync(msgs));
+                   }}
+                        >{Translation('Tender.CONFITMATION')}</Button>
                 </DialogActions>
             </Dialog>
         </Box>
