@@ -16,25 +16,35 @@ import {linePriceChanged} from "./TenderSlice";
 import { useDispatch } from "react-redux";
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
+import { useForm ,Controller} from "react-hook-form";
 
 interface IProps {
     item: TenderLineDto,
     AmountSign:string
 }
 
+interface IFormInput {
+    tenderSum2: number;
+  }
+
 export default function TenderLine({ item,AmountSign }: IProps): JSX.Element {
 
-    //const TotalSummery = useAppSelector((state: RootState) => state.tenderdata.totalSummery);
+  
+      
+   
+    const { register, handleSubmit } = useForm<IFormInput>();
     const dispatch = useDispatch();
     const [expand, setExpand] = React.useState(false);
-    const [valCahnge, setValCahnge] = React.useState('');
+    const [valCahnge, setValChange] = React.useState('');
     const [snackbar, setSnackbar] = React.useState<IMessege>({isOpen:false,messege:''});
     const fieldVal = useRef(null);
 
     const handleTotalPriceForDisplayChange = () => {
 
     }
-  
+
+   
+      
 
 
     const toggleAcordion = () => {
@@ -106,14 +116,20 @@ export default function TenderLine({ item,AmountSign }: IProps): JSX.Element {
                                                     dispatch(linePriceChanged({TenderLineId: item.TenderLineId, actionType:"stepUp"}))
                                                 }}><AddCircleIcon /></IconButton></Box>
                                         <Box> 
-                                            <CurrencyFormat  className={Styles.fildSum} onValueChange={(values,sourceInfo) =>  {
-                                                setValCahnge(values.value);
-                                                if((parseFloat(values.value) < item.MinPrice || parseFloat(values.value) > item.MaxPrice )|| parseFloat(values.value) < 0){
-                                                    setSnackbar({isOpen:true,messege:'המחיר אינו עומד בטווח שנקבע'});
-                                                } 
-                                                dispatch(linePriceChanged({TenderLineId: item.TenderLineId, val:values,  actionType:"priceChanged" })) ;
-                                            }} 
-                                                displayType={"input"} decimalScale={2} value={item.Price} id="tenderSum" name={'tenderSum'}  ></CurrencyFormat>
+
+                                        <input type="number" placeholder={item.CurrencyId} defaultValue={item.Price} {...register("tenderSum2", { 
+                                                onChange:
+                                                    (e)=>{setValChange(e.target.value)}
+                                                ,
+                                                onBlur: (e) => {
+                                                    if((parseFloat(e.target.value) < item.MinPrice || parseFloat(e.target.value) > item.MaxPrice )|| parseFloat(e.target.value) < 0){
+                                                        setSnackbar({isOpen:true,messege:'המחיר אינו עומד בטווח שנקבע'});
+                                                    } 
+                                                    dispatch(linePriceChanged({TenderLineId: item.TenderLineId, val:e.target.value,  actionType:"priceChanged" })) ;
+                                                } ,
+                                            min:item.MinPrice, 
+                                            max:item.MaxPrice,
+                                            pattern: /(?=.*\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|0)?(\.\d{1,2})?$/ })} />
                                         </Box>
                                         <Box><IconButton sx={{ color: "#00798C" }} onClick={() => {
                                              let val = valCahnge?parseFloat(valCahnge):item.Price;

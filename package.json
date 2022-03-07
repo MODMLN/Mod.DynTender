@@ -30,6 +30,7 @@
     "react-burger-menu": "^3.0.6",
     "react-dom": "^16.13.1",
     "react-format-currency": "^0.1.2",
+    "react-hook-form": "^7.27.1",
     "react-joi": "^1.0.0",
     "react-joi-validation": "^1.7.0",
     "react-moment": "^1.1.1",
