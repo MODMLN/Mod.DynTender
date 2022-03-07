@@ -1,5 +1,5 @@
-import React, { useRef } from "react";
-import { Box } from "@mui/material";
+import React, { useEffect, useRef } from "react";
+import { Box, TextField } from "@mui/material";
 import Styles from './Tender.module.scss';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
@@ -9,48 +9,46 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import IconButton from '@mui/material/IconButton';
-import {TenderLineDto,IMessege} from './Dtos/TenderLineDto';
+import {TenderLineDto, IMessege} from './Dtos/TenderLineDto';
 import CurrencyFormat from 'react-number-format';
 import FormControl from '@mui/material/FormControl';
-import {linePriceChanged} from "./TenderSlice";
+import { linePriceChanged } from "./TenderSlice";
 import { useDispatch } from "react-redux";
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
-import { useForm ,Controller} from "react-hook-form";
+import {useForm,Controller} from "react-hook-form";
 
 interface IProps {
     item: TenderLineDto,
-    AmountSign:string
+    AmountSign: string
 }
 
 interface IFormInput {
-    tenderSum2: number;
-  }
+    tenderSum: number;
+}
 
-export default function TenderLine({ item,AmountSign }: IProps): JSX.Element {
+export default function TenderLine({ item, AmountSign }: IProps): JSX.Element {
 
-  
-      
-   
-    const { register, handleSubmit } = useForm<IFormInput>();
+
+
+
+    const { register, setValue, control } = useForm<IFormInput>({mode: 'onBlur'});
     const dispatch = useDispatch();
     const [expand, setExpand] = React.useState(false);
     const [valCahnge, setValChange] = React.useState('');
-    const [snackbar, setSnackbar] = React.useState<IMessege>({isOpen:false,messege:''});
+    const [Price, setPrice] = React.useState("");
+    const [snackbar, setSnackbar] = React.useState<IMessege>({ isOpen: false, messege: '' });
     const fieldVal = useRef(null);
 
     const handleTotalPriceForDisplayChange = () => {
 
     }
 
-   
-      
-
-
     const toggleAcordion = () => {
         setExpand((expand) => !expand);
     };
 
+ 
 
 
     return (
@@ -58,6 +56,7 @@ export default function TenderLine({ item,AmountSign }: IProps): JSX.Element {
 
             <Accordion sx={{ 'box-shadow': 'none' }}>
                 <AccordionSummary
+               
                     onClick={() => toggleAcordion()}
                     sx={{ direction: 'rtl', border: 'none' }}
                     expandIcon={<ExpandMoreIcon />}
@@ -109,37 +108,59 @@ export default function TenderLine({ item,AmountSign }: IProps): JSX.Element {
                                     <Box className={Styles.stepField}>
                                         <Box>
                                             <IconButton sx={{ color: "#00798C" }} onClick={() => {
-                                                let val = valCahnge?parseFloat(valCahnge):item.Price;
-                                                if(val > item.MaxPrice){
-                                                    setSnackbar({isOpen:true,messege:'המחיר גבוה מהמחיר המקסימלי'});
+                                                let val = valCahnge ? parseFloat(valCahnge) : item.Price;
+                                                if (val > item.MaxPrice) {
+                                                    setSnackbar({ isOpen: true, messege: 'המחיר גבוה מהמחיר המקסימלי' });
                                                 }
-                                                    dispatch(linePriceChanged({TenderLineId: item.TenderLineId, actionType:"stepUp"}))
-                                                }}><AddCircleIcon /></IconButton></Box>
-                                        <Box> 
+                                                dispatch(linePriceChanged({ TenderLineId: item.TenderLineId, actionType: "stepUp" }))
+                                            }}><AddCircleIcon /></IconButton></Box>
+                                        <Box>
 
-                                        <input type="number" placeholder={item.CurrencyId} defaultValue={item.Price} {...register("tenderSum2", { 
-                                                onChange:
-                                                    (e)=>{setValChange(e.target.value)}
-                                                ,
-                                                onBlur: (e) => {
-                                                    if((parseFloat(e.target.value) < item.MinPrice || parseFloat(e.target.value) > item.MaxPrice )|| parseFloat(e.target.value) < 0){
-                                                        setSnackbar({isOpen:true,messege:'המחיר אינו עומד בטווח שנקבע'});
-                                                    } 
-                                                    dispatch(linePriceChanged({TenderLineId: item.TenderLineId, val:e.target.value,  actionType:"priceChanged" })) ;
-                                                } ,
-                                            min:item.MinPrice, 
-                                            max:item.MaxPrice,
-                                            pattern: /(?=.*\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|0)?(\.\d{1,2})?$/ })} />
+                                            <Controller
+                                              
+                                                name="tenderSum"
+                                                control={control}
+                                                defaultValue={item.Price}
+                                                
+                                                rules={{
+                                                    pattern: {
+                                                        value:
+                                                            /(?=.*\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|0)?(\.\d{1,2})?$/,
+                                                        message: 'Must use a valid Number',
+                                                    },
+                                                }}
+                                                render={({ field: { onBlur, value }, fieldState: { error } }) => (
+                                                    <TextField type="number" value={item.Price} placeholder={item.CurrencyId} {...register("tenderSum", {
+
+                                                        valueAsNumber: true,
+                                                       
+                                                        onBlur: (e) => {
+                                                            if ((parseFloat(e.target.value) < item.MinPrice || parseFloat(e.target.value) > item.MaxPrice) || parseFloat(e.target.value) < 0) {
+                                                                setSnackbar({ isOpen: true, messege: 'המחיר אינו עומד בטווח שנקבע' });
+                                                            }
+                                                            else{
+                                                                setSnackbar({ isOpen: false, messege: '' })
+                                                            }
+                                                            dispatch(linePriceChanged({ TenderLineId: item.TenderLineId, val: e.target.value, actionType: "priceChanged" }));
+                                                        }
+
+
+                                                    })} />
+
+                                                )}
+                                            />
+
                                         </Box>
                                         <Box><IconButton sx={{ color: "#00798C" }} onClick={() => {
-                                             let val = valCahnge?parseFloat(valCahnge):item.Price;
-                                                    if(val < item.MinPrice || val < 0){
-                                                        setSnackbar({isOpen:true,messege:'המחיר נמוך מהמחיר המינימלי'});
-                                                    }
-                                                   
-                                                        dispatch(linePriceChanged({TenderLineId: item.TenderLineId, actionType:"stepDown"}))}
-                                                    }>
-                                                <RemoveCircleIcon/></IconButton></Box>
+                                            let val = valCahnge ? parseFloat(valCahnge) : item.Price;
+                                            if (val < item.MinPrice || val < 0) {
+                                                setSnackbar({ isOpen: true, messege: 'המחיר נמוך מהמחיר המינימלי' });
+                                            }
+
+                                            dispatch(linePriceChanged({ TenderLineId: item.TenderLineId, actionType: "stepDown" }))
+                                        }
+                                        }>
+                                            <RemoveCircleIcon /></IconButton></Box>
                                     </Box>
                                 </Box>
                                 <Box className={Styles.sum}>
@@ -148,17 +169,17 @@ export default function TenderLine({ item,AmountSign }: IProps): JSX.Element {
 
 
                                         <FormControl fullWidth className={Styles.stepNumber} variant="standard">
-                                        <CurrencyFormat disabled className={Styles.stepNumber}  displayType={"input"} decimalScale={2} value={item.TotalPriceForDisplay} id="TotalPriceForDisplay" name={'TotalPriceForDisplay'}  ></CurrencyFormat>
+                                            <CurrencyFormat disabled className={Styles.stepNumber} displayType={"input"} decimalScale={2} value={item.TotalPriceForDisplay} id="TotalPriceForDisplay" name={'TotalPriceForDisplay'}  ></CurrencyFormat>
                                         </FormControl>
                                     </Box>
                                 </Box>
                             </Box>
                         </form>
-                        <Snackbar   sx={{ height: "100%" }} anchorOrigin={{vertical: 'top', horizontal:'center' }} open={snackbar.isOpen} autoHideDuration={6000} onBlur={(x)=> setSnackbar({isOpen:false,messege:''})}  onClose={(x)=> setSnackbar({isOpen:false,messege:''})}>
-                                <MuiAlert  severity="error" sx={{direction:"rtl",width: '100%'}} >
-                                        {snackbar.messege}
-                                </MuiAlert>
-                            </Snackbar>
+                        <Snackbar sx={{ height: "100%" }} anchorOrigin={{ vertical: 'top', horizontal: 'center' }} open={snackbar.isOpen} autoHideDuration={6000} onBlur={()=>{ setSnackbar({ isOpen: false, messege: '' })}} onClose={()=>{ setSnackbar({ isOpen: false, messege: '' })}} >
+                            <MuiAlert severity="error" sx={{ direction: "rtl", width: '100%' }} >
+                                {snackbar.messege}
+                            </MuiAlert>
+                        </Snackbar>
                     </Typography>
                 </AccordionDetails>
             </Accordion>
