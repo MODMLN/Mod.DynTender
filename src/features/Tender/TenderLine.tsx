@@ -1,94 +1,108 @@
-import React, { useEffect, useRef } from "react";
-import { Box, TextField } from "@mui/material";
+import React, { useEffect, useRef,useState } from "react";
+import { 
+    Box ,Accordion ,AccordionSummary,AccordionDetails,
+    Typography,IconButton,FormControl,Snackbar,Alert,
+    TextField
+} from "@mui/material";
 import Styles from './Tender.module.scss';
-import Accordion from '@mui/material/Accordion';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import Typography from '@mui/material/Typography';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
-import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
-import IconButton from '@mui/material/IconButton';
-import {TenderLineDto, IMessege} from './Dtos/TenderLineDto';
+import {ExpandMore , AddCircle,RemoveCircle} from '@mui/icons-material';
+import { TenderLineDto, IMessege } from './Dtos/TenderLineDto';
 import CurrencyFormat from 'react-number-format';
-import FormControl from '@mui/material/FormControl';
 import { linePriceChanged } from "./TenderSlice";
 import { useDispatch } from "react-redux";
-import Snackbar from '@mui/material/Snackbar';
-import MuiAlert from '@mui/material/Alert';
-import {useForm,Controller} from "react-hook-form";
+import { useForm } from "react-hook-form";
+import { useTranslation } from "react-multi-lang";
+
+
+import Joi from "joi";
+import {joiResolver} from "@hookform/resolvers/joi";
 
 interface IProps {
     item: TenderLineDto,
     AmountSign: string
 }
 
-interface IFormInput {
-    tenderSum: number;
-}
+
 
 export default function TenderLine({ item, AmountSign }: IProps): JSX.Element {
-
-
-
-
-    const { register, setValue, control } = useForm<IFormInput>({mode: 'onBlur'});
+    const Translation = useTranslation();
     const dispatch = useDispatch();
     const [expand, setExpand] = React.useState(false);
     const [valCahnge, setValChange] = React.useState('');
-    const [Price, setPrice] = React.useState("");
+
     const [snackbar, setSnackbar] = React.useState<IMessege>({ isOpen: false, messege: '' });
-    const fieldVal = useRef(null);
+   // const fieldVal = useRef(null);
 
-    const handleTotalPriceForDisplayChange = () => {
+   const [price, setPrice] = useState<number>(0);
 
-    }
+    useEffect(() => {
+        //setValue('tenderSum', item.Price);
+       // if (item != null) {
+           // setPrice(item.Price);
+            
+         // reset(item);}
+        }
+    );
+
+
+    const handleTotalPriceForDisplayChange = () => { }
 
     const toggleAcordion = () => {
         setExpand((expand) => !expand);
     };
 
- 
+    const schema = Joi.object({
+        tenderSum: Joi.number().positive().precision(2).min(Math.max(0,item.MinPrice)).max(item.MaxPrice).required(),
+
+    }).options({allowUnknown: true});//instead of adding non shown fields
+
+    const {register, handleSubmit, watch, reset, resetField, setValue, formState: {errors}} = useForm({
+        resolver: joiResolver(schema),
+        mode: 'onBlur', //'onBlur' 'onChange' 'onSubmit'[*default] 'onTouched' 'all'
+    });
+    const onSubmit = async (data: any, event: (React.BaseSyntheticEvent | undefined)) => {
+        if (event != null)
+            event.stopPropagation();
+
+        console.log(data);
+    };
+
 
 
     return (
         <Box key={item.Index} className={Styles.TenderLine}>
-
             <Accordion sx={{ 'box-shadow': 'none' }}>
                 <AccordionSummary
-               
                     onClick={() => toggleAcordion()}
                     sx={{ direction: 'rtl', border: 'none' }}
-                    expandIcon={<ExpandMoreIcon />}
+                    expandIcon={<ExpandMore />}
                     aria-controls="panel1a-content"
-                    id="panel1a-header"
-                >
+                    id="panel1a-header">
                     <Typography component={'span'} >
-
                         <Box className={Styles.TenderLineHead}>
                             <Box className={Styles.title}>{item.TenderLineName}</Box>
                             <Box className={Styles.headItem}>
                                 <Box> <Box className={Styles.titleText}>
                                     {!item.IsPercentageCalculation ?
-                                        <label>מספר יחידות</label>
-                                        : <label>משקל</label>}
+                                        <label>{Translation('Tender.NUMBER_OF_UNITS')}</label>
+                                        : <label>{Translation('Tender.WEIGHT')}</label>}
                                 </Box>    <Box><b>{item.RequiredAmount}</b>{AmountSign}
                                     </Box>   </Box>
                             </Box>
                             <Box className={Styles.headItem}>{!expand &&
-                                <Box ><Box className={Styles.titleText} aria-label="מחיר ליחידה">
-                                    מחיר ליחידה    </Box><Box ><b><CurrencyFormat decimalScale={2} value={item.Price} displayType={'text'} thousandSeparator={true} prefix={item.CurrencyId}></CurrencyFormat></b>
+                                <Box ><Box className={Styles.titleText} aria-label={Translation('Tender.PRICE_PER_UNIT')} >
+                                    {Translation('Tender.PRICE_PER_UNIT')}    </Box><Box ><b><CurrencyFormat decimalScale={2} value={item.Price} displayType={'text'} thousandSeparator={true} prefix={item.CurrencyId}></CurrencyFormat></b>
                                     </Box> </Box>
                             }</Box>
                             <Box className={Styles.headItem}>{!expand &&
                                 <Box ><Box className={Styles.titleText}>
-                                    סה"כ</Box><Box ><b><CurrencyFormat decimalScale={2} value={item.TotalPriceForDisplay} displayType={'text'} thousandSeparator={true} prefix={item.CurrencyId}></CurrencyFormat></b>
+                                   {Translation('Tender.TOTAL')}</Box><Box ><b><CurrencyFormat decimalScale={2} value={item.TotalPriceForDisplay} displayType={'text'} thousandSeparator={true} prefix={item.CurrencyId}></CurrencyFormat></b>
                                     </Box> </Box>
                             }</Box>
                             <Box >
                                 {(!expand && true) &&
                                     <Box className={`${Styles.Updated}`}>
-                                        עודכן
+                                        {Translation('Tender.UPDATED')}
                                     </Box>
                                 }</Box>
                         </Box>
@@ -96,89 +110,64 @@ export default function TenderLine({ item, AmountSign }: IProps): JSX.Element {
                 </AccordionSummary>
                 <AccordionDetails sx={{ 'text-align': 'right' }}>
                     <Typography sx={{ 'text-align': 'right' }} component={'span'} >
-                        <form ref={fieldVal}>
+                        {/* <form ref={fieldVal}> */}
                             <Box className={Styles.line}></Box>
                             <Box className={Styles.tenderSummery}>
                                 <Box className={Styles.stepDiv}>
-                                    <Box className={Styles.stepTitle} aria-label="מדרגת הצעה">מדרגת הצעה</Box>
+                                    <Box className={Styles.stepTitle} aria-label={Translation('Tender.PROPOSAL_RANK')}>{Translation('Tender.PROPOSAL_RANK')}</Box>
                                     <Box className={Styles.stepNumber}><b>{item.PriceStep} {item.CurrencyId}</b></Box>
                                 </Box>
                                 <Box className={Styles.unitPrice}>
-                                    <Box className={Styles.stepTitle} aria-label="מחיר ליחידה">מחיר ליחידה {item.CurrencyId}</Box>
+                                    <Box className={Styles.stepTitle} aria-label={Translation('Tender.PRICE_PER_UNIT')}>{Translation('Tender.PRICE_PER_UNIT')}  {item.CurrencyId}</Box>
                                     <Box className={Styles.stepField}>
                                         <Box>
                                             <IconButton sx={{ color: "#00798C" }} onClick={() => {
                                                 let val = valCahnge ? parseFloat(valCahnge) : item.Price;
                                                 if (val > item.MaxPrice) {
-                                                    setSnackbar({ isOpen: true, messege: 'המחיר גבוה מהמחיר המקסימלי' });
+                                                    setSnackbar({ isOpen: true, messege: Translation('Tender.PRICE_IS_HIGHER_THAN_THE_MAXIMUM') });
                                                 }
                                                 dispatch(linePriceChanged({ TenderLineId: item.TenderLineId, actionType: "stepUp" }))
-                                            }}><AddCircleIcon /></IconButton></Box>
-                                        <Box>
+                                            }}><AddCircle /></IconButton></Box>
+<Box component='form' onSubmit={handleSubmit(onSubmit)} sx={{mt: 1}}>
+                    <TextField defaultValue={item.Price ? parseFloat(String(item.Price)).toFixed(2) : ''} {...register('tenderSum')} placeholder={item.CurrencyId}
+                               type={'text'}
+                               label="מחיר ליחידה"
+                               variant="filled"
+                               margin='normal'
+                               error = {errors.tenderSum != null}
+                               helperText={errors.tenderSum == null ?null:errors.tenderSum?.message}
+                               fullWidth
+                    />
+                    </Box>
 
-                                            <Controller
-                                              
-                                                name="tenderSum"
-                                                control={control}
-                                                defaultValue={item.Price}
-                                                
-                                                rules={{
-                                                    pattern: {
-                                                        value:
-                                                            /(?=.*\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|0)?(\.\d{1,2})?$/,
-                                                        message: 'Must use a valid Number',
-                                                    },
-                                                }}
-                                                render={({ field: { onBlur, value }, fieldState: { error } }) => (
-                                                    <TextField type="number" value={item.Price} placeholder={item.CurrencyId} {...register("tenderSum", {
+                                  
 
-                                                        valueAsNumber: true,
-                                                       
-                                                        onBlur: (e) => {
-                                                            if ((parseFloat(e.target.value) < item.MinPrice || parseFloat(e.target.value) > item.MaxPrice) || parseFloat(e.target.value) < 0) {
-                                                                setSnackbar({ isOpen: true, messege: 'המחיר אינו עומד בטווח שנקבע' });
-                                                            }
-                                                            else{
-                                                                setSnackbar({ isOpen: false, messege: '' })
-                                                            }
-                                                            dispatch(linePriceChanged({ TenderLineId: item.TenderLineId, val: e.target.value, actionType: "priceChanged" }));
-                                                        }
-
-
-                                                    })} />
-
-                                                )}
-                                            />
-
-                                        </Box>
                                         <Box><IconButton sx={{ color: "#00798C" }} onClick={() => {
                                             let val = valCahnge ? parseFloat(valCahnge) : item.Price;
                                             if (val < item.MinPrice || val < 0) {
-                                                setSnackbar({ isOpen: true, messege: 'המחיר נמוך מהמחיר המינימלי' });
+                                                setSnackbar({ isOpen: true, messege:Translation('Tender.PRICE_IS_LOWER_THAN_THE_MINIMUM') });
                                             }
 
                                             dispatch(linePriceChanged({ TenderLineId: item.TenderLineId, actionType: "stepDown" }))
                                         }
                                         }>
-                                            <RemoveCircleIcon /></IconButton></Box>
+                                            <RemoveCircle /></IconButton></Box>
                                     </Box>
                                 </Box>
                                 <Box className={Styles.sum}>
-                                    <Box className={Styles.sumTitle}>סה"כ</Box>
+                                    <Box className={Styles.sumTitle}>{Translation('Tender.TOTAL')}</Box>
                                     <Box className={Styles.sumNumber}>
-
-
                                         <FormControl fullWidth className={Styles.stepNumber} variant="standard">
                                             <CurrencyFormat disabled className={Styles.stepNumber} displayType={"input"} decimalScale={2} value={item.TotalPriceForDisplay} id="TotalPriceForDisplay" name={'TotalPriceForDisplay'}  ></CurrencyFormat>
                                         </FormControl>
                                     </Box>
                                 </Box>
                             </Box>
-                        </form>
-                        <Snackbar sx={{ height: "100%" }} anchorOrigin={{ vertical: 'top', horizontal: 'center' }} open={snackbar.isOpen} autoHideDuration={6000} onBlur={()=>{ setSnackbar({ isOpen: false, messege: '' })}} onClose={()=>{ setSnackbar({ isOpen: false, messege: '' })}} >
-                            <MuiAlert severity="error" sx={{ direction: "rtl", width: '100%' }} >
+                        {/* </form> */}
+                        <Snackbar sx={{ height: "100%" }} anchorOrigin={{ vertical: 'top', horizontal: 'center' }} open={snackbar.isOpen} autoHideDuration={6000} onBlur={() => { setSnackbar({ isOpen: false, messege: '' }) }} onClose={() => { setSnackbar({ isOpen: false, messege: '' }) }} >
+                            <Alert severity="error" sx={{ direction: "rtl", width: '100%' }} >
                                 {snackbar.messege}
-                            </MuiAlert>
+                            </Alert>
                         </Snackbar>
                     </Typography>
                 </AccordionDetails>

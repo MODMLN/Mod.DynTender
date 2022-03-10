@@ -9,11 +9,11 @@ const API_URL_Tender = "/Tender.json";
 const API_URL_Lpau = "/LeadingPropositionAndUser.json";
 
 export interface CounterState {
-  loading: Boolean
-  error: Boolean
+  loading: boolean,
+  error: boolean,
  // globaldata:
-  tenderdata: TenderDto
-  lpaudata:LpauDto
+  tenderdata: TenderDto,
+  lpaudata:LpauDto,
   totalSummery: number | undefined
 }
 
@@ -79,10 +79,17 @@ export const tenderSlice = createSlice({
       })
       .addCase(fetchTenderAsync.fulfilled, (state, action) => {
         state.loading = false;
+        
+       // if (tenderdata?.Lines != null)
         state.tenderdata = SetTenderData(state, action.payload);
+        // else{
+        //   set all , but prices
+        // }
       })
       .addCase(fetchLpauAsync.fulfilled, (state, action) => {
+        //if(state.isEditingLine === false){
         state.lpaudata = SetLpauDtoData(state, action.payload);
+        //}
       })
       .addCase(fetchApproveMessagesAsync.fulfilled, (state, action) => {
        
@@ -91,7 +98,12 @@ export const tenderSlice = createSlice({
       .addCase(fetchTenderAsync.rejected, (state, { payload }) => {
         state.loading = false;
         //state.byId[userId] = null; // <-- I need the userId from createAsyncThunk here.
+      })
+      .addCase(fetchConfirmPropositionAsync.fulfilled, (state, action) => {
+        
+        console.log(action)
       });
+
   },
 });
 
@@ -117,12 +129,23 @@ export const fetchLpauAsync = createAsyncThunk('tenderdata/post', async (thunkAP
 
 export const fetchApproveMessagesAsync = createAsyncThunk('tenderdata/ApproveMessages', async (req:any,thunkAPI: any) => {
     try {
-      const response = await axios.get(`${API_URL_Lpau}/${req}`);
+      const response = await axios.post(`${API_URL_Lpau}/${req}`);
       return response.data;
     } catch (err) {
       return err;
     }
   }
+);
+
+export const fetchConfirmPropositionAsync = createAsyncThunk('tenderdata/ConfirmProposition', async (req:any,thunkAPI: any) => {
+  try {
+    console.log(req)
+    const response = await axios.post(`${API_URL_Lpau}/${req}`);
+    return response.data;
+  } catch (err) {
+    return err;
+  }
+}
 );
 
 const SetTenderData = (state: CounterState, tender: TenderDto) => {

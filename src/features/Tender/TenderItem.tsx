@@ -7,6 +7,7 @@ import Moment from 'react-moment';
 import { useNavigate } from "react-router-dom";
 import CurrencyFormat from 'react-number-format';
 import StatusesBtn from './../component/statusesBtn';
+import { useTranslation } from "react-multi-lang";
 
 interface IProps {
     item: TenderDto, 
@@ -16,6 +17,8 @@ interface IProps {
 }
 
 export default function TenderItem({ item, index, redirectOnClick = true, leadItem }: IProps) {
+    
+    const Translation = useTranslation();
     let navigate = useNavigate();
     return (
         <div onClick={
@@ -31,7 +34,7 @@ export default function TenderItem({ item, index, redirectOnClick = true, leadIt
                     (item.Statuses === "NotYetStarted" || item.Statuses === "Paused") ? (
                         <>
                             <Box style={{ textAlign: "right" }}>
-                                <Box>זמן פתיחה</Box>
+                                <Box>{Translation('Tender.OPEN_TIME')}</Box>
                                 <Box className={Styles.bold}><Moment format="hh:mm:ss" interval={30000}>{item.Time}</Moment></Box>
                                 <Box>יחל בעוד 3 שעות ו-44 דקות</Box>
                             </Box>

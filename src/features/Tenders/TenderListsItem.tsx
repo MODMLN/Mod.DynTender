@@ -34,9 +34,13 @@ export default function TenderListsItem({ item, index, redirectOnClick = true }:
                             )
                         case 'NotYetStarted':
                             return (
-                                <><Box className={`${Styles.BoxHead} ${Styles.NotYetStarted}`}><Box></Box><Box><Button style={{
-                                    backgroundColor: "#FCC100", width: "116px", color: "#000000"
-                                }} variant="contained">טרם החל</Button></Box><Box>מס׳: {item.TenderNumber}</Box><Box className={Styles.headText}>{item.Name}</Box></Box></>
+                                <><Box className={`${Styles.BoxHead} ${Styles.NotYetStarted}`}>
+                                    <Box></Box>
+                                <Box>
+                                    <Button 
+                                        style={{backgroundColor: "#FCC100", width: "116px", color: "#000000"}}
+                                        variant="contained">טרם החל</Button>
+                                    </Box><Box>מס׳: {item.TenderNumber}</Box><Box className={Styles.headText}>{item.Name}</Box></Box></>
                             )
                         case 'Ended':
                             return (

@@ -222,7 +222,7 @@ margin-bottom: 0px;
   }
 
   .tenderSummery {
-    align-items: right;
+    align-items: flex-end;
     text-align: right;
     direction: rtl;
     display: inline-flex;
@@ -268,13 +268,12 @@ margin-bottom: 0px;
     }
 
     .unitPrice {
-      padding: 5px 5px 13px 5px;
       text-align: center;
       background: #F4F8FF;
       border-radius: 7px;
 
       .stepField {
-        padding: 5% 2px 2px 2px;
+       
         align-items: right;
         text-align: right;
         direction: rtl;
@@ -286,6 +285,7 @@ margin-bottom: 0px;
         }
 
         input, input:focus{
+          padding: 5px 0px !important;
           background-color: #F4F8FF;
           border: none;
           width: 100%;

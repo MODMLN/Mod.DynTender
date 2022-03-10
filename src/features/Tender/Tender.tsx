@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import TenderItem from './TenderItem';
-import { selectTender, fetchTenderAsync, selectTotalSummery ,selectLpau,fetchLpauAsync} from "./TenderSlice";
+import { selectTender, fetchTenderAsync, selectTotalSummery ,selectLpau,fetchLpauAsync, fetchConfirmPropositionAsync} from "./TenderSlice";
 import TenderLine from './TenderLine';
 import {TenderLineDto} from './Dtos/TenderLineDto';
 import { Box } from "@mui/material";
@@ -13,9 +13,15 @@ import Button from '@mui/material/Button';
 import switchStatus from './Commons/switchStatus';
 import { useTranslation } from "react-multi-lang";
 import CurrencyFormat from 'react-number-format';
+import UsersDto from "./../../Global/UsersDto";
+import {selectUser} from "./../../Global/UsersSlice";
+
+interface IProps {
+  Item: UsersDto, 
+}
 
 export default function Tender() {
-
+  const userDto = useSelector(selectUser);
   //const params = useParams() as any;
   const tenderDto = useSelector(selectTender);
   const TotalSummery = useSelector(selectTotalSummery);
@@ -34,7 +40,6 @@ export default function Tender() {
       dispatch(fetchLpauAsync());
     }, 10000);
     return () => clearInterval(interval);
-
   }, [dispatch]);
 
   let Statuses = switchStatus(tenderDto.Statuses);
@@ -77,11 +82,11 @@ export default function Tender() {
       </Box>
       <Box className={Styles.BoxContainer}>
         <Box className={Styles.BoxSummery}>
-          <Box className={Styles.title}>סכום הצעתך</Box>
+          <Box className={Styles.title}>{Translation('Tender.THE_AMOUNT_OF_YOUR_BID')}</Box>
           <Box className={Styles.summery}><CurrencyFormat value={TotalSummery} displayType={'text'} thousandSeparator={true} prefix={tenderDto.CurrencyId} decimalScale={2} /></Box>
           <Box className={Styles.buttonDiv}>
             {Statuses.isVisible() &&
-              <Box><Button sx={{ 'background-color': '#00798C', 'width': '50%' }} className={Styles.Button} disabled={!Statuses.isEnable()} variant="contained">הגשת ההצעה</Button></Box>
+              <Box><Button onClick={() => {dispatch(fetchConfirmPropositionAsync({userId:userDto.userId}))}} sx={{ 'background-color': '#00798C', 'width': '50%' }} className={Styles.Button} disabled={!Statuses.isEnable()} variant="contained">הגשת ההצעה</Button></Box>
             }
           </Box>
         </Box>
