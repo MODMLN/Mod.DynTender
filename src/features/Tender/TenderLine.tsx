@@ -36,13 +36,13 @@ export default function TenderLine({ item, AmountSign }: IProps): JSX.Element {
    const [price, setPrice] = useState<number>(0);
 
     useEffect(() => {
-        //setValue('tenderSum', item.Price);
-       // if (item != null) {
-           // setPrice(item.Price);
+        setValue('tenderSum', item.Price);
+        if (item != null) {
+            setPrice(item.Price);
             
-         // reset(item);}
+         reset(item);}
         }
-    );
+    ,[item]);
 
 
     const handleTotalPriceForDisplayChange = () => { }

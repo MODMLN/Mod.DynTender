@@ -62,7 +62,7 @@ export const tenderSlice = createSlice({
            // line.ErrorMsg.isOpen = line.ErrorMsg?line.ErrorMsg.isOpen:false;
             //line.ErrorMsg.messege = line.ErrorMsg?line.ErrorMsg.messege:"";
         }
-        
+        line.Price = parseFloat(parseFloat(String(line.Price)).toFixed(2));
         line.TotalPrice = CalculateLineTotal(state.tenderdata, line);
         line.TotalPriceForDisplay = line.TotalPrice;
       }

@@ -3,6 +3,7 @@
     "Paused":"המכרז בהקפאה",
     "UPDATED":"עודכן",
     "WEIGHT":"משקל",
+    "AMOUNT":"כמות",
     "CONFITMATION":"אישור",
     "TENDER": "מכרז",
     "Ended":"המכרז הסתיים",
@@ -21,7 +22,11 @@
     "PROPOSAL_RANK":"מדרגת הצעה",
     "PRICE_IS_HIGHER_THAN_THE_MAXIMUM":"המחיר גבוה מהמחיר המקסימלי",
     "PRICE_DOES_NOT_MEET_THE_SET_RANGE":"המחיר אינו עומד בטווח שנקבע",
-    "PRICE_IS_LOWER_THAN_THE_MINIMUM":"המחיר נמוך מהמחיר המינימלי"
+    "PRICE_IS_LOWER_THAN_THE_MINIMUM":"המחיר נמוך מהמחיר המינימלי",
+    "PROPOSAL_IS_FILLED_IN_PROPERLY":"יש לוודא שהצעתך מולאה כראוי",
+    "SUMMARY_OF_ITEMS":"סיכום הפריטים",
+    "PRICE":"מחיר",
+    "ITEM_NAME":"שם פריט"
 
   }
 }

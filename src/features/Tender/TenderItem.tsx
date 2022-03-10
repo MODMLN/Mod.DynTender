@@ -27,7 +27,7 @@ export default function TenderItem({ item, index, redirectOnClick = true, leadIt
                     navigate(`/Tender/${item.Id}`);
             }
         }>
-            <Box className={Styles.BoxMain} key={index} sx={{ p: 2, border: '1px solid grey' }}>
+            <Box className={Styles.BoxMain} key={index} sx={{ p: 2 }}>
                <StatusesBtn item={item} leadItem={leadItem}></StatusesBtn>
                 <Box className={Styles.line}></Box>
                 {

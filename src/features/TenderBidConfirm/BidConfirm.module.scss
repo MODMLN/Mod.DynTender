@@ -1,135 +1,209 @@
 @font-face {
-    font-family: 'OpenSans';
-    src: url('/Fonts/OpenSansHebrew-Regular.ttf');
-  }
-  
-  body {
-    font-family: 'OpenSans', sans-serif;
-    background-color: #F0F6FE;
-  }
-  
-  .bold{
-    font-weight: bold;
-  }
-  
-  textarea:focus, input:focus, input{
-    outline: none;
-    border:none;
-  }
-  
-  input[type=number]::-webkit-inner-spin-button,
-  input[type=number]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
+  font-family: 'OpenSans';
+  src: url('/Fonts/OpenSansHebrew-Regular.ttf');
+}
+
+body {
+  font-family: 'OpenSans', sans-serif;
+  background-color: #F0F6FE;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+textarea:focus,
+input:focus,
+input {
+  outline: none;
+  border: none;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+
+.aw-grid-headers .aw-grid-separator {
+  display: none !important;
+}
+
+.MuiDataGrid-columnSeparator,
+.MuiDataGrid-columnSeparator--sideRight {
+  display: none !important;
+}
+
+.BoxContainer {
+  width: 100%;
+
+  .BoxMain {
+    border: none !important;
+    margin: 10px 0;
+
+    @media screen and (max-width:1024px) {
+      height: auto;
+    }
   }
 
-  .BoxContainer {
+  .BoxHeadTop {
+    background: #FFFFFF;
+    padding: 20px 0;
+    box-shadow: 0px 4px 24px rgba(58, 59, 69, 0.1);
+    border-radius: 30px;
+    border-top-left-radius: 0 !important;
+    border-top-right-radius: 0 !important;
     width: 100%;
-  
-    .BoxMain {
+
+    .tenderDetails {
+      margin-bottom: 1%;
+      margin-left: auto;
+      margin-right: auto;
+      width: 53%;
       border: none !important;
-      @media screen and (max-width:1024px) {
-        height: auto;
-      }
-    }
-  
-    .BoxHeadTop {
-      background: #FFFFFF;
-      border: 1px solid #E3E6F0;
-      box-shadow: 0px 4px 24px rgba(58, 59, 69, 0.1);
-      border-radius: 30px;
-      border-top-left-radius: 0 !important;
-      border-top-right-radius: 0 !important;
-      width: 100%;
-  
-      .tenderDetails {
-        margin-bottom: 1%;
+
+      >div {
+
         margin-left: auto;
         margin-right: auto;
-        width: 53%;
-  
-        >div {
-  
-          margin-left: auto;
-          margin-right: auto;
+        border: none !important;
+
+        .BoxMain {
           border: none !important;
+
+          @media screen and (max-width:1024px) {
+            height: auto;
+          }
         }
       }
+
     }
-  
-    .BoxSumItems {
-      text-align: right;
-      margin: 2% 24% 2% 0;
+  }
+
+  .BoxSumItems {
+    text-align: right;
+    margin: 2% 24% 2% 0;
+    font-family: 'OpenSans', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 28px;
+    line-height: 14px;
+    /* identical to box height, or 50% */
+    letter-spacing: -0.4875px;
+    color: #44454B;
+  }
+
+  .BoxSummery {
+
+    margin-bottom: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 30px;
+    width: 50%;
+    background: #FEFEFE;
+    box-shadow: 0px -5px 50px rgba(0, 0, 0, 0.04);
+    border-radius: 30px;
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+
+    .title {
+      margin-left: auto;
+      margin-right: auto;
       font-family: 'OpenSans', sans-serif;
       font-style: normal;
       font-weight: normal;
-      font-size: 28px;
+      font-size: 18px;
       line-height: 14px;
-      /* identical to box height, or 50% */
-      letter-spacing: -0.4875px;
+      /* identical to box height, or 78% */
+      margin-bottom: 2%;
+      text-align: center;
+      letter-spacing: -0.2625px;
       color: #44454B;
     }
-  
-    .BoxSummery {
-      
-  margin-bottom: 0px;
+
+    .summery {
       margin-left: auto;
       margin-right: auto;
-      padding: 30px;
-      width: 50%;
-      background: #FEFEFE;
-      box-shadow: 0px -5px 50px rgba(0, 0, 0, 0.04);
-      border-radius: 30px;
-      border-bottom-left-radius: 0 !important;
-      border-bottom-right-radius: 0 !important;
-  
-      .title {
-        margin-left: auto;
-        margin-right: auto;
-        font-family: 'OpenSans', sans-serif;
-        font-style: normal;
-        font-weight: normal;
-        font-size: 18px;
-        line-height: 14px;
-        /* identical to box height, or 78% */
-        margin-bottom: 2%;
-        text-align: center;
-        letter-spacing: -0.2625px;
-        color: #44454B;
-      }
-  
-      .summery {
-        margin-left: auto;
-        margin-right: auto;
+      font-family: 'OpenSans', sans-serif;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 20px;
+      line-height: 14px;
+      /* identical to box height, or 70% */
+      text-align: center;
+      letter-spacing: -0.2625px;
+      color: #44454B;
+    }
+
+    .buttonDiv {
+      direction: rtl;
+      margin: 2% auto;
+      text-align: center;
+      direction: rtl;
+
+      .button {
+        min-width: 150px;
         font-family: 'OpenSans', sans-serif;
         font-style: normal;
         font-weight: bold;
-        font-size: 20px;
-        line-height: 14px;
-        /* identical to box height, or 70% */
-        text-align: center;
-        letter-spacing: -0.2625px;
-        color: #44454B;
-      }
-  
-      .buttonDiv {
-        direction: rtl;
-        margin: 2% auto;
-        text-align: center;
-        direction: rtl;
-  
-        .button {
-          min-width: 150px;
-          font-family: 'OpenSans', sans-serif;
-          font-style: normal;
-          font-weight: bold;
-          font-size: 18px;
-          line-height: 25px;
-          /* identical to box height */
-          text-align: right;
-          letter-spacing: -0.3px;
-          color: #FFFFFF;
-        }
+        font-size: 18px;
+        line-height: 25px;
+        /* identical to box height */
+        text-align: right;
+        letter-spacing: -0.3px;
+        color: #FFFFFF;
       }
     }
   }
-  
+
+  .DataGrid {
+    width: 53%;
+    margin-bottom: 2%;
+    margin-left: auto;
+    margin-right: auto;
+
+    .MuiDataGrid-columnHeaderTitle {
+      font-weight: bold !important;
+    }
+
+    .css-jgzxgq-MuiDataGrid-root {
+      border: none !important;
+    }
+
+    .AlertDiv {
+      padding: 20px 0;
+      font-family: 'OpenSans', sans-serif;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 14px;
+      color: #44454B;
+    }
+
+    .SUMMARYDiv {
+      padding: 20px 0;
+      text-align: right;
+      font-family: 'OpenSans', sans-serif;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 28px;
+      line-height: 14px;
+      color: #4D4E55;
+    }
+
+    .InnerDataGrid {
+      height: 500px !important;
+      min-height: 350px !important;
+      height: 100%;
+
+      .DataGridClass {
+        .columnHeaderTitle{ font-weight: bold !important;}
+        .MuiDataGrid-columnSeparator,
+        .MuiDataGrid-columnSeparator--sideRight {
+          display: none !important;
+         
+        }
+      }
+
+    }
+  }
+}
