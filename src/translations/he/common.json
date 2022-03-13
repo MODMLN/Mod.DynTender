@@ -1,5 +1,7 @@
 {
   "Tender": {
+    "Offer_confirmation":"אישור ההצעה",
+    "BACK":"חזור",
     "Paused":"המכרז בהקפאה",
     "UPDATED":"עודכן",
     "WEIGHT":"משקל",

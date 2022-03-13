@@ -135,6 +135,7 @@ input[type=number]::-webkit-outer-spin-button {
     }
 
     .buttonDiv {
+      display: inline-flex;
       direction: rtl;
       margin: 2% auto;
       text-align: center;
@@ -147,9 +148,7 @@ input[type=number]::-webkit-outer-spin-button {
         font-weight: bold;
         font-size: 18px;
         line-height: 25px;
-        /* identical to box height */
-        text-align: right;
-        letter-spacing: -0.3px;
+        width:260px;
         color: #FFFFFF;
       }
     }

@@ -8,6 +8,7 @@ import { selectTender, fetchTenderAsync, selectTotalSummery, selectLpau, fetchLp
 import { selectUser } from "./../../Global/UsersSlice";
 import TenderItem from './../Tender/TenderItem';
 import { DataGrid, GridRowsProp, GridColDef } from '@mui/x-data-grid';
+import CurrencyFormat from "react-number-format";
 
 interface IProps {
     Item: UsersDto,
@@ -74,6 +75,16 @@ export default function BidConfirm() {
                                   },
                                    border: 0,
                              }} />
+                    </Box>
+                </Box>
+                <Box className={Styles.BoxContainer}>
+                    <Box className={Styles.BoxSummery}>
+                    <Box className={Styles.title}>{Translation('Tender.THE_AMOUNT_OF_YOUR_BID')}</Box>
+                    <Box className={Styles.summery}><CurrencyFormat value={225254} displayType={'text'} thousandSeparator={true} prefix={tenderDto.CurrencyId} decimalScale={2} /></Box>
+                    <Box className={Styles.buttonDiv}>
+                        <Box className={Styles.button}><Button  sx={{  'color': '#00798C', 'width': '50%'}} className={Styles.Button}  variant="outlined">{Translation('Tender.BACK')}</Button></Box>
+                        <Box className={Styles.button}><Button  sx={{ 'background-color': '#00798C', 'width': '50%' }} className={Styles.Button}  variant="contained">{Translation('Tender.Offer_confirmation')}</Button></Box>
+                    </Box>
                     </Box>
                 </Box>
             </Box>
