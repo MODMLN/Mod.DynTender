@@ -22,8 +22,6 @@ interface IProps {
     AmountSign: string
 }
 
-
-
 export default function TenderLine({ item, AmountSign }: IProps): JSX.Element {
     const Translation = useTranslation();
     const dispatch = useDispatch();
@@ -39,13 +37,12 @@ export default function TenderLine({ item, AmountSign }: IProps): JSX.Element {
         setValue('tenderSum', item.Price);
         if (item != null) {
             setPrice(item.Price);
-            
          reset(item);}
         }
     ,[item]);
 
 
-    const handleTotalPriceForDisplayChange = () => { }
+
 
     const toggleAcordion = () => {
         setExpand((expand) => !expand);
@@ -100,7 +97,7 @@ export default function TenderLine({ item, AmountSign }: IProps): JSX.Element {
                                     </Box> </Box>
                             }</Box>
                             <Box >
-                                {(!expand && true) &&
+                                {(!expand && item.isUpdated) &&
                                     <Box className={`${Styles.Updated}`}>
                                         {Translation('Tender.UPDATED')}
                                     </Box>

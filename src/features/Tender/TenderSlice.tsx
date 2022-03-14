@@ -64,6 +64,7 @@ export const tenderSlice = createSlice({
         line.Price = parseFloat(parseFloat(String(line.Price)).toFixed(2));
         line.TotalPrice = CalculateLineTotal(state.tenderdata, line);
         line.TotalPriceForDisplay = line.TotalPrice;
+        line.isUpdated=true;
       }
       state.totalSummery = CalculateTenderTotal(state.tenderdata);
     },
