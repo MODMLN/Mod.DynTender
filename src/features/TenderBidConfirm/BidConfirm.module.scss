@@ -35,6 +35,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 .BoxContainer {
   width: 100%;
+  display: 'flex';
 
   .BoxMain {
     border: none !important;
@@ -58,7 +59,7 @@ input[type=number]::-webkit-outer-spin-button {
       margin-bottom: 1%;
       margin-left: auto;
       margin-right: auto;
-      width: 53%;
+      width: 50%;
       border: none !important;
 
       >div {
@@ -155,7 +156,7 @@ input[type=number]::-webkit-outer-spin-button {
   }
 
   .DataGrid {
-    width: 53%;
+    width: 50%;
     margin-bottom: 2%;
     margin-left: auto;
     margin-right: auto;
@@ -193,7 +194,7 @@ input[type=number]::-webkit-outer-spin-button {
       height: 500px !important;
       min-height: 350px !important;
       height: 100%;
-
+      .lblUpdate{ padding: 5px 15px; background-color: #E3EBF8; border-radius: 12px;}
       .DataGridClass {
         .columnHeaderTitle{ font-weight: bold !important;}
         .MuiDataGrid-columnSeparator,

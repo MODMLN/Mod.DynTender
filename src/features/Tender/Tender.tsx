@@ -16,10 +16,6 @@ import CurrencyFormat from 'react-number-format';
 import UsersDto from "./../../Global/UsersDto";
 import {selectUser} from "./../../Global/UsersSlice";
 
-interface IProps {
-  Item: UsersDto, 
-}
-
 export default function Tender() {
   const userDto = useSelector(selectUser);
   //const params = useParams() as any;

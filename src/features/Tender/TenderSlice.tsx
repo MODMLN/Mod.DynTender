@@ -11,7 +11,6 @@ const API_URL_Lpau = "/LeadingPropositionAndUser.json";
 export interface CounterState {
   loading: boolean,
   error: boolean,
- // globaldata:
   tenderdata: TenderDto,
   lpaudata:LpauDto,
   totalSummery: number | undefined
