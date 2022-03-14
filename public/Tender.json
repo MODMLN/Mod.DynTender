@@ -39,7 +39,8 @@
                 "TotalWithoutBenefits": 171360.0000,
                 "BenefitType": "",
                 "TotalWithLocationBenefit": null,
-                "TotalForLocalWork": null
+                "TotalForLocalWork": null,
+                "isUpdated":true
             },
             {
                 "RequiredAmount": 30.00,

@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { useParams ,useNavigate} from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import TenderItem from './TenderItem';
 import { selectTender, fetchTenderAsync, selectTotalSummery ,selectLpau,fetchLpauAsync, fetchConfirmPropositionAsync} from "./TenderSlice";
@@ -17,15 +18,15 @@ import UsersDto from "./../../Global/UsersDto";
 import {selectUser} from "./../../Global/UsersSlice";
 
 export default function Tender() {
+  const { id } = useParams();
+  let navigate = useNavigate();
+
   const userDto = useSelector(selectUser);
-  //const params = useParams() as any;
   const tenderDto = useSelector(selectTender);
   const TotalSummery = useSelector(selectTotalSummery);
   const LpauDto = useSelector(selectLpau);
-
   const dispatch = useDispatch();
   const [open, setOpen] = React.useState(false);
-
   const Translation = useTranslation();
 
   useEffect(() => {
@@ -37,6 +38,10 @@ export default function Tender() {
     }, 10000);
     return () => clearInterval(interval);
   }, [dispatch]);
+
+  const navBack = () =>{
+    navigate(`/BidConfirm/${id}`);
+  }
 
   let Statuses = switchStatus(tenderDto.Statuses);
 
@@ -82,7 +87,7 @@ export default function Tender() {
           <Box className={Styles.summery}><CurrencyFormat value={TotalSummery} displayType={'text'} thousandSeparator={true} prefix={tenderDto.CurrencyId} decimalScale={2} /></Box>
           <Box className={Styles.buttonDiv}>
             {Statuses.isVisible() &&
-              <Box><Button onClick={() => {dispatch(fetchConfirmPropositionAsync({userId:userDto.userId}))}} sx={{ 'background-color': '#00798C', 'width': '50%' }} className={Styles.Button} disabled={!Statuses.isEnable()} variant="contained">הגשת ההצעה</Button></Box>
+              <Box><Button onClick={() => {dispatch(fetchConfirmPropositionAsync({userId:userDto.userId}));navBack()}} sx={{ 'background-color': '#00798C', 'width': '50%' }} className={Styles.Button} disabled={!Statuses.isEnable()} variant="contained">הגשת ההצעה</Button></Box>
             }
           </Box>
         </Box>

@@ -31,4 +31,5 @@ export class TenderLineDto {
     public ErrorMsgIsOpen?: boolean ;
     public ErrorMsgMessege?: string ;
     public ErrorMsg!: IMessege;
+    public isUpdated?: boolean ;
 }

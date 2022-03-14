@@ -1,28 +1,26 @@
 import React, { useEffect } from "react";
+import { useParams ,useNavigate} from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import Styles from './BidConfirm.module.scss';
-import { Box, Button,Alert  ,Stack,Link} from "@mui/material";
+import { Box, Button,Alert  ,Stack} from "@mui/material";
 import { useTranslation } from "react-multi-lang";
 import UsersDto from "./../../Global/UsersDto";
-import { selectTender, fetchTenderAsync, selectTotalSummery, selectLpau, fetchLpauAsync, fetchConfirmPropositionAsync } from "./../Tender/TenderSlice";
-import { selectUser } from "./../../Global/UsersSlice";
+import { selectTender, fetchTenderAsync, selectLpau, fetchLpauAsync ,selectTotalSummery} from "./../Tender/TenderSlice";
 import TenderItem from './../Tender/TenderItem';
-import { DataGrid, GridRowsProp, GridColDef ,GridRowParams  } from '@mui/x-data-grid';
+import { DataGrid, GridRowsProp, GridColDef   } from '@mui/x-data-grid';
 import CurrencyFormat from "react-number-format";
-import { Lines } from "../Tenders/Dtos/TendersDto";
 import { TenderLineDto } from "../Tender/Dtos/TenderLineDto";
-
 
 interface IProps {
     Item: UsersDto,
 }
 
-
-
 export default function BidConfirm(){
+    const { id } = useParams();
+    let navigate = useNavigate();
     const dispatch = useDispatch();
     const Translation = useTranslation();
-    
+    const TotalSummery = useSelector(selectTotalSummery);
     const tenderDto = useSelector(selectTender);
     const LpauDto = useSelector(selectLpau);
 
@@ -32,11 +30,13 @@ export default function BidConfirm(){
       }, [dispatch]);
   
      
-
+      const navBack = () =>{
+        navigate(`/Tender/${id}`);
+      }
       
        
     const rows: GridRowsProp = (tenderDto != null && tenderDto.Lines != null && tenderDto.Lines.length > 0  &&
-         tenderDto.Lines.map((x:TenderLineDto)=> ({id: x.TenderLineId, col1: x.TenderLineName, col2: x.RequiredAmount , col3: x.Price , col4: 'עודכן'})));
+         tenderDto.Lines.map((x:TenderLineDto)=> ({id: x.TenderLineId, col1: x.TenderLineName, col2: x.RequiredAmount , col3: x.TotalPrice , col4: x.isUpdated?'עודכן':''})));
      
 
 
@@ -51,12 +51,14 @@ export default function BidConfirm(){
             <span  className={Styles.bold}>{params.value}</span>
           )},
         { field: 'col4', headerName: '', width: 150 , sortable:false,  flex: 1 , renderCell: (params) => (
-            <span  className={Styles.lblUpdate}>{params.value}</span>
+            <span  className={params.value?Styles.lblUpdate:''}>{params.value}</span>
           )},
     ];
 
+
     return (
         <>
+ 
             <Box className={Styles.BoxContainer}>
                 <Box className={Styles.BoxHeadTop} >
                     <Box className={Styles.tenderDetails}>
@@ -99,9 +101,9 @@ export default function BidConfirm(){
                 <Box className={Styles.BoxContainer}>
                     <Box className={Styles.BoxSummery}>
                     <Box className={Styles.title}>{Translation('Tender.THE_AMOUNT_OF_YOUR_BID')}</Box>
-                    <Box className={Styles.summery}><CurrencyFormat value={225254} displayType={'text'} thousandSeparator={true} prefix={tenderDto.CurrencyId} decimalScale={2} /></Box>
+                    <Box className={Styles.summery}><CurrencyFormat value={TotalSummery} displayType={'text'} thousandSeparator={true} prefix={tenderDto.CurrencyId} decimalScale={2} /></Box>
                     <Box className={Styles.buttonDiv}>
-                        <Box className={Styles.button}><Button  sx={{  'color': '#00798C', 'width': '50%'}} className={Styles.Button}  variant="outlined">{Translation('Tender.BACK')}</Button></Box>
+                        <Box className={Styles.button}><Button  sx={{  'color': '#00798C', 'width': '50%'}} className={Styles.Button}  variant="outlined" onClick={navBack}>{Translation('Tender.BACK')}</Button></Box>
                         <Box className={Styles.button}><Button  sx={{ 'background-color': '#00798C', 'width': '50%' }} className={Styles.Button}  variant="contained">{Translation('Tender.Offer_confirmation')}</Button></Box>
                     </Box>
                     </Box>
