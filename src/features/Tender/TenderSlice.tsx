@@ -65,6 +65,7 @@ export const tenderSlice = createSlice({
         line.TotalPrice = CalculateLineTotal(state.tenderdata, line);
         line.TotalPriceForDisplay = line.TotalPrice;
         line.isUpdated=true;
+     
       }
       state.totalSummery = CalculateTenderTotal(state.tenderdata);
     },

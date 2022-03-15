@@ -77,7 +77,6 @@ export default function BidConfirm(){
                     <Box className={Styles.SUMMARYDiv}>{Translation("Tender.SUMMARY_OF_ITEMS")}</Box>
                     <Box className={Styles.InnerDataGrid}>
                         <DataGrid
-                          
                             sortingMode="client"
                             className={Styles.DataGridClass}
                             disableColumnMenu
@@ -86,9 +85,10 @@ export default function BidConfirm(){
                             hideFooterSelectedRowCount={true}
                             rows={rows} 
                             columns={columns} 
-                         
+                            autoHeight
+                            isRowSelectable={()=>false}
                             sx={{
-                                '& .MuiDataGrid-columnHeaderTitle': {
+                                '&.MuiDataGrid-columnHeaderTitle': {
                                     'font-weight': 'bold !important',
                                   },
                                   '& .MuiDataGrid-columnSeparator': {
