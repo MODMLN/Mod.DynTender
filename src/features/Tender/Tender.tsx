@@ -88,8 +88,8 @@ export default function Tender() {
           <Box className={Styles.buttonDiv}>
             {Statuses.isVisible() &&
               <Box><Button onClick={() => {dispatch(fetchConfirmPropositionAsync(
-                {userId:userDto.userId,
-                tenderId:tenderDto.Id,
+                { userId:userDto.userId,
+                  tenderId:tenderDto.Id,
                   lines:[tenderDto.Lines.map((x:TenderLineDto)=> ({tenderLineId: x.TenderLineId,price:x.Price}))]
                 }));
                  navBack();

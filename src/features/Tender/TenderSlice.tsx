@@ -2,17 +2,18 @@ import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 import { RootState } from "../../app/store";
 import TenderDto from './Dtos/TenderDto';
-import {TenderLineDto} from './Dtos/TenderLineDto';
+import { TenderLineDto } from './Dtos/TenderLineDto';
 import LpauDto from './Dtos/LpauDto';
 import UsersDto from './../../Global/UsersDto';
+
 const API_URL_Tender = "/Tender.json";
-const API_URL_Lpau = "/LeadingPropositionAndUser.json";
+const API_URL_Lpau   = "/LeadingPropositionAndUser.json";
 
 export interface CounterState {
   loading: boolean,
   error: boolean,
   tenderdata: TenderDto,
-  lpaudata:LpauDto,
+  lpaudata: LpauDto,
   totalSummery: number | undefined
 }
 
@@ -21,7 +22,7 @@ export const initialState: CounterState = {
   loading: false,
   error: false,
   tenderdata: new TenderDto(),
-  lpaudata:new LpauDto(),
+  lpaudata: new LpauDto(),
   totalSummery: 0
 };
 
@@ -54,18 +55,18 @@ export const tenderSlice = createSlice({
             break;
         }
 
-        if(line.MinPrice < line.Price && line.Price > line.MaxPrice){
-            line.ErrorMsgIsOpen = true;
-            line.ErrorMsgMessege = 'המחיר שהוקלד אינו עומד בטווח שנקבע';
-            
-           // line.ErrorMsg.isOpen = line.ErrorMsg?line.ErrorMsg.isOpen:false;
-            //line.ErrorMsg.messege = line.ErrorMsg?line.ErrorMsg.messege:"";
+        if (line.MinPrice < line.Price && line.Price > line.MaxPrice) {
+          line.ErrorMsgIsOpen = true;
+          line.ErrorMsgMessege = 'המחיר שהוקלד אינו עומד בטווח שנקבע';
+
+          // line.ErrorMsg.isOpen = line.ErrorMsg?line.ErrorMsg.isOpen:false;
+          //line.ErrorMsg.messege = line.ErrorMsg?line.ErrorMsg.messege:"";
         }
         line.Price = parseFloat(parseFloat(String(line.Price)).toFixed(2));
         line.TotalPrice = CalculateLineTotal(state.tenderdata, line);
         line.TotalPriceForDisplay = line.TotalPrice;
-        line.isUpdated=true;
-     
+        line.isUpdated = true;
+
       }
       state.totalSummery = CalculateTenderTotal(state.tenderdata);
     },
@@ -80,8 +81,8 @@ export const tenderSlice = createSlice({
       })
       .addCase(fetchTenderAsync.fulfilled, (state, action) => {
         state.loading = false;
-        
-       // if (tenderdata?.Lines != null)
+
+        // if (tenderdata?.Lines != null)
         state.tenderdata = SetTenderData(state, action.payload);
         // else{
         //   set all , but prices
@@ -93,7 +94,7 @@ export const tenderSlice = createSlice({
         //}
       })
       .addCase(fetchApproveMessagesAsync.fulfilled, (state, action) => {
-       
+
         //console.log(state.userdata)
       })
       .addCase(fetchTenderAsync.rejected, (state, { payload }) => {
@@ -101,7 +102,7 @@ export const tenderSlice = createSlice({
         //state.byId[userId] = null; // <-- I need the userId from createAsyncThunk here.
       })
       .addCase(fetchConfirmPropositionAsync.fulfilled, (state, action) => {
-        
+
         console.log(action)
       });
 
@@ -109,44 +110,47 @@ export const tenderSlice = createSlice({
 });
 
 export const fetchTenderAsync = createAsyncThunk('tenderdata/get', async (thunkAPI) => {
-    try {
-      const response = await axios.get(`${API_URL_Tender}`);
-      return response.data;
-    } catch (err) {
-      return err;
-    }
+  try {
+    const response = await axios.get(`${API_URL_Tender}`);
+    return response.data;
+  } catch (err) {
+    return err;
   }
+}
 );
 
 export const fetchLpauAsync = createAsyncThunk('tenderdata/post', async (thunkAPI) => {
-    try {
-      const response = await axios.get(`${API_URL_Lpau}`);
-      return response.data;
-    } catch (err) {
-      return err;
-    }
-  }
-);
-
-export const fetchApproveMessagesAsync = createAsyncThunk('tenderdata/ApproveMessages', async (req:any,thunkAPI: any) => {
-    try {
-      const response = await axios.post(`${API_URL_Lpau}/${req}`);
-      return response.data;
-    } catch (err) {
-      return err;
-    }
-  }
-);
-
-export const fetchConfirmPropositionAsync = createAsyncThunk('tenderdata/ConfirmProposition', async (req:any,thunkAPI: any) => {
   try {
-    console.log('req:',req)
+    const response = await axios.get(`${API_URL_Lpau}`);
+    return response.data;
+  } catch (err) {
+    return err;
+  }
+}
+);
+
+export const fetchApproveMessagesAsync = createAsyncThunk('tenderdata/ApproveMessages', async (req: any, thunkAPI: any) => {
+  try {
     const response = await axios.post(`${API_URL_Lpau}/${req}`);
     return response.data;
   } catch (err) {
     return err;
   }
 }
+);
+
+export const fetchConfirmPropositionAsync = createAsyncThunk('tenderdata/ConfirmProposition', async (req: any, thunkAPI: any) => {
+  try {
+    let responseFakeJson = {Price:225,TotalWithoutBenefits:28555};//need to replace with real response
+    const response = await axios.post(
+      `${API_URL_Lpau}/ConfirmProposition`,
+      req,
+    )
+    return response.data;
+    } catch (err) {
+      return err;
+    }
+  }
 );
 
 const SetTenderData = (state: CounterState, tender: TenderDto) => {
@@ -162,12 +166,12 @@ const SetTenderData = (state: CounterState, tender: TenderDto) => {
   return tender;
 }
 
-const SetLpauDtoData = (state: CounterState, lpau: LpauDto) => { 
+const SetLpauDtoData = (state: CounterState, lpau: LpauDto) => {
   return lpau;
 }
 
 const CalculateLineTotal = (tender: TenderDto, tenderLine: TenderLineDto) => {
-   return tender.IsPercentageCalculation ?
+  return tender.IsPercentageCalculation ?
     tenderLine.Price * tenderLine.RequiredAmount / 100 :
     tenderLine.Price * tenderLine.RequiredAmount;
 }
