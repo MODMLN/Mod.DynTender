@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams ,useNavigate} from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import Styles from './BidConfirm.module.scss';
@@ -15,6 +15,8 @@ interface IProps {
     Item: UsersDto,
 }
 
+
+
 export default function BidConfirm(){
     const { id } = useParams();
     let navigate = useNavigate();
@@ -23,6 +25,7 @@ export default function BidConfirm(){
     const TotalSummery = useSelector(selectTotalSummery);
     const tenderDto = useSelector(selectTender);
     const LpauDto = useSelector(selectLpau);
+
 
     useEffect(() => {
         dispatch(fetchTenderAsync());
@@ -33,12 +36,10 @@ export default function BidConfirm(){
       const navBack = () =>{
         navigate(`/Tender/${id}`);
       }
-      
-       
-    const rows: GridRowsProp = (tenderDto != null && tenderDto.Lines != null && tenderDto.Lines.length > 0  &&
-         tenderDto.Lines.map((x:TenderLineDto)=> ({id: x.TenderLineId, col1: x.TenderLineName, col2: x.RequiredAmount , col3: x.TotalPrice , col4: x.isUpdated?'עודכן':''})));
-     
 
+      const rows: GridRowsProp  =(tenderDto != null && tenderDto.Lines != null && tenderDto.Lines.length > 0  &&
+         tenderDto.Lines.map((x:TenderLineDto)=> ({id: x.TenderLineId, col1: x.TenderLineName, col2: x.RequiredAmount , col3: x.TotalPrice , col4: x.isUpdated?'עודכן':''})));
+    
 
     const columns: GridColDef[] = [
         { field: 'col1', headerName:Translation("Tender.ITEM_NAME"), width: 250, sortable:false,headerClassName:'columnHeaderTitle',renderCell: (params) => (
@@ -58,12 +59,10 @@ export default function BidConfirm(){
 
     return (
         <>
- 
             <Box className={Styles.BoxContainer}>
                 <Box className={Styles.BoxHeadTop} >
                     <Box className={Styles.tenderDetails}>
                     {(tenderDto != null) &&
-                       
                         <TenderItem key="4" item={tenderDto} index={0} redirectOnClick={false} leadItem={LpauDto} />
                     }
                     </Box>

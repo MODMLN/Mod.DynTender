@@ -46,10 +46,8 @@ export default function Tender() {
   let Statuses = switchStatus(tenderDto.Statuses);
 
   return (
-
     <Box className={Styles.BoxContainer}>
       <Box className={Styles.BoxHeadTop} >
-
         <Box key="1" className={Styles.tenderDetails}>
           {(tenderDto != null && tenderDto.Messages != null && tenderDto.Messages.length > 0) &&
             <Dialog key="2" flag={open} Messages={tenderDto.Messages} ></Dialog>
@@ -69,7 +67,6 @@ export default function Tender() {
       <Box className={Styles.BoxSumItems}>{Translation('Tender.ITEMS_IN_TENDER') + " " + tenderDto.itemsNumber} </Box>
       <Box className={Styles.TenderLines}>
         {
-
           (tenderDto != null && tenderDto.Lines != null && tenderDto.Lines.length > 0) ?
             tenderDto.Lines.map((itemx: TenderLineDto, indexx: number) => {
 
@@ -102,4 +99,3 @@ export default function Tender() {
     </Box>
   );
 };
-

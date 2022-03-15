@@ -12,8 +12,6 @@ import { linePriceChanged } from "./TenderSlice";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-multi-lang";
-
-
 import Joi from "joi";
 import {joiResolver} from "@hookform/resolvers/joi";
 
@@ -41,9 +39,6 @@ export default function TenderLine({ item, AmountSign }: IProps): JSX.Element {
         }
     ,[item]);
 
-
-
-
     const toggleAcordion = () => {
         setExpand((expand) => !expand);
     };
@@ -60,11 +55,7 @@ export default function TenderLine({ item, AmountSign }: IProps): JSX.Element {
     const onSubmit = async (data: any, event: (React.BaseSyntheticEvent | undefined)) => {
         if (event != null)
             event.stopPropagation();
-
-        console.log(data);
     };
-
-
 
     return (
         <Box key={item.Index} className={Styles.TenderLine}>
