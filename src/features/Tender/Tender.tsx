@@ -87,7 +87,14 @@ export default function Tender() {
           <Box className={Styles.summery}><CurrencyFormat value={TotalSummery} displayType={'text'} thousandSeparator={true} prefix={tenderDto.CurrencyId} decimalScale={2} /></Box>
           <Box className={Styles.buttonDiv}>
             {Statuses.isVisible() &&
-              <Box><Button onClick={() => {dispatch(fetchConfirmPropositionAsync({userId:userDto.userId}));navBack()}} sx={{ 'background-color': '#00798C', 'width': '50%' }} className={Styles.Button} disabled={!Statuses.isEnable()} variant="contained">הגשת ההצעה</Button></Box>
+              <Box><Button onClick={() => {dispatch(fetchConfirmPropositionAsync(
+                {userId:userDto.userId,
+                tenderId:tenderDto.Id,
+                  lines:[tenderDto.Lines.map((x:TenderLineDto)=> ({tenderLineId: x.TenderLineId,price:x.Price}))]
+                }));
+                 navBack();
+                }}
+                 sx={{ 'background-color': '#00798C', 'width': '50%' }} className={Styles.Button} disabled={!Statuses.isEnable()} variant="contained">הגשת ההצעה</Button></Box>
             }
           </Box>
         </Box>

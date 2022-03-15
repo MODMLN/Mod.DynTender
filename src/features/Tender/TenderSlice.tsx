@@ -140,7 +140,7 @@ export const fetchApproveMessagesAsync = createAsyncThunk('tenderdata/ApproveMes
 
 export const fetchConfirmPropositionAsync = createAsyncThunk('tenderdata/ConfirmProposition', async (req:any,thunkAPI: any) => {
   try {
-    console.log(req)
+    console.log('req:',req)
     const response = await axios.post(`${API_URL_Lpau}/${req}`);
     return response.data;
   } catch (err) {
