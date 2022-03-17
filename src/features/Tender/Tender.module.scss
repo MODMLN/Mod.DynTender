@@ -280,6 +280,9 @@ margin-bottom: 0px;
         display: inline-flex;
         gap: 12px;
 
+        div{
+          display: flex;
+        }
         fieldset {
           border: none;
         }
