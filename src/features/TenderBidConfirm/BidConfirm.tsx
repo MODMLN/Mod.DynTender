@@ -5,7 +5,7 @@ import Styles from './BidConfirm.module.scss';
 import { Box, Button,Alert  ,Stack} from "@mui/material";
 import { useTranslation } from "react-multi-lang";
 import UsersDto from "./../../Global/UsersDto";
-import { selectTender, fetchTenderAsync, selectLpau, fetchLpauAsync ,selectTotalSummery} from "./../Tender/TenderSlice";
+import { selectTender, fetchTenderAsync, selectLpau, fetchLpauAsync ,selectTotalSummery,fetchConfirmPropositionAsync} from "./../Tender/TenderSlice";
 import TenderItem from './../Tender/TenderItem';
 import { DataGrid, GridRowsProp, GridColDef   } from '@mui/x-data-grid';
 import CurrencyFormat from "react-number-format";
@@ -30,6 +30,7 @@ export default function BidConfirm(){
     useEffect(() => {
         dispatch(fetchTenderAsync());
         dispatch(fetchLpauAsync());
+        dispatch(fetchConfirmPropositionAsync(''));//מסך אישור הצעה - הצגת שגיאות #31
       }, [dispatch]);
   
      

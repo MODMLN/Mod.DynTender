@@ -140,6 +140,10 @@ export const fetchApproveMessagesAsync = createAsyncThunk('tenderdata/ApproveMes
 );
 
 export const fetchConfirmPropositionAsync = createAsyncThunk('tenderdata/ConfirmProposition', async (req: any, thunkAPI: any) => {
+  const fakeErrorsResponse  = {Errors: [
+    "המחיר קטן מידי",
+    "המכרז הסתיים"
+    ]};
   try {
     let responseFakeJson = {Price:225,TotalWithoutBenefits:28555};//need to replace with real response
     const response = await axios.post(
