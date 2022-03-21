@@ -6,7 +6,6 @@ import { selectTender, fetchTenderAsync, selectTotalSummery ,selectLpau,fetchLpa
 import TenderLine from './TenderLine';
 import {TenderLineDto} from './Dtos/TenderLineDto';
 import { Box } from "@mui/material";
-//import { useParams } from "react-router-dom";
 import Styles from './Tender.module.scss';
 import Dialog from './dialog';
 import NeedApprovalMessages from './NeedApprovalMessages';
@@ -16,6 +15,7 @@ import { useTranslation } from "react-multi-lang";
 import CurrencyFormat from 'react-number-format';
 import UsersDto from "./../../Global/UsersDto";
 import {selectUser} from "./../../Global/UsersSlice";
+
 
 export default function Tender() {
   const { id } = useParams();
@@ -27,6 +27,7 @@ export default function Tender() {
   const LpauDto = useSelector(selectLpau);
   const dispatch = useDispatch();
   const [open, setOpen] = React.useState(false);
+  const [openBidConfirm, setOpenBidConfirm] = React.useState(false);
   const Translation = useTranslation();
 
   useEffect(() => {
@@ -72,7 +73,7 @@ export default function Tender() {
 
               return (
                 <>
-                  <TenderLine key={`indxx_${indexx}`} item={itemx} AmountSign={tenderDto.AmountSign}></TenderLine>
+                  <TenderLine key={`indxx_${indexx}`} item={itemx} AmountSign={tenderDto.AmountSign} status={tenderDto.Statuses}></TenderLine>
                 </>
               )
             })

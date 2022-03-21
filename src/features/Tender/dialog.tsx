@@ -1,17 +1,7 @@
 import React, { useEffect } from "react";
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
-import Button from '@mui/material/Button';
-import { Box } from "@mui/material";
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
-import Avatar from '@mui/material/Avatar';
+import {Box,Avatar,Checkbox,ListItemAvatar,ListItemText,ListItem,List,Button,DialogTitle,DialogContentText,DialogContent,DialogActions,Dialog} from '@mui/material';
 import ImageIcon from '@mui/icons-material/Image';
+import { useTranslation } from "react-multi-lang";
 
 interface IProps {
     flag: boolean,
@@ -19,6 +9,7 @@ interface IProps {
 }
 
 export default function DialogModel({ flag,Messages }: IProps) {
+    const Translation = useTranslation();
     const [open, setOpen] = React.useState(true);
     useEffect(() => {
             if(flag){
@@ -36,11 +27,11 @@ export default function DialogModel({ flag,Messages }: IProps) {
                 sx={{ 'direction': 'rtl' }}
                 open={open}
                 onClose={handleClose}
-                aria-labelledby="הודעות למכרז זה"
-                aria-describedby="הודעות למכרז זה"
+                aria-labelledby={Translation('Tender.ANNOUNCEMENTS_FOR_THIS_AUCTION')}
+                aria-describedby={Translation('Tender.ANNOUNCEMENTS_FOR_THIS_AUCTION')}
             >
                 <DialogTitle id="alert-dialog-title">
-                    הודעות למכרז זה
+                   {Translation('Tender.ANNOUNCEMENTS_FOR_THIS_AUCTION')}
                 </DialogTitle>
                 <DialogContent>
                     <DialogContentText id="alert-dialog-description" component={'span'} >
@@ -57,7 +48,9 @@ export default function DialogModel({ flag,Messages }: IProps) {
                             </ListItem>
                             ))}
                             </List>
+
                         </Box>
+                        <Box><Checkbox /><span>{Translation('Tender.DO_NOT_SHOW_THIS_MESSAGE_AGAIN')}</span></Box>
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>

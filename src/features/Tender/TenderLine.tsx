@@ -5,7 +5,8 @@ import {
     TextField
 } from "@mui/material";
 import Styles from './Tender.module.scss';
-import { ExpandMore, AddCircle, RemoveCircle } from '@mui/icons-material';
+import { ExpandMore, AddCircle, RemoveCircle  } from '@mui/icons-material';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { TenderLineDto, IMessege } from './Dtos/TenderLineDto';
 import CurrencyFormat from 'react-number-format';
 import { linePriceChanged } from "./TenderSlice";
@@ -17,10 +18,11 @@ import { joiResolver } from "@hookform/resolvers/joi";
 
 interface IProps {
     item: TenderLineDto,
-    AmountSign: string
+    AmountSign: string,
+    status:string
 }
 
-export default function TenderLine({ item, AmountSign }: IProps): JSX.Element {
+export default function TenderLine({ item, AmountSign,status }: IProps): JSX.Element {
     const Translation = useTranslation();
     const dispatch = useDispatch();
     const [expand, setExpand] = React.useState(false);
@@ -37,12 +39,7 @@ export default function TenderLine({ item, AmountSign }: IProps): JSX.Element {
             setPrice(item.Price);
             reset(item);
         }
-    }
-        , [item]);
-
-    const toggleAcordion = () => {
-        setExpand((expand) => !expand);
-    };
+    },[item]);
 
     const schema = Joi.object({
         tenderSum: Joi.number().positive().precision(2).min(Math.max(0, item.MinPrice)).max(item.MaxPrice).required(),
@@ -53,6 +50,7 @@ export default function TenderLine({ item, AmountSign }: IProps): JSX.Element {
         resolver: joiResolver(schema),
         mode: 'onBlur', //'onBlur' 'onChange' 'onSubmit'[*default] 'onTouched' 'all'
     });
+
     const onSubmit = async (data: any, event: (React.BaseSyntheticEvent | undefined)) => {
         if (event != null)
             event.stopPropagation();
@@ -60,11 +58,13 @@ export default function TenderLine({ item, AmountSign }: IProps): JSX.Element {
 
     return (
         <Box key={item.Index} className={Styles.TenderLine}>
-            <Accordion sx={{ 'box-shadow': 'none' }}>
+            <Accordion sx={{ 'box-shadow': 'none' }} expanded={expand} >
                 <AccordionSummary
-                    onClick={() => toggleAcordion()}
+                    onClick={() => (status!=='Ended' && status!=='Decoded')? setExpand((expand) => !expand):null}
                     sx={{ direction: 'rtl', border: 'none' }}
-                    expandIcon={<ExpandMore />}
+                    expandIcon={
+                        (status!=='Ended' && status!=='Decoded')?<KeyboardArrowDownIcon />:null
+                    }
                     aria-controls="panel1a-content"
                     id="panel1a-header">
                     <Typography component={'span'} >

@@ -28,7 +28,9 @@
     "PROPOSAL_IS_FILLED_IN_PROPERLY":"יש לוודא שהצעתך מולאה כראוי",
     "SUMMARY_OF_ITEMS":"סיכום הפריטים",
     "PRICE":"מחיר",
-    "ITEM_NAME":"שם פריט"
+    "ITEM_NAME":"שם פריט",
+    "ANNOUNCEMENTS_FOR_THIS_AUCTION":"הודעות למכרז זה",
+    "DO_NOT_SHOW_THIS_MESSAGE_AGAIN":"אל תציג הודעה זו שוב"
 
   }
 }
