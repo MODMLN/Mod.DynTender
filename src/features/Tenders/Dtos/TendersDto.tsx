@@ -18,7 +18,7 @@ export default class TendersDto {
     public RankInfo!: Ranks;// האם מכרז מוביל או לא
     public UserLastPropositionTotal?: number
     public Statuses!: Status;
-    public Messages?:Messages[]
+    public Messages?:Messages[];
  
 }
 

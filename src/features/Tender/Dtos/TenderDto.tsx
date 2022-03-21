@@ -28,5 +28,5 @@ export default class TenderDto {
     public Messages?:string[] | undefined;
     public IsFemaleOwner?: boolean;
     public itemsNumber!: number | undefined;
-    public ErrorMessages ?: []
+    public ErrorMessages ?: string[]| undefined;
 }
