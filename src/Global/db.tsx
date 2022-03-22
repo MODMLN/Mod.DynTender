@@ -1,22 +1,23 @@
 // db.js
 import Dexie, { Table } from 'dexie';
 
-export interface Friend {
+export interface TenderMesseges {
   id?: number;
-  name: string;
-  age: number;
+  Tanderid?: number;
+  ischecked: boolean;
 }
 
 export class MySubClassedDexie extends Dexie {
   // 'friends' is added by dexie when declaring the stores()
   // We just tell the typing system this is the case
-  friends!: Table<Friend>; 
+  tenderMesseges!: Table<TenderMesseges>; 
 
   constructor() {
     super('myDatabase');
     this.version(1).stores({
-      friends: '++id, name, age' // Primary key and indexed props
-    });
+      tenderMesseges: '++id,Tanderid, ischecked' // Primary key and indexed props
+    }); 
+   
   }
 }
 
