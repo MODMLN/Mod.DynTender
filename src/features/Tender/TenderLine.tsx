@@ -1,11 +1,11 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
     Box, Accordion, AccordionSummary, AccordionDetails,
     Typography, IconButton, FormControl, Snackbar, Alert,
     TextField
 } from "@mui/material";
 import Styles from './Tender.module.scss';
-import { ExpandMore, AddCircle, RemoveCircle  } from '@mui/icons-material';
+import {  AddCircle, RemoveCircle  } from '@mui/icons-material';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { TenderLineDto, IMessege } from './Dtos/TenderLineDto';
 import CurrencyFormat from 'react-number-format';
@@ -46,7 +46,7 @@ export default function TenderLine({ item, AmountSign,status }: IProps): JSX.Ele
 
     }).options({ allowUnknown: true });//instead of adding non shown fields
 
-    const { register, handleSubmit, watch, reset, resetField, setValue, formState: { errors } } = useForm({
+    const { register, handleSubmit, reset, setValue, formState: { errors } } = useForm({
         resolver: joiResolver(schema),
         mode: 'onBlur', //'onBlur' 'onChange' 'onSubmit'[*default] 'onTouched' 'all'
     });

@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import { useParams ,useNavigate} from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import TenderItem from './TenderItem';
-import { selectTender, fetchTenderAsync, selectTotalSummery ,selectLpau,fetchLpauAsync, fetchConfirmPropositionAsync} from "./TenderSlice";
+import { selectTender, fetchTenderAsync, selectTotalSummery ,selectLpau,fetchLpauAsync, fetchConfirmPropositionAsync,fetchTenderMessegesAsync} from "./TenderSlice";
 import TenderLine from './TenderLine';
 import {TenderLineDto} from './Dtos/TenderLineDto';
 import { Box } from "@mui/material";
@@ -15,9 +15,21 @@ import { useTranslation } from "react-multi-lang";
 import CurrencyFormat from 'react-number-format';
 import UsersDto from "./../../Global/UsersDto";
 import {selectUser} from "./../../Global/UsersSlice";
+import { useLiveQuery } from "dexie-react-hooks";
+import {db} from './../../Global/db';
+
+
 
 
 export default function Tender() {
+
+
+  const friends = useLiveQuery(
+    () => db.tenderMesseges.toArray()
+  );
+
+
+  console.log(friends)
   const { id } = useParams();
   let navigate = useNavigate();
 
@@ -30,13 +42,17 @@ export default function Tender() {
   const [openBidConfirm, setOpenBidConfirm] = React.useState(false);
   const Translation = useTranslation();
 
+  
   useEffect(() => {
     setOpen(true);
     dispatch(fetchTenderAsync());
     dispatch(fetchLpauAsync());
     const interval = setInterval(() => {
       dispatch(fetchLpauAsync());
+      
+      
     }, 10000);
+    dispatch(fetchTenderMessegesAsync({Tanderid:id?.replace(':','')!,userId:userDto.userId}));
     return () => clearInterval(interval);
   }, [dispatch]);
 

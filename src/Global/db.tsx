@@ -3,8 +3,9 @@ import Dexie, { Table } from 'dexie';
 
 export interface TenderMesseges {
   id?: number;
-  Tanderid?: number;
-  ischecked: boolean;
+  userId?:number;
+  Tanderid?: string;
+  ischecked?: boolean;
 }
 
 export class MySubClassedDexie extends Dexie {
@@ -15,7 +16,7 @@ export class MySubClassedDexie extends Dexie {
   constructor() {
     super('myDatabase');
     this.version(1).stores({
-      tenderMesseges: '++id,Tanderid, ischecked' // Primary key and indexed props
+      tenderMesseges: '++id,Tanderid, userId,ischecked' // Primary key and indexed props
     }); 
    
   }
