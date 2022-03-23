@@ -14,7 +14,7 @@ import switchStatus from './Commons/switchStatus';
 import { useTranslation } from "react-multi-lang";
 import CurrencyFormat from 'react-number-format';
 import UsersDto from "./../../Global/UsersDto";
-import {selectUser} from "./../../Global/UsersSlice";
+import {fetchUserAsync, selectUser} from "./../../Global/UsersSlice";
 import { useLiveQuery } from "dexie-react-hooks";
 import {db} from './../../Global/db';
 
@@ -29,7 +29,6 @@ export default function Tender() {
   );
 
 
-  console.log(friends)
   const { id } = useParams();
   let navigate = useNavigate();
 
@@ -47,27 +46,29 @@ export default function Tender() {
     setOpen(true);
     dispatch(fetchTenderAsync());
     dispatch(fetchLpauAsync());
+    dispatch(fetchUserAsync());
     const interval = setInterval(() => {
-      dispatch(fetchLpauAsync());
-      
-      
+      dispatch(fetchLpauAsync()); 
+
     }, 10000);
-    dispatch(fetchTenderMessegesAsync({Tanderid:id?.replace(':','')!,userId:userDto.userId}));
+  
     return () => clearInterval(interval);
-  }, [dispatch]);
+  
+  }, [dispatch, userDto]);
 
   const navBack = () =>{
     navigate(`/BidConfirm/${id}`);
   }
 
   let Statuses = switchStatus(tenderDto.Statuses);
-
+ 
   return (
     <Box className={Styles.BoxContainer}>
       <Box className={Styles.BoxHeadTop} >
         <Box key="1" className={Styles.tenderDetails}>
+   
           {(tenderDto != null && tenderDto.Messages != null && tenderDto.Messages.length > 0) &&
-            <Dialog key="2" flag={open} Messages={tenderDto.Messages} ></Dialog>
+            <Dialog key="2" flag={open} Messages={tenderDto.Messages} userDto={userDto} ></Dialog>
           }
           
           {(LpauDto != null && LpauDto.NeedApprovalMessages != null && LpauDto.NeedApprovalMessages.length > 0) &&

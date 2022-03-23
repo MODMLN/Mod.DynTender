@@ -2,24 +2,31 @@ import React, { useEffect } from "react";
 import {Box,Avatar,Checkbox,ListItemAvatar,ListItemText,ListItem,List,Button,DialogTitle,DialogContentText,DialogContent,DialogActions,Dialog} from '@mui/material';
 import ImageIcon from '@mui/icons-material/Image';
 import { useTranslation } from "react-multi-lang";
+import UsersDto from "./../../Global/UsersDto";
+import { useDispatch } from "react-redux";
+import { fetchTenderMessegesAsync } from "./TenderSlice";
+import { useParams } from "react-router-dom";
 
 interface IProps {
     flag: boolean,
-    Messages:string[]
+    Messages:string[],
+    userDto:UsersDto,
 }
 
-export default function DialogModel({ flag,Messages }: IProps) {
+export default function DialogModel({ flag,Messages ,userDto}: IProps) {
+    const { id } = useParams();
+    const dispatch = useDispatch();
     const Translation = useTranslation();
     const [open, setOpen] = React.useState(true);
     useEffect(() => {
             if(flag){
                 setOpen(true);
             }
+       
     }, [flag]);
     const handleClose = () => {
         setOpen(false);
     };
-
 
     return (
         <Box>
@@ -50,7 +57,7 @@ export default function DialogModel({ flag,Messages }: IProps) {
                             </List>
 
                         </Box>
-                        <Box><Checkbox /><span>{Translation('Tender.DO_NOT_SHOW_THIS_MESSAGE_AGAIN')}</span></Box>
+                        <Box><Checkbox defaultChecked={false}  onChange={()=>dispatch(fetchTenderMessegesAsync({Tanderid:id?.replace(':','')!,userId:userDto.userId}))} /><span>{Translation('Tender.DO_NOT_SHOW_THIS_MESSAGE_AGAIN')}</span></Box>
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
