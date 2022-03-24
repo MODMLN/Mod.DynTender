@@ -16,7 +16,7 @@ export class MySubClassedDexie extends Dexie {
   constructor() {
     super('myDatabase');
     this.version(1).stores({
-      tenderMesseges: '++id,Tanderid, userId,ischecked' // Primary key and indexed props
+      tenderMesseges: '++id,Tanderid,userId,ischecked' // Primary key and indexed props
     }); 
    
   }

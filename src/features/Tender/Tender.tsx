@@ -43,18 +43,19 @@ export default function Tender() {
 
   
   useEffect(() => {
+    console.log(friends)
     setOpen(true);
     dispatch(fetchTenderAsync());
     dispatch(fetchLpauAsync());
     dispatch(fetchUserAsync());
+  
     const interval = setInterval(() => {
       dispatch(fetchLpauAsync()); 
-
     }, 10000);
   
-    return () => clearInterval(interval);
+    
   
-  }, [dispatch, userDto]);
+  }, [dispatch]);
 
   const navBack = () =>{
     navigate(`/BidConfirm/${id}`);

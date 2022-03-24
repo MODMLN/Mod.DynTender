@@ -57,7 +57,7 @@ export default function DialogModel({ flag,Messages ,userDto}: IProps) {
                             </List>
 
                         </Box>
-                        <Box><Checkbox defaultChecked={false}  onChange={()=>dispatch(fetchTenderMessegesAsync({Tanderid:id?.replace(':','')!,userId:userDto.userId}))} /><span>{Translation('Tender.DO_NOT_SHOW_THIS_MESSAGE_AGAIN')}</span></Box>
+                        <Box><Checkbox defaultChecked={false}  onChange={()=>dispatch(fetchTenderMessegesAsync({Tanderid:id?.replace(':','')!,userId:userDto.userId,ischecked:false}))} /><span>{Translation('Tender.DO_NOT_SHOW_THIS_MESSAGE_AGAIN')}</span></Box>
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>

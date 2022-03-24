@@ -5,7 +5,7 @@ import TenderDto from './Dtos/TenderDto';
 import { TenderLineDto } from './Dtos/TenderLineDto';
 import LpauDto from './Dtos/LpauDto';
 import {db} from './../../Global/db';
-import { uuid } from 'uuidv4';
+import { v4 as uuidv4 } from 'uuid';
 const API_URL_Tender = "/Tender.json";
 const API_URL_Lpau   = "/LeadingPropositionAndUser.json";
 
@@ -142,12 +142,15 @@ export const fetchLpauAsync = createAsyncThunk('tenderdata/post', async (thunkAP
 
 export const fetchTenderMessegesAsync = createAsyncThunk('tenderdata/Msg', async (req: any,thunkAPI:any) => {
   try {
-
+      console.log(parseInt(uuidv4()),
+      req.userId,
+      req.Tanderid,
+      req.ischecked)
     const id = await db.tenderMesseges.add({
-      id: parseInt(uuid()),
+      id: parseInt(uuidv4()),
       userId:req.userId,
       Tanderid:req.Tanderid,
-      ischecked:req.ischecked
+      ischecked:req.ischecked?req.ischecked:false
     });
   } catch (err) {
     return err;
