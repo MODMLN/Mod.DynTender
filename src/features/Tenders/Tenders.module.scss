@@ -15,6 +15,22 @@ a {
 .bold {
   font-weight: 600;
 }
+.NotYetStarted{
+  background-color: #FCC100 !important;
+  width: 116px !important; 
+  color: #000000 !important;
+}
+
+.Ended {
+  background-color: #000000 !important;
+  width: 140px !important;
+}
+
+.Paused {
+  background-color: #E3E6F0 !important;
+  width: 140px !important;
+  color: #44454B !important;
+}
 
 .BoxMain {
   width: 86%;
@@ -32,23 +48,21 @@ a {
 
 
   .BoxHead {
-    display: grid;
-    grid-template-columns: 10% 6% 14% 64%;
+    // grid-template-columns: 64% 14% 6% 10%;
 
-    &.Ended {
-      grid-template-columns: 2% 13% 15% 64%;
-    }
+    // &.Ended {
+    //   grid-template-columns: 64% 15% 13% 2%;
+    // }
 
-    &.NotYetStarted {
-      grid-template-columns: 1% 12% 14% 67%;
-    }
+    // &.NotYetStarted {
+    //   grid-template-columns: 67% 14% 12% 1%;
+    // }
 
-    &.Paused {
-      grid-template-columns: 3% 12% 14% 65%;
-    }
+    // &.Paused {
+    //   grid-template-columns: 65% 14% 12% 3%;
+    // }
 
-    gap: 20px;
-    position: relative;
+    //gap: 20px;
     text-align: right;
     color: #44454B;
 
