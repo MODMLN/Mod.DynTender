@@ -4,9 +4,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { selectTenders, getAllTendersAsync } from "./TendersSlice";
 import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
-import TenderListsItem from './TenderListsItem';
+import TendersListItem from './TendersListItem';
 
-export default function TenderLists() {
+export default function TendersList() {
 
   const dispatch = useDispatch();
   const getAllTenders = useSelector(selectTenders);
@@ -22,17 +22,15 @@ export default function TenderLists() {
   }, [dispatch]);
 
   return (
-    <div>
-      <React.Fragment>
-        <CssBaseline />
-        <Container >
-          {getAllTenders.data.map((item: TendersDto, index: number) => {
-            return (
-              <TenderListsItem key={index} item={item} index={index} redirectOnClick={true} />
-            )
-          })}
-        </Container>
-      </React.Fragment>
-    </div>
+    <React.Fragment>
+      <CssBaseline />
+      <Container >
+        {getAllTenders.data.map((item: TendersDto, index: number) => {
+          return (
+            <TendersListItem key={index} item={item} index={index} redirectOnClick={true} />
+          )
+        })}
+      </Container>
+    </React.Fragment>
   );
 }
