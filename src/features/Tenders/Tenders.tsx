@@ -1,17 +1,15 @@
 import React from "react";
 import styled from "styled-components";
-import TenderLists from "./TenderLists";
+import TendersList from "./TendersList";
 
 const TendersContainer = styled.div``;
 const TenderHeading = styled.h4``;
 
 export default function Tenders  ()  {
   return (
-    <div>
-      <TendersContainer>
-        <TenderHeading><div>שלום אורח<div></div>רשימת המכרזים</div></TenderHeading>
-       <TenderLists />
-      </TendersContainer>
-    </div>
+    <TendersContainer>
+      <TenderHeading><div>שלום אורח<div></div>רשימת המכרזים</div></TenderHeading>
+      <TendersList />
+    </TendersContainer>
   );
 };
