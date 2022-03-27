@@ -1,21 +1,51 @@
 import React from "react";
 import TendersDto from './Dtos/TendersDto';
 import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import Styles from './Tenders.module.scss'
 import Moment from 'react-moment';
 import {  useNavigate } from "react-router-dom";
 import CurrencyFormat from 'react-number-format';
 import date from 'date-and-time';
-import StatusesBtn from './../component/statusesBtn'
+import StatusesBtn from './../component/statusesBtn';
+import { useTranslation } from "react-multi-lang";
 
 interface IProps {
     item: TendersDto, index: number, redirectOnClick: boolean
 }
 
-export default function TenderListsItem({ item, index, redirectOnClick = true }: IProps) {
+export default function TendersListItem({ item, index, redirectOnClick = true }: IProps) {
+    const Translation = useTranslation();
     let navigate = useNavigate();
     let time = item.Time?date.format(new Date(item.Time), 'HH:mm:ss'):null;
+    let statusColumnsClass = Styles[item.Statuses];
+    console.log(statusColumnsClass)
+    let statusButton = <Button 
+                        className={statusColumnsClass}
+                        variant="contained">{Translation(item.Statuses)}
+                    </Button>
+
+    let lastColumn;
+
+    switch(item.Statuses){
+        case "Going":
+            lastColumn = <React.Fragment>
+                <Grid md={1} item>
+                    <Button variant="contained">{time}</Button>
+                </Grid>
+                <Grid md={2} item>
+                    <Button className={statusColumnsClass} variant="contained">{Translation(item.Statuses)}</Button>
+                </Grid>
+            </React.Fragment>
+        default:
+            lastColumn = 
+            <Grid md={3} item>
+                <Button className={statusColumnsClass} variant="contained">{Translation(item.Statuses)}</Button>
+            </Grid>
+    }
+    
+
    
     return (
         <div onClick={
@@ -25,8 +55,14 @@ export default function TenderListsItem({ item, index, redirectOnClick = true }:
             }
         }>
 
-            <Box className={Styles.BoxMain} key={index} sx={{ p: 2, border: '1px solid grey' }}>
-                {(() => {
+            <Grid container className={Styles.BoxMain} key={index} sx={{ p: 2, border: '1px solid grey' }}>
+                <Grid container className={Styles.BoxHead + ` Active`}  direction="row-reverse" justifyContent="flex-start">
+                    <Grid md={7} item className={Styles.headText}>{item.Name}</Grid>
+                    <Grid md={2} item>מס׳: {item.TenderNumber}</Grid>
+                    {lastColumn}
+                </Grid>
+            
+                {/* {(() => {
                     switch (item.Statuses) {
                         case 'Going':
                             return (
@@ -61,7 +97,7 @@ export default function TenderListsItem({ item, index, redirectOnClick = true }:
                                 " "
                             )
                     }
-                })()}
+                })()} */}
 
                 <Box className={Styles.line}></Box>
                 {
@@ -85,7 +121,7 @@ export default function TenderListsItem({ item, index, redirectOnClick = true }:
                         <Box>הצעתך מובילה</Box>
                         <Box className={Styles.bold}><CurrencyFormat decimalScale={2} value={item.TotalToLead} displayType={'text'} thousandSeparator={true} prefix={item.CurrencyId}></CurrencyFormat></Box></Box>
                 </Box>
-            </Box>
+            </Grid>
 
         </div>
     )
