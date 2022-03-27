@@ -2,7 +2,7 @@ import React, { useEffect, useMemo } from "react";
 import { useParams ,useNavigate} from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import TenderItem from './TenderItem';
-import { selectTender, fetchTenderAsync, selectTotalSummery ,selectLpau,fetchLpauAsync, fetchConfirmPropositionAsync,fetchTenderMessegesAsync} from "./TenderSlice";
+import { selectTender, fetchTenderAsync, selectTotalSummery ,selectLpau,fetchLpauAsync, fetchConfirmPropositionAsync} from "./TenderSlice";
 import TenderLine from './TenderLine';
 import {TenderLineDto} from './Dtos/TenderLineDto';
 import { Box } from "@mui/material";
@@ -43,7 +43,6 @@ export default function Tender() {
 
   
   useEffect(() => {
-    console.log(friends)
     setOpen(true);
     dispatch(fetchTenderAsync());
     dispatch(fetchLpauAsync());

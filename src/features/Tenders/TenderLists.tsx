@@ -13,14 +13,14 @@ export default function TenderLists() {
 
 
   useEffect(() => {
-    dispatch(getAllTendersAsync("5"));
+    dispatch(getAllTendersAsync());
     const interval = setInterval(() => {
-      dispatch(getAllTendersAsync("5"));
+      dispatch(getAllTendersAsync());
     }, 15000);
     return () => clearInterval(interval);
 
   }, [dispatch]);
-
+console.log(getAllTenders)
   return (
     <div>
       <React.Fragment>

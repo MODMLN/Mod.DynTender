@@ -4,7 +4,6 @@ import { RootState } from "../../app/store";
 import TenderDto from './Dtos/TenderDto';
 import { TenderLineDto } from './Dtos/TenderLineDto';
 import LpauDto from './Dtos/LpauDto';
-import {db} from './../../Global/db';
 import { v4 as uuidv4 } from 'uuid';
 const API_URL_Tender = "/Tender.json";
 const API_URL_Lpau   = "/LeadingPropositionAndUser.json";
@@ -103,10 +102,6 @@ export const tenderSlice = createSlice({
 
         //console.log(state.userdata)
       })
-      .addCase(fetchTenderMessegesAsync.fulfilled, (state, action) => {
-
-        //console.log(state.userdata)
-      })
       .addCase(fetchTenderAsync.rejected, (state, { payload }) => {
         state.loading = false;
         //state.byId[userId] = null; // <-- I need the userId from createAsyncThunk here.
@@ -140,23 +135,7 @@ export const fetchLpauAsync = createAsyncThunk('tenderdata/post', async (thunkAP
 );
 
 
-export const fetchTenderMessegesAsync = createAsyncThunk('tenderdata/Msg', async (req: any,thunkAPI:any) => {
-  try {
-      console.log(parseInt(uuidv4()),
-      req.userId,
-      req.Tanderid,
-      req.ischecked)
-    const id = await db.tenderMesseges.add({
-      id: parseInt(uuidv4()),
-      userId:req.userId,
-      Tanderid:req.Tanderid,
-      ischecked:req.ischecked?req.ischecked:false
-    });
-  } catch (err) {
-    return err;
-  }
-}
-);
+
 
 
 
