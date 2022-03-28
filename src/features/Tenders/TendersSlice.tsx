@@ -2,14 +2,14 @@ import { CurrencyPoundTwoTone } from "@mui/icons-material";
 import { createSlice, createAsyncThunk, PayloadAction} from "@reduxjs/toolkit";
 import axios from "axios"; 
 import { RootState } from "../../app/store";
-import TenderMessegesDto from './Dtos/TenderMessegesDto';
+import MessegesDisplayDto from './Dtos/MessegesDisplayDto';
  
 const API_URL_Tender = "./Tenders.json";
 
 // initial state
 export const initialState = {
   data: [],
-  TenderMesseges:new TenderMessegesDto()
+  TenderMesseges:new MessegesDisplayDto()
 };
 
 export const tenderSlice = createSlice({
@@ -20,20 +20,15 @@ export const tenderSlice = createSlice({
       state.data = action.payload
     },
     setDisplayMessagesValue :(state,action)=>{
-      let tender = state.TenderMesseges.Messages?.find((item)=>{
+      let tender = state.TenderMesseges.DisplayMessages?.find((item)=>{
         return item.tenderId == action.payload.tenderId });
       if(tender){
         tender.display = action.payload.displayMessages;
       }
       else{
-        state.TenderMesseges.Messages?.push({tenderId: action.payload.tenderId, display: action.payload.displayMessages});
+        state.TenderMesseges.DisplayMessages?.push({tenderId: action.payload.tenderId, display: action.payload.displayMessages});
       }
       // state.displayMessages;
-    },
-    isDisplayMessages: (state, action)=> {
-      let tender = state.TenderMesseges.Messages?.find((item)=>{
-        return item.tenderId == action.payload.tenderId });
-      // tender? tender.display : true;
     },
   },
   extraReducers: (builder) => {
@@ -67,11 +62,10 @@ export const getAllTendersAsync  = createAsyncThunk('tenderdata/post', async (th
 });
 
 export const {
-  isDisplayMessages,
   setDisplayMessagesValue,
   getAllTender,
 } = tenderSlice.actions;
 
 export const selectTenders = (state: RootState) => state.data;
-//export const selectDisplayMessages = (state:RootState) => state.TenderMesseges;
+export const selectDisplayMessages = (state:RootState) => state.displayTenderMessages;
 export default tenderSlice.reducer;

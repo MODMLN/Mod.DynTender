@@ -17,6 +17,8 @@ import UsersDto from "./../../Global/UsersDto";
 import {fetchUserAsync, selectUser} from "./../../Global/UsersSlice";
 import { useLiveQuery } from "dexie-react-hooks";
 import {db} from './../../Global/db';
+import { selectDisplayMessages } from "../Tenders/TendersSlice";
+import logicHelper from "../../Helpers/LogicHelper"
 
 
 
@@ -61,14 +63,15 @@ export default function Tender() {
   }
 
   let Statuses = switchStatus(tenderDto.Statuses);
+  let displayMessages = logicHelper.isDisplayMessages(useSelector(selectDisplayMessages).TenderMesseges, tenderDto.tenderId);
  
   return (
     <Box className={Styles.BoxContainer}>
       <Box className={Styles.BoxHeadTop} >
         <Box key="1" className={Styles.tenderDetails}>
    
-          {(tenderDto != null && tenderDto.Messages != null && tenderDto.Messages.length > 0) &&
-            <Dialog key="2" flag={open} Messages={tenderDto.Messages} userDto={userDto} ></Dialog>
+          {(tenderDto != null && tenderDto.Messages != null && tenderDto.Messages.length > 0 && displayMessages) &&
+            <Dialog key="messagesDialog" flag={open} Messages={tenderDto.Messages} userDto={userDto} ></Dialog>
           }
           
           {(LpauDto != null && LpauDto.NeedApprovalMessages != null && LpauDto.NeedApprovalMessages.length > 0) &&
