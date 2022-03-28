@@ -88,7 +88,7 @@ export default function TendersListItem({ item, index, redirectOnClick = true }:
                     }
                 })()} */}
 
-                <Box className={Styles.line}></Box>
+                <Box className={Styles.line}></Box> 
                 {
                     (item.Statuses === "NotYetStarted" || item.Statuses === "Paused") ? (
                         <>

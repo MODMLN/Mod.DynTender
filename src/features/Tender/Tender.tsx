@@ -5,7 +5,7 @@ import TenderItem from './TenderItem';
 import { selectTender, fetchTenderAsync, selectTotalSummery ,selectLpau,fetchLpauAsync, fetchConfirmPropositionAsync} from "./TenderSlice";
 import TenderLine from './TenderLine';
 import {TenderLineDto} from './Dtos/TenderLineDto';
-import { Box } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import Styles from './Tender.module.scss';
 import Dialog from './dialog';
 import NeedApprovalMessages from './NeedApprovalMessages';
@@ -99,24 +99,24 @@ export default function Tender() {
             })
             : ''}
       </Box>
-      <Box className={Styles.BoxContainer}>
-        <Box className={Styles.BoxSummery}>
-          <Box className={Styles.title}>{Translation('Tender.THE_AMOUNT_OF_YOUR_BID')}</Box>
-          <Box className={Styles.summery}><CurrencyFormat value={TotalSummery} displayType={'text'} thousandSeparator={true} prefix={tenderDto.CurrencyId} decimalScale={2} /></Box>
-          <Box className={Styles.buttonDiv}>
+      <Grid  className={Styles.BoxContainer}>
+        <Grid container className={Styles.BoxSummery}  justifyContent="center" >
+          <Grid container  justifyContent="center" className={Styles.title}>{Translation('Tender.THE_AMOUNT_OF_YOUR_BID')}</Grid>
+          <Grid container  justifyContent="center" className={Styles.summery}><CurrencyFormat value={TotalSummery} displayType={'text'} thousandSeparator={true} prefix={tenderDto.CurrencyId} decimalScale={2} /></Grid>
+          <Grid container   justifyContent="center" className={Styles.buttonDiv}>
             {Statuses.isVisible() &&
-              <Box><Button onClick={() => {dispatch(fetchConfirmPropositionAsync(
+              <Grid  item sx={{ width: '100%' }}><Button onClick={() => {dispatch(fetchConfirmPropositionAsync(
                 { userId:userDto.userId,
                   tenderId:tenderDto.Id,
                   lines:[tenderDto.Lines.map((x:TenderLineDto)=> ({tenderLineId: x.TenderLineId,price:x.Price}))]
                 }));
                  navBack();
                 }}
-                 sx={{ 'background-color': '#00798C', 'width': '50%' }} className={Styles.Button} disabled={!Statuses.isEnable()} variant="contained">הגשת ההצעה</Button></Box>
+                 sx={{ 'background-color': '#00798C', 'width': '50%' }} className={Styles.Button} disabled={!Statuses.isEnable()} variant="contained">הגשת ההצעה</Button></Grid>
             }
-          </Box>
-        </Box>
-      </Box>
+          </Grid>
+        </Grid>
+      </Grid >
     </Box>
   );
 };
