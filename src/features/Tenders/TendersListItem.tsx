@@ -43,7 +43,6 @@ export default function TendersListItem({ item, index, redirectOnClick = true }:
                     navigate(`/Tender/${item.Id}`);
             }
         }>
-
             <Grid container className={Styles.BoxMain} key={index} sx={{ p: 2, border: '1px solid grey' }}>
                 <Grid item container className={Styles.BoxHead + ` Active`}  direction="row-reverse" justifyContent="flex-end">
                     <Grid md={7} item className={Styles.headText}>{item.Name}</Grid>
@@ -92,10 +91,10 @@ export default function TendersListItem({ item, index, redirectOnClick = true }:
                 {
                     (item.Statuses === "NotYetStarted" || item.Statuses === "Paused") ? (
                         <>
-                            <Grid justifyContent="flex-end" direction="row" container alignItems="center" style={{ textAlign: "right" }}>
-                                <Grid justifyContent="flex-end" direction="row" container item>{Translation('Tender.OPENING_TIME')}</Grid>
-                                <Grid justifyContent="flex-end" direction="row" container item className={Styles.bold}><Moment format="hh:mm:ss" interval={30000}>{item.Time}</Moment></Grid>
-                                <Grid justifyContent="flex-end" direction="row" container item>יחל בעוד 3 שעות ו-44 דקות</Grid>
+                            <Grid justifyContent="flex-end" direction="row-reverse" container alignItems="center" style={{ textAlign: "right" }}>
+                                <Grid justifyContent="flex-end" container>{Translation('Tender.OPENING_TIME')}</Grid>
+                                <Grid justifyContent="flex-end" container className={Styles.bold}><Moment format="hh:mm:ss" interval={30000}>{item.Time}</Moment></Grid>
+                                <Grid justifyContent="flex-end" container>יחל בעוד 3 שעות ו-44 דקות</Grid>
                             </Grid>
                             <Box className={Styles.line}></Box>
                         </>
