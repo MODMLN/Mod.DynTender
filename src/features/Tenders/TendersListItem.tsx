@@ -8,7 +8,6 @@ import Moment from 'react-moment';
 import {  useNavigate } from "react-router-dom";
 import CurrencyFormat from 'react-number-format';
 import date from 'date-and-time';
-import StatusesBtn from './../component/statusesBtn';
 import { useTranslation } from "react-multi-lang";
 
 interface IProps {
@@ -20,32 +19,22 @@ export default function TendersListItem({ item, index, redirectOnClick = true }:
     let navigate = useNavigate();
     let time = item.Time?date.format(new Date(item.Time), 'HH:mm:ss'):null;
     let statusColumnsClass = Styles[item.Statuses];
-    console.log(statusColumnsClass)
-    let statusButton = <Button 
-                        className={statusColumnsClass}
-                        variant="contained">{Translation(item.Statuses)}
-                    </Button>
-
-    let lastColumn;
-
-    switch(item.Statuses){
-        case "Going":
-            lastColumn = <React.Fragment>
-                <Grid md={1} item>
-                    <Button variant="contained">{time}</Button>
-                </Grid>
-                <Grid md={2} item>
-                    <Button className={statusColumnsClass} variant="contained">{Translation(`Tender.${item.Statuses}`)}</Button>
-                </Grid>
-            </React.Fragment>
-        default:
-            lastColumn = 
-            <Grid md={3} item>
-                <Button className={statusColumnsClass} variant="contained">{Translation(`Tender.${item.Statuses}`)}</Button>
-            </Grid>
-    }
     
 
+    let lastColumn = <Grid md={3} item>
+                        <Button className={statusColumnsClass} variant="contained">{Translation(`Tender.${item.Statuses}`)}</Button>
+                    </Grid>;
+
+    if(item.Statuses == "Going"){
+        lastColumn = <React.Fragment>
+                        <Grid md={1} item>
+                            <Button variant="contained">{time}</Button>
+                        </Grid>
+                        <Grid md={2} item>
+                            <Button className={statusColumnsClass} variant="contained">{Translation(`Tender.${item.Statuses}`)}</Button>
+                        </Grid>
+                    </React.Fragment>
+    }
    
     return (
         <div onClick={

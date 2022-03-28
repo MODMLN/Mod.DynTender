@@ -4,7 +4,7 @@ import ImageIcon from '@mui/icons-material/Image';
 import { useTranslation } from "react-multi-lang";
 import UsersDto from "./../../Global/UsersDto";
 import { useDispatch } from "react-redux";
-import { fetchTenderAsync ,setDisplayMessagesValue} from "./../Tenders/TendersSlice";
+import { setDisplayMessagesValue} from "./../Tenders/TendersSlice";
 import { useParams } from "react-router-dom";
 
 interface IProps {

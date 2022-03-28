@@ -63,7 +63,7 @@ export default function Tender() {
   }
 
   let Statuses = switchStatus(tenderDto.Statuses);
-  let displayMessages = logicHelper.isDisplayMessages(useSelector(selectDisplayMessages).TenderMesseges, tenderDto.tenderId);
+  let displayMessages = logicHelper.isDisplayMessages(useSelector(selectDisplayMessages).DisplayTenderMesseges, tenderDto.tenderId);
  
   return (
     <Box className={Styles.BoxContainer}>
