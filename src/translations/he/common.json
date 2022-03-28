@@ -1,5 +1,6 @@
 {
   "Tender": {
+    "NUMBER":"מס'",
     "Offer_confirmation":"אישור ההצעה",
     "BACK":"חזור",
     "Paused":"המכרז בהקפאה",
@@ -13,6 +14,9 @@
     "ITEMS_IN_TENDER":"פריטים במכרז",
     "ACTIVE":"פעיל",
     "Going":"פעיל",
+    "OPENING_TIME":"זמן פתיחה",
+    "LEADING_PRICE":"מחיר מוביל",
+    "YOUR_OFFER_LEADS":"הצעתך מובילה",
     "PRICE_PER_UNIT":"מחיר ליחידה",
     "SYSTEM_CLOCK":"שעון מערכת",
     "MENU":"תפריט",

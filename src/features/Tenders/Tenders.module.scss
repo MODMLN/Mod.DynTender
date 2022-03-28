@@ -43,7 +43,7 @@ a {
   border: 1px solid #E3E6F0;
   box-shadow: 0px 4px 24px rgba(58, 59, 69, 0.1);
   border-radius: 7px;
-
+  height:auto;
 
 
 
@@ -93,9 +93,8 @@ a {
   }
 
   .line {
-    margin: 1% 0;
-    left: 0%;
-    right: 0%;
+    margin: 1% auto;
+    width: 100%;
     bottom: 0%;
     height: 1px;
     border: 1px solid #E3E6F0;
@@ -120,6 +119,7 @@ a {
       font-size: 16px;
       line-height: 16px;
       /* identical to box height, or 100% */
+     
 
       text-align: right;
       letter-spacing: -0.2625px;
@@ -134,7 +134,7 @@ a {
       font-size: 16px;
       line-height: 14px;
       /* identical to box height, or 87% */
-
+      border-left: 1px solid #E3E6F0;
       text-align: right;
       letter-spacing: -0.2625px;
 

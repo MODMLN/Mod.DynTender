@@ -35,13 +35,13 @@ export default function TendersListItem({ item, index, redirectOnClick = true }:
                     <Button variant="contained">{time}</Button>
                 </Grid>
                 <Grid md={2} item>
-                    <Button className={statusColumnsClass} variant="contained">{Translation(item.Statuses)}</Button>
+                    <Button className={statusColumnsClass} variant="contained">{Translation(`Tender.${item.Statuses}`)}</Button>
                 </Grid>
             </React.Fragment>
         default:
             lastColumn = 
             <Grid md={3} item>
-                <Button className={statusColumnsClass} variant="contained">{Translation(item.Statuses)}</Button>
+                <Button className={statusColumnsClass} variant="contained">{Translation(`Tender.${item.Statuses}`)}</Button>
             </Grid>
     }
     
@@ -56,9 +56,9 @@ export default function TendersListItem({ item, index, redirectOnClick = true }:
         }>
 
             <Grid container className={Styles.BoxMain} key={index} sx={{ p: 2, border: '1px solid grey' }}>
-                <Grid container className={Styles.BoxHead + ` Active`}  direction="row-reverse" justifyContent="flex-start">
+                <Grid item container className={Styles.BoxHead + ` Active`}  direction="row-reverse" justifyContent="flex-end">
                     <Grid md={7} item className={Styles.headText}>{item.Name}</Grid>
-                    <Grid md={2} item>מס׳: {item.TenderNumber}</Grid>
+                    <Grid md={2} item>{Translation('Tender.NUMBER')}: {item.TenderNumber}</Grid>
                     {lastColumn}
                 </Grid>
             
@@ -103,24 +103,24 @@ export default function TendersListItem({ item, index, redirectOnClick = true }:
                 {
                     (item.Statuses === "NotYetStarted" || item.Statuses === "Paused") ? (
                         <>
-                            <Box style={{ textAlign: "right" }}>
-                                <Box>זמן פתיחה</Box>
-                                <Box className={Styles.bold}><Moment format="hh:mm:ss" interval={30000}>{item.Time}</Moment></Box>
-                                <Box>יחל בעוד 3 שעות ו-44 דקות</Box>
-                            </Box>
+                            <Grid justifyContent="flex-end" direction="row" container alignItems="center" style={{ textAlign: "right" }}>
+                                <Grid justifyContent="flex-end" direction="row" container item>{Translation('Tender.OPENING_TIME')}</Grid>
+                                <Grid justifyContent="flex-end" direction="row" container item className={Styles.bold}><Moment format="hh:mm:ss" interval={30000}>{item.Time}</Moment></Grid>
+                                <Grid justifyContent="flex-end" direction="row" container item>יחל בעוד 3 שעות ו-44 דקות</Grid>
+                            </Grid>
                             <Box className={Styles.line}></Box>
                         </>
                     ) : (<><Box style={{ height: "40%", clear: "both" }}><span></span></Box></>)
                 }
-                <Box className={Styles.Proposal} >
-                    <Box className={Styles.leadPrice}>
-                        <Box>מחיר מוביל</Box>
-                        <Box className={Styles.bold}><CurrencyFormat decimalScale={2} value={item.TotalToLead} displayType={'text'} thousandSeparator={true} prefix={item.CurrencyId}></CurrencyFormat></Box>
-                    </Box>
-                    <Box className={Styles.greenProposal}>
-                        <Box>הצעתך מובילה</Box>
-                        <Box className={Styles.bold}><CurrencyFormat decimalScale={2} value={item.TotalToLead} displayType={'text'} thousandSeparator={true} prefix={item.CurrencyId}></CurrencyFormat></Box></Box>
-                </Box>
+                <Grid direction="row" justifyContent="flex-end"  container  className={Styles.Proposal} >
+                    <Grid item container className={Styles.leadPrice} justifyContent="flex-end" direction="row">
+                        <Grid container item direction="row" justifyContent="flex-end">{Translation('Tender.LEADING_PRICE')}</Grid>
+                        <Grid container item direction="row" justifyContent="flex-end" className={Styles.bold}><CurrencyFormat decimalScale={2} value={item.TotalToLead} displayType={'text'} thousandSeparator={true} prefix={item.CurrencyId}></CurrencyFormat></Grid>
+                    </Grid>
+                    <Grid item container className={Styles.greenProposal} justifyContent="flex-end" direction="row">
+                        <Grid container item direction="row" justifyContent="flex-end">{Translation('Tender.YOUR_OFFER_LEADS')}</Grid>
+                        <Grid container item direction="row" justifyContent="flex-end" className={Styles.bold}><CurrencyFormat decimalScale={2} value={item.TotalToLead} displayType={'text'} thousandSeparator={true} prefix={item.CurrencyId}></CurrencyFormat></Grid></Grid>
+                </Grid>
             </Grid>
 
         </div>
