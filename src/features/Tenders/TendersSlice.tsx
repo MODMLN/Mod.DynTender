@@ -9,7 +9,8 @@ const API_URL_Tender = "./Tenders.json";
 // initial state
 export const initialState = {
   data: [],
-  DisplayTenderMesseges:new MessegesDisplayDto()
+  DisplayTenderMesseges:new MessegesDisplayDto(),
+  text: "",
 };
 
 export const tenderSlice = createSlice({
@@ -29,7 +30,9 @@ export const tenderSlice = createSlice({
         tender.display = action.payload.displayMessages;
       }
       else{
-        state.DisplayTenderMesseges.DisplayMessages?.push({tenderId: action.payload.tenderId, display: action.payload.displayMessages});
+        console.log(state.DisplayTenderMesseges.DisplayMessages);
+        state.DisplayTenderMesseges.DisplayMessages?.push({tenderId: action.payload.tenderId, display: action.payload.display});
+        state.text = "fdgdfgsfdgdf";
       }
       // state.displayMessages;
     },
@@ -70,5 +73,5 @@ export const {
 } = tenderSlice.actions;
 
 export const selectTenders = (state: RootState) => state.data;
-export const selectDisplayMessages = (state:RootState) => state.displayTenderMessages;
+//export const selectDisplayMessages = (state:RootState) => state.displayTenderMessages;
 export default tenderSlice.reducer;
