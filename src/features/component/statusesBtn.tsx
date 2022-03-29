@@ -32,6 +32,7 @@ export default function StatusesBtn({ item, leadItem }: IProps) {
                 </Grid>
                 <Grid item className={Styles.headText}>{item.Name}</Grid>
             </Grid>
+            
         </>
     )
 }

@@ -50,42 +50,7 @@ export default function TendersListItem({ item, index, redirectOnClick = true }:
                     {lastColumn}
                 </Grid>
             
-                {/* {(() => {
-                    switch (item.Statuses) {
-                        case 'Going':
-                            return (
-                                <><Box className={Styles.BoxHead + ` Active`}><Box><Button variant="contained">{time}</Button></Box><Box><Button variant="contained">פעיל</Button></Box><Box>מס׳: {item.TenderNumber}</Box><Box className={Styles.headText}>{item.Name}</Box></Box></>
-                            )
-                        case 'NotYetStarted':
-                            return (
-                                <><Box className={`${Styles.BoxHead} ${Styles.NotYetStarted}`}>
-                                    <Box></Box>
-                                <Box>
-                                    <Button 
-                                        style={{backgroundColor: "#FCC100", width: "116px", color: "#000000"}}
-                                        variant="contained">טרם החל</Button>
-                                    </Box><Box>מס׳: {item.TenderNumber}</Box><Box className={Styles.headText}>{item.Name}</Box></Box></>
-                            )
-                        case 'Ended':
-                            return (
-                                <><Box className={`${Styles.BoxHead} ${Styles.Ended}`}>
-                                    <Box></Box><Box><Button color="error" style={{
-                                        backgroundColor: "#000000", width: "140px"
-                                    }}
-                                        variant="contained">המכרז הסתיים</Button></Box><Box>מס׳: {item.TenderNumber}</Box><Box className={Styles.headText}>{item.Name}</Box></Box></>
-                            )
-                        case 'Paused':
-                            return (
-                                <><Box className={`${Styles.BoxHead} ${Styles.Paused}`}><Box></Box><Box><Button variant="contained" style={{
-                                    backgroundColor: "#E3E6F0", width: "140px", color: "#44454B"
-                                }}>המכרז בהקפאה</Button></Box><Box>מס׳: {item.TenderNumber}</Box><Box className={Styles.headText}>{item.Name}</Box></Box></>
-                            )
-                        default:
-                            return (
-                                " "
-                            )
-                    }
-                })()} */}
+            
 
                 <Box className={Styles.line}></Box> 
                 {
