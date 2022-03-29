@@ -100,7 +100,7 @@ export default function TenderLine({ item, AmountSign, status }: IProps): JSX.El
                         </Grid>
                     </Typography>
                 </AccordionSummary>
-                <AccordionDetails sx={{ 'text-align': 'right' }}>
+                <AccordionDetails sx={{ 'text-align': 'right' }}> 
                     <Typography sx={{ 'text-align': 'right' }} component={'span'} >
                         {/* <form ref={fieldVal}> */}
                         <Box className={Styles.line}></Box>
