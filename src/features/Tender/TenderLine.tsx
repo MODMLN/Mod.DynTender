@@ -91,7 +91,7 @@ export default function TenderLine({ item, AmountSign, status }: IProps): JSX.El
                                     <Grid><b><CurrencyFormat decimalScale={2} value={item.TotalPriceForDisplay} displayType={'text'} thousandSeparator={true} prefix={item.CurrencyId}></CurrencyFormat></b>
                                     </Grid> </Grid>
                             }</Grid>
-                            <Grid  md={1}>
+                            <Grid  md={2}>
                                 {(!expand && item.isUpdated) &&
                                     <Grid className={`${Styles.Updated}`}>
                                         {Translation('Tender.UPDATED')}
