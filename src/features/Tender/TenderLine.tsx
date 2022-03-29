@@ -86,7 +86,7 @@ export default function TenderLine({ item, AmountSign,status }: IProps): JSX.Ele
                             <Box className={Styles.headItem}>{!expand &&
                                 <Box ><Box className={Styles.titleText}>
                                     {Translation('Tender.TOTAL')}</Box><Box ><b><CurrencyFormat decimalScale={2} value={item.TotalPriceForDisplay} displayType={'text'} thousandSeparator={true} prefix={item.CurrencyId}></CurrencyFormat></b>
-                                    </Box> </Box>
+                                    </Box></Box>
                             }</Box>
                             <Box >
                                 {(!expand && item.isUpdated) &&
