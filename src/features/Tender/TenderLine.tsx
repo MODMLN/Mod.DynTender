@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import {
     Box, Accordion, AccordionSummary, AccordionDetails,
     Typography, IconButton, FormControl, Snackbar, Alert,
-    TextField
+    TextField,
+    Grid
 } from "@mui/material";
 import Styles from './Tender.module.scss';
-import {  AddCircle, RemoveCircle  } from '@mui/icons-material';
+import { AddCircle, RemoveCircle } from '@mui/icons-material';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { TenderLineDto, IMessege } from './Dtos/TenderLineDto';
 import CurrencyFormat from 'react-number-format';
@@ -19,10 +20,10 @@ import { joiResolver } from "@hookform/resolvers/joi";
 interface IProps {
     item: TenderLineDto,
     AmountSign: string,
-    status:string
+    status: string
 }
 
-export default function TenderLine({ item, AmountSign,status }: IProps): JSX.Element {
+export default function TenderLine({ item, AmountSign, status }: IProps): JSX.Element {
     const Translation = useTranslation();
     const dispatch = useDispatch();
     const [expand, setExpand] = React.useState(false);
@@ -39,7 +40,7 @@ export default function TenderLine({ item, AmountSign,status }: IProps): JSX.Ele
             setPrice(item.Price);
             reset(item);
         }
-    },[item]);
+    }, [item]);
 
     const schema = Joi.object({
         tenderSum: Joi.number().positive().precision(2).min(Math.max(0, item.MinPrice)).max(item.MaxPrice).required(),
@@ -60,44 +61,46 @@ export default function TenderLine({ item, AmountSign,status }: IProps): JSX.Ele
         <Box key={item.Index} className={Styles.TenderLine}>
             <Accordion sx={{ 'box-shadow': 'none' }} expanded={expand} >
                 <AccordionSummary
-                    onClick={() => (status!=='Ended' && status!=='Decoded')? setExpand((expand) => !expand):null}
+                    onClick={() => (status !== 'Ended' && status !== 'Decoded') ? setExpand((expand) => !expand) : null}
                     sx={{ direction: 'rtl', border: 'none' }}
                     expandIcon={
-                        (status!=='Ended' && status!=='Decoded')?<KeyboardArrowDownIcon />:null
+                        (status !== 'Ended' && status !== 'Decoded') ? <KeyboardArrowDownIcon /> : null
                     }
                     aria-controls="panel1a-content"
                     id="panel1a-header">
                     <Typography component={'span'} >
-                        <Box className={Styles.TenderLineHead}>
-                            <Box className={Styles.title}>{item.TenderLineName}</Box>
-                            <Box className={Styles.headItem}>
-                                <Box> <Box className={Styles.titleText}>
+                        <Grid container className={Styles.TenderLineHead}>
+                            <Grid  direction="row-reverse" justifyContent="flex-end"  md={5} className={Styles.title}>{item.TenderLineName}</Grid>
+                            <Grid  md={2} className={Styles.headItem}>
+                                <Grid> <Grid className={Styles.titleText}>
                                     {!item.IsPercentageCalculation ?
                                         <label>{Translation('Tender.NUMBER_OF_UNITS')}</label>
                                         : <label>{Translation('Tender.WEIGHT')}</label>}
-                                </Box>    <Box><b>{item.RequiredAmount}</b>{AmountSign}
-                                    </Box>   </Box>
-                            </Box>
-                            <Box className={Styles.headItem}>{!expand &&
-                                <Box ><Box className={Styles.titleText} aria-label={Translation('Tender.PRICE_PER_UNIT')} >
-                                    {Translation('Tender.PRICE_PER_UNIT')}    </Box><Box ><b><CurrencyFormat decimalScale={2} value={item.Price} displayType={'text'} thousandSeparator={true} prefix={item.CurrencyId}></CurrencyFormat></b>
-                                    </Box> </Box>
-                            }</Box>
-                            <Box className={Styles.headItem}>{!expand &&
-                                <Box ><Box className={Styles.titleText}>
-                                    {Translation('Tender.TOTAL')}</Box><Box ><b><CurrencyFormat decimalScale={2} value={item.TotalPriceForDisplay} displayType={'text'} thousandSeparator={true} prefix={item.CurrencyId}></CurrencyFormat></b>
-                                    </Box></Box>
-                            }</Box>
-                            <Box >
+                                </Grid>    <Grid><b>{item.RequiredAmount}</b>{AmountSign}
+                                    </Grid>   </Grid>
+                            </Grid>
+                            <Grid  md={2} className={Styles.headItem}>{!expand &&
+                                <Grid ><Grid className={Styles.titleText} aria-label={Translation('Tender.PRICE_PER_UNIT')} >
+                                    {Translation('Tender.PRICE_PER_UNIT')}    </Grid>
+                                    <Grid ><b><CurrencyFormat decimalScale={2} value={item.Price} displayType={'text'} thousandSeparator={true} prefix={item.CurrencyId}></CurrencyFormat></b>
+                                    </Grid> </Grid>
+                            }</Grid>
+                            <Grid  md={2} className={Styles.headItem}>{!expand &&
+                                <Grid ><Grid className={Styles.titleText}>
+                                    {Translation('Tender.TOTAL')}</Grid>
+                                    <Grid><b><CurrencyFormat decimalScale={2} value={item.TotalPriceForDisplay} displayType={'text'} thousandSeparator={true} prefix={item.CurrencyId}></CurrencyFormat></b>
+                                    </Grid> </Grid>
+                            }</Grid>
+                            <Grid  md={2}>
                                 {(!expand && item.isUpdated) &&
-                                    <Box className={`${Styles.Updated}`}>
+                                    <Grid className={`${Styles.Updated}`}>
                                         {Translation('Tender.UPDATED')}
-                                    </Box>
-                                }</Box>
-                        </Box>
+                                    </Grid>
+                                }</Grid>
+                        </Grid>
                     </Typography>
                 </AccordionSummary>
-                <AccordionDetails sx={{ 'text-align': 'right' }}>
+                <AccordionDetails sx={{ 'text-align': 'right' }}> 
                     <Typography sx={{ 'text-align': 'right' }} component={'span'} >
                         {/* <form ref={fieldVal}> */}
                         <Box className={Styles.line}></Box>
@@ -120,7 +123,7 @@ export default function TenderLine({ item, AmountSign,status }: IProps): JSX.Ele
                                     <Box component='form' onSubmit={handleSubmit(onSubmit)} sx={{ mt: 1 }}>
                                         <TextField defaultValue={item.Price ? parseFloat(String(item.Price)).toFixed(2) : ''} {...register('tenderSum')} placeholder={item.CurrencyId}
                                             type={'text'}
-                                            label={Translation('Tender.PRICE_PER_UNIT') +' '+item.CurrencyId}
+                                            label={Translation('Tender.PRICE_PER_UNIT') + ' ' + item.CurrencyId}
                                             variant="filled"
                                             margin='normal'
                                             error={errors.tenderSum != null}
