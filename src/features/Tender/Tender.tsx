@@ -17,7 +17,7 @@ import UsersDto from "./../../Global/UsersDto";
 import {fetchUserAsync, selectUser} from "./../../Global/UsersSlice";
 import { useLiveQuery } from "dexie-react-hooks";
 import {db} from './../../Global/db';
-import { selectTenders } from "../Tenders/TendersSlice";
+import { selectTenders, selectDisplayMessages } from "../Tenders/TendersSlice";
 import logicHelper from "../../Helpers/LogicHelper"
 
 
@@ -34,6 +34,7 @@ export default function Tender() {
   const { id } = useParams();
   let navigate = useNavigate();
 
+  const tenderDisplayMessages = useSelector(selectDisplayMessages);
   const userDto = useSelector(selectUser);
   const tenderDto = useSelector(selectTender);
   const TotalSummery = useSelector(selectTotalSummery);
@@ -63,7 +64,7 @@ export default function Tender() {
   }
 
   let Statuses = switchStatus(tenderDto.Statuses);
-  let displayMessages = logicHelper.isDisplayMessages(useSelector(selectTenders).DisplayTenderMesseges, tenderDto.tenderId);
+  const displayMessages = logicHelper.isDisplayMessages(tenderDisplayMessages, tenderDto.tenderId);
  
   return (
     <Box className={Styles.BoxContainer}>

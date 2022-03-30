@@ -6,6 +6,7 @@ import usersSlice from "../Global/UsersSlice";
 const store =configureStore({
   reducer: {
     data: tendersSlice,
+    // displayMessages: 
     tenderdata:tenderSlice,
     userdata:usersSlice
   }

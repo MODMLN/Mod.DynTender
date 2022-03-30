@@ -2,15 +2,16 @@ import { CurrencyPoundTwoTone } from "@mui/icons-material";
 import { createSlice, createAsyncThunk, PayloadAction} from "@reduxjs/toolkit";
 import axios from "axios"; 
 import { RootState } from "../../app/store";
-import MessegesDisplayDto from './Dtos/MessegesDisplayDto';
+import DisplayMessage from './Dtos/DisplayMessage';
  
 const API_URL_Tender = "./Tenders.json";
+
+
 
 // initial state
 export const initialState = {
   data: [],
-  DisplayTenderMesseges:new MessegesDisplayDto(),
-  text: "",
+  DisplayMessages: [] as DisplayMessage[],
 };
 
 export const tenderSlice = createSlice({
@@ -23,17 +24,18 @@ export const tenderSlice = createSlice({
     setDisplayMessagesValue :(state,action)=>{
       console.log("state ", state);
       console.log("action payload ", action.payload);
-      let tender = state.DisplayTenderMesseges.DisplayMessages?.find((item)=>{
+      let tender = state.DisplayMessages?.find((item:DisplayMessage)=>{
         return item.tenderId == action.payload.tenderId });
       console.log(tender);
       if(tender){
         tender.display = action.payload.displayMessages;
       }
       else{
-        console.log(state.DisplayTenderMesseges.DisplayMessages);
-        state.DisplayTenderMesseges.DisplayMessages?.push({tenderId: action.payload.tenderId, display: action.payload.display});
-        state.text = "fdgdfgsfdgdf";
+        console.log(state.DisplayMessages);
+        state.DisplayMessages?.push({tenderId: action.payload.tenderId, display: action.payload.display});
+        console.log(state.data);
       }
+      console.log(state);
       // state.displayMessages;
     },
   },
@@ -73,5 +75,5 @@ export const {
 } = tenderSlice.actions;
 
 export const selectTenders = (state: RootState) => state.data;
-//export const selectDisplayMessages = (state:RootState) => state.displayTenderMessages;
+export const selectDisplayMessages = (state:RootState) => state.data.DisplayMessages;
 export default tenderSlice.reducer;

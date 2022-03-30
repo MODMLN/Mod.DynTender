@@ -1,9 +1,9 @@
 
-import MessegesDisplayDto from "../features/Tenders/Dtos/MessegesDisplayDto";
+import DisplayMessage from "../features/Tenders/Dtos/DisplayMessage";
 
 class LogicHelper {
-    isDisplayMessages(messegesDisplayDto:MessegesDisplayDto, tenderId:number ) {
-        let data = messegesDisplayDto.DisplayMessages?.find((item)=>{
+    isDisplayMessages(displayMessages:DisplayMessage[], tenderId:number ) {
+        let data = displayMessages?.find((item)=>{
             return item.tenderId == tenderId});
         return data? data.display : true;
     }
