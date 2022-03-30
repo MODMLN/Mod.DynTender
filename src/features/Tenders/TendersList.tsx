@@ -20,7 +20,6 @@ export default function TendersList() {
     return () => clearInterval(interval);
 
   }, [dispatch]);
-console.log(getAllTenders)
   return (
     <React.Fragment>
       <CssBaseline />

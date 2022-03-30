@@ -70,9 +70,9 @@ export default function TenderLine({ item, AmountSign, status }: IProps): JSX.El
                     aria-controls="panel1a-content"
                     id="panel1a-header">
                     <Grid container className={Styles.TenderLineHead}>
-                        <Grid item direction="row-reverse" justifyContent="flex-end"  md={4} className={Styles.title}>{item.TenderLineName}</Grid>
+                        <Grid item direction="row-reverse" justifyContent="flex-end" md={4} className={Styles.title}>{item.TenderLineName}</Grid>
                         <Grid item md={2} className={Styles.headItem}>
-                            <Grid> 
+                            <Grid>
                                 <Grid className={Styles.titleText}>
                                     {!item.IsPercentageCalculation ?
                                         <label>{Translation('Tender.NUMBER_OF_UNITS')}</label>
@@ -84,14 +84,7 @@ export default function TenderLine({ item, AmountSign, status }: IProps): JSX.El
                         </Grid>
                         {!expand &&
                             <React.Fragment>
-                                {/* <Grid item md={2} className={Styles.headItem}>
-                                    <Grid>
-                                        <Grid className={Styles.titleText} aria-label={Translation('Tender.PRICE_PER_UNIT')}>{Translation('Tender.PRICE_PER_UNIT')}</Grid>
-                                        <Grid >
-                                            <b><CurrencyFormat decimalScale={2} value={item.Price} displayType={'text'} thousandSeparator={true} prefix={item.CurrencyId}></CurrencyFormat></b>
-                                        </Grid>
-                                    </Grid>
-                                </Grid> */}
+
                                 <Grid item md={2} className={Styles.headItem}>
                                     <div className={Styles.titleText}>
                                         {Translation('Tender.PRICE_PER_UNIT')}
@@ -99,7 +92,7 @@ export default function TenderLine({ item, AmountSign, status }: IProps): JSX.El
                                     <div>
                                         <b><CurrencyFormat decimalScale={2} value={item.Price} displayType={'text'} thousandSeparator={true} prefix={item.CurrencyId}></CurrencyFormat></b>
                                     </div>
-                                    
+
                                 </Grid>
                                 <Grid item md={2} className={Styles.headItem}>
                                     <div className={Styles.titleText}>{Translation('Tender.TOTAL')}</div>
@@ -107,19 +100,16 @@ export default function TenderLine({ item, AmountSign, status }: IProps): JSX.El
                                 </Grid>
                                 {item.isUpdated &&
                                     <Grid item md={2}>
-                                        <div className={`${Styles.Updated}`}>{Translation('Tender.UPDATED')}</div>
+                                        <Box className={`${Styles.Updated}`}>{Translation('Tender.UPDATED')}</Box>
                                     </Grid>
                                 }
-                                
+
                             </React.Fragment>
                         }
-                        
-                        
-                        
-                        
+
                     </Grid>
                 </AccordionSummary>
-                <AccordionDetails sx={{ 'text-align': 'right' }}> 
+                <AccordionDetails sx={{ 'text-align': 'right' }}>
                     <Typography sx={{ 'text-align': 'right' }} component={'span'} >
                         {/* <form ref={fieldVal}> */}
                         <Box className={Styles.line}></Box>

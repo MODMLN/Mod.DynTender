@@ -29,7 +29,7 @@ export default function TenderItem({ item, index, redirectOnClick = true, leadIt
         }>
             <Box className={Styles.BoxMain} key={index} sx={{ p: 2 }}>
                <StatusesBtn item={item} leadItem={leadItem}></StatusesBtn>
-                <Box className={Styles.line}></Box>
+               <Box className={Styles.line}></Box>
                 {
                     (item.Statuses === "NotYetStarted" || item.Statuses === "Paused") ? (
                         <>
