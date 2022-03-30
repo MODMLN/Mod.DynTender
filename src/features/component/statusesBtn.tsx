@@ -15,7 +15,7 @@ interface IProps {
 export default function StatusesBtn({ item, leadItem }: IProps) {
 
     const Translation = useTranslation();
-    let time = leadItem.Time ? date.format(new Date(leadItem.Time), 'HH:mm:ss') : null;
+    let time = leadItem.Time ? date.format(new Date(leadItem.Time), 'HH:mm:ss') : '00:00:00';
     let status = leadItem.StatusId ? leadItem.StatusId : item.Statuses;
 
     return (
