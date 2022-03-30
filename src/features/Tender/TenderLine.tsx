@@ -113,12 +113,12 @@ export default function TenderLine({ item, AmountSign, status }: IProps): JSX.El
                     <Typography sx={{ 'text-align': 'right' }} component={'span'} >
                         {/* <form ref={fieldVal}> */}
                         <Box className={Styles.line}></Box>
-                        <Box className={Styles.tenderSummery}>
-                            <Box className={Styles.stepDiv}>
-                                <Box className={Styles.stepTitle} aria-label={Translation('Tender.PROPOSAL_RANK')}>{Translation('Tender.PROPOSAL_RANK')}</Box>
-                                <Box className={Styles.stepNumber}><b>{item.PriceStep} {item.CurrencyId}</b></Box>
-                            </Box>
-                            <Box className={Styles.unitPrice}>
+                        <Grid container className={Styles.tenderSummery}>
+                            <Grid  className={Styles.stepDiv}>
+                                <Grid item className={Styles.stepTitle} aria-label={Translation('Tender.PROPOSAL_RANK')}>{Translation('Tender.PROPOSAL_RANK')}</Grid>
+                                <Grid item className={Styles.stepNumber}><b>{item.PriceStep} {item.CurrencyId}</b></Grid>
+                            </Grid>
+                            <Grid className={Styles.unitPrice}>
                                 <Box className={Styles.stepTitle} aria-label={Translation('Tender.PRICE_PER_UNIT')}></Box>
                                 <Box className={Styles.stepField}>
                                     <Box>
@@ -151,16 +151,16 @@ export default function TenderLine({ item, AmountSign, status }: IProps): JSX.El
                                     }>
                                         <RemoveCircle /></IconButton></Box>
                                 </Box>
-                            </Box>
-                            <Box className={Styles.sum}>
+                            </Grid>
+                            <Grid className={Styles.sum}>
                                 <Box className={Styles.sumTitle}>{Translation('Tender.TOTAL')}</Box>
                                 <Box className={Styles.sumNumber}>
                                     <FormControl fullWidth className={Styles.stepNumber} variant="standard">
                                         <CurrencyFormat disabled className={Styles.stepNumber} displayType={"input"} decimalScale={2} value={item.TotalPriceForDisplay} id="TotalPriceForDisplay" name={'TotalPriceForDisplay'}  ></CurrencyFormat>
                                     </FormControl>
                                 </Box>
-                            </Box>
-                        </Box>
+                            </Grid>
+                        </Grid>
                         {/* </form> */}
                         <Snackbar sx={{ height: "100%" }} anchorOrigin={{ vertical: 'top', horizontal: 'center' }} open={snackbar.isOpen} autoHideDuration={6000} onBlur={() => { setSnackbar({ isOpen: false, messege: '' }) }} onClose={() => { setSnackbar({ isOpen: false, messege: '' }) }} >
                             <Alert severity="error" sx={{ direction: "rtl", width: '100%' }} >
