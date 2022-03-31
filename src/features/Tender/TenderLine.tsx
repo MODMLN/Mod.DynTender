@@ -119,17 +119,17 @@ export default function TenderLine({ item, AmountSign, status }: IProps): JSX.El
                                 <Grid item className={Styles.stepNumber}><b>{item.PriceStep} {item.CurrencyId}</b></Grid>
                             </Grid>
                             <Grid className={Styles.unitPrice}>
-                                <Box className={Styles.stepTitle} aria-label={Translation('Tender.PRICE_PER_UNIT')}></Box>
-                                <Box className={Styles.stepField}>
-                                    <Box>
+                                <Grid item className={Styles.stepTitle} aria-label={Translation('Tender.PRICE_PER_UNIT')}></Grid>
+                                <Grid item className={Styles.stepField}>
+                                    <Grid item>
                                         <IconButton sx={{ color: "#00798C" }} onClick={() => {
                                             let val = valCahnge ? parseFloat(valCahnge) : item.Price;
                                             if (val > item.MaxPrice) {
                                                 setSnackbar({ isOpen: true, messege: Translation('Tender.PRICE_IS_HIGHER_THAN_THE_MAXIMUM') });
                                             }
                                             dispatch(linePriceChanged({ TenderLineId: item.TenderLineId, actionType: "stepUp" }))
-                                        }}><AddCircle /></IconButton></Box>
-                                    <Box component='form' onSubmit={handleSubmit(onSubmit)} sx={{ mt: 1 }}>
+                                        }}><AddCircle /></IconButton></Grid>
+                                    <Grid component='form' onSubmit={handleSubmit(onSubmit)} sx={{ mt: 1 }}>
                                         <TextField defaultValue={item.Price ? parseFloat(String(item.Price)).toFixed(2) : ''} {...register('tenderSum')} placeholder={item.CurrencyId}
                                             type={'text'}
                                             label={Translation('Tender.PRICE_PER_UNIT') + ' ' + item.CurrencyId}
@@ -139,8 +139,8 @@ export default function TenderLine({ item, AmountSign, status }: IProps): JSX.El
                                             helperText={errors.tenderSum == null ? null : errors.tenderSum?.message}
                                             fullWidth
                                         />
-                                    </Box>
-                                    <Box><IconButton sx={{ color: "#00798C" }} onClick={() => {
+                                    </Grid>
+                                    <Grid><IconButton sx={{ color: "#00798C" }} onClick={() => {
                                         let val = valCahnge ? parseFloat(valCahnge) : item.Price;
                                         if (val < item.MinPrice || val < 0) {
                                             setSnackbar({ isOpen: true, messege: Translation('Tender.PRICE_IS_LOWER_THAN_THE_MINIMUM') });
@@ -149,16 +149,16 @@ export default function TenderLine({ item, AmountSign, status }: IProps): JSX.El
                                         dispatch(linePriceChanged({ TenderLineId: item.TenderLineId, actionType: "stepDown" }))
                                     }
                                     }>
-                                        <RemoveCircle /></IconButton></Box>
-                                </Box>
+                                        <RemoveCircle /></IconButton></Grid>
+                                </Grid>
                             </Grid>
                             <Grid className={Styles.sum}>
-                                <Box className={Styles.sumTitle}>{Translation('Tender.TOTAL')}</Box>
-                                <Box className={Styles.sumNumber}>
+                                <Grid item className={Styles.sumTitle}>{Translation('Tender.TOTAL')}</Grid>
+                                <Grid item className={Styles.sumNumber}>
                                     <FormControl fullWidth className={Styles.stepNumber} variant="standard">
                                         <CurrencyFormat disabled className={Styles.stepNumber} displayType={"input"} decimalScale={2} value={item.TotalPriceForDisplay} id="TotalPriceForDisplay" name={'TotalPriceForDisplay'}  ></CurrencyFormat>
                                     </FormControl>
-                                </Box>
+                                </Grid>
                             </Grid>
                         </Grid>
                         {/* </form> */}
