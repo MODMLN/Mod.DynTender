@@ -100,7 +100,7 @@ export default function TenderLine({ item, AmountSign, status }: IProps): JSX.El
                                 </Grid>
                                 {item.isUpdated &&
                                     <Grid item md={2}>
-                                        <Box className={`${Styles.Updated}`}>{Translation('Tender.UPDATED')}</Box>
+                                        <Grid item className={`${Styles.Updated}`}>{Translation('Tender.UPDATED')}</Grid>
                                     </Grid>
                                 }
 
@@ -156,7 +156,7 @@ export default function TenderLine({ item, AmountSign, status }: IProps): JSX.El
                                 <Grid item className={Styles.sumTitle}>{Translation('Tender.TOTAL')}</Grid>
                                 <Grid item className={Styles.sumNumber}>
                                     <FormControl fullWidth className={Styles.stepNumber} variant="standard">
-                                        <CurrencyFormat disabled className={Styles.stepNumber} displayType={"input"} decimalScale={2} value={item.TotalPriceForDisplay} id="TotalPriceForDisplay" name={'TotalPriceForDisplay'}  ></CurrencyFormat>
+                                        <CurrencyFormat disabled className={Styles.stepNumber} displayType={"text"} decimalScale={2} value={item.TotalPriceForDisplay} id="TotalPriceForDisplay" name={'TotalPriceForDisplay'}   thousandSeparator={true} prefix={item.CurrencyId}></CurrencyFormat>
                                     </FormControl>
                                 </Grid>
                             </Grid>

@@ -68,8 +68,8 @@ export default function Tender() {
  
   return (
     <Box className={Styles.BoxContainer}>
-      <Box className={Styles.BoxHeadTop} >
-        <Box key="1" className={Styles.tenderDetails}>
+      <Grid className={Styles.BoxHeadTop} >
+        <Grid key="1" className={Styles.tenderDetails}>
    
           {(tenderDto != null && tenderDto.Messages != null && tenderDto.Messages.length > 0 && displayMessages) &&
             <Dialog key="messagesDialog" flag={open} Messages={tenderDto.Messages} userDto={userDto} ></Dialog>
@@ -83,9 +83,9 @@ export default function Tender() {
           {(tenderDto != null) &&
             <TenderItem key="4" item={tenderDto} index={0} redirectOnClick={false} leadItem={LpauDto} />
           }
-        </Box>
+        </Grid>
 
-      </Box>
+      </Grid>
       <Box className={Styles.BoxSumItems}>{Translation('Tender.ITEMS_IN_TENDER') + " " + tenderDto.itemsNumber} </Box>
       <Box className={Styles.TenderLines}>
         {
