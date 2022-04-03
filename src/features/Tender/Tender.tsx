@@ -5,9 +5,11 @@ import TenderItem from './TenderItem';
 import { selectTender, fetchTenderAsync, selectTotalSummery ,selectLpau,fetchLpauAsync, fetchConfirmPropositionAsync} from "./TenderSlice";
 import TenderLine from './TenderLine';
 import {TenderLineDto} from './Dtos/TenderLineDto';
-import { Box, Grid,Link  } from "@mui/material";
+import { Box, Grid,Link,Dialog, DialogContentText ,DialogContent,DialogTitle ,DialogActions } from "@mui/material";
+
+
 import Styles from './Tender.module.scss';
-import Dialog from './dialog';
+import MessagesDialog from './dialog';
 import NeedApprovalMessages from './NeedApprovalMessages';
 import Button from '@mui/material/Button';
 import switchStatus from './Commons/switchStatus';
@@ -18,8 +20,8 @@ import {fetchUserAsync, selectUser} from "./../../Global/UsersSlice";
 import { useLiveQuery } from "dexie-react-hooks";
 import {db} from './../../Global/db';
 import { selectTenders, selectDisplayMessages } from "../Tenders/TendersSlice";
-import logicHelper from "../../Helpers/LogicHelper"
-
+import logicHelper from "../../Helpers/LogicHelper";
+import BidConfirm from './../TenderBidConfirm/BidConfirm';
 
 
 
@@ -72,7 +74,7 @@ export default function Tender() {
         <Grid key="1" className={Styles.tenderDetails}>
    
           {(tenderDto != null && tenderDto.Messages != null && tenderDto.Messages.length > 0 && displayMessages) &&
-            <Dialog key="messagesDialog" flag={open} Messages={tenderDto.Messages} userDto={userDto} ></Dialog>
+            <MessagesDialog key="messagesDialog" flag={open} Messages={tenderDto.Messages} userDto={userDto} ></MessagesDialog>
           }
           
           {(LpauDto != null && LpauDto.NeedApprovalMessages != null && LpauDto.NeedApprovalMessages.length > 0) &&
@@ -86,40 +88,45 @@ export default function Tender() {
         </Grid>
 
       </Grid>
-      <Box className={Styles.BoxSumLink}><Link  underline="hover" href="/tenders">{Translation('Tender.ALL_TENDERS_LIST')}</Link></Box>
-      <Box className={Styles.BoxSumItems}>{Translation('Tender.ITEMS_IN_TENDER') + " " + tenderDto.itemsNumber} </Box>
-      
-      <Box className={Styles.TenderLines}>
-        {
-          (tenderDto != null && tenderDto.Lines != null && tenderDto.Lines.length > 0) ?
-            tenderDto.Lines.map((itemx: TenderLineDto, indexx: number) => {
 
-              return (
-                <>
-                  <TenderLine key={`indxx_${indexx}`} item={itemx} AmountSign={tenderDto.AmountSign} status={tenderDto.Statuses}></TenderLine>
-                </>
-              )
-            })
-            : ''}
-      </Box>
-      <Grid  className={Styles.BoxContainer}>
-        <Grid container className={Styles.BoxSummery}  justifyContent="center" >
-          <Grid container  justifyContent="center" className={Styles.title}>{Translation('Tender.THE_AMOUNT_OF_YOUR_BID')}</Grid>
-          <Grid container  justifyContent="center" className={Styles.summery}><CurrencyFormat value={TotalSummery} displayType={'text'} thousandSeparator={true} prefix={tenderDto.CurrencyId} decimalScale={2} /></Grid>
-          <Grid container   justifyContent="center" className={Styles.buttonDiv}>
-            {Statuses.isVisible() &&
-              <Grid  item sx={{ width: '100%' }}><Button onClick={() => {dispatch(fetchConfirmPropositionAsync(
-                { userId:userDto.userId,
-                  tenderId:tenderDto.Id,
-                  lines:[tenderDto.Lines.map((x:TenderLineDto)=> ({tenderLineId: x.TenderLineId,price:x.Price}))]
-                }));
-                 navBack();
-                }}
-                 sx={{ 'background-color': '#00798C', 'width': '50%' }} className={Styles.Button} disabled={!Statuses.isEnable()} variant="contained">הגשת ההצעה</Button></Grid>
-            }
+      
+      <Box  sx={{ display: 'none' }} >
+        <Box className={Styles.BoxSumLink}><Link  underline="hover" href="/tenders">{Translation('Tender.ALL_TENDERS_LIST')}</Link></Box>
+        <Box className={Styles.BoxSumItems}>{Translation('Tender.ITEMS_IN_TENDER') + " " + tenderDto.itemsNumber} </Box>
+        <Box className={Styles.TenderLines}>
+          {
+            (tenderDto != null && tenderDto.Lines != null && tenderDto.Lines.length > 0) ?
+              tenderDto.Lines.map((itemx: TenderLineDto, indexx: number) => {
+
+                return (
+                  <>
+                    <TenderLine key={`indxx_${indexx}`} item={itemx} AmountSign={tenderDto.AmountSign} status={tenderDto.Statuses}></TenderLine>
+                  </>
+                )
+              })
+              : ''}
+        </Box>
+        <Grid  className={Styles.BoxContainer}>
+          <Grid container className={Styles.BoxSummery}  justifyContent="center" >
+            <Grid container  justifyContent="center" className={Styles.title}>{Translation('Tender.THE_AMOUNT_OF_YOUR_BID')}</Grid>
+            <Grid container  justifyContent="center" className={Styles.summery}><CurrencyFormat value={TotalSummery} displayType={'text'} thousandSeparator={true} prefix={tenderDto.CurrencyId} decimalScale={2} /></Grid>
+            <Grid container   justifyContent="center" className={Styles.buttonDiv}>
+              {Statuses.isVisible() &&
+                <Grid  item sx={{ width: '100%' }}><Button onClick={() => {dispatch(fetchConfirmPropositionAsync(
+                  { userId:userDto.userId,
+                    tenderId:tenderDto.Id,
+                    lines:[tenderDto.Lines.map((x:TenderLineDto)=> ({tenderLineId: x.TenderLineId,price:x.Price}))]
+                  }));
+                  }}
+                  sx={{ 'background-color': '#00798C', 'width': '50%' }} className={Styles.Button} disabled={!Statuses.isEnable()} variant="contained">הגשת ההצעה</Button></Grid>
+              }
+            </Grid>
           </Grid>
-        </Grid>
-      </Grid >
+        </Grid >
+      </Box>
+      <Box>
+        <BidConfirm></BidConfirm>
+      </Box>
     </Box>
   );
 };

@@ -11,12 +11,9 @@ import { DataGrid, GridRowsProp, GridColDef   } from '@mui/x-data-grid';
 import CurrencyFormat from "react-number-format";
 import { TenderLineDto } from "../Tender/Dtos/TenderLineDto";
 
-
 interface IProps {
     Item: UsersDto,
 }
-
-
 
 export default function BidConfirm(){
     const { id } = useParams();
@@ -26,7 +23,6 @@ export default function BidConfirm(){
     const TotalSummery = useSelector(selectTotalSummery);
     const tenderDto = useSelector(selectTender);
     const LpauDto = useSelector(selectLpau);
-
 
     useEffect(() => {
         dispatch(fetchTenderAsync());
@@ -62,13 +58,6 @@ export default function BidConfirm(){
     return (
         <>
             <Box className={Styles.BoxContainer}>
-                <Box className={Styles.BoxHeadTop} >
-                    <Box className={Styles.tenderDetails}>
-                    {(tenderDto != null) &&
-                        <TenderItem key="4" item={tenderDto} index={0} redirectOnClick={false} leadItem={LpauDto} />
-                    }
-                    </Box>
-                </Box>
                 <Box sx={{ direction: "rtl" }} className={Styles.DataGrid}>
                     <Box  className={Styles.AlertDiv}>
                         <Stack sx={{ width: '30%' }} spacing={2}>

@@ -17,6 +17,7 @@ export interface TenderMesseges {
 export interface CounterState {
   loading: boolean,
   error: boolean,
+  BidConfirmStatus:boolean,
   tenderdata: TenderDto,
   lpaudata: LpauDto,
   totalSummery: number | undefined
@@ -26,6 +27,7 @@ export interface CounterState {
 export const initialState: CounterState = {
   loading: false,
   error: false,
+  BidConfirmStatus:false,
   tenderdata: new TenderDto(),
   lpaudata: new LpauDto(),
   totalSummery: 0
@@ -38,6 +40,10 @@ export const tenderSlice = createSlice({
     startLoading: (state) => {
       state.loading = true;
     },
+    bidConfirmStatus: (state, action) => {
+      state.BidConfirmStatus = action.payload;
+    },
+
     linePriceChanged: (state, action) => {
       //action contains lineId and 
       //called on change of + - and field blur
@@ -65,7 +71,7 @@ export const tenderSlice = createSlice({
           line.ErrorMsgMessege = 'המחיר שהוקלד אינו עומד בטווח שנקבע';
 
           // line.ErrorMsg.isOpen = line.ErrorMsg?line.ErrorMsg.isOpen:false;
-          //line.ErrorMsg.messege = line.ErrorMsg?line.ErrorMsg.messege:"";
+          // line.ErrorMsg.messege = line.ErrorMsg?line.ErrorMsg.messege:"";
         }
         line.Price = parseFloat(parseFloat(String(line.Price)).toFixed(2));
         line.TotalPrice = CalculateLineTotal(state.tenderdata, line);
@@ -134,12 +140,6 @@ export const fetchLpauAsync = createAsyncThunk('tenderdata/post', async (thunkAP
 }
 );
 
-
-
-
-
-
-
 export const fetchApproveMessagesAsync = createAsyncThunk('tenderdata/ApproveMessages', async (req: any, thunkAPI: any) => {
   try {
     const response = await axios.post(`${API_URL_Lpau}/${req}`);
@@ -196,6 +196,7 @@ const CalculateTenderTotal = (tender: TenderDto) => {
 }
 
 export const {
+  bidConfirmStatus,
   setTotalSummery,
   startLoading,
   linePriceChanged,
