@@ -41,7 +41,7 @@ export default function TenderItem({ item, index, redirectOnClick = true, leadIt
                         <>
                             <Grid  container style={{ textAlign: "right" }}>
                                 <Grid item>{Translation('Tender.OPEN_TIME')}</Grid>
-                                <Grid item className={Styles.bold}><Moment format="hh:mm:ss" interval={30000}>{item.Time}</Moment></Grid>
+                                <Grid item className={Styles.bold}><Moment format="hh:mm:ss" interval={30000}>{item.StartDate}</Moment></Grid>
                                 <Grid item>{`${Translation('Tender.WILL_BEGIN_IN')} ${days} ${hours} ${minutes} ${seconds}`}</Grid>
                             </Grid>
                             <Box className={Styles.line}></Box>

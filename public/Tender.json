@@ -4,7 +4,7 @@
         "IsMinPreferred": true,
         "IsServiceTender": false,
         "NumberOfWinner": 1,
-        "Name": "1000695057 - שמירת הכשירות הגופנית והקרבית בצה\"ל",
+        "Name": "שמירת הכשירות הגופנית והקרבית בצה\"ל",
         "HasUsersWithFemaleOwner": false,
         "MultipaleFactor": 0.00,
         "CurrencyId": "₪", 
@@ -15,9 +15,10 @@
         "TenderQualityGradePercent": null,
         "SupplierQualityGradePercent": null,
         "Statuses":"Going",
-        "RankInfo": "Going",
+        "RankInfo": "הצעתך מובילה כעת",
         "TenderNumber":"6589547859",
         "TotalToLead": 77500,
+        "StartDate": "05:00",
         "Lines": [
             {
                 "RequiredAmount": 30,

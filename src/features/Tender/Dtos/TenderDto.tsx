@@ -14,6 +14,7 @@ export default class TenderDto {
     public HasUsersWithFemaleOwner?: boolean;
     public MultipaleFactor!: number | undefined;
     public CurrencyId?:string;
+    public StartDate?:string;
     public AmountSign?:string;
     public IsPercentageCalculation?: boolean;
     public Time!: number | undefined;
