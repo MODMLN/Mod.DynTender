@@ -5,7 +5,7 @@ import TenderItem from './TenderItem';
 import { selectTender, fetchTenderAsync, selectTotalSummery ,selectLpau,fetchLpauAsync, fetchConfirmPropositionAsync} from "./TenderSlice";
 import TenderLine from './TenderLine';
 import {TenderLineDto} from './Dtos/TenderLineDto';
-import { Box, Grid } from "@mui/material";
+import { Box, Grid,Link  } from "@mui/material";
 import Styles from './Tender.module.scss';
 import Dialog from './dialog';
 import NeedApprovalMessages from './NeedApprovalMessages';
@@ -86,7 +86,9 @@ export default function Tender() {
         </Grid>
 
       </Grid>
+      <Box className={Styles.BoxSumLink}><Link  underline="hover" href="/tenders">{Translation('Tender.ALL_TENDERS_LIST')}</Link></Box>
       <Box className={Styles.BoxSumItems}>{Translation('Tender.ITEMS_IN_TENDER') + " " + tenderDto.itemsNumber} </Box>
+      
       <Box className={Styles.TenderLines}>
         {
           (tenderDto != null && tenderDto.Lines != null && tenderDto.Lines.length > 0) ?

@@ -9,6 +9,7 @@ import CurrencyFormat from 'react-number-format';
 import date from 'date-and-time';
 import { useTranslation } from "react-multi-lang";
 import {DateTime, Duration} from "luxon";
+import TenderStartTime from './../component/tenderStartTime';
 
 interface IProps {
     item: TendersDto, index: number, redirectOnClick: boolean
@@ -19,12 +20,7 @@ export default function TendersListItem({ item, index, redirectOnClick = true }:
     let navigate = useNavigate();
     let time = item.Time?date.format(new Date(item.Time), 'HH:mm:ss'):null;
     let statusColumnsClass = Styles[item.Statuses];
-    
-    let dt:Duration = DateTime.now().plus({ seconds: item.Time}).diff(DateTime.now(),['days', 'hours','minutes', 'seconds',]);
-    let days = Math.round(dt.days)>0?`${Math.round(dt.days)}  ${Translation(`Tender.DAYS`)} `:'';
-    let hours = Math.round(dt.hours)>0?`${Math.round(dt.hours)} ${Translation(`Tender.HOURS`)} `:'';
-    let minutes = Math.round(dt.minutes)>0?`${Math.round(dt.minutes)}  ${Translation(`Tender.MINUTES`)} `:'';
-    let seconds = Math.round(dt.seconds)>0?`${Math.round(dt.seconds)}  ${Translation(`Tender.SECONDS`)} `:'';
+
   
    
     let lastColumn = <Grid md={3} item>
@@ -65,7 +61,7 @@ export default function TendersListItem({ item, index, redirectOnClick = true }:
                             <Grid justifyContent="flex-end" direction="row-reverse" container alignItems="center" style={{ textAlign: "right" }}>
                                 <Grid justifyContent="flex-end" container>{Translation('Tender.OPENING_TIME')}</Grid>
                                 <Grid justifyContent="flex-end" container className={Styles.bold}>{item.StartDate}</Grid>
-                                <Grid justifyContent="flex-end" container>{`${Translation('Tender.WILL_BEGIN_IN')} ${days} ${hours} ${minutes} ${seconds}`}</Grid>
+                                <Grid justifyContent="flex-end" container><TenderStartTime key={index} item={item.Time}   /></Grid>
                             </Grid>
                             <Box className={Styles.line}></Box>
                         </>
