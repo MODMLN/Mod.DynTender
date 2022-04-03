@@ -4,11 +4,11 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import Styles from './Tenders.module.scss'
-import Moment from 'react-moment';
 import {  useNavigate } from "react-router-dom";
 import CurrencyFormat from 'react-number-format';
 import date from 'date-and-time';
 import { useTranslation } from "react-multi-lang";
+import {DateTime, Duration} from "luxon";
 
 interface IProps {
     item: TendersDto, index: number, redirectOnClick: boolean
@@ -20,7 +20,13 @@ export default function TendersListItem({ item, index, redirectOnClick = true }:
     let time = item.Time?date.format(new Date(item.Time), 'HH:mm:ss'):null;
     let statusColumnsClass = Styles[item.Statuses];
     
-
+    let dt:Duration = DateTime.now().plus({ seconds: item.Time}).diff(DateTime.now(),['days', 'hours','minutes', 'seconds',]);
+    let days = Math.round(dt.days)>0?`${Math.round(dt.days)}  ${Translation(`Tender.DAYS`)} `:'';
+    let hours = Math.round(dt.hours)>0?`${Math.round(dt.hours)} ${Translation(`Tender.HOURS`)} `:'';
+    let minutes = Math.round(dt.minutes)>0?`${Math.round(dt.minutes)}  ${Translation(`Tender.MINUTES`)} `:'';
+    let seconds = Math.round(dt.seconds)>0?`${Math.round(dt.seconds)}  ${Translation(`Tender.SECONDS`)} `:'';
+  
+   
     let lastColumn = <Grid md={3} item>
                         <Button className={statusColumnsClass} variant="contained">{Translation(`Tender.${item.Statuses}`)}</Button>
                     </Grid>;
@@ -58,8 +64,8 @@ export default function TendersListItem({ item, index, redirectOnClick = true }:
                         <>
                             <Grid justifyContent="flex-end" direction="row-reverse" container alignItems="center" style={{ textAlign: "right" }}>
                                 <Grid justifyContent="flex-end" container>{Translation('Tender.OPENING_TIME')}</Grid>
-                                <Grid justifyContent="flex-end" container className={Styles.bold}><Moment format="hh:mm:ss" interval={30000}>{item.Time}</Moment></Grid>
-                                <Grid justifyContent="flex-end" container>יחל בעוד 3 שעות ו-44 דקות</Grid>
+                                <Grid justifyContent="flex-end" container className={Styles.bold}>{item.StartDate}</Grid>
+                                <Grid justifyContent="flex-end" container>{`${Translation('Tender.WILL_BEGIN_IN')} ${days} ${hours} ${minutes} ${seconds}`}</Grid>
                             </Grid>
                             <Box className={Styles.line}></Box>
                         </>
