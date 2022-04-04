@@ -67,8 +67,8 @@ export default function Tender() {
   }
 
   const statusDisplay = {
-    true: 'none',
-    false: 'block',
+    true: 'block',
+    false: 'none',
   } as const;
 
   let Statuses = switchStatus(tenderDto.Statuses);
@@ -96,7 +96,7 @@ export default function Tender() {
       </Grid>
 
       
-      <Box  sx={{ display: statusDisplay[`${BidConfirmStatus}`] ?? 'block' }} >
+      <Box  sx={{ display: statusDisplay[`${BidConfirmStatus}`] ?? 'none' }} >
         <Box className={Styles.BoxSumLink}><Link  underline="hover" href="/tenders">{Translation('Tender.ALL_TENDERS_LIST')}</Link></Box>
         <Box className={Styles.BoxSumItems}>{Translation('Tender.ITEMS_IN_TENDER') + " " + tenderDto.itemsNumber} </Box>
         <Box className={Styles.TenderLines}>
@@ -131,7 +131,9 @@ export default function Tender() {
         </Grid >
       </Box>
       <Box>
-        <BidConfirm></BidConfirm>
+        {!BidConfirmStatus &&
+          <BidConfirm></BidConfirm>
+        }
       </Box>
     </Box>
   );

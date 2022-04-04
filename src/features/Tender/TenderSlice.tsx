@@ -27,7 +27,7 @@ export interface CounterState {
 export const initialState: CounterState = {
   loading: false,
   error: false,
-  BidConfirmStatus:false,
+  BidConfirmStatus:true,
   tenderdata: new TenderDto(),
   lpaudata: new LpauDto(),
   totalSummery: 0
@@ -113,7 +113,7 @@ export const tenderSlice = createSlice({
         //state.byId[userId] = null; // <-- I need the userId from createAsyncThunk here.
       })
       .addCase(fetchConfirmPropositionAsync.fulfilled, (state, action) => {
-
+        state.BidConfirmStatus = false;
         console.log(action)
       });
 
