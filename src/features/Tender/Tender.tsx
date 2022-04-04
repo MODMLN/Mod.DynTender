@@ -2,7 +2,7 @@ import React, { useEffect, useMemo } from "react";
 import { useParams ,useNavigate} from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import TenderItem from './TenderItem';
-import { selectTender, fetchTenderAsync, selectTotalSummery ,selectLpau,fetchLpauAsync, fetchConfirmPropositionAsync} from "./TenderSlice";
+import { selectTender, fetchTenderAsync, selectTotalSummery ,selectLpau,fetchLpauAsync, fetchConfirmPropositionAsync,selectBidConfirmStatus} from "./TenderSlice";
 import TenderLine from './TenderLine';
 import {TenderLineDto} from './Dtos/TenderLineDto';
 import { Box, Grid,Link,Dialog, DialogContentText ,DialogContent,DialogTitle ,DialogActions } from "@mui/material";
@@ -37,6 +37,7 @@ export default function Tender() {
   let navigate = useNavigate();
 
   const tenderDisplayMessages = useSelector(selectDisplayMessages);
+  const BidConfirmStatus = useSelector(selectBidConfirmStatus);
   const userDto = useSelector(selectUser);
   const tenderDto = useSelector(selectTender);
   const TotalSummery = useSelector(selectTotalSummery);
@@ -52,7 +53,7 @@ export default function Tender() {
     dispatch(fetchTenderAsync());
     dispatch(fetchLpauAsync());
     dispatch(fetchUserAsync());
-  
+
     const interval = setInterval(() => {
       dispatch(fetchLpauAsync()); 
     }, 10000);
@@ -64,6 +65,11 @@ export default function Tender() {
   const navBack = () =>{
     navigate(`/BidConfirm/${id}`);
   }
+
+  const statusDisplay = {
+    true: 'none',
+    false: 'block',
+  } as const;
 
   let Statuses = switchStatus(tenderDto.Statuses);
   const displayMessages = logicHelper.isDisplayMessages(tenderDisplayMessages, tenderDto.tenderId);
@@ -90,7 +96,7 @@ export default function Tender() {
       </Grid>
 
       
-      <Box  sx={{ display: 'none' }} >
+      <Box  sx={{ display: statusDisplay[`${BidConfirmStatus}`] ?? 'block' }} >
         <Box className={Styles.BoxSumLink}><Link  underline="hover" href="/tenders">{Translation('Tender.ALL_TENDERS_LIST')}</Link></Box>
         <Box className={Styles.BoxSumItems}>{Translation('Tender.ITEMS_IN_TENDER') + " " + tenderDto.itemsNumber} </Box>
         <Box className={Styles.TenderLines}>

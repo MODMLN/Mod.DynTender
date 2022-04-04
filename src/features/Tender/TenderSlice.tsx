@@ -205,4 +205,5 @@ export const {
 export const selectTender = (state: { tenderdata: { tenderdata: any; }; }) => state.tenderdata.tenderdata;
 export const selectTotalSummery = (state: RootState) => state.tenderdata.totalSummery;
 export const selectLpau = (state: RootState) => state.tenderdata.lpaudata;
+export const selectBidConfirmStatus = (state: RootState) => state.tenderdata.BidConfirmStatus;
 export default tenderSlice.reducer;
