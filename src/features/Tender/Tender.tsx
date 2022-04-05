@@ -23,15 +23,11 @@ import { selectTenders, selectDisplayMessages } from "../Tenders/TendersSlice";
 import logicHelper from "../../Helpers/LogicHelper";
 import BidConfirm from './../TenderBidConfirm/BidConfirm';
 
-
-
 export default function Tender() {
-
 
   const friends = useLiveQuery(
     () => db.tenderMesseges.toArray()
   );
-
 
   const { id } = useParams();
   let navigate = useNavigate();
@@ -47,7 +43,6 @@ export default function Tender() {
   const [openBidConfirm, setOpenBidConfirm] = React.useState(false);
   const Translation = useTranslation();
 
-
   useEffect(() => {
     setOpen(true);
     dispatch(fetchTenderAsync());
@@ -57,9 +52,6 @@ export default function Tender() {
     const interval = setInterval(() => {
       dispatch(fetchLpauAsync());
     }, 10000);
-
-
-
   }, [dispatch]);
 
   const navBack = () => {
@@ -75,36 +67,29 @@ export default function Tender() {
   const displayMessages = logicHelper.isDisplayMessages(tenderDisplayMessages, tenderDto.tenderId);
 
   return (
-
     <Box className={Styles.BoxContainer}>
-
       <Grid className={Styles.BoxHeadTop} >
         <Grid key="1" className={Styles.tenderDetails}>
 
           {(tenderDto != null && tenderDto.Messages != null && tenderDto.Messages.length > 0 && displayMessages) &&
             <MessagesDialog key="messagesDialog" flag={open} Messages={tenderDto.Messages} userDto={userDto} ></MessagesDialog>
           }
-
           {(LpauDto != null && LpauDto.NeedApprovalMessages != null && LpauDto.NeedApprovalMessages.length > 0) &&
             <NeedApprovalMessages key="3" flag={open} Messages={LpauDto.NeedApprovalMessages}  ></NeedApprovalMessages>
           }
-
           {(tenderDto != null) &&
             <TenderItem key="4" item={tenderDto} index={0} redirectOnClick={false} leadItem={LpauDto} />
           }
         </Grid>
-
       </Grid>
-
       {BidConfirmStatus &&
-        <Box sx={{ display: statusDisplay[`${BidConfirmStatus}`] ?? 'none' }} >
+        <Box>
           <Box className={Styles.BoxSumLink}><Link underline="hover" href="/tenders">{Translation('Tender.ALL_TENDERS_LIST')}</Link></Box>
           <Box className={Styles.BoxSumItems}>{Translation('Tender.ITEMS_IN_TENDER') + " " + tenderDto.itemsNumber} </Box>
           <Box className={Styles.TenderLines}>
             {
               (tenderDto != null && tenderDto.Lines != null && tenderDto.Lines.length > 0) ?
                 tenderDto.Lines.map((itemx: TenderLineDto, indexx: number) => {
-
                   return (
                     <>
                       <TenderLine key={`indxx_${indexx}`} item={itemx} AmountSign={tenderDto.AmountSign} status={tenderDto.Statuses}></TenderLine>
@@ -136,9 +121,7 @@ export default function Tender() {
       }
       {!BidConfirmStatus &&
         <Box>
-
           <BidConfirm></BidConfirm>
-
         </Box>
       }
     </Box>

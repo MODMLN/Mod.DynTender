@@ -1,6 +1,6 @@
 import React from "react";
 import TenderDto from './../Tender/Dtos/TenderDto'
-import LpauDto from './../Tender/Dtos/LpauDto';
+import LpauDto from './../Tender/Dtos/LastPropositionsDto';
 import Styles from './../Tender/Tender.module.scss'
 import Button from '@mui/material/Button';
 import { useTranslation } from "react-multi-lang";

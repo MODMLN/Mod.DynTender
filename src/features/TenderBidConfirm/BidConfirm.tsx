@@ -58,10 +58,11 @@ export default function BidConfirm(){
 
     return (
         <>
-            <Box className={Styles.BoxContainer} sx={{ display: statusDisplay[`${BidConfirmStatus}`] ?? 'block' }}>
+      
+            <Box className={Styles.BoxContainer} >
                 <Box sx={{ direction: "rtl" }} className={Styles.DataGrid}>
                     <Box  className={Styles.AlertDiv}>
-                        <Stack sx={{ width: '30%' }} spacing={2}>
+                        <Stack sx={{ width: '50%' }} spacing={2}>
                             <Alert  sx={{ backgroundColor: '#E3EBF8' }} severity="warning">{Translation("Tender.PROPOSAL_IS_FILLED_IN_PROPERLY")}</Alert>
                        </Stack> 
                     </Box>

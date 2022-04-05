@@ -3,7 +3,7 @@ import axios from "axios";
 import { RootState } from "../../app/store";
 import TenderDto from './Dtos/TenderDto';
 import { TenderLineDto } from './Dtos/TenderLineDto';
-import LpauDto from './Dtos/LpauDto';
+import LastPropositionsDto from './Dtos/LastPropositionsDto';
 import { v4 as uuidv4 } from 'uuid';
 const API_URL_Tender = "/Tender.json";
 const API_URL_Lpau   = "/LeadingPropositionAndUser.json";
@@ -19,7 +19,7 @@ export interface CounterState {
   error: boolean,
   BidConfirmStatus:boolean,
   tenderdata: TenderDto,
-  lpaudata: LpauDto,
+  LastPropositionsdata: LastPropositionsDto,
   totalSummery: number | undefined
 }
 
@@ -29,7 +29,7 @@ export const initialState: CounterState = {
   error: false,
   BidConfirmStatus:true,
   tenderdata: new TenderDto(),
-  lpaudata: new LpauDto(),
+  LastPropositionsdata: new LastPropositionsDto(),
   totalSummery: 0
 };
 
@@ -101,7 +101,7 @@ export const tenderSlice = createSlice({
       })
       .addCase(fetchLpauAsync.fulfilled, (state, action) => {
         //if(state.isEditingLine === false){
-        state.lpaudata = SetLpauDtoData(state, action.payload);
+        state.LastPropositionsdata = SetLpauDtoData(state, action.payload);
         //}
       })
       .addCase(fetchApproveMessagesAsync.fulfilled, (state, action) => {
@@ -181,7 +181,7 @@ const SetTenderData = (state: CounterState, tender: TenderDto) => {
   return tender;
 }
 
-const SetLpauDtoData = (state: CounterState, lpau: LpauDto) => {
+const SetLpauDtoData = (state: CounterState, lpau: LastPropositionsDto) => {
   return lpau;
 }
 
@@ -204,6 +204,6 @@ export const {
 
 export const selectTender = (state: { tenderdata: { tenderdata: any; }; }) => state.tenderdata.tenderdata;
 export const selectTotalSummery = (state: RootState) => state.tenderdata.totalSummery;
-export const selectLpau = (state: RootState) => state.tenderdata.lpaudata;
+export const selectLpau = (state: RootState) => state.tenderdata.LastPropositionsdata;
 export const selectBidConfirmStatus = (state: RootState) => state.tenderdata.BidConfirmStatus;
 export default tenderSlice.reducer;

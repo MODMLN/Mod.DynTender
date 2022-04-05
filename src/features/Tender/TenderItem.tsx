@@ -1,6 +1,6 @@
 import React from "react";
 import TenderDto from './Dtos/TenderDto';
-import LpauDto from './Dtos/LpauDto';
+import LpauDto from './Dtos/LastPropositionsDto';
 import Styles from './Tender.module.scss'
 import Moment from 'react-moment';
 import { useNavigate } from "react-router-dom";

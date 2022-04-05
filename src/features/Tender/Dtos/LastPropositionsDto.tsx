@@ -9,7 +9,7 @@ export type Ranks= ("Going"|"Ended"|"Frozen")
 export type Status= ("Going"|"Ended"|"Paused"|"NotYetStarted"|"Decoded")
 
 
-export default class LpauDto {
+export default class LastPropositionsDto {
     public UserIsDisabled?: boolean;
     public UserNominalToLead?: boolean;
     public UserTotalToLead?: number;
