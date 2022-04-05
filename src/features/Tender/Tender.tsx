@@ -6,8 +6,6 @@ import { selectTender, fetchTenderAsync, selectTotalSummery, selectLpau, fetchLp
 import TenderLine from './TenderLine';
 import { TenderLineDto } from './Dtos/TenderLineDto';
 import { Box, Grid, Link, Dialog, DialogContentText, DialogContent, DialogTitle, DialogActions } from "@mui/material";
-
-
 import Styles from './Tender.module.scss';
 import MessagesDialog from './dialog';
 import NeedApprovalMessages from './NeedApprovalMessages';

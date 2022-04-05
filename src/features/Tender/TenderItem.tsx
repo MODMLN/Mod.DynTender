@@ -1,6 +1,6 @@
 import React from "react";
 import TenderDto from './Dtos/TenderDto';
-import LpauDto from './Dtos/LastPropositionsDto';
+import LastPropositionsDto from './Dtos/LastPropositionsDto';
 import Styles from './Tender.module.scss'
 import Moment from 'react-moment';
 import { useNavigate } from "react-router-dom";
@@ -14,7 +14,7 @@ interface IProps {
     item: TenderDto, 
     index: number, 
     redirectOnClick: boolean, 
-    leadItem: LpauDto,
+    leadItem: LastPropositionsDto,
 }
 
 export default function TenderItem({ item, index, redirectOnClick = true, leadItem }: IProps) {

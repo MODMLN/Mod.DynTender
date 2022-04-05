@@ -1,6 +1,6 @@
 import React from "react";
 import TenderDto from './../Tender/Dtos/TenderDto'
-import LpauDto from './../Tender/Dtos/LastPropositionsDto';
+import LastPropositionsDto from './../Tender/Dtos/LastPropositionsDto';
 import Styles from './../Tender/Tender.module.scss'
 import Button from '@mui/material/Button';
 import { useTranslation } from "react-multi-lang";
@@ -9,7 +9,7 @@ import { Grid, Box } from "@mui/material";
 
 interface IProps {
     item: TenderDto
-    leadItem: LpauDto,
+    leadItem: LastPropositionsDto,
 }
 
 export default function StatusesBtn({ item, leadItem }: IProps) {
