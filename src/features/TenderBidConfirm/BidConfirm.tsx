@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { useParams ,useNavigate} from 'react-router-dom';
+import React, { useEffect } from "react";
+import {useNavigate} from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import Styles from './BidConfirm.module.scss';
-import { Box, Button,Alert  ,Stack} from "@mui/material";
+import { Box, Button,Alert,Stack} from "@mui/material";
 import { useTranslation } from "react-multi-lang";
 import UsersDto from "./../../Global/UsersDto";
-import { selectTender, fetchTenderAsync, selectLpau, fetchLpauAsync ,selectTotalSummery,fetchConfirmPropositionAsync,selectBidConfirmStatus,bidConfirmStatus} from "./../Tender/TenderSlice";
-import TenderItem from './../Tender/TenderItem';
-import { DataGrid, GridRowsProp, GridColDef   } from '@mui/x-data-grid';
+import { selectTender, fetchTenderAsync, fetchLastPropositionsAsync ,selectTotalSummery,fetchConfirmPropositionAsync,bidConfirmStatus} from "./../Tender/TenderSlice";
+import { DataGrid, GridColDef   } from '@mui/x-data-grid';
 import CurrencyFormat from "react-number-format";
 import { TenderLineDto } from "../Tender/Dtos/TenderLineDto";
 
@@ -16,33 +15,23 @@ interface IProps {
 }
 
 export default function BidConfirm(){
-    const { id } = useParams();
     let navigate = useNavigate();
     const dispatch = useDispatch();
     const Translation = useTranslation();
     const TotalSummery = useSelector(selectTotalSummery);
     const tenderDto = useSelector(selectTender);
-    const LpauDto = useSelector(selectLpau);
-    const BidConfirmStatus = useSelector(selectBidConfirmStatus);
+
     useEffect(() => {
         dispatch(fetchTenderAsync());
-        dispatch(fetchLpauAsync());
+        dispatch(fetchLastPropositionsAsync());
         dispatch(fetchConfirmPropositionAsync(''));//מסך אישור הצעה - הצגת שגיאות #31
       }, [dispatch]);
   
-     
-      const statusDisplay = {
-        true: 'none',
-        false: 'block',
-      } as const;
 
       let rows: readonly { [key: string]: any; }[] = [];
       if(tenderDto != null && tenderDto.Lines != null && tenderDto.Lines.length > 0 ){
           rows = tenderDto.Lines.map((x:TenderLineDto)=> ({id: x.TenderLineId, col1: x.TenderLineName, col2: x.RequiredAmount , col3: x.TotalPrice , col4: x.isUpdated?'עודכן':''}));
       }
-    //   let rows: GridRowsProp = (tenderDto != null && tenderDto.Lines != null && tenderDto.Lines.length > 0  &&
-    //      tenderDto.Lines.map((x:TenderLineDto)=> ({id: x.TenderLineId, col1: x.TenderLineName, col2: x.RequiredAmount , col3: x.TotalPrice , col4: x.isUpdated?'עודכן':''})));
-    
 
     const columns: GridColDef[] = [
         { field: 'col1', headerName:Translation("Tender.ITEM_NAME"), width: 250, sortable:false,headerClassName:'columnHeaderTitle',renderCell: (params) => (
@@ -62,7 +51,6 @@ export default function BidConfirm(){
 
     return (
         <>
-      
             <Box className={Styles.BoxContainer} >
                 <Box sx={{ direction: "rtl" }} className={Styles.DataGrid}>
                     <Box  className={Styles.AlertDiv}>

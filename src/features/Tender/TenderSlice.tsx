@@ -4,7 +4,6 @@ import { RootState } from "../../app/store";
 import TenderDto from './Dtos/TenderDto';
 import { TenderLineDto } from './Dtos/TenderLineDto';
 import LastPropositionsDto from './Dtos/LastPropositionsDto';
-import { v4 as uuidv4 } from 'uuid';
 const API_URL_Tender = "/Tender.json";
 const API_URL_Lpau   = "/LeadingPropositionAndUser.json";
 
@@ -99,9 +98,9 @@ export const tenderSlice = createSlice({
         //   set all , but prices
         // }
       })
-      .addCase(fetchLpauAsync.fulfilled, (state, action) => {
+      .addCase(fetchLastPropositionsAsync.fulfilled, (state, action) => {
         //if(state.isEditingLine === false){
-        state.LastPropositionsdata = SetLpauDtoData(state, action.payload);
+        state.LastPropositionsdata = SetLastPropositionsDtoData(state, action.payload);
         //}
       })
       .addCase(fetchApproveMessagesAsync.fulfilled, (state, action) => {
@@ -130,7 +129,7 @@ export const fetchTenderAsync = createAsyncThunk('tenderdata/get', async (thunkA
 }
 );
 
-export const fetchLpauAsync = createAsyncThunk('tenderdata/post', async (thunkAPI) => {
+export const fetchLastPropositionsAsync = createAsyncThunk('tenderdata/post', async (thunkAPI) => {
   try {
     const response = await axios.get(`${API_URL_Lpau}`);
     return response.data;
@@ -181,8 +180,8 @@ const SetTenderData = (state: CounterState, tender: TenderDto) => {
   return tender;
 }
 
-const SetLpauDtoData = (state: CounterState, lpau: LastPropositionsDto) => {
-  return lpau;
+const SetLastPropositionsDtoData = (state: CounterState, LastPropositions: LastPropositionsDto) => {
+  return LastPropositions;
 }
 
 const CalculateLineTotal = (tender: TenderDto, tenderLine: TenderLineDto) => {
@@ -204,6 +203,6 @@ export const {
 
 export const selectTender = (state: RootState) => state.Tender.Tender;
 export const selectTotalSummery = (state: RootState) => state.Tender.TotalSummery;
-export const selectLpau = (state: RootState) => state.Tender.LastPropositionsdata;
+export const selectLastPropositions = (state: RootState) => state.Tender.LastPropositionsdata;
 export const selectBidConfirmStatus = (state: RootState) => state.Tender.BidConfirmStatus;
 export default tenderSlice.reducer;

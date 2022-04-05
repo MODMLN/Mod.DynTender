@@ -5,7 +5,7 @@ import Styles from './../Tender/Tender.module.scss'
 import Button from '@mui/material/Button';
 import { useTranslation } from "react-multi-lang";
 import date from 'date-and-time';
-import { Grid, Box } from "@mui/material";
+import { Grid } from "@mui/material";
 
 interface IProps {
     item: TenderDto

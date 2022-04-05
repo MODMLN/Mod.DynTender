@@ -1,12 +1,9 @@
-import { CurrencyPoundTwoTone } from "@mui/icons-material";
-import { createSlice, createAsyncThunk, PayloadAction} from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk} from "@reduxjs/toolkit";
 import axios from "axios"; 
 import { RootState } from "../../app/store";
 import DisplayMessage from './Dtos/DisplayMessage';
  
 const API_URL_Tender = "./Tenders.json";
-
-
 
 // initial state
 export const initialState = {
@@ -23,7 +20,7 @@ export const tenderSlice = createSlice({
     // },
     setDisplayMessagesValue :(state,action)=>{
       let tender = state.DisplayMessages?.find((item:DisplayMessage)=>{
-        return item.tenderId == action.payload.tenderId });
+        return item.tenderId === action.payload.tenderId });
       if(tender){
         tender.display = action.payload.displayMessages;
       }
@@ -41,17 +38,6 @@ export const tenderSlice = createSlice({
 
 
 });
-
-
-// export const fetchTenderAsync = createAsyncThunk('Tenders/get', async (req: any,thunkAPI:any) => {
-//   try {
-//     const response = await axios.get(`${API_URL_Tender}`);
-//     return response.data;
-//   } catch (err) {
-//     return err;
-//   }
-// }
-// );
 
 export const getAllTendersAsync  = createAsyncThunk('tenders/get', async (thunkAPI) => {
   try {

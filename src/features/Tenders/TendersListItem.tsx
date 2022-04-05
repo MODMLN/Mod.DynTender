@@ -8,7 +8,6 @@ import { useNavigate } from "react-router-dom";
 import CurrencyFormat from 'react-number-format';
 import date from 'date-and-time';
 import { useTranslation } from "react-multi-lang";
-import {DateTime, Duration} from "luxon";
 import TenderStartTime from './../component/tenderStartTime';
 
 interface IProps {
@@ -27,7 +26,7 @@ export default function TendersListItem({ item, index, redirectOnClick = true }:
                         <Button className={statusColumnsClass} variant="contained">{Translation(`Tender.${item.Statuses}`)}</Button>
                     </Grid>;
 
-    if(item.Statuses == "Going"){
+    if(item.Statuses === "Going"){
         lastColumn = <React.Fragment>
                         <Grid md={1} item>
                             <Button variant="contained">{time}</Button>
@@ -39,7 +38,7 @@ export default function TendersListItem({ item, index, redirectOnClick = true }:
     }
    
     return (
-        <div onClick={
+        <Box onClick={
             (e) => {
                 if (redirectOnClick)
                     navigate(`/Tender/${item.Id}`);
@@ -51,9 +50,6 @@ export default function TendersListItem({ item, index, redirectOnClick = true }:
                     <Grid md={2} item>{Translation('Tender.NUMBER')}: {item.TenderNumber}</Grid>
                     {lastColumn}
                 </Grid>
-            
-            
-
                 <Box className={Styles.line}></Box> 
                 {
                     (item.Statuses === "NotYetStarted" || item.Statuses === "Paused") ? (
@@ -77,8 +73,7 @@ export default function TendersListItem({ item, index, redirectOnClick = true }:
                         <Grid container item direction="row" justifyContent="flex-end" className={Styles.bold}><CurrencyFormat decimalScale={2} value={item.TotalToLead} displayType={'text'} thousandSeparator={true} prefix={item.CurrencyId}></CurrencyFormat></Grid></Grid>
                 </Grid>
             </Grid>
-
-        </div>
+        </Box>
     )
 }
 

@@ -3,8 +3,7 @@ import {
     Box, Accordion, AccordionSummary, AccordionDetails,
     Typography, IconButton, FormControl, Snackbar, Alert,
     TextField,
-    Grid,
-    Divider
+    Grid
 } from "@mui/material";
 import Styles from './Tender.module.scss';
 import { AddCircle, RemoveCircle } from '@mui/icons-material';
@@ -29,10 +28,7 @@ export default function TenderLine({ item, AmountSign, status }: IProps): JSX.El
     const dispatch = useDispatch();
     const [expand, setExpand] = React.useState(false);
     const [valCahnge, setValChange] = React.useState('');
-
     const [snackbar, setSnackbar] = React.useState<IMessege>({ isOpen: false, messege: '' });
-    // const fieldVal = useRef(null);
-
     const [price, setPrice] = useState<number>(0);
 
     useEffect(() => {
