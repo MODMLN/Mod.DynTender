@@ -5,7 +5,7 @@ import TenderItem from './TenderItem';
 import { selectTender, fetchTenderAsync, selectTotalSummery, selectLastPropositions, fetchLastPropositionsAsync, fetchConfirmPropositionAsync, selectBidConfirmStatus } from "./TenderSlice";
 import TenderLine from './TenderLine';
 import { TenderLineDto } from './Dtos/TenderLineDto';
-import { Box, Grid, Link } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import Styles from './Tender.module.scss';
 import MessagesDialog from './dialog';
 import NeedApprovalMessages from './NeedApprovalMessages';
@@ -43,7 +43,7 @@ export default function Tender() {
   }, [dispatch]);
 
   const navBack = () => {
-    navigate(`/BidConfirm/${id}`);
+    navigate(`/Tenders`);
   }
 
   const statusDisplay = {
@@ -72,7 +72,9 @@ export default function Tender() {
       </Grid>
       {BidConfirmStatus &&
         <Box>
-          <Box className={Styles.BoxSumLink}><Link underline="hover" href="/tenders">{Translation('Tender.ALL_TENDERS_LIST')}</Link></Box>
+          <Box className={Styles.BoxSumLink}>
+            <Button size="medium" variant="contained" onClick={()=>navBack()}>{Translation('Tender.ALL_TENDERS_LIST')}</Button>
+           </Box>
           <Box className={Styles.BoxSumItems}>{Translation('Tender.ITEMS_IN_TENDER') + " " + tenderDto.itemsNumber} </Box>
           <Box className={Styles.TenderLines}>
             {

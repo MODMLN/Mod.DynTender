@@ -1,5 +1,6 @@
 {
   "Tender": {
+    "HELLO":"שלום",
     "NUMBER":"מס'",
     "Offer_confirmation":"אישור ההצעה",
     "BACK":"חזור",
@@ -13,6 +14,7 @@
     "NotYetStarted":"טרם החל",
     "ITEMS_IN_TENDER":"פריטים במכרז",
     "ALL_TENDERS_LIST":"לרשימת המכרזים",
+    "ALL_TENDERS":"רשימת המכרזים",
     "ACTIVE":"פעיל",
     "Going":"פעיל",
     "OPENING_TIME":"זמן פתיחה",

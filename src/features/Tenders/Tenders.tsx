@@ -1,15 +1,23 @@
 import React from "react";
 import styled from "styled-components";
 import TendersList from "./TendersList";
-
-const TendersContainer = styled.div``;
-const TenderHeading = styled.h4``;
+import { useTranslation } from "react-multi-lang";
+import { useSelector } from "react-redux";
+import { selectUser } from "../../Global/UsersSlice";
+import Styles from './Tenders.module.scss';
+import { Box, Grid, Link } from "@mui/material";
 
 export default function Tenders  ()  {
+  const Translation = useTranslation();
+  const userDto = useSelector(selectUser);
   return (
-    <TendersContainer>
-      <TenderHeading><div>שלום אורח<div></div>רשימת המכרזים</div></TenderHeading>
+    <Box className={Styles.TendersContainer}>
+      <Box className={Styles.TendersHead}>
+        <div className={Styles.userNameDiv}>{Translation('Tender.HELLO')} {userDto.userName}</div>
+        <div className={Styles.AllTenders}>{Translation('Tender.ALL_TENDERS')}</div>
+        </Box>
+
       <TendersList />
-    </TendersContainer>
+    </Box>
   );
 };
