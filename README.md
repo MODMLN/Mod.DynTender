@@ -2,7 +2,8 @@
 
 This Repo demostrates the Modern React Redux application development with Redux toolkit.
 
-![](./demo.gif)
+![image](https://user-images.githubusercontent.com/86707714/161710751-c9c0cbdc-0e29-4121-84ed-1b1ef099333e.png)
+
 
 ##### Using Create React App
 
