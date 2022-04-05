@@ -36,8 +36,12 @@ export default function BidConfirm(){
         false: 'block',
       } as const;
 
-      const rows: GridRowsProp  =(tenderDto != null && tenderDto.Lines != null && tenderDto.Lines.length > 0  &&
-         tenderDto.Lines.map((x:TenderLineDto)=> ({id: x.TenderLineId, col1: x.TenderLineName, col2: x.RequiredAmount , col3: x.TotalPrice , col4: x.isUpdated?'עודכן':''})));
+      let rows: readonly { [key: string]: any; }[] = [];
+      if(tenderDto != null && tenderDto.Lines != null && tenderDto.Lines.length > 0 ){
+          rows = tenderDto.Lines.map((x:TenderLineDto)=> ({id: x.TenderLineId, col1: x.TenderLineName, col2: x.RequiredAmount , col3: x.TotalPrice , col4: x.isUpdated?'עודכן':''}));
+      }
+    //   let rows: GridRowsProp = (tenderDto != null && tenderDto.Lines != null && tenderDto.Lines.length > 0  &&
+    //      tenderDto.Lines.map((x:TenderLineDto)=> ({id: x.TenderLineId, col1: x.TenderLineName, col2: x.RequiredAmount , col3: x.TotalPrice , col4: x.isUpdated?'עודכן':''})));
     
 
     const columns: GridColDef[] = [

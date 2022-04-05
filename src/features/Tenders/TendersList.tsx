@@ -9,7 +9,7 @@ import TendersListItem from './TendersListItem';
 export default function TendersList() {
 
   const dispatch = useDispatch();
-  const getAllTenders = useSelector(selectTenders);
+  const tenders = useSelector(selectTenders);
 
 
   useEffect(() => {
@@ -24,7 +24,7 @@ export default function TendersList() {
     <React.Fragment>
       <CssBaseline />
       <Container >
-        {getAllTenders.data.map((item: TendersDto, index: number) => {
+        {tenders.map((item: TendersDto, index: number) => {
           return (
             <TendersListItem key={index} item={item} index={index} redirectOnClick={true} />
           )

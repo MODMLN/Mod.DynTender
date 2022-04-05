@@ -20,7 +20,7 @@ import { joiResolver } from "@hookform/resolvers/joi";
 
 interface IProps {
     item: TenderLineDto,
-    AmountSign: string,
+    AmountSign?: string,
     status: string
 }
 

@@ -18,9 +18,9 @@ export interface CounterState {
   loading: boolean,
   error: boolean,
   BidConfirmStatus:boolean,
-  tenderdata: TenderDto,
+  Tender: TenderDto,
   LastPropositionsdata: LastPropositionsDto,
-  totalSummery: number | undefined
+  TotalSummery: number | undefined
 }
 
 // initial state
@@ -28,9 +28,9 @@ export const initialState: CounterState = {
   loading: false,
   error: false,
   BidConfirmStatus:true,
-  tenderdata: new TenderDto(),
+  Tender: new TenderDto(),
   LastPropositionsdata: new LastPropositionsDto(),
-  totalSummery: 0
+  TotalSummery: 0
 };
 
 export const tenderSlice = createSlice({
@@ -48,7 +48,7 @@ export const tenderSlice = createSlice({
       //action contains lineId and 
       //called on change of + - and field blur
       //call line sum change
-      let lines = state.tenderdata.Lines?.filter((x) => x.TenderLineId === action.payload.TenderLineId);
+      let lines = state.Tender.Lines?.filter((x) => x.TenderLineId === action.payload.TenderLineId);
       let line = lines == null ? null : lines[0];
 
       if (line != null) {
@@ -74,16 +74,16 @@ export const tenderSlice = createSlice({
           // line.ErrorMsg.messege = line.ErrorMsg?line.ErrorMsg.messege:"";
         }
         line.Price = parseFloat(parseFloat(String(line.Price)).toFixed(2));
-        line.TotalPrice = CalculateLineTotal(state.tenderdata, line);
+        line.TotalPrice = CalculateLineTotal(state.Tender, line);
         line.TotalPriceForDisplay = line.TotalPrice;
         line.isUpdated = true;
 
       }
-      state.totalSummery = CalculateTenderTotal(state.tenderdata);
+      state.TotalSummery = CalculateTenderTotal(state.Tender);
     },
     setTotalSummery: (state, action: PayloadAction<number>) => {
-      if (state.totalSummery)
-        state.totalSummery += action.payload
+      if (state.TotalSummery)
+        state.TotalSummery += action.payload
     }
   },
   extraReducers: (builder) => {
@@ -93,8 +93,8 @@ export const tenderSlice = createSlice({
       .addCase(fetchTenderAsync.fulfilled, (state, action) => {
         state.loading = false;
 
-        // if (tenderdata?.Lines != null)
-        state.tenderdata = SetTenderData(state, action.payload);
+        // if (Tender?.Lines != null)
+        state.Tender = SetTenderData(state, action.payload);
         // else{
         //   set all , but prices
         // }
@@ -177,7 +177,7 @@ const SetTenderData = (state: CounterState, tender: TenderDto) => {
     item.CurrencyId = tender.CurrencyId;
     item.IsPercentageCalculation = tender.IsPercentageCalculation;
   });
-  state.totalSummery = CalculateTenderTotal(tender);
+  state.TotalSummery = CalculateTenderTotal(tender);
   return tender;
 }
 
@@ -202,8 +202,8 @@ export const {
   linePriceChanged,
 } = tenderSlice.actions;
 
-export const selectTender = (state: { tenderdata: { tenderdata: any; }; }) => state.tenderdata.tenderdata;
-export const selectTotalSummery = (state: RootState) => state.tenderdata.totalSummery;
-export const selectLpau = (state: RootState) => state.tenderdata.LastPropositionsdata;
-export const selectBidConfirmStatus = (state: RootState) => state.tenderdata.BidConfirmStatus;
+export const selectTender = (state: RootState) => state.Tender.Tender;
+export const selectTotalSummery = (state: RootState) => state.Tender.TotalSummery;
+export const selectLpau = (state: RootState) => state.Tender.LastPropositionsdata;
+export const selectBidConfirmStatus = (state: RootState) => state.Tender.BidConfirmStatus;
 export default tenderSlice.reducer;

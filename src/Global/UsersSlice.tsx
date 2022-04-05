@@ -5,27 +5,27 @@ import UsersDto from "./UsersDto";
 import userDto from './UsersDto';
 
   export interface UserState {
-    userdata: userDto
+    user: userDto
   }
 
   export const initialState: UserState = {
-    userdata:new userDto()
+    user:new userDto()
   };
   
   const API_URL_Users = "/fakeUser.json";
 
   export const UsersSlice = createSlice({
-    name: "userdata",
-    initialState,
+    name: "User",
+    initialState: initialState,
     reducers: {
         getUser: (state, action) => {
-            state.userdata = action.payload;
+            state.user = action.payload;
         },
     },
     extraReducers: (builder) => {
         builder
           .addCase(fetchUserAsync.fulfilled, (state, action) => {
-            state.userdata = GetUserDtoData(state, action.payload);
+            state.user = GetUserDtoData(state, action.payload);
           })
       }
   })
@@ -48,5 +48,5 @@ import userDto from './UsersDto';
     getUser,
   } = UsersSlice.actions;
 
-export const selectUser = (state: RootState) => state.userdata.userdata;
+export const selectUser = (state: RootState) => state.User.user;
  export default UsersSlice.reducer;

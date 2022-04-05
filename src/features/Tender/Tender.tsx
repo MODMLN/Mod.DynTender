@@ -17,7 +17,7 @@ import UsersDto from "./../../Global/UsersDto";
 import { fetchUserAsync, selectUser } from "./../../Global/UsersSlice";
 import { useLiveQuery } from "dexie-react-hooks";
 import { db } from './../../Global/db';
-import { selectTenders, selectDisplayMessages } from "../Tenders/TendersSlice";
+import { selectDisplayMessages } from "../Tenders/TendersSlice";
 import logicHelper from "../../Helpers/LogicHelper";
 import BidConfirm from './../TenderBidConfirm/BidConfirm';
 
@@ -45,7 +45,7 @@ export default function Tender() {
     setOpen(true);
     dispatch(fetchTenderAsync());
     dispatch(fetchLpauAsync());
-    dispatch(fetchUserAsync());
+    //dispatch(fetchUserAsync());
 
     const interval = setInterval(() => {
       dispatch(fetchLpauAsync());
@@ -62,7 +62,7 @@ export default function Tender() {
   } as const;
 
   let Statuses = switchStatus(tenderDto.Statuses);
-  const displayMessages = logicHelper.isDisplayMessages(tenderDisplayMessages, tenderDto.tenderId);
+  const displayMessages = logicHelper.isDisplayMessages(tenderDisplayMessages, tenderDto.Id);
 
   return (
     <Box className={Styles.BoxContainer}>
@@ -107,7 +107,7 @@ export default function Tender() {
                       {
                         userId: userDto.userId,
                         tenderId: tenderDto.Id,
-                        lines: [tenderDto.Lines.map((x: TenderLineDto) => ({ tenderLineId: x.TenderLineId, price: x.Price }))]
+                        lines: [tenderDto.Lines?.map((x: TenderLineDto) => ({ tenderLineId: x.TenderLineId, price: x.Price }))]
                       }));
                   }}
                     sx={{ 'background-color': '#00798C', 'width': '50%' }} className={Styles.Button} disabled={!Statuses.isEnable()} variant="contained">הגשת ההצעה</Button></Grid>

@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import Styles from './Tenders.module.scss'
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import CurrencyFormat from 'react-number-format';
 import date from 'date-and-time';
 import { useTranslation } from "react-multi-lang";

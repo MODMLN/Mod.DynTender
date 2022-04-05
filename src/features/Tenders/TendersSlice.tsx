@@ -10,38 +10,32 @@ const API_URL_Tender = "./Tenders.json";
 
 // initial state
 export const initialState = {
-  data: [],
+  List: [],
   DisplayMessages: [] as DisplayMessage[],
 };
 
 export const tenderSlice = createSlice({
-  name: "tenders",
+  name: "Tenders",
   initialState,
   reducers: {
-    getAllTender :(state,action)=>{
-      state.data = action.payload
-    },
+    // getAllTender :(state,action)=>{
+    //   state.List = action.payload
+    // },
     setDisplayMessagesValue :(state,action)=>{
-      console.log("state ", state);
-      console.log("action payload ", action.payload);
       let tender = state.DisplayMessages?.find((item:DisplayMessage)=>{
         return item.tenderId == action.payload.tenderId });
       if(tender){
         tender.display = action.payload.displayMessages;
       }
       else{
-        console.log(state.DisplayMessages);
         state.DisplayMessages?.push({tenderId: action.payload.tenderId, display: action.payload.display});
-        console.log(state.data);
       }
-      console.log(state);
-      // state.displayMessages;
     },
   },
   extraReducers: (builder) => {
     builder
       .addCase(getAllTendersAsync.fulfilled, (state, action) => {
-        state.data = action.payload;
+        state.List = action.payload;
       })
     }
 
@@ -49,17 +43,17 @@ export const tenderSlice = createSlice({
 });
 
 
-export const fetchTenderAsync = createAsyncThunk('tenderdata/get', async (req: any,thunkAPI:any) => {
-  try {
-    const response = await axios.get(`${API_URL_Tender}`);
-    return response.data;
-  } catch (err) {
-    return err;
-  }
-}
-);
+// export const fetchTenderAsync = createAsyncThunk('Tenders/get', async (req: any,thunkAPI:any) => {
+//   try {
+//     const response = await axios.get(`${API_URL_Tender}`);
+//     return response.data;
+//   } catch (err) {
+//     return err;
+//   }
+// }
+// );
 
-export const getAllTendersAsync  = createAsyncThunk('tenderdata/post', async (thunkAPI) => {
+export const getAllTendersAsync  = createAsyncThunk('tenders/get', async (thunkAPI) => {
   try {
     const response = await axios.get(`${API_URL_Tender}`);  
     return response.data;
@@ -70,9 +64,8 @@ export const getAllTendersAsync  = createAsyncThunk('tenderdata/post', async (th
 
 export const {
   setDisplayMessagesValue,
-  getAllTender,
 } = tenderSlice.actions;
 
-export const selectTenders = (state: RootState) => state.data;
-export const selectDisplayMessages = (state:RootState) => state.data.DisplayMessages;
+export const selectTenders = (state: RootState) => state.Tenders.List;
+export const selectDisplayMessages = (state:RootState) => state.Tenders.DisplayMessages;
 export default tenderSlice.reducer;
