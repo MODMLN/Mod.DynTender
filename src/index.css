@@ -1,15 +1,15 @@
 @font-face {
   font-family: 'OpenSans';
-  src: url('/src/Fonts/OpenSansHebrew-Regular.ttf');
+  src        : url('/src/Fonts/OpenSansHebrew-Regular.ttf');
 }
 
 body {
   overflow-x: hidden;
-  margin: 0;
+  margin    : 0;
   font-family: -apple-system, BlinkMacSystemFont, 'OpenSans', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
-  -webkit-font-smoothing: antialiased;
+  -webkit-font-smoothing : antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
@@ -24,13 +24,19 @@ code {
 
 /* Position and sizing of burger button */
 .bm-burger-button {
-  position: relative;
-  width: 36px;
-  height: 30px;
-  float: right;
-  margin-right: 24%;
-  margin-top: 2%;
-  color: #00798C;
+  position    : relative;
+  width       : 36px;
+  height      : 30px;
+  float       : right;
+  margin-right: 20%;
+  margin-top  : 2%;
+  color       : #00798C;
+  
+}
+@media screen and (max-width:1024px) {
+  .bm-burger-button {
+    margin-right:3%;
+  }
 }
 
 /* Color/shape of burger icon bars */
@@ -45,8 +51,8 @@ code {
 
 /* Position and sizing of clickable cross button */
 .bm-cross-button {
-  height: 24px;
-  width: 24px;
+  height : 24px;
+  width  : 24px;
   display: none;
 }
 
@@ -65,17 +71,17 @@ Note: Beware of modifying this element as it can break the animations - you shou
 */
 .bm-menu-wrap {
   position: fixed;
-  height: 100%;
-  width: 22.5% !important;
+  height  : 100%;
+  width   : 22.5% !important;
 }
 
 /* General sidebar styles */
 .bm-menu {
   background-color: #F0F6FE;
-  padding: 2.5em 1.5em 0;
-  font-size: 1.15em;
-  box-shadow: 0px 4px 24px rgba(58, 59, 69, 0.1);
-  overflow: hidden !important;
+  padding         : 2.5em 1.5em 0;
+  font-size       : 1.15em;
+  box-shadow      : 0px 4px 24px rgba(58, 59, 69, 0.1);
+  overflow        : hidden !important;
 }
 
 /* Morph shape necessary with bubble or elastic */
@@ -85,37 +91,41 @@ Note: Beware of modifying this element as it can break the animations - you shou
 
 /* Wrapper for item list */
 .bm-item-list {
-  color: #b8b7ad;
-  padding: 0.8em;
-  margin-left: auto;
-  margin-right: auto;text-align: center;
+  color       : #b8b7ad;
+  padding     : 0.8em;
+  margin-left : auto;
+  margin-right: auto;
+  text-align  : center;
 }
 
 /* Individual item */
-.bm-item { margin-left: auto;
-  margin-right: auto; text-align: center;}
+.bm-item {
+  margin-left : auto;
+  margin-right: auto;
+  text-align  : center;
+}
 
 .UserFullName {
- clear: both;
-  font-family: 'OpenSans' Hebrew;
-  font-style: normal;
+  clear      : both;
+  font-family: 'OpenSans'Hebrew;
+  font-style : normal;
   font-weight: bold;
-  font-size: 20px;
+  font-size  : 20px;
   line-height: 16px;
   align-items: center;
-  text-align: center;
-margin: 10px;
-  color: #0C3058;
+  text-align : center;
+  margin     : 10px;
+  color      : #0C3058;
 }
 
 /* Styling of overlay */
 .bm-overlay {
 
   background: rgba(0, 0, 0, 0.3);
-  width: 100% !important;
+  width     : 100% !important;
 }
 
-.logoffBtn{
+.logoffBtn {
 
-  margin-top: 80%!important;
+  margin-top: 80% !important;
 }

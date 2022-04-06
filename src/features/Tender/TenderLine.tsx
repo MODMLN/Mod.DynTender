@@ -58,6 +58,7 @@ export default function TenderLine({ item, AmountSign, status }: IProps): JSX.El
         <Box key={item.Index} className={Styles.TenderLine}>
             <Accordion sx={{ 'box-shadow': 'none' }} expanded={expand} >
                 <AccordionSummary
+                className={Styles.AccordionSummary}
                     onClick={() => (status !== 'Ended' && status !== 'Decoded') ? setExpand((expand) => !expand) : null}
                     sx={{ direction: 'rtl', border: 'none' }}
                     expandIcon={

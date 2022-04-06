@@ -22,7 +22,7 @@ export default function TenderItem({ item, index, redirectOnClick = true, leadIt
     let navigate = useNavigate();
 
     return (
-        <div onClick={
+        <Grid  className={Styles.BoxContainer} onClick={
             (e) => {
                 if (redirectOnClick)
                     navigate(`/Tender/${item.Id}`);
@@ -30,7 +30,7 @@ export default function TenderItem({ item, index, redirectOnClick = true, leadIt
         }>
             <Grid  justifyContent="flex-end" container className={Styles.BoxMain} key={index} sx={{ p: 2 }}>
                <Grid item className={Styles.StatusesBtn}><StatusesBtn item={item} leadItem={leadItem}></StatusesBtn></Grid>
-               <Box className={Styles.line}></Box>
+             
                 {
                     (item.Statuses === "NotYetStarted" || item.Statuses === "Paused") ? (
                         <>
@@ -50,6 +50,6 @@ export default function TenderItem({ item, index, redirectOnClick = true, leadIt
                     </Grid>
                 </Grid>
             </Grid>
-        </div>
+        </Grid>
     )
 }

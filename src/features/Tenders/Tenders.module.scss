@@ -39,8 +39,12 @@ a {
     padding   : 1% 0;
     width     : 80%;
 
+    @media screen and (max-width:1024px) {
+      width: 97%;
+    }
+
     .userNameDiv {
-      padding   : 1% 0;
+      padding    : 1% 0;
       direction  : rtl;
       font-family: 'OpenSans', sans-serif;
       font-style : normal;
@@ -121,7 +125,6 @@ a {
         line-height: none;
       }
     }
-
   }
 
   .line {
@@ -145,18 +148,14 @@ a {
     }
 
     .leadPrice {
-      font-family: 'OpenSans', sans-serif;
-      font-style : normal;
-      font-weight: normal;
-      font-size  : 16px;
-      line-height: 16px;
-      /* identical to box height, or 100% */
-
-
+      font-family   : 'OpenSans', sans-serif;
+      font-style    : normal;
+      font-weight   : normal;
+      font-size     : 16px;
+      line-height   : 16px;
       text-align    : right;
       letter-spacing: -0.2625px;
-
-      color: #44454B;
+      color         : #44454B;
     }
 
     .greenProposal {
@@ -175,7 +174,6 @@ a {
       >div {
         color: #18873F;
       }
-
     }
 
     div>div {
