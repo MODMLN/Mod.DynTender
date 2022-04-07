@@ -60,6 +60,7 @@ a {
       font-weight: 400;
       font-size  : 28px;
       line-height: 14px;
+      margin: 10px 0;
       /* identical to box height, or 50% */
 
 
@@ -179,5 +180,13 @@ a {
     div>div {
       margin: 5px;
     }
+  }
+}
+
+.TendersList{
+  width: 60% !important;
+  display: inline-grid !important;
+  @media screen and (max-width:1024px) {
+    width: 95% !important;
   }
 }

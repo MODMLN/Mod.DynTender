@@ -2,9 +2,9 @@ import React, { useEffect } from "react";
 import TendersDto from './Dtos/TendersDto';
 import { useSelector, useDispatch } from "react-redux";
 import { selectTenders, getAllTendersAsync } from "./TendersSlice";
-import CssBaseline from '@mui/material/CssBaseline';
-import Container from '@mui/material/Container';
 import TendersListItem from './TendersListItem';
+import { Grid } from "@mui/material";
+import Styles from './Tenders.module.scss';
 
 export default function TendersList() {
 
@@ -22,14 +22,14 @@ export default function TendersList() {
   }, [dispatch]);
   return (
     <React.Fragment>
-      <CssBaseline />
-      <Container >
+
+      <Grid container justifyContent="center" className={Styles.TendersList}>
         {tenders.map((item: TendersDto, index: number) => {
           return (
             <TendersListItem key={index} item={item} index={index} redirectOnClick={true} />
           )
         })}
-      </Container>
+      </Grid>
     </React.Fragment>
   );
 }

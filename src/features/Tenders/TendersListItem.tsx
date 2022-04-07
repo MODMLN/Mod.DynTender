@@ -31,7 +31,7 @@ export default function TendersListItem({ item, index, redirectOnClick = true }:
                         <Grid md={1} item>
                             <Button variant="contained">{time}</Button>
                         </Grid>
-                        <Grid md={2} item>
+                        <Grid md={2} item  >
                             <Button className={statusColumnsClass} variant="contained">{Translation(`Tender.${item.Statuses}`)}</Button>
                         </Grid>
                     </React.Fragment>
