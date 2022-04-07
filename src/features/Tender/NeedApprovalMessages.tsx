@@ -13,40 +13,37 @@ import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import ImageIcon from '@mui/icons-material/Image';
-import {fetchApproveMessagesAsync} from "./TenderSlice";
+import { fetchApproveMessagesAsync } from "./TenderSlice";
 import { useTranslation } from "react-multi-lang";
 import UsersDto from "./../../Global/UsersDto";
 import { fetchUserAsync, selectUser } from "../../Global/UsersSlice";
 
-interface ApprovalMessages{
-    Id: number, 
+interface ApprovalMessages {
+    Id: number,
     Text: string,
 }
 
 interface IProps {
     flag: boolean,
-    Messages:ApprovalMessages[]
+    Messages: ApprovalMessages[]
 }
 
-export default function NeedApprovalMessages({ flag,Messages }: IProps) {
+export default function NeedApprovalMessages({ flag, Messages }: IProps) {
     const Translation = useTranslation();
     const [open, setOpen] = React.useState(true);
     const dispatch = useDispatch();
     const userDto = useSelector(selectUser);
 
-
-
-
     useEffect(() => {
-        
-            if(flag){
-                dispatch(fetchUserAsync());
-                setOpen(true);
-            }
+
+        if (flag) {
+            dispatch(fetchUserAsync());
+            setOpen(true);
+        }
     }, [flag]);
 
 
-    let msgs = [{userid:userDto.userId,Messages:Messages.map((x)=>x.Id?.toString())}];
+    let msgs = [{ userid: userDto.userId, Messages: Messages.map((x) => x.Id?.toString()) }];
 
 
     return (
@@ -58,27 +55,27 @@ export default function NeedApprovalMessages({ flag,Messages }: IProps) {
                     console.log(userDto)
                     setOpen(false);
                     dispatch(fetchApproveMessagesAsync(msgs));
-               }}
+                }}
                 aria-labelledby={Translation('Tender.MESSAGES_THAT_REQUIRE_IMMEDIATE_APPROVAL')}
                 aria-describedby={Translation('Tender.MESSAGES_THAT_REQUIRE_IMMEDIATE_APPROVAL')}
             >
                 <DialogTitle id="alert-dialog-title">
-                {Translation('Tender.MESSAGES_THAT_REQUIRE_IMMEDIATE_APPROVAL')}
+                    {Translation('Tender.MESSAGES_THAT_REQUIRE_IMMEDIATE_APPROVAL')}
                 </DialogTitle>
                 <DialogContent>
                     <DialogContentText id="alert-dialog-description" component={'span'} >
                         <Box>
                             <List>
-                            {Messages.map((item,index) => (
-                            <ListItem key={index}>
-                                <ListItemAvatar>
-                                <Avatar>
-                                    <ImageIcon />
-                                </Avatar>
-                                </ListItemAvatar>
-                                <ListItemText primary={item.Text} sx={{'text-align':'right',color:'#4D4E55',fontWeight: '600'}} />
-                            </ListItem>
-                            ))}
+                                {Messages.map((item, index) => (
+                                    <ListItem key={index}>
+                                        <ListItemAvatar>
+                                            <Avatar>
+                                                <ImageIcon />
+                                            </Avatar>
+                                        </ListItemAvatar>
+                                        <ListItemText primary={item.Text} sx={{ 'text-align': 'right', color: '#4D4E55', fontWeight: '600' }} />
+                                    </ListItem>
+                                ))}
                             </List>
                         </Box>
                     </DialogContentText>
@@ -87,12 +84,10 @@ export default function NeedApprovalMessages({ flag,Messages }: IProps) {
                     <Button onClick={() => {
                         setOpen(false);
                         dispatch(fetchApproveMessagesAsync(msgs));
-                   }}
-                        >{Translation('Tender.CONFITMATION')}</Button>
+                    }}
+                    >{Translation('Tender.CONFITMATION')}</Button>
                 </DialogActions>
             </Dialog>
         </Box>
     )
 }
-
-

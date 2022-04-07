@@ -62,7 +62,7 @@ export default function DialogModel({ flag,Messages ,userDto}: IProps) {
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleClose}>סגור</Button>
+                    <Button onClick={handleClose}>{Translation('Tender.CLOSE')}</Button>
                 </DialogActions>
             </Dialog>
         </Box>

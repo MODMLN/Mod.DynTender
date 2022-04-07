@@ -4,6 +4,7 @@ import { RootState } from "../../app/store";
 import TenderDto from './Dtos/TenderDto';
 import { TenderLineDto } from './Dtos/TenderLineDto';
 import LastPropositionsDto from './Dtos/LastPropositionsDto';
+
 const API_URL_Tender = "/Tender.json";
 const API_URL_Lpau   = "/LeadingPropositionAndUser.json";
 
@@ -33,6 +34,7 @@ export const initialState: CounterState = {
 };
 
 export const tenderSlice = createSlice({
+  
   name: "tenderdata",
   initialState,
   reducers: {
@@ -91,7 +93,6 @@ export const tenderSlice = createSlice({
       })
       .addCase(fetchTenderAsync.fulfilled, (state, action) => {
         state.loading = false;
-
         // if (Tender?.Lines != null)
         state.Tender = SetTenderData(state, action.payload);
         // else{
@@ -168,9 +169,10 @@ export const fetchConfirmPropositionAsync = createAsyncThunk('tenderdata/Confirm
 );
 
 const SetTenderData = (state: CounterState, tender: TenderDto) => {
+
   tender.itemsNumber = tender.Lines != null ? tender.Lines.length : 0;
   // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-  tender.IsFemaleOwner ? tender.Messages?.push('הנך זכאי להעדפה של עידוד נשים בעסקים ולכן על מנת להוביל עליך להציע הצעה זהה להצעה המובילה') : null;
+  tender.IsFemaleOwner ? tender.Messages?.push('') : null;
   // eslint-disable-next-line array-callback-return
   tender.Lines?.map((item) => {
     item.CurrencyId = tender.CurrencyId;
