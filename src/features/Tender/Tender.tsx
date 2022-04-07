@@ -29,7 +29,7 @@ export default function Tender() {
 
   useEffect(() => {
     setOpen(true);
-    dispatch(fetchTenderAsync());
+    dispatch(fetchTenderAsync('msg'));
     dispatch(fetchLastPropositionsAsync());
     setInterval(() => {
       dispatch(fetchLastPropositionsAsync());
