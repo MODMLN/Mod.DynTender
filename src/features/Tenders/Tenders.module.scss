@@ -33,6 +33,7 @@ a {
   color           : #44454B !important;
 }
 
+
 .TendersContainer {
   .TendersHead {
     text-align: right;
@@ -60,7 +61,7 @@ a {
       font-weight: 400;
       font-size  : 28px;
       line-height: 14px;
-      margin: 10px 0;
+      margin     : 10px 0;
       /* identical to box height, or 50% */
 
 
@@ -100,6 +101,10 @@ a {
     // }
 
     //gap: 20px;
+    
+    .Going{
+      margin:0 3px;
+    }
     text-align: right;
     color     : #44454B;
 
@@ -183,9 +188,10 @@ a {
   }
 }
 
-.TendersList{
-  width: 60% !important;
+.TendersList {
+  width  : 60% !important;
   display: inline-grid !important;
+
   @media screen and (max-width:1024px) {
     width: 95% !important;
   }
