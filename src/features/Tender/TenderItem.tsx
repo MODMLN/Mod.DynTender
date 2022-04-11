@@ -34,14 +34,14 @@ export default function TenderItem({ item, index, redirectOnClick = true, leadIt
                 {
                     (item.Statuses === "NotYetStarted" || item.Statuses === "Paused") ? (
                         <>
-                            <Grid  container style={{ textAlign: "right" }}>
+                            <Grid className={Styles.BoxMainDetails}  container >
                                 <Grid item>{Translation('Tender.OPEN_TIME')}</Grid>
                                 <Grid item className={Styles.bold}><Moment format="hh:mm:ss" interval={30000}>{item.StartDate}</Moment></Grid>
                                 <Grid item><TenderStartTime key={index} item={item.Time}   /></Grid>
                             </Grid>
                             <Box className={Styles.line}></Box>
                         </>
-                    ) : (<><Box style={{ height: "auto", clear: "both" }}><span></span></Box></>)
+                    ) : (<><Box className={Styles.High40}><span></span></Box></>)
                 }
                 <Grid container className={`${leadItem.IsWinning && Styles.green} ${!leadItem.IsWinning && Styles.red} ${Styles.Proposal}`} >
                     <Grid justifyContent="flex-end"  container className={Styles.leadPrice}>

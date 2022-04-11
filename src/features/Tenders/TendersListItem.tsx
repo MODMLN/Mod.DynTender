@@ -44,7 +44,7 @@ export default function TendersListItem({ item, index, redirectOnClick = true }:
                     navigate(`/Tender/${item.Id}`);
             }
         }>
-            <Grid container className={Styles.BoxMain} key={index} sx={{ p: 2, border: '1px solid grey' }}>
+            <Grid container className={Styles.BoxMain} key={index} sx={{ p: 2 }}>
                 <Grid item container className={Styles.BoxHead + ` Active`}  direction="row-reverse" justifyContent="flex-end">
                     <Grid md={7} item className={Styles.headText}>{item.Name}</Grid>
                     <Grid md={2} item>{Translation('Tender.NUMBER')}: {item.TenderNumber}</Grid>
@@ -54,14 +54,14 @@ export default function TendersListItem({ item, index, redirectOnClick = true }:
                 {
                     (item.Statuses === "NotYetStarted" || item.Statuses === "Paused") ? (
                         <>
-                            <Grid justifyContent="flex-end" direction="row-reverse" container alignItems="center" style={{ textAlign: "right" }}>
+                            <Grid justifyContent="flex-end" direction="row-reverse" container alignItems="center" >
                                 <Grid justifyContent="flex-end" container>{Translation('Tender.OPENING_TIME')}</Grid>
                                 <Grid justifyContent="flex-end" container className={Styles.bold}>{item.StartDate}</Grid>
                                 <Grid justifyContent="flex-end" container><TenderStartTime key={index} item={item.Time}   /></Grid>
                             </Grid>
                             <Box className={Styles.line}></Box>
                         </>
-                    ) : (<><Box style={{ height: "40%", clear: "both" }}><span></span></Box></>)
+                    ) : (<><Box className={Styles.High40} ><span></span></Box></>)
                 }
                 <Grid direction="row" justifyContent="flex-end"  container  className={Styles.Proposal} >
                     <Grid item container className={Styles.leadPrice} justifyContent="flex-end" direction="row">

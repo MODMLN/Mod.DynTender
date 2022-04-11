@@ -56,11 +56,10 @@ export default function TenderLine({ item, AmountSign, status }: IProps): JSX.El
 
     return (
         <Box key={item.Index} className={Styles.TenderLine}>
-            <Accordion sx={{ 'box-shadow': 'none' }} expanded={expand} >
+            <Accordion className={Styles.Accordion} expanded={expand} >
                 <AccordionSummary
                 className={Styles.AccordionSummary}
                     onClick={() => (status !== 'Ended' && status !== 'Decoded') ? setExpand((expand) => !expand) : null}
-                    sx={{ direction: 'rtl', border: 'none' }}
                     expandIcon={
                         (status !== 'Ended' && status !== 'Decoded') ? <KeyboardArrowDownIcon /> : null
                     }
@@ -107,8 +106,8 @@ export default function TenderLine({ item, AmountSign, status }: IProps): JSX.El
 
                     </Grid>
                 </AccordionSummary>
-                <AccordionDetails sx={{ 'text-align': 'right' }}>
-                    <Typography sx={{ 'text-align': 'right' }} component={'span'} >
+                <AccordionDetails className={Styles.AccordionDetails} >
+                    <Typography className={Styles.Typography} component={'span'} >
                         {/* <form ref={fieldVal}> */}
                         <Box className={Styles.line}></Box>
                         <Grid container className={Styles.tenderSummery}>

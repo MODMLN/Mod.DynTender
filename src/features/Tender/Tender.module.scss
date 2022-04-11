@@ -185,11 +185,25 @@ input[type=number]::-webkit-outer-spin-button {
     width  : 95%;
   }
 
-  .AccordionSummary {
-    @media screen and (max-width:1024px) {
-      padding: 16px;
+  .Accordion{
+    direction: rtl !important; 
+    box-shadow: none;
+    .AccordionSummary {
+      direction: rtl !important; 
+      border: none;
+      @media screen and (max-width:1024px) {
+        padding: 16px;
+      }
+    }
+    .AccordionDetails{
+      text-align: right !important;
+      .Typography{
+        text-align: right;
+      }
     }
   }
+
+
 
   .css-1elwnq4-MuiPaper-root-MuiAccordion-root {
     border: none !important;
@@ -404,6 +418,12 @@ input[type=number]::-webkit-outer-spin-button {
     .StatusesBtn {
       flex: auto;
     }
+    .BoxMainDetails{
+      text-align: right;
+      .High40{
+        height: "auto"; clear: "both" 
+      }
+  }
 
     .Mui-disabled {
       background-color: #1976d2 !important;
@@ -431,17 +451,21 @@ input[type=number]::-webkit-outer-spin-button {
         font-size  : 24pt;
         line-height: 26px;
       }
+
+      button{
+        width: 10%;
+      }
     }
 
-    @media screen and (max-width:500px) {
+    @media screen and (max-width:1024px) {
       .BoxHead {
         display    : inline-flex;
         gap        : 8px;
-        font-size  : 14pt !important;
+        font-size  : 12pt !important;
         line-height: none;
 
         .headText {
-          font-size  : 14pt;
+          font-size  : 12pt;
           line-height: none;
         }
       }

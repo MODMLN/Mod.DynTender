@@ -101,10 +101,11 @@ a {
     // }
 
     //gap: 20px;
-    
-    .Going{
-      margin:0 3px;
+
+    .Going {
+      margin: 0 3px;
     }
+
     text-align: right;
     color     : #44454B;
 
@@ -140,6 +141,15 @@ a {
     height    : 1px;
     border    : 1px solid #E3E6F0;
     background: #E3E6F0;
+
+    div {
+      text-align: right;
+    }
+
+    .High40 {
+      height: "40%";
+      clear : "both";
+    }
   }
 
   .Proposal {
