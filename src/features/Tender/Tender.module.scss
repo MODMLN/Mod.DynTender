@@ -78,16 +78,15 @@ input[type=number]::-webkit-outer-spin-button {
   }
 
   .BoxSumItems {
-    text-align    : right;
-    margin        : 2% 21% 1% 0;
-    font-family   : 'OpenSans', sans-serif;
-    font-style    : normal;
-    font-weight   : normal;
-    font-size     : 28px;
-    line-height   : 14px;
+    text-align : right;
+    margin     : 2% 21% 1% 0;
+    font-family: 'OpenSans', sans-serif;
+    font-style : normal;
+    font-weight: normal;
+    font-size  : 22pt;
+    line-height: 14px;
     /* identical to box height, or 50% */
-    letter-spacing: -0.4875px;
-    color         : #44454B;
+    color      : #44454B;
 
     @media screen and (max-width:1024px) {
       margin: 2% 5% 1% 0;
@@ -121,17 +120,17 @@ input[type=number]::-webkit-outer-spin-button {
     }
 
     .title {
-      margin-left   : auto;
-      margin-right  : auto;
-      font-family   : 'OpenSans', sans-serif;
-      font-style    : normal;
-      font-weight   : normal;
-      font-size     : 18px;
-      line-height   : 14px;
+      margin-left  : auto;
+      margin-right : auto;
+      font-family  : 'OpenSans', sans-serif;
+      font-style   : normal;
+      font-weight  : normal;
+      font-size    : 18pt;
+      line-height  : 14px;
       /* identical to box height, or 78% */
-      margin-bottom : 2%;
-      text-align    : center;
-      color         : #44454B;
+      margin-bottom: 2%;
+      text-align   : center;
+      color        : #44454B;
     }
 
     .summery {
@@ -140,7 +139,7 @@ input[type=number]::-webkit-outer-spin-button {
       font-family   : 'OpenSans', sans-serif;
       font-style    : normal;
       font-weight   : bold;
-      font-size     : 20px;
+      font-size     : 20pt;
       line-height   : 14px;
       /* identical to box height, or 70% */
       text-align    : center;
@@ -154,17 +153,17 @@ input[type=number]::-webkit-outer-spin-button {
       text-align: center;
       direction : rtl;
 
-      .button {
-        min-width     : 150px;
-        font-family   : 'OpenSans', sans-serif;
-        font-style    : normal;
-        font-weight   : bold;
-        font-size     : 18px;
-        line-height   : 25px;
+      button {
+        min-width  : 150px;
+        font-family: 'OpenSans', sans-serif;
+        font-style : normal;
+        font-weight: bold;
+        font-size  : 16pt;
+        line-height: 25px;
         /* identical to box height */
-        text-align    : right;
-        letter-spacing: -0.3px;
-        color         : #FFFFFF;
+        text-align : right;
+        color      : #FFFFFF;
+        width      : 50%;
       }
     }
   }
@@ -420,12 +419,16 @@ input[type=number]::-webkit-outer-spin-button {
       color          : #44454B;
       justify-content: space-between;
 
+      .TenderNumber {
+        font-size: 12pt;
+      }
+
       .headText {
         color      : #44454B;
         font-family: 'OpenSans', sans-serif;
         font-style : normal;
         font-weight: bold;
-        font-size  : 24px;
+        font-size  : 24pt;
         line-height: 26px;
       }
     }
@@ -434,11 +437,11 @@ input[type=number]::-webkit-outer-spin-button {
       .BoxHead {
         display    : inline-flex;
         gap        : 8px;
-        font-size  : 14px !important;
+        font-size  : 14pt !important;
         line-height: none;
 
         .headText {
-          font-size  : 14px;
+          font-size  : 14pt;
           line-height: none;
         }
       }
@@ -457,7 +460,7 @@ input[type=number]::-webkit-outer-spin-button {
       text-align : right;
       align-items: right;
       color      : #44454B;
-      font-size  : 16px;
+      font-size  : 16pt;
       font-weight: bold;
 
       &.green {
@@ -469,26 +472,26 @@ input[type=number]::-webkit-outer-spin-button {
       }
 
       .leadPrice {
-        font-family   : 'OpenSans', sans-serif;
-        font-style    : normal;
-        font-weight   : normal;
-        font-size     : 16px;
-        line-height   : 16px;
+        font-family: 'OpenSans', sans-serif;
+        font-style : normal;
+        font-weight: normal;
+        font-size  : 16pt;
+        line-height: 16px;
         /* identical to box height, or 100% */
-        text-align    : right;
-        letter-spacing: -0.2625px;
+        text-align : right;
+
       }
 
       .greenProposal {
-        font-family   : 'OpenSans', sans-serif;
-        font-style    : normal;
-        font-weight   : normal;
-        font-size     : 16px;
-        line-height   : 14px;
+        font-family: 'OpenSans', sans-serif;
+        font-style : normal;
+        font-weight: normal;
+        font-size  : 16pt;
+        line-height: 14px;
         /* identical to box height, or 87% */
-        text-align    : right;
-        letter-spacing: -0.2625px;
-        color         : #18873F;
+        text-align : right;
+
+        color: #18873F;
 
         >div {
           color: #18873F;

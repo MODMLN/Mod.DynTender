@@ -27,7 +27,7 @@ export default function StatusesBtn({ item, leadItem }: IProps) {
                             {Translation('Tender.' + status + '')}
                         </Button>
                     </Grid>
-                    <Grid item style={{ width: "14%" }}>
+                    <Grid item className={Styles.TenderNumber} >
                         {Translation('Tender.NUMBER')}: {item.TenderNumber}
                 </Grid>
                 <Grid item className={Styles.headText}>{item.Name}</Grid>

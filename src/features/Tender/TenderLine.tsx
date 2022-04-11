@@ -95,14 +95,15 @@ export default function TenderLine({ item, AmountSign, status }: IProps): JSX.El
                                     <div className={Styles.titleText}>{Translation('Tender.TOTAL')}</div>
                                     <div><b><CurrencyFormat decimalScale={2} value={item.TotalPriceForDisplay} displayType={'text'} thousandSeparator={true} prefix={item.CurrencyId}></CurrencyFormat></b></div>
                                 </Grid>
-                                {item.isUpdated &&
-                                    <Grid item md={2}>
-                                        <Grid item className={`${Styles.Updated}`}>{Translation('Tender.UPDATED')}</Grid>
-                                    </Grid>
-                                }
+                           
 
                             </React.Fragment>
                         }
+                             {item.isUpdated &&
+                                    <Grid item md={2}>
+                                        <Grid item className={`${Styles.Updated}`}>{Translation('Tender.UPDATED')}</Grid>
+                                    </Grid>
+                             }
 
                     </Grid>
                 </AccordionSummary>

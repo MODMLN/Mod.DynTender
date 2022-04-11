@@ -53,7 +53,8 @@ export default function TenderLines({ item }: IProps): JSX.Element {
                     <Grid container justifyContent="center" className={Styles.summery}><CurrencyFormat value={TotalSummery} displayType={'text'} thousandSeparator={true} prefix={tenderDto.CurrencyId} decimalScale={2} /></Grid>
                     <Grid container justifyContent="center" className={Styles.buttonDiv}>
                         {Statuses.isVisible() &&
-                            <Grid item sx={{ width: '100%' }}><Button onClick={() => {
+                            <Grid item sx={{ width: '100%' }}>
+                                <Button onClick={() => {
                                 dispatch(fetchConfirmPropositionAsync(
                                     {
                                         userId: userDto.userId,
@@ -61,7 +62,7 @@ export default function TenderLines({ item }: IProps): JSX.Element {
                                         lines: [tenderDto.Lines?.map((x: TenderLineDto) => ({ tenderLineId: x.TenderLineId, price: x.Price }))]
                                     }));
                             }}
-                                sx={{ 'background-color': '#00798C', 'width': '50%' }} className={Styles.Button} disabled={!Statuses.isEnable()} variant="contained">הגשת ההצעה</Button></Grid>
+                             className={Styles.Button} disabled={!Statuses.isEnable()} variant="contained">{Translation('Tender.BID_SUBMISSION')}</Button></Grid>
                         }
                     </Grid>
                 </Grid>
