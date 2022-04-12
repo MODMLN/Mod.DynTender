@@ -36,7 +36,7 @@ a {
 
 .TendersContainer {
   .TendersHead {
-    text-align: right;
+   text-align: right;
     padding   : 1% 0;
     width     : 80%;
 
@@ -50,7 +50,7 @@ a {
       font-family: 'OpenSans', sans-serif;
       font-style : normal;
       font-weight: 700;
-      font-size  : 22px;
+      font-size  : 22pt;
       line-height: 14px;
       color      : #136AC8;
     }
@@ -86,21 +86,12 @@ a {
 
 
   .BoxHead {
-    // grid-template-columns: 64% 14% 6% 10%;
-
-    // &.Ended {
-    //   grid-template-columns: 64% 15% 13% 2%;
-    // }
-
-    // &.NotYetStarted {
-    //   grid-template-columns: 67% 14% 12% 1%;
-    // }
-
-    // &.Paused {
-    //   grid-template-columns: 65% 14% 12% 3%;
-    // }
-
-    //gap: 20px;
+  
+    @media screen and (max-width:500px) {
+      display: contents!important;
+      direction: rtl;
+      gap:15px;
+     }
 
     .Going {
       margin: 0 3px;

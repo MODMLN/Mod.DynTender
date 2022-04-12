@@ -114,7 +114,6 @@ export const tenderSlice = createSlice({
       })
       .addCase(fetchConfirmPropositionAsync.fulfilled, (state, action) => {
         state.BidConfirmStatus = false;
-        console.log(action)
       });
 
   },

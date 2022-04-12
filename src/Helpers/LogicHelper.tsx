@@ -4,7 +4,7 @@ import DisplayMessage from "../features/Tenders/Dtos/DisplayMessage";
 class LogicHelper {
     isDisplayMessages(displayMessages:DisplayMessage[], tenderId:number | undefined ) {
         let data = displayMessages?.find((item)=>{
-            return item.tenderId == tenderId});
+            return item.tenderId === tenderId});
         return data? data.display : true;
     }
 }

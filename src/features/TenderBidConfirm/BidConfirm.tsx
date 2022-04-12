@@ -54,8 +54,8 @@ export default function BidConfirm(){
             <Box className={Styles.BoxContainer} >
                 <Box sx={{ direction: "rtl" }} className={Styles.DataGrid}>
                     <Box  className={Styles.AlertDiv}>
-                        <Stack sx={{ width: '50%' }} spacing={2}>
-                            <Alert  sx={{ backgroundColor: '#E3EBF8' }} severity="warning">{Translation("Tender.PROPOSAL_IS_FILLED_IN_PROPERLY")}</Alert>
+                        <Stack className={Styles.AlertDivStack}  spacing={2}>
+                            <Alert className={Styles.AlertDivAlert}  severity="warning">{Translation("Tender.PROPOSAL_IS_FILLED_IN_PROPERLY")}</Alert>
                        </Stack> 
                     </Box>
                     <Box className={Styles.SUMMARYDiv}>{Translation("Tender.SUMMARY_OF_ITEMS")}</Box>
