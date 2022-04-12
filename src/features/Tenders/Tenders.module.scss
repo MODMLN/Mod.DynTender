@@ -36,12 +36,18 @@ a {
 
 .TendersContainer {
   .TendersHead {
-   text-align: right;
+    text-align: right;
     padding   : 1% 0;
     width     : 80%;
 
     @media screen and (max-width:1024px) {
       width: 97%;
+    }
+
+    @media screen and (max-width:500px) {
+      padding   : 5% 0 0 0;
+      margin    : auto 0;
+      text-align: center;
     }
 
     .userNameDiv {
@@ -53,13 +59,18 @@ a {
       font-size  : 22pt;
       line-height: 14px;
       color      : #136AC8;
+
+      @media screen and (max-width:500px) {
+        padding  : 5% 0 0 0;
+        font-size: 12pt;
+      }
     }
 
     .AllTenders {
       font-family: 'OpenSans', sans-serif;
       font-style : normal;
       font-weight: 400;
-      font-size  : 28px;
+      font-size  : 18pt;
       line-height: 14px;
       margin     : 10px 0;
       /* identical to box height, or 50% */
@@ -86,12 +97,21 @@ a {
 
 
   .BoxHead {
-  
+    justify-content: right;
+
+    .TenderNumber {
+      padding-top: 5px;
+    }
+
+    .lastColumn {
+      display: contents;
+    }
+
     @media screen and (max-width:500px) {
-      display: contents!important;
+      display  : contents !important;
       direction: rtl;
-      gap:15px;
-     }
+
+    }
 
     .Going {
       margin: 0 3px;
@@ -105,7 +125,7 @@ a {
       font-family: 'OpenSans', sans-serif;
       font-style : normal;
       font-weight: bold;
-      font-size  : 24px;
+      font-size  : 24pt;
       line-height: 26px;
     }
   }
@@ -113,14 +133,29 @@ a {
 
   @media screen and (max-width:500px) {
     .BoxHead {
-      display    : inline-flex;
+      display    : flex;
       gap        : 8px;
-      font-size  : 14px !important;
+      font-size  : 11pt !important;
       line-height: none;
 
+      .lastColumn {
+        display: flex;
+
+        button {
+          margin : 2px;
+          padding: 0;
+          height : 60%;
+          width  : min-content;
+        }
+
+      }
+
+
       .headText {
-        font-size  : 14px;
-        line-height: none;
+        width         : 100%;
+        font-size     : 12pt;
+        line-height   : none;
+        letter-spacing: -0.4125px;
       }
     }
   }
