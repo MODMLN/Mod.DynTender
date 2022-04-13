@@ -7,6 +7,8 @@ import { selectScreenSize,fetchScreenSizeAsync} from "./services/ScreenSizeDetec
 
 import Header from './Header';
 
+
+
 export default function App() {
 
 const userDto = useSelector(selectUser);
@@ -23,8 +25,8 @@ useEffect(() => {
     <>
 
     <div className="App">
-      <Header Item={userDto}  /> 
-      <TenderRoutes />
+      <Header Item={userDto} ScreenSize={ScreenSize}  /> 
+      <TenderRoutes  />
     </div>
     </>
   );

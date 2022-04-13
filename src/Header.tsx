@@ -8,10 +8,11 @@ import UsersDto from "./Global/UsersDto";
 import { useTranslation } from "react-multi-lang";
 
 interface IProps {
-    Item: UsersDto, 
+    Item: UsersDto,
+    ScreenSize:any
 }
 
-export default function Header({Item}:IProps) {
+export default function Header({Item,ScreenSize}:IProps) {
     const Translation = useTranslation();
     return (
         <Box style={{backgroundColor:"#FFFFFF"}}>

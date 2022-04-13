@@ -47,8 +47,10 @@ export default function TendersListItem({ item, index, redirectOnClick = true }:
             <Grid container className={Styles.BoxMain} key={index} sx={{ p: 2 }}>
                 <Grid item container className={Styles.BoxHead + ` Active`}  direction="row-reverse" justifyContent="flex-end">
                     <Grid justifyContent="flex-end"  md={7} item className={Styles.headText}>{item.Name}</Grid>
-                    <Grid md={2} item  className={Styles.TenderNumber}>{Translation('Tender.NUMBER')}: {item.TenderNumber}</Grid>
-                    <Grid md={3} className={Styles.lastColumn}>{lastColumn}</Grid>
+                   
+                        <Grid md={2} item  className={Styles.TenderNumber}>{Translation('Tender.NUMBER')}: {item.TenderNumber}</Grid>
+                        <Grid md={3} className={Styles.lastColumn}>{lastColumn}</Grid>
+               
                 </Grid>
                 <Box className={Styles.line}></Box> 
                 {
