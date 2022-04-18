@@ -12,6 +12,10 @@
     height       : 200px;
     direction    : rtl;
 
+    @media screen and (max-width:500px) {
+        height       : 125px;
+      }
+
     .divHeader {
         padding-top : 2%;
         height      : 32px;
@@ -22,10 +26,17 @@
         font-family : 'OpenSans', sans-serif;
         font-style  : normal;
         font-weight : normal;
-        font-size   : 16px;
+        font-size   : 14pt;
         line-height : 16px;
         text-align  : right;
         color       : #FFFFFF;
+
+        @media screen and (max-width:500px) {
+            padding-top: 12px;
+            font-size   : 12pt;
+            letter-spacing: -0.3375px;
+
+          }
 
         @media only screen and (max-width : 1024px) {
             width: 95%;
@@ -62,6 +73,9 @@
                 letter-spacing: -0.2625px;
 
                 color: #FFFFFF;
+                @media screen and (max-width:500px) {
+                    line-height: 19px;
+                  }
             }
 
             .clock {

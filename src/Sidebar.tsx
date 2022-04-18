@@ -5,10 +5,10 @@ import { Box } from "@mui/material";
 import UsersDto from "./Global/UsersDto";
 import './index.css';
 interface IProps {
-  Item: UsersDto, 
+  User: UsersDto, 
 }
 
-export default function SidebarRight({Item}:IProps) {
+export default function SidebarRight({User}:IProps) {
 
     return (
         <Menu
@@ -22,7 +22,7 @@ export default function SidebarRight({Item}:IProps) {
 
         >
          <Box> 
-           <Box className="UserFullName"> {Item.UserFullName}</Box>
+           <Box className="UserFullName"> {User.UserFullName}</Box>
            <Box>
             <Box className="logoffBtn"><Button variant="outlined"   style={{borderColor:'#00798C', color:'#00798C'}}>התנתקות</Button></Box>
           </Box>

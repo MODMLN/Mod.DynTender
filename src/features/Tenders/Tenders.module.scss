@@ -131,6 +131,7 @@ a {
       font-weight: bold;
       font-size  : 24pt;
       line-height: 26px;
+      
     }
   }
 
@@ -143,23 +144,24 @@ a {
       line-height: none;
 
       .lastColumn {
-        display: flex;
+        display: inline-flex;
+        gap: 16px;
+       
 
         button {
-          margin : 0 8px;
-          padding: 0;
+          margin : 0;
+          padding: 3px;
           height : 60%;
           width  : min-content;
         }
 
       }
-
-
       .headText {
         width         : 100%;
-        font-size     : 12pt;
+        font-size     : 16pt;
         line-height   : none;
         letter-spacing: -0.4125px;
+        margin-bottom: 13px;
       }
     }
   }
@@ -171,6 +173,9 @@ a {
     height    : 1px;
     border    : 1px solid #E3E6F0;
     background: #E3E6F0;
+    @media screen and (max-width:500px) {
+      border    : 0px solid #E3E6F0;
+    }
 
     div {
       text-align: right;

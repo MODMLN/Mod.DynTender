@@ -22,18 +22,22 @@ export default function TendersListItem({ item, index, redirectOnClick = true }:
 
   
    
-    let lastColumn = <Grid md={3} item>
-                        <Button className={statusColumnsClass} variant="contained">{Translation(`Tender.${item.Statuses}`)}</Button>
-                    </Grid>;
+    let lastColumn = <React.Fragment>
+                        <Grid md={2} item  className={Styles.TenderNumber}>{Translation('Tender.NUMBER')}: {item.TenderNumber}</Grid>
+                        <Grid md={2} item><Button className={statusColumnsClass} variant="contained">{Translation(`Tender.${item.Statuses}`)}</Button></Grid>
+                        
+                        </React.Fragment>;
 
     if(item.Statuses === "Going"){
         lastColumn = <React.Fragment>
+                        <Grid md={2} item  className={Styles.TenderNumber}>{Translation('Tender.NUMBER')}: {item.TenderNumber}</Grid>
                         <Grid md={1} item>
                             <Button variant="contained">{time}</Button>
                         </Grid>
                         <Grid md={2} item>
                             <Button className={statusColumnsClass} variant="contained">{Translation(`Tender.${item.Statuses}`)}</Button>
                         </Grid>
+                       
                     </React.Fragment>
     }
    
@@ -46,10 +50,10 @@ export default function TendersListItem({ item, index, redirectOnClick = true }:
         }>
             <Grid container className={Styles.BoxMain} key={index} sx={{ p: 2 }}>
                 <Grid item container className={Styles.BoxHead + ` Active`}  direction="row-reverse" justifyContent="flex-end">
-                    <Grid justifyContent="flex-end"  md={7} item className={Styles.headText}>{item.Name}</Grid>
+                    <Grid  md={7} item className={Styles.headText}>{item.Name}</Grid>
                    
-                        <Grid md={2} item  className={Styles.TenderNumber}>{Translation('Tender.NUMBER')}: {item.TenderNumber}</Grid>
-                        <Grid md={3} className={Styles.lastColumn}>{lastColumn}</Grid>
+                        
+                        <Grid md={3} className={Styles.lastColumn}  direction="row-reverse" >{lastColumn}</Grid>
                
                 </Grid>
                 <Box className={Styles.line}></Box> 

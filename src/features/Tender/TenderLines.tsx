@@ -11,7 +11,7 @@ import TenderDto from './Dtos/TenderDto';
 import { TenderLineDto } from './Dtos/TenderLineDto';
 import { fetchConfirmPropositionAsync, selectTender, selectTotalSummery } from "./TenderSlice";
 import { selectUser } from "../../Global/UsersSlice";
-
+import { BrowserView, MobileView } from 'react-device-detect';
 interface IProps {
     item: TenderDto
 }
@@ -31,9 +31,11 @@ export default function TenderLines({ item }: IProps): JSX.Element {
 
     return (
         <Box>
-            <Box className={Styles.BoxSumLink}>
-                <Button size="medium" variant="contained" onClick={() => navBack()}>{Translation('Tender.ALL_TENDERS_LIST')}</Button>
-            </Box>
+            <BrowserView>
+                <Box className={Styles.BoxSumLink}>
+                    <Button size="medium" variant="contained" onClick={() => navBack()}>{Translation('Tender.ALL_TENDERS_LIST')}</Button>
+                </Box>
+            </BrowserView>
             <Box className={Styles.BoxSumItems}>{Translation('Tender.ITEMS_IN_TENDER') + " " + tenderDto.itemsNumber} </Box>
             <Box className={Styles.TenderLines}>
                 {

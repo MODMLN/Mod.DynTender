@@ -3,29 +3,28 @@ import "./App.css";
 import TenderRoutes from "./route";
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchUserAsync, selectUser} from "./Global/UsersSlice";
-import { selectScreenSize,fetchScreenSizeAsync} from "./services/ScreenSizeDetectorSlice";
-
 import Header from './Header';
+import { selectLastPropositions,selectTender,fetchTenderAsync } from "./features/Tender/TenderSlice";
 
 
 
 export default function App() {
 
 const userDto = useSelector(selectUser);
-const ScreenSize = useSelector(selectScreenSize);
+const tenderDto = useSelector(selectTender);
+const LastPropositionsDto = useSelector(selectLastPropositions);
 const dispatch = useDispatch();
 
 useEffect(() => {
-  dispatch(fetchScreenSizeAsync());
-  
   dispatch(fetchUserAsync());
+  dispatch(fetchTenderAsync());
 }, [dispatch]);
 
   return (
     <>
 
     <div className="App">
-      <Header Item={userDto} ScreenSize={ScreenSize}  /> 
+      <Header User={userDto} LastPropositionsDto={LastPropositionsDto} TenderName={tenderDto.Name}  /> 
       <TenderRoutes  />
     </div>
     </>

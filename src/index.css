@@ -31,11 +31,19 @@ code {
   margin-right: 20%;
   margin-top  : 2%;
   color       : #00798C;
-  
 }
+
+@media screen and (max-width:500px) {
+  .bm-burger-button {
+    width     : 15px;
+    height    : 15px;
+    margin-top: 7%;
+  }
+}
+
 @media screen and (max-width:1024px) {
   .bm-burger-button {
-    margin-right:3%;
+    margin-right: 3%;
   }
 }
 
@@ -75,6 +83,12 @@ Note: Beware of modifying this element as it can break the animations - you shou
   width   : 19% !important;
 }
 
+@media screen and (max-width:1024px) {
+  .bm-menu-wrap {
+    width: 90% !important;
+  }
+}
+
 /* General sidebar styles */
 .bm-menu {
   background-color: #F0F6FE;
@@ -107,7 +121,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
 
 .UserFullName {
   clear      : both;
-  font-family: 'OpenSans' Hebrew;
+  font-family: 'OpenSans', sans-serif;
   font-style : normal;
   font-weight: bold;
   font-size  : 20pt;

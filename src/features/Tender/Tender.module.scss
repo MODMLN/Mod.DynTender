@@ -91,8 +91,10 @@ input[type=number]::-webkit-outer-spin-button {
     @media screen and (max-width:1024px) {
       margin: 2% 5% 1% 0;
     }
+
     @media screen and (max-width:500px) {
-      margin: 5% 5% 5% 0;
+      margin: 16px 22%;
+      font-size: 18pt;
     }
   }
 
@@ -103,6 +105,7 @@ input[type=number]::-webkit-outer-spin-button {
     @media screen and (max-width:1024px) {
       margin: 1% 5% 1% 0;
     }
+
     @media screen and (max-width:500px) {
       margin: 3% 5% 3% 0;
     }
@@ -250,8 +253,6 @@ input[type=number]::-webkit-outer-spin-button {
       width    : max-content;
       min-width: 100px;
     }
-
-
   }
 
   .line {
@@ -425,8 +426,17 @@ input[type=number]::-webkit-outer-spin-button {
     border       : 1px solid #E3E6F0;
     border-radius: 7px;
 
+    @media screen and (max-width:500px) {
+      margin-top: 0px;
+     
+    }
+
     .StatusesBtn {
       flex: auto;
+      
+      @media screen and (max-width:500px) {
+        flex: none;
+      }
     }
 
     .BoxMainDetails {
@@ -444,7 +454,7 @@ input[type=number]::-webkit-outer-spin-button {
     }
 
     .BoxHead {
-      align-items    : center;
+      align-items    : right;
       display        : flex;
       right          : 0;
       gap            : 20px;
@@ -453,7 +463,8 @@ input[type=number]::-webkit-outer-spin-button {
       justify-content: space-between;
 
       @media screen and (max-width:500px) {
-        flex-direction: column-reverse;
+        flex-direction: row!important;
+        direction: rtl;
       }
 
       .TenderNumber {

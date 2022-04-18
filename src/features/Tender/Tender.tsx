@@ -13,6 +13,7 @@ import { selectDisplayMessages } from "../Tenders/TendersSlice";
 import logicHelper from "../../Helpers/LogicHelper";
 import BidConfirm from './../TenderBidConfirm/BidConfirm';
 import TenderLines from './TenderLines';
+
 export default function Tender() {
 
   const { id } = useParams();
@@ -23,11 +24,14 @@ export default function Tender() {
   const userDto = useSelector(selectUser);
   const tenderDto = useSelector(selectTender);
   const LastPropositionsDto = useSelector(selectLastPropositions);
+
   const dispatch = useDispatch();
   const [open, setOpen] = React.useState(false);
   const Translation = useTranslation();
 
   useEffect(() => {
+
+  
     setOpen(true);
     dispatch(fetchTenderAsync());
     dispatch(fetchLastPropositionsAsync());
@@ -36,9 +40,6 @@ export default function Tender() {
     }, 10000);
   }, [dispatch]);
 
-  const navBack = () => {
-    navigate(`/Tenders`);
-  }
 
   const displayMessages = logicHelper.isDisplayMessages(tenderDisplayMessages, tenderDto.Id);
 
@@ -46,6 +47,7 @@ export default function Tender() {
     <Box className={Styles.BoxContainer}>
       <Grid className={Styles.BoxHeadTop} >
         <Grid key="1" className={Styles.tenderDetails}>
+
 
           {(tenderDto != null && tenderDto.Messages != null && tenderDto.Messages.length > 0 && displayMessages) &&
             <MessagesDialog key="messagesDialog" flag={open} Messages={tenderDto.Messages} userDto={userDto} ></MessagesDialog>

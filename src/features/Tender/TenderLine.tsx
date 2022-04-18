@@ -66,7 +66,7 @@ export default function TenderLine({ item, AmountSign, status }: IProps): JSX.El
                     aria-controls="panel1a-content"
                     id="panel1a-header">
                     <Grid container className={Styles.TenderLineHead}>
-                        <Grid item direction="row-reverse" justifyContent="flex-end" md={4} className={Styles.title}>{item.TenderLineName}</Grid>
+                        <Grid item  justifyContent="flex-end" md={4} className={Styles.title}>{item.TenderLineName}</Grid>
                         <Grid item md={2} className={Styles.headItem}>
                             <Grid>
                                 <Grid className={Styles.titleText}>
