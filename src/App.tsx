@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchUserAsync, selectUser} from "./Global/UsersSlice";
 import Header from './Header';
 import { selectLastPropositions,selectTender,fetchTenderAsync } from "./features/Tender/TenderSlice";
-
+import { BrowserRouter } from 'react-router-dom';
 
 
 export default function App() {
@@ -24,7 +24,9 @@ useEffect(() => {
     <>
 
     <div className="App">
-      <Header User={userDto} LastPropositionsDto={LastPropositionsDto} TenderName={tenderDto.Name}  /> 
+      <BrowserRouter>
+        <Header User={userDto} LastPropositionsDto={LastPropositionsDto} TenderName={tenderDto.Name}  /> 
+      </BrowserRouter>
       <TenderRoutes  />
     </div>
     </>

@@ -101,6 +101,7 @@ input[type=number]::-webkit-outer-spin-button {
 
     @media screen and (max-width:1024px) {
       width: 90%;
+      padding                   : 15px;
     }
 
     .title {
@@ -115,6 +116,9 @@ input[type=number]::-webkit-outer-spin-button {
       margin-bottom: 2%;
       text-align   : center;
       color        : #44454B;
+      @media screen and (max-width:1024px) {
+        font-size    : 14pt;
+      }
     }
 
     .summery {
@@ -128,6 +132,9 @@ input[type=number]::-webkit-outer-spin-button {
       /* identical to box height, or 70% */
       text-align  : center;
       color       : #44454B;
+      @media screen and (max-width:1024px) {
+        font-size    : 14pt;
+      }
     }
 
     .buttonDiv {
@@ -137,7 +144,10 @@ input[type=number]::-webkit-outer-spin-button {
       text-align: center;
       direction : rtl;
       width     : 42%;
-
+      @media screen and (max-width:1024px) {
+        width     : 80%;
+        margin    : 4% auto;
+      }
       .button {
         min-width       : 224px;
         font-family     : 'OpenSans', sans-serif;
@@ -179,6 +189,9 @@ input[type=number]::-webkit-outer-spin-button {
       color      : #44454B;
       .AlertDivStack {
         width: 50%;
+        @media screen and (max-width:500px) {
+          width: 100%;
+        }
         .AlertDivAlert {
           background-color: '#E3EBF8'
         }

@@ -3,19 +3,28 @@ import React from "react";
 import Styles from './scss/header.module.scss';
 import SidebarRight from './Sidebar';
 import { Box ,Grid} from "@mui/material";
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import InfoIcon  from '@mui/icons-material/InfoOutlined';
 import logo from './logo_ministry_of_defense.png'
 import UsersDto from "./Global/UsersDto";
 import LastPropositionsDto from './features/Tender/Dtos/LastPropositionsDto';
 import { useTranslation } from "react-multi-lang";
 import { BrowserView, MobileView } from 'react-device-detect';
+import { useNavigate } from 'react-router-dom';
 interface IProps {
     User: UsersDto,
     LastPropositionsDto:LastPropositionsDto,
     TenderName:any
 }
 
-export default function Header({User,LastPropositionsDto,TenderName}:IProps) {
+export default function Header({User,LastPropositionsDto,TenderName}:IProps): JSX.Element {
+    const navigate = useNavigate();
     const Translation = useTranslation();
+
+    const navBack = () => {
+        navigate(`/Tenders`, { replace: true });
+    }
+
     return (
         <Box className={Styles.Container}  style={{backgroundColor:"#FFFFFF"}}>
             <SidebarRight User={User} />
@@ -29,7 +38,7 @@ export default function Header({User,LastPropositionsDto,TenderName}:IProps) {
                     
                    <Grid className={Styles.systemWatch}>
                        <BrowserView><Box className={Styles.title}>{Translation('Tender.SYSTEM_CLOCK')}</Box><Box className={Styles.clock}>{LastPropositionsDto.ServerTime}</Box></BrowserView>
-                       <MobileView><Box className={Styles.title}>{TenderName}</Box></MobileView>
+                       <MobileView><Grid container className={Styles.HeadLine}><Grid item className={Styles.ArrowForwardIosIcon}><ArrowForwardIosIcon onClick={navBack} /></Grid><Grid item className={Styles.title}>{TenderName}</Grid><Grid><InfoIcon/></Grid></Grid></MobileView>
                    </Grid>
                 </Grid>
                

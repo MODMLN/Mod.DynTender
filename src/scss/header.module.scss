@@ -61,20 +61,27 @@
             margin-right : auto;
             text-align   : center;
 
+            .HeadLine{
+                align-items: center;
+                padding-left: 5px;
+                svg{  height: 0.7em;}
+                .ArrowForwardIosIcon{
+                   
+                     border-left:0.8px solid #FFFFFF;
+                }
+            }
+
             .title {
                 font-family: 'OpenSans', sans-serif;
                 font-style : normal;
                 font-weight: normal;
                 font-size  : 1.3em;
                 line-height: 16px;
-                /* identical to box height, or 89% */
-
-
                 letter-spacing: -0.2625px;
-
                 color: #FFFFFF;
                 @media screen and (max-width:500px) {
                     line-height: 19px;
+                    width: 82%;
                   }
             }
 
