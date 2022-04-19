@@ -16,6 +16,7 @@ import { useForm } from "react-hook-form";
 import { useTranslation } from "react-multi-lang";
 import Joi from "joi";
 import { joiResolver } from "@hookform/resolvers/joi";
+import { BrowserView, MobileView } from 'react-device-detect';
 
 interface IProps {
     item: TenderLineDto,
@@ -58,7 +59,7 @@ export default function TenderLine({ item, AmountSign, status }: IProps): JSX.El
         <Box key={item.Index} className={Styles.TenderLine}>
             <Accordion className={Styles.Accordion} expanded={expand} >
                 <AccordionSummary
-                className={Styles.AccordionSummary}
+                    className={Styles.AccordionSummary}
                     onClick={() => (status !== 'Ended' && status !== 'Decoded') ? setExpand((expand) => !expand) : null}
                     expandIcon={
                         (status !== 'Ended' && status !== 'Decoded') ? <KeyboardArrowDownIcon /> : null
@@ -66,8 +67,9 @@ export default function TenderLine({ item, AmountSign, status }: IProps): JSX.El
                     aria-controls="panel1a-content"
                     id="panel1a-header">
                     <Grid container className={Styles.TenderLineHead}>
-                        <Grid item  justifyContent="flex-end" md={4} className={Styles.title}>{item.TenderLineName}</Grid>
-                        <Grid item md={2} className={Styles.headItem}>
+                        <Grid item justifyContent="flex-end" md={4} className={Styles.title}>{item.TenderLineName}</Grid>
+
+                        <Grid item  md={1}  className={Styles.headItem}>
                             <Grid>
                                 <Grid className={Styles.titleText}>
                                     {!item.IsPercentageCalculation ?
@@ -79,30 +81,31 @@ export default function TenderLine({ item, AmountSign, status }: IProps): JSX.El
                             {/* AMOUNT */}
                         </Grid>
                         {!expand &&
-                            <React.Fragment>
+                            
+                                <BrowserView>
+                                    <Grid  container  >
+                                        <Grid   className={Styles.headItem}  >
+                                            <Grid   className={Styles.titleText} >
+                                                {Translation('Tender.PRICE_PER_UNIT')}
+                                            </Grid>
+                                            <Grid  >
+                                                <b><CurrencyFormat decimalScale={2} value={item.Price} displayType={'text'} thousandSeparator={true} prefix={item.CurrencyId}></CurrencyFormat></b>
+                                            </Grid>
 
-                                <Grid item md={2} className={Styles.headItem}>
-                                    <div className={Styles.titleText}>
-                                        {Translation('Tender.PRICE_PER_UNIT')}
-                                    </div>
-                                    <div>
-                                        <b><CurrencyFormat decimalScale={2} value={item.Price} displayType={'text'} thousandSeparator={true} prefix={item.CurrencyId}></CurrencyFormat></b>
-                                    </div>
-
-                                </Grid>
-                                <Grid item md={2} className={Styles.headItem}>
-                                    <div className={Styles.titleText}>{Translation('Tender.TOTAL')}</div>
-                                    <div><b><CurrencyFormat decimalScale={2} value={item.TotalPriceForDisplay} displayType={'text'} thousandSeparator={true} prefix={item.CurrencyId}></CurrencyFormat></b></div>
-                                </Grid>
-                           
-
-                            </React.Fragment>
-                        }
-                             {item.isUpdated &&
-                                    <Grid item md={2}>
-                                        <Grid item className={`${Styles.Updated}`}>{Translation('Tender.UPDATED')}</Grid>
+                                        </Grid>
+                                        <Grid   className={Styles.headItem} >
+                                            <Grid   item className={Styles.titleText}>{Translation('Tender.TOTAL')}</Grid>
+                                            <Grid   item><b><CurrencyFormat decimalScale={2} value={item.TotalPriceForDisplay} displayType={'text'} thousandSeparator={true} prefix={item.CurrencyId}></CurrencyFormat></b></Grid>
+                                        </Grid>
                                     </Grid>
-                             }
+                                </BrowserView>
+                           
+                        }
+                        {item.isUpdated &&
+                            <Grid item md={2}>
+                                <BrowserView><Grid item className={`${Styles.Updated}`}>{Translation('Tender.UPDATED')}</Grid></BrowserView>
+                            </Grid>
+                        }
 
                     </Grid>
                 </AccordionSummary>
@@ -111,7 +114,7 @@ export default function TenderLine({ item, AmountSign, status }: IProps): JSX.El
                         {/* <form ref={fieldVal}> */}
                         <Box className={Styles.line}></Box>
                         <Grid container className={Styles.tenderSummery}>
-                            <Grid  className={Styles.stepDiv}>
+                            <Grid className={Styles.stepDiv}>
                                 <Grid item className={Styles.stepTitle} aria-label={Translation('Tender.PROPOSAL_RANK')}>{Translation('Tender.PROPOSAL_RANK')}</Grid>
                                 <Grid item className={Styles.stepNumber}><b>{item.PriceStep} {item.CurrencyId}</b></Grid>
                             </Grid>
@@ -153,7 +156,7 @@ export default function TenderLine({ item, AmountSign, status }: IProps): JSX.El
                                 <Grid item className={Styles.sumTitle}>{Translation('Tender.TOTAL')}</Grid>
                                 <Grid item className={Styles.sumNumber}>
                                     <FormControl fullWidth className={Styles.stepNumber} variant="standard">
-                                        <CurrencyFormat disabled className={Styles.stepNumber} displayType={"text"} decimalScale={2} value={item.TotalPriceForDisplay} id="TotalPriceForDisplay" name={'TotalPriceForDisplay'}   thousandSeparator={true} prefix={item.CurrencyId}></CurrencyFormat>
+                                        <CurrencyFormat disabled className={Styles.stepNumber} displayType={"text"} decimalScale={2} value={item.TotalPriceForDisplay} id="TotalPriceForDisplay" name={'TotalPriceForDisplay'} thousandSeparator={true} prefix={item.CurrencyId}></CurrencyFormat>
                                     </FormControl>
                                 </Grid>
                             </Grid>
