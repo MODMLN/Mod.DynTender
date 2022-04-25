@@ -46,6 +46,7 @@ export const tenderSlice = createSlice({
     },
 
     linePriceChanged: (state, action) => {
+      
       //action contains lineId and 
       //called on change of + - and field blur
       //call line sum change
@@ -61,19 +62,28 @@ export const tenderSlice = createSlice({
             line.Price = Number(line.Price) + Number(line.PriceStep);
             break;
           case "priceChanged":
+            
             if (action.payload.val.value) {
               line.Price = Number(action.payload.val.value);
+                    /*עד עתה בעת שינוי המחיר לפריט היה צריך לבדוק שההפרש בין המחי הקודם למחיר הנוכחי הוא בכפולות של המדרגת יחידה
+              מעתה יש לבדוק רק שהמחיר שהוקלד יורד לפחות במדרגה אחת אך לא חייב לרדת בכפולות של מדרגה
+
+              לדוגמא אם מחיר ליחידה הוא 100 ומדרגת המחיר היא 5
+              אז אם אדם הקליד 95 זה תקין (כפולה אחת של המדרגת ירידה9
+              אם אדם הגיש 97 זה לא תקין כי לא ירד במדרגה אחת לפחות
+              93 זה תקין כי יש ירדה במדרגת אחת (שים לב בתנאים שנבדקו עכשיו גם הבדיקה הזו היתה יוצאת לא תקינה כי זה לא כפולות של המדרגה) */
+          
+              console.log((action.payload.val.value%line.PriceStep)>0);
             }
             break;
         }
-
+      
         if (line.MinPrice < line.Price && line.Price > line.MaxPrice) {
           line.ErrorMsgIsOpen = true;
           line.ErrorMsgMessege = 'המחיר שהוקלד אינו עומד בטווח שנקבע';
-
-          // line.ErrorMsg.isOpen = line.ErrorMsg?line.ErrorMsg.isOpen:false;
-          // line.ErrorMsg.messege = line.ErrorMsg?line.ErrorMsg.messege:"";
         }
+
+
         line.Price = parseFloat(parseFloat(String(line.Price)).toFixed(2));
         line.TotalPrice = CalculateLineTotal(state.Tender, line);
         line.TotalPriceForDisplay = line.TotalPrice;

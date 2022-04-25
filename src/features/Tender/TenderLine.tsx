@@ -40,10 +40,27 @@ export default function TenderLine({ item, AmountSign, status }: IProps): JSX.El
         }
     }, [item]);
 
-    const schema = Joi.object({
-        tenderSum: Joi.number().positive().precision(2).min(Math.max(0, item.MinPrice)).max(item.MaxPrice).required(),
+    const method = (value:any, helpers:any) => {
+        if(item.Price!==value){
+            if ((value%item.PriceStep)>0) {
+                return helpers.message(/*Translation*/'min.invalid');
+            }
+        }
+        return value;
+    };
 
-    }).options({ allowUnknown: true });//instead of adding non shown fields
+    const schema = Joi.object({
+        tenderSum: Joi.number().//message('מספר').
+            positive().//message('חיובי').
+            precision(2).//message('2 דצימלי').
+            min(Math.max(2, item.MinPrice)).message(Translation('Tender.ValidationMsg.MinPriceErr')).
+            max(item.MaxPrice).message(Translation('Tender.ValidationMsg.MaxPriceErr')).
+            //multiple(item.PriceStep).message('min.invalid').
+            custom(method, 'custom validation').
+            required()//.message('דרוש')
+           
+    })
+        .options({ allowUnknown: true });//instead of adding non shown fields
 
     const { register, handleSubmit, reset, setValue, formState: { errors } } = useForm({
         resolver: joiResolver(schema),
@@ -69,7 +86,7 @@ export default function TenderLine({ item, AmountSign, status }: IProps): JSX.El
                     <Grid container className={Styles.TenderLineHead}>
                         <Grid item justifyContent="flex-end" md={4} className={Styles.title}>{item.TenderLineName}</Grid>
 
-                        <Grid item  md={1}  className={Styles.headItem}>
+                        <Grid item md={1} className={Styles.headItem}>
                             <Grid>
                                 <Grid className={Styles.titleText}>
                                     {!item.IsPercentageCalculation ?
@@ -81,25 +98,25 @@ export default function TenderLine({ item, AmountSign, status }: IProps): JSX.El
                             {/* AMOUNT */}
                         </Grid>
                         {!expand &&
-                            
-                                <BrowserView>
-                                    <Grid  container  >
-                                        <Grid   className={Styles.headItem}  >
-                                            <Grid   className={Styles.titleText} >
-                                                {Translation('Tender.PRICE_PER_UNIT')}
-                                            </Grid>
-                                            <Grid  >
-                                                <b><CurrencyFormat decimalScale={2} value={item.Price} displayType={'text'} thousandSeparator={true} prefix={item.CurrencyId}></CurrencyFormat></b>
-                                            </Grid>
 
+                            <BrowserView>
+                                <Grid container  >
+                                    <Grid className={Styles.headItem}  >
+                                        <Grid className={Styles.titleText} >
+                                            {Translation('Tender.PRICE_PER_UNIT')}
                                         </Grid>
-                                        <Grid   className={Styles.headItem} >
-                                            <Grid   item className={Styles.titleText}>{Translation('Tender.TOTAL')}</Grid>
-                                            <Grid   item><b><CurrencyFormat decimalScale={2} value={item.TotalPriceForDisplay} displayType={'text'} thousandSeparator={true} prefix={item.CurrencyId}></CurrencyFormat></b></Grid>
+                                        <Grid  >
+                                            <b><CurrencyFormat decimalScale={2} value={item.Price} displayType={'text'} thousandSeparator={true} prefix={item.CurrencyId}></CurrencyFormat></b>
                                         </Grid>
+
                                     </Grid>
-                                </BrowserView>
-                           
+                                    <Grid className={Styles.headItem} >
+                                        <Grid item className={Styles.titleText}>{Translation('Tender.TOTAL')}</Grid>
+                                        <Grid item><b><CurrencyFormat decimalScale={2} value={item.TotalPriceForDisplay} displayType={'text'} thousandSeparator={true} prefix={item.CurrencyId}></CurrencyFormat></b></Grid>
+                                    </Grid>
+                                </Grid>
+                            </BrowserView>
+
                         }
                         {item.isUpdated &&
                             <Grid item md={2}>

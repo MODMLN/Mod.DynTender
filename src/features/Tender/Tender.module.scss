@@ -93,7 +93,7 @@ input[type=number]::-webkit-outer-spin-button {
     }
 
     @media screen and (max-width:500px) {
-      margin: 16px 22%;
+      margin   : 16px 22%;
       font-size: 18pt;
     }
   }
@@ -141,8 +141,9 @@ input[type=number]::-webkit-outer-spin-button {
       margin-bottom: 2%;
       text-align   : center;
       color        : #44454B;
+
       @media screen and (max-width:500px) {
-       margin-bottom: 12px;
+        margin-bottom: 12px;
       }
     }
 
@@ -158,9 +159,10 @@ input[type=number]::-webkit-outer-spin-button {
       text-align    : center;
       letter-spacing: -0.2625px;
       color         : #44454B;
+
       @media screen and (max-width:500px) {
         margin-bottom: 12px;
-       }
+      }
     }
 
     .buttonDiv {
@@ -180,9 +182,10 @@ input[type=number]::-webkit-outer-spin-button {
         text-align : right;
         color      : #FFFFFF;
         width      : 50%;
+
         @media screen and (max-width:500px) {
-          width      : 100%;
-         }
+          width: 100%;
+        }
       }
     }
   }
@@ -215,6 +218,7 @@ input[type=number]::-webkit-outer-spin-button {
       @media screen and (max-width:1024px) {
         padding: 16px;
       }
+
       @media screen and (max-width:500px) {
         padding: 0 16px;
       }
@@ -237,6 +241,7 @@ input[type=number]::-webkit-outer-spin-button {
 
   .TenderLineHead {
     text-align: right;
+    gap       : 20px;
 
     .Updated {
       background   : #E3EBF8;
@@ -244,6 +249,7 @@ input[type=number]::-webkit-outer-spin-button {
       padding      : 5px;
       height       : fit-content;
       width        : fit-content;
+      gap          : 0px;
     }
 
     .title {
@@ -258,8 +264,9 @@ input[type=number]::-webkit-outer-spin-button {
       text-align    : right;
       letter-spacing: -0.4125px;
       color         : #44454B;
+
       @media screen and (max-width:500px) {
-        font-size     :14pt;
+        font-size: 14pt;
       }
 
     }
@@ -310,8 +317,9 @@ input[type=number]::-webkit-outer-spin-button {
         text-align    : right;
         letter-spacing: -0.2625px;
         color         : #44454B;
+
         @media screen and (max-width:500px) {
-          font-size     : 14pt;
+          font-size: 14pt;
         }
 
         #TotalPriceForDisplay {
@@ -341,6 +349,11 @@ input[type=number]::-webkit-outer-spin-button {
         display    : inline-flex;
         gap        : 12px;
 
+        p {
+          font-weight: bold;
+          margin     : 0 auto;
+        }
+
         div {
           display: flex;
         }
@@ -348,14 +361,14 @@ input[type=number]::-webkit-outer-spin-button {
         fieldset {
           border: none;
         }
-        
-       label{
 
-        @media screen and (max-width:500px) {
-          text-align: center;
-        display: contents;
+        label {
+
+          @media screen and (max-width:500px) {
+            text-align: center;
+            display   : contents;
+          }
         }
-       }
 
         input,
         input:focus {
@@ -371,8 +384,9 @@ input[type=number]::-webkit-outer-spin-button {
           /* identical to box height, or 115% */
           text-align      : center;
           color           : #4D4E55;
+
           @media screen and (max-width:500px) {
-            font-size     : 14pt;
+            font-size: 14pt;
           }
         }
       }
@@ -386,14 +400,15 @@ input[type=number]::-webkit-outer-spin-button {
         font-family   : 'OpenSans', sans-serif;
         font-style    : normal;
         font-weight   : normal;
-        font-size     :16pt;
+        font-size     : 16pt;
         line-height   : 14px;
         /* identical to box height, or 78% */
         margin-bottom : 20px;
         text-align    : right;
         letter-spacing: -0.2625px;
+
         @media screen and (max-width:500px) {
-          margin-bottom : 5px;
+          margin-bottom: 5px;
         }
       }
 
@@ -405,11 +420,12 @@ input[type=number]::-webkit-outer-spin-button {
         font-size       : 18pt;
         line-height     : 14px;
 
-        text-align      : right;
-        letter-spacing  : -0.2625px;
-        color           : #00798C;
+        text-align    : right;
+        letter-spacing: -0.2625px;
+        color         : #00798C;
+
         @media screen and (max-width:500px) {
-          font-size     : 14pt;
+          font-size: 14pt;
         }
 
         input {
@@ -463,12 +479,12 @@ input[type=number]::-webkit-outer-spin-button {
 
     @media screen and (max-width:500px) {
       margin-top: 0px;
-     
+
     }
 
     .StatusesBtn {
       flex: auto;
-      
+
       @media screen and (max-width:500px) {
         flex: none;
       }
@@ -498,8 +514,8 @@ input[type=number]::-webkit-outer-spin-button {
       justify-content: space-between;
 
       @media screen and (max-width:500px) {
-        flex-direction: row!important;
-        direction: rtl;
+        flex-direction: row !important;
+        direction     : rtl;
       }
 
       .TenderNumber {
