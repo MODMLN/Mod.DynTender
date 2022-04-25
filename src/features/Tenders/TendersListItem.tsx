@@ -53,7 +53,7 @@ export default function TendersListItem({ item, index, redirectOnClick = true }:
                     <Grid  md={7} item className={Styles.headText}>{item.Name}</Grid>
                    
                         
-                        <Grid md={3} className={Styles.lastColumn}  direction="row-reverse" >{lastColumn}</Grid>
+                        <Grid md={3} item className={Styles.lastColumn} container  direction="row-reverse" >{lastColumn}</Grid>
                
                 </Grid>
                 <Box className={Styles.line}></Box> 

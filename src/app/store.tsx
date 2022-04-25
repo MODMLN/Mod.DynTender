@@ -1,7 +1,11 @@
-import { configureStore } from "@reduxjs/toolkit";
+
+import { configureStore  } from "@reduxjs/toolkit";
 import tendersSlice from "../features/Tenders/TendersSlice";
 import tenderSlice from "../features/Tender/TenderSlice";
 import usersSlice from "../Global/UsersSlice";
+
+
+
 
 const store =configureStore({
   reducer: {
