@@ -101,14 +101,15 @@ a {
 
     .TenderNumber {
       padding-top: 5px;
+
       @media screen and (max-width:500px) {
-        display  : contents !important;
+        display: contents !important;
       }
     }
 
     .lastColumn {
       display: contents;
- 
+
     }
 
     @media screen and (max-width:500px) {
@@ -131,7 +132,7 @@ a {
       font-weight: bold;
       font-size  : 24pt;
       line-height: 26px;
-      
+
     }
   }
 
@@ -145,8 +146,8 @@ a {
 
       .lastColumn {
         display: inline-flex;
-        gap: 16px;
-       
+        gap    : 16px;
+
 
         button {
           margin : 0;
@@ -156,12 +157,13 @@ a {
         }
 
       }
+
       .headText {
         width         : 100%;
         font-size     : 16pt;
         line-height   : none;
         letter-spacing: -0.4125px;
-        margin-bottom: 13px;
+        margin-bottom : 13px;
       }
     }
   }
@@ -173,8 +175,9 @@ a {
     height    : 1px;
     border    : 1px solid #E3E6F0;
     background: #E3E6F0;
+
     @media screen and (max-width:500px) {
-      border    : 0px solid #E3E6F0;
+      border: 0px solid #E3E6F0;
     }
 
     div {

@@ -266,8 +266,8 @@ input[type=number]::-webkit-outer-spin-button {
       color         : #44454B;
 
       @media screen and (max-width:500px) {
-        font-size: 14pt;
-        line-height   : 15px;
+        font-size  : 14pt;
+        line-height: 15px;
       }
 
     }
@@ -293,9 +293,11 @@ input[type=number]::-webkit-outer-spin-button {
     direction  : rtl;
     display    : inline-flex;
     gap        : 12px;
+
     @media screen and (max-width:500px) {
-      gap        : 0;
+      gap: 0;
     }
+
     .stepDiv {
       padding: 15px;
 
@@ -308,8 +310,9 @@ input[type=number]::-webkit-outer-spin-button {
         margin-bottom : 20px;
         text-align    : right;
         letter-spacing: -0.2625px;
+
         @media screen and (max-width:500px) {
-          margin-bottom : 15px;
+          margin-bottom: 15px;
         }
       }
 

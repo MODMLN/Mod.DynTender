@@ -61,12 +61,15 @@ input[type=number]::-webkit-outer-spin-button {
       margin-right : auto;
       width        : 50%;
       border       : none !important;
+
       >div {
         margin-left : auto;
         margin-right: auto;
         border      : none !important;
+
         .BoxMain {
           border: none !important;
+
           @media screen and (max-width:1024px) {
             height: auto;
           }
@@ -100,8 +103,8 @@ input[type=number]::-webkit-outer-spin-button {
     border-bottom-right-radius: 0 !important;
 
     @media screen and (max-width:1024px) {
-      width: 90%;
-      padding                   : 15px;
+      width  : 90%;
+      padding: 15px;
     }
 
     .title {
@@ -116,8 +119,9 @@ input[type=number]::-webkit-outer-spin-button {
       margin-bottom: 2%;
       text-align   : center;
       color        : #44454B;
+
       @media screen and (max-width:1024px) {
-        font-size    : 14pt;
+        font-size: 14pt;
       }
     }
 
@@ -132,8 +136,9 @@ input[type=number]::-webkit-outer-spin-button {
       /* identical to box height, or 70% */
       text-align  : center;
       color       : #44454B;
+
       @media screen and (max-width:1024px) {
-        font-size    : 14pt;
+        font-size: 14pt;
       }
     }
 
@@ -144,10 +149,12 @@ input[type=number]::-webkit-outer-spin-button {
       text-align: center;
       direction : rtl;
       width     : 33%;
+
       @media screen and (max-width:1024px) {
-        width     : 80%;
-        margin    : 4% auto;
+        width : 80%;
+        margin: 4% auto;
       }
+
       .button {
         min-width       : 224px;
         font-family     : 'OpenSans', sans-serif;
@@ -187,11 +194,14 @@ input[type=number]::-webkit-outer-spin-button {
       font-size  : 18px;
       line-height: 14px;
       color      : #44454B;
+
       .AlertDivStack {
         width: 50%;
+
         @media screen and (max-width:500px) {
           width: 100%;
         }
+
         .AlertDivAlert {
           background-color: '#E3EBF8'
         }

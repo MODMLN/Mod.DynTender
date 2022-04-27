@@ -13,8 +13,8 @@
     direction    : rtl;
 
     @media screen and (max-width:500px) {
-        height       : 125px;
-      }
+        height: 125px;
+    }
 
     .divHeader {
         padding-top : 2%;
@@ -32,11 +32,11 @@
         color       : #FFFFFF;
 
         @media screen and (max-width:500px) {
-            padding-top: 12px;
-            font-size   : 12pt;
+            padding-top   : 12px;
+            font-size     : 12pt;
             letter-spacing: -0.3375px;
 
-          }
+        }
 
         @media only screen and (max-width : 1024px) {
             width: 95%;
@@ -61,29 +61,34 @@
             margin-right : auto;
             text-align   : center;
 
-            .HeadLine{
-                align-items: center;
+            .HeadLine {
+                align-items : center;
                 padding-left: 5px;
-                svg{  height: 0.7em;}
-                .ArrowForwardIosIcon{
-                   
-                     border-left:0.8px solid #FFFFFF;
+
+                svg {
+                    height: 0.7em;
+                }
+
+                .ArrowForwardIosIcon {
+
+                    border-left: 0.8px solid #FFFFFF;
                 }
             }
 
             .title {
-                margin   : 15px 0;
-                font-family: 'OpenSans', sans-serif;
-                font-style : normal;
-                font-weight: normal;
-                font-size  : 1.3em;
-                line-height: 16px;
+                margin        : 15px 0;
+                font-family   : 'OpenSans', sans-serif;
+                font-style    : normal;
+                font-weight   : normal;
+                font-size     : 1.3em;
+                line-height   : 16px;
                 letter-spacing: -0.2625px;
-                color: #FFFFFF;
+                color         : #FFFFFF;
+
                 @media screen and (max-width:500px) {
                     line-height: 19px;
-                    width: 82%;
-                  }
+                    width      : 82%;
+                }
             }
 
             .clock {
