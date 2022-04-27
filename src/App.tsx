@@ -4,7 +4,7 @@ import TenderRoutes from "./route";
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchUserAsync, selectUser} from "./Global/UsersSlice";
 import Header from './Header';
-import { selectLastPropositions,selectTender,fetchTenderAsync } from "./features/Tender/TenderSlice";
+import { selectLastPropositions,selectTender,fetchTenderAsync, fetchLastPropositionsAsync } from "./features/Tender/TenderSlice";
 import { BrowserRouter } from 'react-router-dom';
 
 
@@ -16,6 +16,8 @@ const LastPropositionsDto = useSelector(selectLastPropositions);
 const dispatch = useDispatch();
 
 useEffect(() => {
+  dispatch(fetchLastPropositionsAsync());
+
   dispatch(fetchUserAsync());
   dispatch(fetchTenderAsync());
 }, [dispatch]);
