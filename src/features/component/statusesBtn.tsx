@@ -6,7 +6,7 @@ import Button from '@mui/material/Button';
 import { useTranslation } from "react-multi-lang";
 import date from 'date-and-time';
 import { Grid } from "@mui/material";
-import { BrowserView, MobileView, isBrowser, isMobile } from 'react-device-detect';
+import { BrowserView} from 'react-device-detect';
 interface IProps {
     item: TenderDto
     leadItem: LastPropositionsDto,

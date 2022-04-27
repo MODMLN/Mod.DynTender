@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import {useNavigate} from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import Styles from './BidConfirm.module.scss';
 import { Box, Button,Alert,Stack} from "@mui/material";
@@ -15,7 +14,6 @@ interface IProps {
 }
 
 export default function BidConfirm(){
-    let navigate = useNavigate();
     const dispatch = useDispatch();
     const Translation = useTranslation();
     const TotalSummery = useSelector(selectTotalSummery);
@@ -47,7 +45,6 @@ export default function BidConfirm(){
             <span  className={params.value?Styles.lblUpdate:''}>{params.value}</span>
           )},
     ];
-
 
     return (
         <>

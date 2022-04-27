@@ -11,7 +11,7 @@ import TenderDto from './Dtos/TenderDto';
 import { TenderLineDto } from './Dtos/TenderLineDto';
 import { fetchConfirmPropositionAsync, selectTender, selectTotalSummery } from "./TenderSlice";
 import { selectUser } from "../../Global/UsersSlice";
-import { BrowserView, MobileView } from 'react-device-detect';
+import { BrowserView } from 'react-device-detect';
 interface IProps {
     item: TenderDto
 }

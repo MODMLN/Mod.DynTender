@@ -16,7 +16,7 @@ import { useForm } from "react-hook-form";
 import { useTranslation } from "react-multi-lang";
 import Joi from "joi";
 import { joiResolver } from "@hookform/resolvers/joi";
-import { BrowserView, MobileView } from 'react-device-detect';
+import { BrowserView } from 'react-device-detect';
 
 interface IProps {
     item: TenderLineDto,
@@ -41,9 +41,14 @@ export default function TenderLine({ item, AmountSign, status }: IProps): JSX.El
     }, [item]);
 
     const method = (value:any, helpers:any) => {
-        if(item.Price!==value){
-            if ((value%item.PriceStep)>0) {
-                return helpers.message(/*Translation*/'min.invalid');
+
+        if(value!==item.PreviousPrice){
+            let Diff =  Math.abs(item.PreviousPrice-value);
+            let newPrice = Diff - item.PriceStep;
+
+            if (newPrice<0) {
+                let msg = value>item.PreviousPrice?Translation('Tender.ValidationMsg.YOU_DIDNT_UP_STEP_AT_LAST'):Translation('Tender.ValidationMsg.YOU_DIDNT_DOWN_STEP_AT_LAST');
+                return helpers.message(msg+" "+ item.PriceStep);
             }
         }
         return value;

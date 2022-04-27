@@ -1,11 +1,10 @@
 import React from "react";
-import styled from "styled-components";
 import TendersList from "./TendersList";
 import { useTranslation } from "react-multi-lang";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../Global/UsersSlice";
 import Styles from './Tenders.module.scss';
-import { Box, Grid, Link } from "@mui/material";
+import { Box } from "@mui/material";
 
 export default function Tenders  ()  {
   const Translation = useTranslation();
