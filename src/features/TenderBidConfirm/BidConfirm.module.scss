@@ -148,7 +148,7 @@ input[type=number]::-webkit-outer-spin-button {
       margin    : 2% auto;
       text-align: center;
       direction : rtl;
-      width     : 33%;
+      width     : 455px;
 
       @media screen and (max-width:1024px) {
         width : 80%;
@@ -164,6 +164,15 @@ input[type=number]::-webkit-outer-spin-button {
         line-height     : 25px;
         color           : #FFFFFF;
         background-color: '#00798C';
+      }
+
+      .outlined{
+        color: #00798C;
+         width: 50%!important;
+      }
+      .contained{
+        background-color: #00798C; 
+        width: 50%;
       }
     }
   }

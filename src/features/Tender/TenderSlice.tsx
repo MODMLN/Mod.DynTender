@@ -7,6 +7,7 @@ import LastPropositionsDto from './Dtos/LastPropositionsDto';
 
 const API_URL_Tender = "/Tender.json";
 const API_URL_Lpau   = "/LeadingPropositionAndUser.json";
+const API_URL_Propose = "/Propose.json";
 
 export interface TenderMesseges {
   id?: number;
@@ -18,6 +19,7 @@ export interface CounterState {
   loading: boolean,
   error: boolean,
   BidConfirmStatus:boolean,
+  ProposeMesseges:any
   Tender: TenderDto,
   LastPropositionsdata: LastPropositionsDto,
   TotalSummery: number | undefined
@@ -27,6 +29,7 @@ export interface CounterState {
 export const initialState: CounterState = {
   loading: false,
   error: false,
+  ProposeMesseges:[],
   BidConfirmStatus:true,
   Tender: new TenderDto(),
   LastPropositionsdata: new LastPropositionsDto(),
@@ -41,9 +44,10 @@ export const tenderSlice = createSlice({
     startLoading: (state) => {
       state.loading = true;
     },
-    bidConfirmStatus: (state, action) => {
+    propose: (state, action) => {
       state.BidConfirmStatus = action.payload;
     },
+  
 
     linePriceChanged: (state, action) => {
       
@@ -105,6 +109,16 @@ export const tenderSlice = createSlice({
         state.LastPropositionsdata = SetLastPropositionsDtoData(state, action.payload);
         //}
       })
+      .addCase(fetchProposeAsync.fulfilled, (state, action) => {
+        
+        if(action.payload.Success===true){
+          state.BidConfirmStatus = true;
+        }
+        else{
+          state.BidConfirmStatus = false;
+          state.ProposeMesseges = action.payload.Errors;
+        }
+      })
       .addCase(fetchApproveMessagesAsync.fulfilled, (state, action) => {
 
         //console.log(state.userdata)
@@ -150,6 +164,16 @@ export const fetchApproveMessagesAsync = createAsyncThunk('tenderdata/ApproveMes
 }
 );
 
+export const fetchProposeAsync = createAsyncThunk('tenderdata/Propose', async (req: any, thunkAPI: any) => {
+  try {
+    const response = await axios.get(`${API_URL_Propose}`);
+    return response.data;
+  } catch (err) {
+    return err;
+  }
+}
+);
+
 export const fetchConfirmPropositionAsync = createAsyncThunk('tenderdata/ConfirmProposition', async (req: any, thunkAPI: any) => {
   const fakeErrorsResponse  = {Errors: [
     "המחיר קטן מידי",
@@ -167,6 +191,7 @@ export const fetchConfirmPropositionAsync = createAsyncThunk('tenderdata/Confirm
     }
   }
 );
+
 
 const SetTenderData = (state: CounterState, tender: TenderDto) => {
 
@@ -197,7 +222,7 @@ const CalculateTenderTotal = (tender: TenderDto) => {
 }
 
 export const {
-  bidConfirmStatus,
+  propose,
   setTotalSummery,
   startLoading,
   linePriceChanged,
@@ -207,4 +232,5 @@ export const selectTender = (state: RootState) => state.Tender.Tender;
 export const selectTotalSummery = (state: RootState) => state.Tender.TotalSummery;
 export const selectLastPropositions = (state: RootState) => state.Tender.LastPropositionsdata;
 export const selectBidConfirmStatus = (state: RootState) => state.Tender.BidConfirmStatus;
+export const selectProposeMesseges = (state: RootState) => state.Tender.ProposeMesseges;
 export default tenderSlice.reducer;

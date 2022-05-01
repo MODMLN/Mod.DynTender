@@ -50,7 +50,7 @@ export default function Tender() {
         </Grid>
       </Grid>
       {BidConfirmStatus &&
-        <TenderLines item={tenderDto}></TenderLines>
+        <TenderLines key="5" item={tenderDto}></TenderLines>
       }
       {!BidConfirmStatus &&
         <Box>
