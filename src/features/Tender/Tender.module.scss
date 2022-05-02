@@ -65,7 +65,11 @@ input[type=number]::-webkit-outer-spin-button {
       width        : 59%;
 
       @media screen and (max-width:1024px) {
-        width: 90%;
+        width: auto;
+      }
+
+      @media screen and (max-width:1920px) {
+        width: auto;
       }
 
       >div {
@@ -88,6 +92,10 @@ input[type=number]::-webkit-outer-spin-button {
     /* identical to box height, or 50% */
     color      : #44454B;
 
+    @media screen and (max-width:1920px) {
+      margin    : 1% 2% 1% 0;
+    }
+
     @media screen and (max-width:1024px) {
       margin: 2% 5% 1% 0;
     }
@@ -101,6 +109,10 @@ input[type=number]::-webkit-outer-spin-button {
   .BoxSumLink {
     text-align: right;
     margin    : 1% 21% 1% 0;
+
+    @media screen and (max-width:1920px) {
+      margin    : 1% 2% 1% 0;
+    }
 
     @media screen and (max-width:1024px) {
       margin: 1% 5% 1% 0;
@@ -206,7 +218,9 @@ input[type=number]::-webkit-outer-spin-button {
     padding: 0;
     width  : 95%;
   }
-
+  @media screen and (max-width:1920px) {
+    width  :90%;
+  }
   .Accordion {
     direction : rtl !important;
     box-shadow: none;

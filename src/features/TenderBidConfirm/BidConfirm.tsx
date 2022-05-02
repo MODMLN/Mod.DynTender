@@ -4,7 +4,7 @@ import Styles from './BidConfirm.module.scss';
 import { Box, Button,Alert,Stack} from "@mui/material";
 import { useTranslation } from "react-multi-lang";
 import UsersDto from "./../../Global/UsersDto";
-import { selectBidConfirmStatus,selectProposeMesseges,selectTender, fetchTenderAsync, fetchLastPropositionsAsync ,selectTotalSummery,fetchConfirmPropositionAsync,propose, fetchProposeAsync} from "./../Tender/TenderSlice";
+import { selectProposeMesseges,selectTender, fetchTenderAsync, fetchLastPropositionsAsync ,selectTotalSummery,fetchConfirmPropositionAsync,propose, fetchProposeAsync} from "./../Tender/TenderSlice";
 import { DataGrid, GridColDef   } from '@mui/x-data-grid';
 import CurrencyFormat from "react-number-format";
 import { TenderLineDto } from "../Tender/Dtos/TenderLineDto";
@@ -89,7 +89,7 @@ export default function BidConfirm(){
                     <Box className={Styles.title}>{Translation('Tender.THE_AMOUNT_OF_YOUR_BID')}</Box>
                     <Box className={Styles.summery}><CurrencyFormat value={TotalSummery} displayType={'text'} thousandSeparator={true} prefix={tenderDto.CurrencyId} decimalScale={2} /></Box>
                     <Box className={Styles.buttonDiv}>
-                        <Box className={Styles.button}><Button  className={`${Styles.Button} ${Styles.outlined}`}  variant="outlined" onClick={()=>{dispatch(fetchConfirmPropositionAsync(''))}}>{Translation('Tender.BACK')}</Button></Box>
+                        <Box className={Styles.button}><Button  className={`${Styles.Button} ${Styles.outlined}`}  variant="outlined" onClick={()=>{dispatch(fetchProposeAsync({isBack:true}))}}>{Translation('Tender.BACK')}</Button></Box>
                         <Box className={Styles.button}><Button   className={`${Styles.Button} ${Styles.contained}`}  variant="contained" onClick={()=>{dispatch(fetchProposeAsync(true))}} >{Translation('Tender.Offer_confirmation')}</Button></Box>
                     </Box>
                     </Box>

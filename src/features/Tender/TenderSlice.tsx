@@ -110,7 +110,7 @@ export const tenderSlice = createSlice({
         //}
       })
       .addCase(fetchProposeAsync.fulfilled, (state, action) => {
-        
+    
         if(action.payload.Success===true){
           state.BidConfirmStatus = true;
         }
