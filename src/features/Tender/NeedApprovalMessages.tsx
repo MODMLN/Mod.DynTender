@@ -52,7 +52,6 @@ export default function NeedApprovalMessages({ flag, Messages }: IProps) {
                 sx={{ 'direction': 'rtl' }}
                 open={open}
                 onClose={() => {
-                    console.log(userDto)
                     setOpen(false);
                     dispatch(fetchApproveMessagesAsync(msgs));
                 }}
