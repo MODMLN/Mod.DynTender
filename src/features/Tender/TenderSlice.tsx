@@ -50,7 +50,6 @@ export const tenderSlice = createSlice({
 
 
     linePriceChanged: (state, action) => {
-      console.log(action.payload.Price)
       //action contains lineId and 
       //called on change of + - and field blur
       //call line sum change

@@ -53,12 +53,20 @@ export default function TenderLine({ item, AmountSign, status }: IProps): JSX.El
                 let msg = value > item.PreviousPrice ? Translation('Tender.ValidationMsg.YOU_DIDNT_UP_STEP_AT_LAST') : Translation('Tender.ValidationMsg.YOU_DIDNT_DOWN_STEP_AT_LAST');
                 return helpers.message(msg + " " + item.PriceStep);
             }
+
+            if(value>item.MaxPrice || value<item.MinPrice){
+                console.log("value: ",value)
+                setValStep(item.PreviousPrice);
+                setValue('tenderSum', item.PreviousPrice, { shouldValidate: true })
+                dispatch(linePriceChanged({ TenderLineId: item.TenderLineId, Price: item.PreviousPrice }));
+            }
         }
         return value;
     };
 
     const schema = Joi.object({
-        tenderSum: Joi.number().//message('מספר').
+        tenderSum: Joi.
+            number().//message('מספר').
             positive().//message('חיובי').
             precision(2).//message('2 דצימלי').
             min(Math.max(2, item.MinPrice)).message(Translation('Tender.ValidationMsg.MinPriceErr') + " (" + item.MinPrice + ")").
