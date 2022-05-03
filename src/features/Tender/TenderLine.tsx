@@ -29,27 +29,29 @@ export default function TenderLine({ item, AmountSign, status }: IProps): JSX.El
     const dispatch = useDispatch();
     const [expand, setExpand] = React.useState(false);
     const [valCahnge, setValChange] = React.useState('');
-    const [valStep, setValStep] = React.useState<number>(item.PreviousPrice);
+    const [valStep, setValStep] = React.useState<number>(0);
     const [snackbar, setSnackbar] = React.useState<IMessege>({ isOpen: false, messege: '' });
     const [price, setPrice] = useState<number>(0);
 
     useEffect(() => {
-        setValue('tenderSum', valStep );
+
+        setValue('tenderSum', valStep);
         if (item != null) {
+            setValStep(item.Price);
             setPrice(valStep);
             reset(item);
         }
     }, [item]);
 
-    const method = (value:any, helpers:any) => {
+    const method = (value: any, helpers: any) => {
 
-        if(value!==item.PreviousPrice){
-            let Diff =  Math.abs(item.PreviousPrice-value);
+        if (value !== item.PreviousPrice) {
+            let Diff = Math.abs(item.PreviousPrice - value);
             let newPrice = Diff - item.PriceStep;
 
-            if (newPrice<0) {
-                let msg = value>item.PreviousPrice?Translation('Tender.ValidationMsg.YOU_DIDNT_UP_STEP_AT_LAST'):Translation('Tender.ValidationMsg.YOU_DIDNT_DOWN_STEP_AT_LAST');
-                return helpers.message(msg+" "+ item.PriceStep);
+            if (newPrice < 0) {
+                let msg = value > item.PreviousPrice ? Translation('Tender.ValidationMsg.YOU_DIDNT_UP_STEP_AT_LAST') : Translation('Tender.ValidationMsg.YOU_DIDNT_DOWN_STEP_AT_LAST');
+                return helpers.message(msg + " " + item.PriceStep);
             }
         }
         return value;
@@ -59,15 +61,15 @@ export default function TenderLine({ item, AmountSign, status }: IProps): JSX.El
         tenderSum: Joi.number().//message('מספר').
             positive().//message('חיובי').
             precision(2).//message('2 דצימלי').
-            min(Math.max(2, item.MinPrice)).message(Translation('Tender.ValidationMsg.MinPriceErr')).
-            max(item.MaxPrice).message(Translation('Tender.ValidationMsg.MaxPriceErr')).
+            min(Math.max(2, item.MinPrice)).message(Translation('Tender.ValidationMsg.MinPriceErr') + " (" + item.MinPrice + ")").
+            max(item.MaxPrice).message(Translation('Tender.ValidationMsg.MaxPriceErr') + " (" + item.MaxPrice + ")").
             //multiple(item.PriceStep).message('min.invalid').
             custom(method, 'custom validation').
             required()//.message('דרוש');
-           
+
     }).options({ allowUnknown: true });//instead of adding non shown fields
 
-    const { register, handleSubmit, reset, setValue,trigger, formState: { errors } } = useForm({
+    const { register, handleSubmit, reset, setValue, trigger, formState: { errors } } = useForm({
         resolver: joiResolver(schema),
         mode: 'onBlur', //'onBlur' 'onChange' 'onSubmit'[*default] 'onTouched' 'all'
     });
@@ -76,6 +78,7 @@ export default function TenderLine({ item, AmountSign, status }: IProps): JSX.El
         if (event != null)
             event.stopPropagation();
     };
+
     return (
         <Box key={item.Index} className={Styles.TenderLine}>
             <Accordion className={Styles.Accordion} expanded={expand} >
@@ -143,20 +146,36 @@ export default function TenderLine({ item, AmountSign, status }: IProps): JSX.El
                                 <Grid item className={Styles.stepTitle} aria-label={Translation('Tender.PRICE_PER_UNIT')}></Grid>
                                 <Grid item className={Styles.stepField}>
                                     <Grid item>
-                                        <IconButton  sx={{ color: "#00798C" }}
-                                         onClick={() => {
-                                            let val = valCahnge ? parseFloat(valCahnge) : item.Price;
-                                            if (val > item.MaxPrice) {
-                                                setSnackbar({ isOpen: true, messege: Translation('Tender.PRICE_IS_HIGHER_THAN_THE_MAXIMUM') });
-                                            };
-                                            setValStep(Number(valStep)+Number(item.PriceStep))
-                                            setValue('tenderSum',Number(valStep)+Number(item.PriceStep))
-                                            trigger('tenderSum')
-                                           // dispatch(linePriceChanged({ TenderLineId: item.TenderLineId, actionType: "stepUp" }))
-                                        }}><AddCircle /></IconButton></Grid>
+                                        <IconButton sx={{ color: "#00798C" }}
+                                            onClick={() => {
+                                                let val = valCahnge ? parseFloat(valCahnge) : item.Price;
+                                                if (val > item.MaxPrice) {
+                                                    setSnackbar({ isOpen: true, messege: Translation('Tender.PRICE_IS_HIGHER_THAN_THE_MAXIMUM') });
+                                                };
+
+                                                const newVal = Number(valStep) + Number(item.PriceStep);
+                                                setValStep(newVal);
+                                                setValue('tenderSum', newVal, { shouldValidate: true });
+
+                                                dispatch(linePriceChanged({ TenderLineId: item.TenderLineId, Price: newVal }));
+                                            }}><AddCircle /></IconButton></Grid>
+
                                     <Grid component='form' onSubmit={handleSubmit(onSubmit)} sx={{ mt: 1 }}>
-                                        <TextField defaultValue={valStep ? Number(valStep).toFixed(2) : ''} 
+                                        <TextField defaultValue={valStep ? Number(valStep).toFixed(2) : ''}
                                             {...register('tenderSum')} placeholder={item.CurrencyId}
+                                            //value={valStep}
+
+                                            onChange={(e) => {
+                                                setValStep(Number(e.target.value))
+                                                dispatch(linePriceChanged({ TenderLineId: item.TenderLineId, Price: e.target.value }));
+                                            }}
+
+                                            onBlur={(e) => {
+
+                                                setValue('tenderSum', e.target.value, { shouldValidate: true })
+                                                dispatch(linePriceChanged({ TenderLineId: item.TenderLineId, Price: e.target.value }));
+                                            }}
+
                                             type={'text'}
                                             label={Translation('Tender.PRICE_PER_UNIT') + ' ' + item.CurrencyId}
                                             variant="filled"
@@ -164,7 +183,6 @@ export default function TenderLine({ item, AmountSign, status }: IProps): JSX.El
                                             error={errors.tenderSum != null}
                                             helperText={errors.tenderSum == null ? null : errors.tenderSum?.message}
                                             fullWidth
-                                            //onChange={(e)=> (setValue('tenderSum', Number(valStep) ))}
                                         />
                                     </Grid>
                                     <Grid><IconButton sx={{ color: "#00798C" }} onClick={() => {
@@ -172,10 +190,11 @@ export default function TenderLine({ item, AmountSign, status }: IProps): JSX.El
                                         if (val < item.MinPrice || val < 0) {
                                             setSnackbar({ isOpen: true, messege: Translation('Tender.PRICE_IS_LOWER_THAN_THE_MINIMUM') });
                                         }
-                                        setValStep(Number(valStep)-Number(item.PriceStep))
-                                        setValue('tenderSum',Number(valStep)-Number(item.PriceStep))
-                                        trigger('tenderSum')
-                                        //dispatch(linePriceChanged({ TenderLineId: item.TenderLineId, actionType: "stepDown" }))
+                                        const newVal = Number(valStep) - Number(item.PriceStep);
+                                        setValStep(newVal);
+                                        setValue('tenderSum', newVal, { shouldValidate: true });
+
+                                        dispatch(linePriceChanged({ TenderLineId: item.TenderLineId, Price: newVal }));
                                     }
                                     }>
                                         <RemoveCircle /></IconButton></Grid>
@@ -202,5 +221,3 @@ export default function TenderLine({ item, AmountSign, status }: IProps): JSX.El
         </Box>
     )
 }
-
-

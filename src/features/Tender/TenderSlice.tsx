@@ -6,7 +6,7 @@ import { TenderLineDto } from './Dtos/TenderLineDto';
 import LastPropositionsDto from './Dtos/LastPropositionsDto';
 
 const API_URL_Tender = "/Tender.json";
-const API_URL_Lpau   = "/LeadingPropositionAndUser.json";
+const API_URL_Lpau = "/LeadingPropositionAndUser.json";
 const API_URL_Propose = "/Propose.json";
 
 export interface TenderMesseges {
@@ -18,8 +18,8 @@ export interface TenderMesseges {
 export interface CounterState {
   loading: boolean,
   error: boolean,
-  BidConfirmStatus:boolean,
-  ProposeMesseges:any
+  BidConfirmStatus: boolean,
+  ProposeMesseges: any
   Tender: TenderDto,
   LastPropositionsdata: LastPropositionsDto,
   TotalSummery: number | undefined
@@ -29,15 +29,15 @@ export interface CounterState {
 export const initialState: CounterState = {
   loading: false,
   error: false,
-  ProposeMesseges:[],
-  BidConfirmStatus:true,
+  ProposeMesseges: [],
+  BidConfirmStatus: true,
   Tender: new TenderDto(),
   LastPropositionsdata: new LastPropositionsDto(),
   TotalSummery: 0
 };
 
 export const tenderSlice = createSlice({
-  
+
   name: "tenderdata",
   initialState,
   reducers: {
@@ -47,43 +47,21 @@ export const tenderSlice = createSlice({
     propose: (state, action) => {
       state.BidConfirmStatus = action.payload;
     },
-  
+
 
     linePriceChanged: (state, action) => {
-      
+      console.log(action.payload.Price)
       //action contains lineId and 
       //called on change of + - and field blur
       //call line sum change
       let lines = state.Tender.Lines?.filter((x) => x.TenderLineId === action.payload.TenderLineId);
       let line = lines == null ? null : lines[0];
-
+     
       if (line != null) {
-        switch (action.payload.actionType) {
-          case "stepDown":
-            line.Price = Number(line.Price) - Number(line.PriceStep);
-            break;
-          case "stepUp":
-            line.Price = Number(line.Price) + Number(line.PriceStep);
-            break;
-          case "priceChanged":
-            
-            if (action.payload.val.value) {
-              line.Price = Number(action.payload.val.value);
-            }
-            break;
-        }
-      
-        if (line.MinPrice < line.Price && line.Price > line.MaxPrice) {
-          line.ErrorMsgIsOpen = true;
-          line.ErrorMsgMessege = 'המחיר שהוקלד אינו עומד בטווח שנקבע';
-        }
-
-
-        line.Price = parseFloat(parseFloat(String(line.Price)).toFixed(2));
+        line.Price = action.payload.Price;
         line.TotalPrice = CalculateLineTotal(state.Tender, line);
         line.TotalPriceForDisplay = line.TotalPrice;
         line.isUpdated = true;
-
       }
       state.TotalSummery = CalculateTenderTotal(state.Tender);
     },
@@ -110,11 +88,11 @@ export const tenderSlice = createSlice({
         //}
       })
       .addCase(fetchProposeAsync.fulfilled, (state, action) => {
-    
-        if(action.payload.Success===true){
+
+        if (action.payload.Success === true) {
           state.BidConfirmStatus = true;
         }
-        else{
+        else {
           state.BidConfirmStatus = false;
           state.ProposeMesseges = action.payload.Errors;
         }
@@ -175,21 +153,23 @@ export const fetchProposeAsync = createAsyncThunk('tenderdata/Propose', async (r
 );
 
 export const fetchConfirmPropositionAsync = createAsyncThunk('tenderdata/ConfirmProposition', async (req: any, thunkAPI: any) => {
-  const fakeErrorsResponse  = {Errors: [
-    "המחיר קטן מידי",
-    "המכרז הסתיים"
-    ]};
+  const fakeErrorsResponse = {
+    Errors: [
+      "המחיר קטן מידי",
+      "המכרז הסתיים"
+    ]
+  };
   try {
-    let responseFakeJson = {Price:225,TotalWithoutBenefits:28555};//need to replace with real response
+    let responseFakeJson = { Price: 225, TotalWithoutBenefits: 28555 };//need to replace with real response
     const response = await axios.post(
       `${API_URL_Lpau}/ConfirmProposition`,
       req,
     )
     return response.data;
-    } catch (err) {
-      return err;
-    }
+  } catch (err) {
+    return err;
   }
+}
 );
 
 
