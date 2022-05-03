@@ -29,13 +29,14 @@ export default function TenderLine({ item, AmountSign, status }: IProps): JSX.El
     const dispatch = useDispatch();
     const [expand, setExpand] = React.useState(false);
     const [valCahnge, setValChange] = React.useState('');
+
     const [snackbar, setSnackbar] = React.useState<IMessege>({ isOpen: false, messege: '' });
     const [price, setPrice] = useState<number>(0);
 
     useEffect(() => {
-        setValue('tenderSum', item.Price);
+        setValue('tenderSum', item.PreviousPrice);
         if (item != null) {
-            setPrice(item.Price);
+            setPrice(item.PreviousPrice);
             reset(item);
         }
     }, [item]);
@@ -62,10 +63,9 @@ export default function TenderLine({ item, AmountSign, status }: IProps): JSX.El
             max(item.MaxPrice).message(Translation('Tender.ValidationMsg.MaxPriceErr')).
             //multiple(item.PriceStep).message('min.invalid').
             custom(method, 'custom validation').
-            required()//.message('דרוש')
+            required()//.message('דרוש');
            
-    })
-        .options({ allowUnknown: true });//instead of adding non shown fields
+    }).options({ allowUnknown: true });//instead of adding non shown fields
 
     const { register, handleSubmit, reset, setValue, formState: { errors } } = useForm({
         resolver: joiResolver(schema),
@@ -144,12 +144,14 @@ export default function TenderLine({ item, AmountSign, status }: IProps): JSX.El
                                 <Grid item className={Styles.stepTitle} aria-label={Translation('Tender.PRICE_PER_UNIT')}></Grid>
                                 <Grid item className={Styles.stepField}>
                                     <Grid item>
-                                        <IconButton sx={{ color: "#00798C" }} onClick={() => {
+                                        <IconButton  sx={{ color: "#00798C" }} onClick={() => {
                                             let val = valCahnge ? parseFloat(valCahnge) : item.Price;
                                             if (val > item.MaxPrice) {
                                                 setSnackbar({ isOpen: true, messege: Translation('Tender.PRICE_IS_HIGHER_THAN_THE_MAXIMUM') });
-                                            }
-                                            dispatch(linePriceChanged({ TenderLineId: item.TenderLineId, actionType: "stepUp" }))
+                                            };
+                                             
+                                          
+                                           // dispatch(linePriceChanged({ TenderLineId: item.TenderLineId, actionType: "stepUp" }))
                                         }}><AddCircle /></IconButton></Grid>
                                     <Grid component='form' onSubmit={handleSubmit(onSubmit)} sx={{ mt: 1 }}>
                                         <TextField defaultValue={item.Price ? parseFloat(String(item.Price)).toFixed(2) : ''} {...register('tenderSum')} placeholder={item.CurrencyId}
@@ -195,3 +197,5 @@ export default function TenderLine({ item, AmountSign, status }: IProps): JSX.El
         </Box>
     )
 }
+
+

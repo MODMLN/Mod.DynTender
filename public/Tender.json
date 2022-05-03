@@ -89,6 +89,6 @@
             }
             
         ],
-        "Messages": null,
+        "Messages": ["הערה מספר 1"],
         "IsFemaleOwner": true
     }
