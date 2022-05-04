@@ -21,7 +21,7 @@ export default function StatusesBtn({ item, leadItem }: IProps) {
     return (
         <>
             <Grid className={`${Styles.BoxHead} ${Styles.status}`}>
-                     <Grid item>
+                     <Grid item className={Styles.divBtn}>
                         <Button variant="contained">{time}</Button>&nbsp;&nbsp;
                         <Button variant="contained">
                             {Translation('Tender.' + status + '')}
