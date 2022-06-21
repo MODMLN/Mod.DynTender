@@ -20,6 +20,7 @@ export const tenderSlice = createSlice({
     //   state.List = action.payload
     // },
     setDisplayMessagesValue :(state,action)=>{
+      console.log("setDisplayMessagesValue: ",action)
       let tender = state.DisplayMessages?.find((item:DisplayMessage)=>{
         return item.tenderId === action.payload.tenderId });
       if(tender){

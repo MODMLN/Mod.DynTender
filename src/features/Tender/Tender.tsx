@@ -33,13 +33,13 @@ export default function Tender() {
   }, [dispatch]);
 
   const displayMessages = logicHelper.isDisplayMessages(tenderDisplayMessages, tenderDto.Id);
-
+// console.log(displayMessages)
   return (
     <Box className={Styles.BoxContainer}>
       <Grid className={Styles.BoxHeadTop} >
         <Grid key="1" className={Styles.tenderDetails}>
           {(tenderDto != null && tenderDto.Messages != null && tenderDto.Messages.length > 0 && displayMessages) &&
-            <MessagesDialog key="messagesDialog" flag={open} Messages={tenderDto.Messages} userDto={userDto} ></MessagesDialog>
+            <MessagesDialog key="messagesDialog" flag={displayMessages?open:false} Messages={tenderDto.Messages} userDto={userDto} ></MessagesDialog>
           }
           {(LastPropositionsDto != null && LastPropositionsDto.NeedApprovalMessages != null && LastPropositionsDto.NeedApprovalMessages.length > 0) &&
             <NeedApprovalMessages key="3" flag={open} Messages={LastPropositionsDto.NeedApprovalMessages}  ></NeedApprovalMessages>
