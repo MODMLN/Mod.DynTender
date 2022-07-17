@@ -11,6 +11,8 @@
     "UserLastPropositionTotal": 80000
     ,"Statuses":"Going"
     ,"TenderNumber":"6589547859"
+    ,"IsFemaleOwner": false
+    ,"HasUsersWithFemaleOwner": false
   },
   {
     "Id": 16,
@@ -25,6 +27,8 @@
     "UserLastPropositionTotal": 80000
     ,"Statuses":"Paused"
     ,"TenderNumber":"6589547459"
+    ,"IsFemaleOwner": true
+    ,"HasUsersWithFemaleOwner": false
   },{
     "Id": 17,
     "EndDate": null,
@@ -38,6 +42,8 @@
     "UserLastPropositionTotal": 80000
     ,"Statuses":"Ended"
     ,"TenderNumber":"6580047859"
+    ,"IsFemaleOwner": true
+    ,"HasUsersWithFemaleOwner": false
   },{
     "Id": 18,
     "EndDate": null,
@@ -51,6 +57,8 @@
     "UserLastPropositionTotal": 80000
     ,"Statuses":"Going"
     ,"TenderNumber":"6589347859"
+    ,"IsFemaleOwner": true
+    ,"HasUsersWithFemaleOwner": false
   },{
     "Id": 19,
     "EndDate": null,
@@ -64,6 +72,8 @@
     "UserLastPropositionTotal": 80000
     ,"Statuses":"Going"
     ,"TenderNumber":"6589545859"
+    ,"IsFemaleOwner": true
+    ,"HasUsersWithFemaleOwner": false
   },{
     "Id": 25,
     "EndDate": null,
@@ -77,6 +87,8 @@
     "UserLastPropositionTotal": 80000
     ,"Statuses":"Going"
     ,"TenderNumber":"6589543259"
+    ,"IsFemaleOwner": true
+    ,"HasUsersWithFemaleOwner": false
   },{
     "Id": 26,
     "EndDate": null,
@@ -90,6 +102,8 @@
     "UserLastPropositionTotal": 80000
     ,"Statuses":"Going"
     ,"TenderNumber":"6589553859"
+    ,"IsFemaleOwner": true
+    ,"HasUsersWithFemaleOwner": false
   },{
     "Id": 27,
     "EndDate": null,
@@ -103,6 +117,8 @@
     "UserLastPropositionTotal": 80000
     ,"Statuses":"Going"
     ,"TenderNumber":"6569547859"
+    ,"IsFemaleOwner": true
+    ,"HasUsersWithFemaleOwner": false
   },{
     "Id": 28,
     "EndDate": null,
@@ -116,6 +132,8 @@
     "UserLastPropositionTotal": 80000
     ,"Statuses":"Going"
     ,"TenderNumber":"6527547859"
+    ,"IsFemaleOwner": true
+    ,"HasUsersWithFemaleOwner": false
   },{
     "Id": 29,
     "EndDate": null,
@@ -129,6 +147,8 @@
     "UserLastPropositionTotal": 80000
     ,"Statuses":"Going"
     ,"TenderNumber":"6589307859"
+    ,"IsFemaleOwner": true
+    ,"HasUsersWithFemaleOwner": false
   },{
     "Id": 35,
     "EndDate": null,
@@ -142,6 +162,8 @@
     "UserLastPropositionTotal": 80000
     ,"Statuses":"Going"
     ,"TenderNumber":"6583147859"
+    ,"IsFemaleOwner": true
+    ,"HasUsersWithFemaleOwner": false
   },{
     "Id": 55,
     "EndDate": null,
@@ -155,6 +177,8 @@
     "UserLastPropositionTotal": 80000
     ,"Statuses":"NotYetStarted"
     ,"TenderNumber":"658347859"
+    ,"IsFemaleOwner": true
+    ,"HasUsersWithFemaleOwner": false
   },{
     "Id": 36,
     "EndDate": null,
@@ -168,6 +192,8 @@
     "UserLastPropositionTotal": 80000
     ,"Statuses":"Going"
     ,"TenderNumber":"6583547859"
+    ,"IsFemaleOwner": true
+    ,"HasUsersWithFemaleOwner": false
   },{
     "Id":37,
     "EndDate": null,
@@ -181,6 +207,8 @@
     "UserLastPropositionTotal": 80000
     ,"Statuses":"Going"
     ,"TenderNumber":"6583647859"
+    ,"IsFemaleOwner": false
+    ,"HasUsersWithFemaleOwner": false
   },{
     "Id": 38,
     "EndDate": null,
@@ -194,4 +222,7 @@
     "UserLastPropositionTotal": 80000
     ,"Statuses":"Going"
     ,"TenderNumber":"6537847859"
+    ,"IsFemaleOwner": true
+    ,"HasUsersWithFemaleOwner": false
+   
   }]

@@ -3,6 +3,7 @@ import TendersDto from './Dtos/TendersDto';
 import { useSelector, useDispatch } from "react-redux";
 import { selectTenders, getAllTendersAsync } from "./TendersSlice";
 import TendersListItem from './TendersListItem';
+import TendersListItemMessage from './TendersListItemMessage';
 import { Grid } from "@mui/material";
 import Styles from './Tenders.module.scss';
 
@@ -26,7 +27,11 @@ export default function TendersList() {
       <Grid container justifyContent="center" className={Styles.TendersList}>
         {tenders.map((item: TendersDto, index: number) => {
           return (
-            <TendersListItem key={index} item={item} index={index} redirectOnClick={true} />
+            <Grid container item>
+              <TendersListItem key={index} item={item} index={index} redirectOnClick={true} />
+             
+              {((!item.HasUsersWithFemaleOwner) && (!item.IsFemaleOwner)) && <TendersListItemMessage key={index} item={item}   />}
+            </Grid>
           )
         })}
       </Grid>

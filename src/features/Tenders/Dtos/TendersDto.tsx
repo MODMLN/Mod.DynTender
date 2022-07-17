@@ -19,6 +19,9 @@ export default class TendersDto {
     public UserLastPropositionTotal?: number
     public Statuses!: Status;
     public Messages?:Messages[];
+    public IsFemaleOwner?: boolean;
+    public HasUsersWithFemaleOwner?: boolean;
+
  
 }
 
