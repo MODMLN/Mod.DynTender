@@ -1,6 +1,60 @@
-
 {
-  "TENDER": "Tender",
-  "TENDERS_ITEMS": "Tenders Items"
+  "Tender": {
+    "HELLO":"שלום",
+    "NUMBER":"מס'",
+    "Offer_confirmation":"אישור ההצעה",
+    "BACK":"חזור",
+    "CLOSE":"סגור",
+    "Paused":"המכרז בהקפאה",
+    "UPDATED":"עודכן",
+    "WEIGHT":"משקל",
+    "AMOUNT":"כמות",
+    "CONFITMATION":"אישור",
+    "TENDER": "מכרז",
+    "Ended":"המכרז הסתיים",
+    "NotYetStarted":"טרם החל",
+    "ITEMS_IN_TENDER":"פריטים במכרז",
+    "ALL_TENDERS_LIST":"לרשימת המכרזים",
+    "ALL_TENDERS":"רשימת המכרזים",
+    "ACTIVE":"פעיל",
+    "Going":"פעיל",
+    "OPENING_TIME":"זמן פתיחה",
+    "LEADING_PRICE":"מחיר מוביל",
+    "YOUR_OFFER_LEADS":"הצעתך מובילה",
+    "BID_SUBMISSION":"הגשת ההצעה",
+    "PRICE_PER_UNIT":"מחיר ליחידה",
+    "SYSTEM_CLOCK":"שעון מערכת",
+    "MENU":"תפריט",
+    "MESSAGES_THAT_REQUIRE_IMMEDIATE_APPROVAL":"הודעות שצריכות אישור מיידי",
+    "THE_AMOUNT_OF_YOUR_BID":"סכום הצעתך",
+    "OPEN_TIME":"זמן פתיחה",
+    "NUMBER_OF_UNITS":"מספר יחידות",
+    "TOTAL":"סה''כ",
+    "PROPOSAL_RANK":"מדרגת הצעה",
+    "PRICE_IS_HIGHER_THAN_THE_MAXIMUM":"המחיר גבוה מהמחיר המקסימלי",
+    "PRICE_DOES_NOT_MEET_THE_SET_RANGE":"המחיר אינו עומד בטווח שנקבע",
+    "PRICE_IS_LOWER_THAN_THE_MINIMUM":"המחיר נמוך מהמחיר המינימלי",
+    "PROPOSAL_IS_FILLED_IN_PROPERLY":"יש לוודא שהצעתך מולאה כראוי",
+    "SUMMARY_OF_ITEMS":"סיכום הפריטים",
+    "PRICE":"מחיר",
+    "ITEM_NAME":"שם פריט",
+    "ANNOUNCEMENTS_FOR_THIS_AUCTION":"הודעות למכרז זה",
+    "DO_NOT_SHOW_THIS_MESSAGE_AGAIN":"אל תציג הודעה זו שוב",
+    "WILL_BEGIN_IN":"יחל בעוד",
+    "DAYS":"ימים",
+    "HOURS":"שעות",
+    "MINUTES":"דקות",
+    "SECONDS":"שניות",
+    "WOMAN_PREFER_MESSEGE":"הנך זכאי להעדפה של עידוד נשים בעסקים ולכן על מנת להוביל עליך להציע הצעה זהה להצעה המובילה",
+    "WOMAN_PREFER_MESSEGE_SUPPLIER":"במכרז זה משתתף לפחות ספק אחד הזכאי להעדפה של עידוד נשים בעסקים.",
+    "ValidationMsg":{
+      "MinPriceErr":"המחיר נמוך ממחיר היעד",
+      "MaxPriceErr":"המחיר גבוה ממחיר היעד",
+      "YOU_DIDNT_DOWN_STEP_AT_LAST":"לא ירדת בלפחות מדרגת מחיר", 
+      "YOU_DIDNT_UP_STEP_AT_LAST":"לא עלית בלפחות מדרגת מחיר"
+    }
 
+   
+
+  }
 }

@@ -242,8 +242,10 @@ a {
   @media screen and (max-width:1024px) {
     width: 95% !important;
   }
-  .TendersListItemMessage{
-    width  : 100% !important;
+
+  .TendersListItemMessage {
+    color        : #136AC8;
+    width        : 100% !important;
     width        : 86%;
     height       : 241px;
     margin-left  : auto;
@@ -253,7 +255,16 @@ a {
     box-shadow   : 0px 4px 24px rgba(58, 59, 69, 0.1);
     border-radius: 7px;
     height       : auto;
-    padding: 10px 16px;
-    direction: rtl;
+    padding      : 10px 16px;
+    .DisplayMessage{ 
+      direction    : rtl;
+      align-items: center;
+      .MESSEGE{
+        text-align: right;
+      }
+      .WarningAmberIcon{
+        margin-left: 1%;
+      }
+    }
   }
 }

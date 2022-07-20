@@ -1,31 +1,34 @@
 import React, { useEffect } from "react";
+import { useTranslation } from "react-multi-lang";
 import TendersDto from './Dtos/TendersDto';
 import { useSelector, useDispatch } from "react-redux";
-import { selectTenders, getAllTendersAsync } from "./TendersSlice";
-import TendersListItem from './TendersListItem';
 import { Grid } from "@mui/material";
+import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 import Styles from './Tenders.module.scss';
+import { green, orange } from "@mui/material/colors";
 
 interface IProps {
     item: TendersDto
 }
 
 export default function TendersListItemMessage({ item }: IProps) {
-
   const dispatch = useDispatch();
-  const tenders = useSelector(selectTenders);
-
-
+  const Translation = useTranslation();
   useEffect(() => {
-    dispatch(getAllTendersAsync());
+   
   }, [dispatch]);
 
   return (
     <React.Fragment>
 
       <Grid container justifyContent="center" className={Styles.TendersListItemMessage} >
-            <Grid container item className={Styles.DisplayMessage}>
-                    במכרז זה משתתף לפחות ספק אחד הזכאי להעדפה של עידוד נשים בעסקים.
+            <Grid container item  className={Styles.DisplayMessage} wrap="nowrap">
+              <Grid  item className={Styles.WarningAmberIcon}><WarningAmberIcon sx={{ color: orange[500] }}  /></Grid>
+              <Grid className={Styles.MESSEGE}  item xs={11}> 
+              {((!item.HasUsersWithFemaleOwner) && (!item.IsFemaleOwner)) && Translation('Tender.WOMAN_PREFER_MESSEGE_SUPPLIER')}
+              {(item.IsFemaleOwner) && Translation('Tender.WOMAN_PREFER_MESSEGE_ISFEMALEOWNER')}
+              </Grid>
+                    
             </Grid>
       </Grid>
     </React.Fragment>

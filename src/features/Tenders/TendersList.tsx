@@ -30,7 +30,7 @@ export default function TendersList() {
             <Grid container item>
               <TendersListItem key={index} item={item} index={index} redirectOnClick={true} />
              
-              {((!item.HasUsersWithFemaleOwner) && (!item.IsFemaleOwner)) && <TendersListItemMessage key={index} item={item}   />}
+              {((!item.HasUsersWithFemaleOwner) || (item.IsFemaleOwner)) && <TendersListItemMessage key={index} item={item}   />}
             </Grid>
           )
         })}

@@ -1,0 +1,47 @@
+{
+    "Id": 22,
+    "IsDisplayLeadingPropositions": true,
+    "IsMinPreferred": true,
+    "IsServiceTender": false,
+    "NumberOfWinner": 1,
+    "Name": "מכרז עם העדפות",
+    "HasUsersWithFemaleOwner": false,
+    "MultipaleFactor": 0.00,
+    "CurrencyId": "₪",
+    "AmountSign": "",
+    "IsPercentageCalculation": false,
+    "Time": 6541,
+    "ExtendDuration": 3,
+    "TenderQualityGradePercent": null,
+    "SupplierQualityGradePercent": null,
+    "Lines": [
+        {
+            "RequiredAmount": 100.00,
+            "Price": 1200.00,
+            "InitialPrice": 1200.00,
+            "DiscountPercent": 15.00,
+            "TenderLineId": 38,
+            "TenderLineName": "פריט א",
+            "MaxPrice": 1200.00,
+            "MinPrice": 0.00,
+            "PriceStep": 5.00,
+            "TotalPrice": 104347.82608695652173913043478,
+            "TotalPriceForDisplay": 104347.82,
+            "PreviousPrice": null,
+            "IsCotsOrUsg": false,
+            "IsraeliContent": 0,
+            "NonUsPercent": 0,
+            "Index": 1,
+            "TotalWithoutBenefits": 120000.0000,
+            "BenefitType": "ConfrontationLine",
+            "TotalWithLocationBenefit": 104347.826086,
+            "TotalForLocalWork": 104347.826086
+        }
+    ],
+    "Messages": [
+        "הודעה א",
+        "הודעה ב"
+    ],
+    "IsFemaleOwner": false,
+    "IsTenderWithBenefits":true
+}
