@@ -53,7 +53,10 @@
       "MaxPriceErr":"המחיר גבוה ממחיר היעד",
       "YOU_DIDNT_DOWN_STEP_AT_LAST":"לא ירדת בלפחות מדרגת מחיר", 
       "YOU_DIDNT_UP_STEP_AT_LAST":"לא עלית בלפחות מדרגת מחיר"
-    }
+    },
+    "EXERCISE_THE_PREFERENCES":"למימוש ההעדפות, יש להזין את מרכיבי המחיר ליחידה",
+    "POSSIBILITY_OF_LINE_OF_CONFLICT":"אפשרות לזכאות קו עימות ע״פ הצהרתך ניתן להזין הצעות עם",
+    "THE_COST_OF_DOMESTICALLY":"עלות מרכיב תוצרת הארץ"
 
    
 

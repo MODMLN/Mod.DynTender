@@ -9,6 +9,7 @@ import Styles from './Tender.module.scss';
 import { AddCircle, RemoveCircle } from '@mui/icons-material';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { TenderLineDto, IMessege } from './Dtos/TenderLineDto';
+
 import CurrencyFormat from 'react-number-format';
 import { linePriceChanged } from "./TenderSlice";
 import { useDispatch } from "react-redux";
@@ -89,6 +90,7 @@ export default function TenderLine({ item, AmountSign, status }: IProps): JSX.El
 
     return (
         <Box key={item.Index} className={Styles.TenderLine}>
+          
             <Accordion className={Styles.Accordion} expanded={expand} >
                 <AccordionSummary
                     className={Styles.AccordionSummary}
@@ -190,7 +192,8 @@ export default function TenderLine({ item, AmountSign, status }: IProps): JSX.El
                                             margin='normal'
                                             error={errors.tenderSum != null}
                                             helperText={errors.tenderSum == null ? null : errors.tenderSum?.message}
-                                            fullWidth
+                                            
+                                            
                                         />
                                     </Grid>
                                     <Grid><IconButton sx={{ color: "#00798C" }} onClick={() => {

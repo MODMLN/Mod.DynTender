@@ -1,4 +1,8 @@
-declare module "*.scss" {
+declare module "Tenders.module.scss";
+
+
+declare module "*.module.scss" { 
   const content: { [className: string]: string };
-  export = content;
+    export default content;
 }
+

@@ -90,5 +90,6 @@
             
         ],
         "Messages": ["הערה מספר 1"],
-        "IsFemaleOwner": true
+        "IsFemaleOwner": true,
+        "IsTenderWithBenefits":true
     }

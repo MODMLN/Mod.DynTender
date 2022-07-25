@@ -30,4 +30,7 @@ export default class TenderDto {
     public IsFemaleOwner?: boolean;
     public itemsNumber!: number | undefined;
     public ErrorMessages ?: string[]| undefined;
+    public IsTenderWithBenefits?: boolean;
+
+
 }

@@ -12,6 +12,7 @@ import { TenderLineDto } from './Dtos/TenderLineDto';
 import { fetchConfirmPropositionAsync, selectTender, selectTotalSummery } from "./TenderSlice";
 import { selectUser } from "../../Global/UsersSlice";
 import { BrowserView } from 'react-device-detect';
+
 interface IProps {
     item: TenderDto
 }
@@ -39,10 +40,11 @@ export default function TenderLines({ item }: IProps): JSX.Element {
             <Box className={Styles.BoxSumItems}>{Translation('Tender.ITEMS_IN_TENDER') + " " + tenderDto.itemsNumber} </Box>
             <Box className={Styles.TenderLines}>
                 {
+              
                     (tenderDto != null && tenderDto.Lines != null && tenderDto.Lines.length > 0) ?
                         tenderDto.Lines.map((itemx: TenderLineDto, indexx: number) => {
                             return (
-                                <>
+                                <>   
                                     <TenderLine key={`indxx_${indexx}`} item={itemx} AmountSign={tenderDto.AmountSign} status={tenderDto.Statuses}></TenderLine>
                                 </>
                             )

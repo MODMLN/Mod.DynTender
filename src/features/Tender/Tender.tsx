@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import TenderItem from './TenderItem';
+import TenderWithBenfitLine from './TenderWithBenfitLine';
 import { selectTender, fetchTenderAsync, selectLastPropositions, fetchLastPropositionsAsync, selectBidConfirmStatus } from "./TenderSlice";
 import { Box, Grid } from "@mui/material";
 import Styles from './Tender.module.scss';
@@ -12,6 +13,8 @@ import { selectDisplayMessages } from "../Tenders/TendersSlice";
 import logicHelper from "../../Helpers/LogicHelper";
 import BidConfirm from './../TenderBidConfirm/BidConfirm';
 import TenderLines from './TenderLines';
+
+
 
 export default function Tender() {
   const { id } = useParams();
@@ -49,14 +52,11 @@ export default function Tender() {
           }
         </Grid>
       </Grid>
-      {BidConfirmStatus &&
-        <TenderLines key="5" item={tenderDto}></TenderLines>
-      }
-      {!BidConfirmStatus &&
-        <Box>
-          <BidConfirm></BidConfirm>
-        </Box>
-      }
+      {tenderDto.IsTenderWithBenefits &&<TenderWithBenfitLine item={tenderDto }></TenderWithBenfitLine>}
+
+      {((BidConfirmStatus) && (!tenderDto.IsTenderWithBenefits)) && <TenderLines key="5" item={tenderDto}></TenderLines>}
+      {!BidConfirmStatus && <Box><BidConfirm></BidConfirm></Box>}
+      
     </Box>
   );
 };
