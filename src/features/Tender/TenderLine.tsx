@@ -56,7 +56,6 @@ export default function TenderLine({ item, AmountSign, status }: IProps): JSX.El
             }
 
             if(value>item.MaxPrice || value<item.MinPrice){
-                console.log("value: ",value)
                 setValStep(item.PreviousPrice);
                 setValue('tenderSum', item.PreviousPrice, { shouldValidate: true })
                 dispatch(linePriceChanged({ TenderLineId: item.TenderLineId, Price: item.PreviousPrice }));

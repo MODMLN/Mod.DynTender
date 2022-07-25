@@ -13,6 +13,7 @@ import { selectDisplayMessages } from "../Tenders/TendersSlice";
 import logicHelper from "../../Helpers/LogicHelper";
 import BidConfirm from './../TenderBidConfirm/BidConfirm';
 import TenderLines from './TenderLines';
+import { TenderLineDto } from "./Dtos/TenderLineDto";
 
 
 
@@ -36,7 +37,7 @@ export default function Tender() {
   }, [dispatch]);
 
   const displayMessages = logicHelper.isDisplayMessages(tenderDisplayMessages, tenderDto.Id);
-// console.log(displayMessages)
+  
   return (
     <Box className={Styles.BoxContainer}>
       <Grid className={Styles.BoxHeadTop} >
@@ -52,7 +53,17 @@ export default function Tender() {
           }
         </Grid>
       </Grid>
-      {tenderDto.IsTenderWithBenefits &&<TenderWithBenfitLine item={tenderDto }></TenderWithBenfitLine>}
+      {tenderDto.IsTenderWithBenefits &&
+      (tenderDto != null && tenderDto.Lines != null && tenderDto.Lines.length > 0) ?
+          tenderDto.Lines.slice(0, 1).map((itemx: TenderLineDto, indexx: number) => {
+              return (<TenderWithBenfitLine item={tenderDto} itemx={itemx}></TenderWithBenfitLine>)
+            
+            })
+            : ''}
+
+
+
+                      
 
       {((BidConfirmStatus) && (!tenderDto.IsTenderWithBenefits)) && <TenderLines key="5" item={tenderDto}></TenderLines>}
       {!BidConfirmStatus && <Box><BidConfirm></BidConfirm></Box>}

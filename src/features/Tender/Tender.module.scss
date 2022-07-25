@@ -205,6 +205,23 @@ input[type=number]::-webkit-outer-spin-button {
 }
 .TenderWithBenfitLineContainer{
   margin-top: 15px;
+  @media screen and (max-width:1920px) {
+    width:100%;
+  }
+  .BoxContainer{
+    
+    .BoxSummery{
+      align-items: center;
+      .item{
+       
+        margin:0 15px;
+        .title{ font-size  : 16pt !important;}
+        .summery{ margin-top: 15px; font-size  : 16pt !important;}
+      }
+   
+    }
+    
+  }
   .TenderWithBenfitLine {
     display        : flex;
     direction      : rtl;
@@ -221,7 +238,11 @@ input[type=number]::-webkit-outer-spin-button {
     margin-bottom  : 10px;
 
     @media screen and (max-width:1920px) {
-      width:98%;
+      width:100%;
+    }
+
+    @media screen and (max-width:1024px) {
+      width:100%;
     }
 
     @media screen and (max-width:500px) {
@@ -239,7 +260,7 @@ input[type=number]::-webkit-outer-spin-button {
         font-family   : 'OpenSans', sans-serif;
         font-style    : normal;
         font-weight   : bold;
-        font-size     : 1.5em;
+        font-size     : 18pt;
         line-height   : 26px;
         text-align    : right;
         letter-spacing: -0.4125px;
@@ -310,6 +331,8 @@ input[type=number]::-webkit-outer-spin-button {
       }
       input{ padding-top: 10px!important;}
     }
+
+  
   }
 }
 
